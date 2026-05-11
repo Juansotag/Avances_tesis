@@ -1,0 +1,5 @@
+platform,k,alpha,t0_base,mape_d0,mape_d1,mape_d2,mape_d3,mape_d7,calibrated_on,n_posts
+Facebook,0.948,0.823,1.9323,11.27,6.92,3.73,2.12,0.32,Costa Rica 2026,765
+Instagram,1.1369,0.521,0.0408,64.77,20.72,15.67,12.06,3.76,Costa Rica 2026,603
+TikTok,1.3272,0.5124,0.7887,25.36,14.2,8.35,5.94,2.29,Costa Rica 2026,344
+Twitter,1.4453,1.1422,0.2566,56.37,11.09,2.55,0.38,0.0,Costa Rica 2026,210
