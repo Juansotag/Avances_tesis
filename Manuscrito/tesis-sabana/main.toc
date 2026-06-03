@@ -1,0 +1,48 @@
+\babel@toc {spanish}{}\relax 
+\contentsline {chapter}{Resumen}{1}{section*.3}%
+\contentsline {chapter}{Abstract}{1}{section*.4}%
+\contentsline {chapter}{\numberline {1}Introducción}{1}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Motivación del problema}{1}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Estado del arte: el modelo SOMEN-DC}{2}{section.1.2}%
+\contentsline {section}{\numberline {1.3}Hipótesis de trabajo}{2}{section.1.3}%
+\contentsline {section}{\numberline {1.4}Estructura del documento}{3}{section.1.4}%
+\contentsline {chapter}{\numberline {2}Pregunta de investigación}{3}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Pregunta principal}{3}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Preguntas derivadas}{4}{section.2.2}%
+\contentsline {chapter}{\numberline {3}Marco conceptual}{5}{chapter.3}%
+\contentsline {section}{\numberline {3.1}\textit {Nowcasting} electoral y predicción con redes sociales}{5}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.a}Definición de \textit {nowcasting} en contexto electoral}{5}{subsection.3.1.1}%
+\contentsline {section}{\numberline {3.2}Modelos elección-agnósticos: definición y ventajas}{5}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Interacciones digitales como \textit {proxy} de intención de voto}{6}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.a}La hipótesis Tumasjan}{6}{subsection.3.3.1}%
+\contentsline {subsection}{\numberline {3.3.b}Interacciones absolutas vs. dominancia relativa}{6}{subsection.3.3.2}%
+\contentsline {section}{\numberline {3.4}El problema del histórico de interacciones}{6}{section.3.4}%
+\contentsline {chapter}{\numberline {4}Objetivos}{7}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Objetivo general}{7}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Objetivos específicos}{7}{section.4.2}%
+\contentsline {chapter}{\numberline {5}Metodología}{8}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Diseño general del pipeline}{8}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Etapa 1 — Bolivia: Replicación del SOMEN-DC y prueba de concepto}{8}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.a}Caso de estudio y recolección de datos}{8}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.2.b}Evaluación de modelos}{9}{subsection.5.2.2}%
+\contentsline {section}{\numberline {5.3}Etapa 2 — Costa Rica: Modelado del crecimiento de interacciones}{9}{section.5.3}%
+\contentsline {subsection}{\numberline {5.3.a}El problema estructural}{9}{subsection.5.3.1}%
+\contentsline {subsection}{\numberline {5.3.b}Metodología y Modelo Weibull}{9}{subsection.5.3.2}%
+\contentsline {section}{\numberline {5.4}Etapa 3 — Colombia: Construcción del dataset y modelado}{10}{section.5.4}%
+\contentsline {section}{\numberline {5.5}Modelado predictivo}{11}{section.5.5}%
+\contentsline {subsection}{\numberline {5.5.a}Modelo de regresión}{11}{subsection.5.5.1}%
+\contentsline {subsection}{\numberline {5.5.b}Modelo de clasificación binaria}{12}{subsection.5.5.2}%
+\contentsline {chapter}{\numberline {6}Resultados}{12}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Resultados de Bolivia (Etapa 1)}{12}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Resultados de Costa Rica (Etapa 2)}{13}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Resultados de Colombia (Etapa 3)}{14}{section.6.3}%
+\contentsline {section}{\numberline {6.4}Síntesis: contribuciones al estado del arte}{14}{section.6.4}%
+\contentsline {chapter}{\numberline {7}Impacto esperado}{15}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Impacto académico}{15}{section.7.1}%
+\contentsline {section}{\numberline {7.2}Impacto práctico}{15}{section.7.2}%
+\contentsline {section}{\numberline {7.3}Limitaciones y trabajo futuro}{16}{section.7.3}%
+\contentsline {chapter}{\numberline {8}Conclusiones}{17}{chapter.8}%
+\contentsline {section}{\numberline {8.1}Respuesta a la pregunta de investigación}{17}{section.8.1}%
+\contentsline {section}{\numberline {8.2}Lecciones aprendidas}{17}{section.8.2}%
+\contentsline {section}{\numberline {8.3}Próximos pasos}{18}{section.8.3}%
+\contentsline {chapter}{Bibliograf\'{\i }a}{19}{section*.6}%

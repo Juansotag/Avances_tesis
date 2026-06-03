@@ -1,0 +1,649 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{apa/apasortcite//global/global/global}
+    \entry{brito2022measuring}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=2b764097b5efb06c8883c84dcac1b0d8}{%
+           family={Brito},
+           familyi={B\bibinitperiod},
+           given={Kellyton},
+           giveni={K\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=8e857f2b9e9d5879b28bc0d23793b1c4}{%
+           family={Adeodato},
+           familyi={A\bibinitperiod},
+           given={Paulo\bibnamedelimb Jorge\bibnamedelima Leitão},
+           giveni={P\bibinitperiod\bibinitdelim J\bibinitperiod\bibinitdelim L\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{79edad1fb4b1fb4dbbe812c313173814}
+      \strng{fullhash}{79edad1fb4b1fb4dbbe812c313173814}
+      \strng{fullhashraw}{79edad1fb4b1fb4dbbe812c313173814}
+      \strng{bibnamehash}{79edad1fb4b1fb4dbbe812c313173814}
+      \strng{authorbibnamehash}{79edad1fb4b1fb4dbbe812c313173814}
+      \strng{authornamehash}{79edad1fb4b1fb4dbbe812c313173814}
+      \strng{authorfullhash}{79edad1fb4b1fb4dbbe812c313173814}
+      \strng{authorfullhashraw}{79edad1fb4b1fb4dbbe812c313173814}
+      \field{extraname}{1}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Government Information Quarterly}
+      \field{number}{4}
+      \field{title}{Measuring the performances of politicians on social media and the correlation with major {Latin American} election results}
+      \field{volume}{39}
+      \field{year}{2022}
+      \field{pages}{101745}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1016/j.giq.2022.101745
+      \endverb
+    \endentry
+    \entry{brito2023somen}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=2b764097b5efb06c8883c84dcac1b0d8}{%
+           family={Brito},
+           familyi={B\bibinitperiod},
+           given={Kellyton},
+           giveni={K\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=8e857f2b9e9d5879b28bc0d23793b1c4}{%
+           family={Adeodato},
+           familyi={A\bibinitperiod},
+           given={Paulo\bibnamedelimb Jorge\bibnamedelima Leitão},
+           giveni={P\bibinitperiod\bibinitdelim J\bibinitperiod\bibinitdelim L\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{79edad1fb4b1fb4dbbe812c313173814}
+      \strng{fullhash}{79edad1fb4b1fb4dbbe812c313173814}
+      \strng{fullhashraw}{79edad1fb4b1fb4dbbe812c313173814}
+      \strng{bibnamehash}{79edad1fb4b1fb4dbbe812c313173814}
+      \strng{authorbibnamehash}{79edad1fb4b1fb4dbbe812c313173814}
+      \strng{authornamehash}{79edad1fb4b1fb4dbbe812c313173814}
+      \strng{authorfullhash}{79edad1fb4b1fb4dbbe812c313173814}
+      \strng{authorfullhashraw}{79edad1fb4b1fb4dbbe812c313173814}
+      \field{extraname}{2}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Government Information Quarterly}
+      \field{number}{2}
+      \field{title}{Machine learning for predicting elections in {Latin America}}
+      \field{volume}{40}
+      \field{year}{2023}
+      \field{pages}{101782}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1016/j.giq.2022.101782
+      \endverb
+    \endentry
+    \entry{brito2024stop}{article}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=2b764097b5efb06c8883c84dcac1b0d8}{%
+           family={Brito},
+           familyi={B\bibinitperiod},
+           given={Kellyton},
+           giveni={K\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=6e6f699768feef4e1d0c6f5fe4328457}{%
+           family={Silva\bibnamedelima Filho},
+           familyi={S\bibinitperiod\bibinitdelim F\bibinitperiod},
+           given={Telmo},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=8e857f2b9e9d5879b28bc0d23793b1c4}{%
+           family={Adeodato},
+           familyi={A\bibinitperiod},
+           given={Paulo\bibnamedelimb Jorge\bibnamedelima Leitão},
+           giveni={P\bibinitperiod\bibinitdelim J\bibinitperiod\bibinitdelim L\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{fe353eb6d04d5707fcccd12d87f786e9}
+      \strng{fullhash}{8687521a0ece8aedef5ac757e11084e5}
+      \strng{fullhashraw}{8687521a0ece8aedef5ac757e11084e5}
+      \strng{bibnamehash}{8687521a0ece8aedef5ac757e11084e5}
+      \strng{authorbibnamehash}{8687521a0ece8aedef5ac757e11084e5}
+      \strng{authornamehash}{fe353eb6d04d5707fcccd12d87f786e9}
+      \strng{authorfullhash}{8687521a0ece8aedef5ac757e11084e5}
+      \strng{authorfullhashraw}{8687521a0ece8aedef5ac757e11084e5}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Government Information Quarterly}
+      \field{number}{1}
+      \field{title}{Stop trying to predict elections only with {Twitter}: There are other data}
+      \field{volume}{41}
+      \field{year}{2024}
+      \field{pages}{101899}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1016/j.giq.2023.101899
+      \endverb
+    \endentry
+    \entry{lewisbeck2014proxy}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=231cfe1697dee24192ed8cb747333eee}{%
+           family={Lewis-Beck},
+           familyi={L\bibinithyphendelim B\bibinitperiod},
+           given={Michael\bibnamedelima S.},
+           giveni={M\bibinitperiod\bibinitdelim S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=087b700bb7772ecb4daa9e427b6a5f76}{%
+           family={Tien},
+           familyi={T\bibinitperiod},
+           given={Charles},
+           giveni={C\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{fb422e52e358e90026f9421b82c7c8f7}
+      \strng{fullhash}{fb422e52e358e90026f9421b82c7c8f7}
+      \strng{fullhashraw}{fb422e52e358e90026f9421b82c7c8f7}
+      \strng{bibnamehash}{fb422e52e358e90026f9421b82c7c8f7}
+      \strng{authorbibnamehash}{fb422e52e358e90026f9421b82c7c8f7}
+      \strng{authornamehash}{fb422e52e358e90026f9421b82c7c8f7}
+      \strng{authorfullhash}{fb422e52e358e90026f9421b82c7c8f7}
+      \strng{authorfullhashraw}{fb422e52e358e90026f9421b82c7c8f7}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Presidential Studies Quarterly}
+      \field{number}{3}
+      \field{title}{Proxy models and nowcasting: {U.S.} presidential elections in the future}
+      \field{volume}{44}
+      \field{year}{2014}
+      \field{pages}{506\bibrangedash 521}
+      \range{pages}{16}
+    \endentry
+    \entry{lewisbeck2011nowcasting}{article}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=231cfe1697dee24192ed8cb747333eee}{%
+           family={Lewis-Beck},
+           familyi={L\bibinithyphendelim B\bibinitperiod},
+           given={Michael\bibnamedelima S.},
+           giveni={M\bibinitperiod\bibinitdelim S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=149d9504ba37c452c1d2c8e55c89921e}{%
+           family={Nadeau},
+           familyi={N\bibinitperiod},
+           given={Richard},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=e338097521fd5eaa89f82240194a717c}{%
+           family={Bélanger},
+           familyi={B\bibinitperiod},
+           given={Éric},
+           giveni={É\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{b2ca7ebc6dad744c0fbf870ed83e69dd}
+      \strng{fullhash}{2465abc85a1d6bf381364dd24e895ea7}
+      \strng{fullhashraw}{2465abc85a1d6bf381364dd24e895ea7}
+      \strng{bibnamehash}{2465abc85a1d6bf381364dd24e895ea7}
+      \strng{authorbibnamehash}{2465abc85a1d6bf381364dd24e895ea7}
+      \strng{authornamehash}{b2ca7ebc6dad744c0fbf870ed83e69dd}
+      \strng{authorfullhash}{2465abc85a1d6bf381364dd24e895ea7}
+      \strng{authorfullhashraw}{2465abc85a1d6bf381364dd24e895ea7}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Electoral Studies}
+      \field{number}{2}
+      \field{title}{Nowcasting v. polling: The 2010 {UK} election trials}
+      \field{volume}{30}
+      \field{year}{2011}
+      \field{pages}{284\bibrangedash 287}
+      \range{pages}{4}
+      \verb{doi}
+      \verb 10.1016/j.electstud.2010.09.013
+      \endverb
+    \endentry
+    \entry{skoric2020}{article}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=4ddb11a91a80fa4454cc4e4932eddada}{%
+           family={Skoric},
+           familyi={S\bibinitperiod},
+           given={Marko\bibnamedelima M.},
+           giveni={M\bibinitperiod\bibinitdelim M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=83f95dca7c81df3fe67380769eb0321c}{%
+           family={Liu},
+           familyi={L\bibinitperiod},
+           given={Jing},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=b03de1a00e85dea27c13b50c59a52638}{%
+           family={Jaidka},
+           familyi={J\bibinitperiod},
+           given={Kokil},
+           giveni={K\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{9f3030af8fd313c8e73a3da136d8854d}
+      \strng{fullhash}{f69b137daf6e6d380aab6e1afeebe977}
+      \strng{fullhashraw}{f69b137daf6e6d380aab6e1afeebe977}
+      \strng{bibnamehash}{f69b137daf6e6d380aab6e1afeebe977}
+      \strng{authorbibnamehash}{f69b137daf6e6d380aab6e1afeebe977}
+      \strng{authornamehash}{9f3030af8fd313c8e73a3da136d8854d}
+      \strng{authorfullhash}{f69b137daf6e6d380aab6e1afeebe977}
+      \strng{authorfullhashraw}{f69b137daf6e6d380aab6e1afeebe977}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Information}
+      \field{number}{4}
+      \field{title}{Electoral and Public Opinion Forecasts with Social Media Data: A Meta-Analysis}
+      \field{volume}{11}
+      \field{year}{2020}
+      \field{pages}{187}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.3390/info11040187
+      \endverb
+    \endentry
+    \entry{tumasjan2010}{article}{}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=478771634ee86d4ef56bb7d93e21aa00}{%
+           family={Tumasjan},
+           familyi={T\bibinitperiod},
+           given={Andranik},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=5b0e7539a7826c2a9ad91e82e9565a53}{%
+           family={Sprenger},
+           familyi={S\bibinitperiod},
+           given={Timm\bibnamedelima O.},
+           giveni={T\bibinitperiod\bibinitdelim O\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=d85e1d8b4c718e79ed38e2a9475b2dd4}{%
+           family={Sandner},
+           familyi={S\bibinitperiod},
+           given={Philipp\bibnamedelima G.},
+           giveni={P\bibinitperiod\bibinitdelim G\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=39520a845d8881062421934a51d77c4d}{%
+           family={Welpe},
+           familyi={W\bibinitperiod},
+           given={Isabell\bibnamedelima M.},
+           giveni={I\bibinitperiod\bibinitdelim M\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{3d75a230c57b75413684805db4c5a2d6}
+      \strng{fullhash}{abdb0913991593a3b465a635010032e6}
+      \strng{fullhashraw}{abdb0913991593a3b465a635010032e6}
+      \strng{bibnamehash}{abdb0913991593a3b465a635010032e6}
+      \strng{authorbibnamehash}{abdb0913991593a3b465a635010032e6}
+      \strng{authornamehash}{3d75a230c57b75413684805db4c5a2d6}
+      \strng{authorfullhash}{abdb0913991593a3b465a635010032e6}
+      \strng{authorfullhashraw}{abdb0913991593a3b465a635010032e6}
+      \field{sortinit}{T}
+      \field{sortinithash}{9af77f0292593c26bde9a56e688eaee9}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Proceedings of the Fourth International AAAI Conference on Weblogs and Social Media}
+      \field{title}{Predicting elections with {Twitter}: What 140 characters reveal about political sentiment}
+      \field{year}{2010}
+      \field{pages}{178\bibrangedash 185}
+      \range{pages}{8}
+    \endentry
+  \enddatalist
+  \datalist[entry]{apa/global//global/global/global}
+    \entry{brito2022measuring}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=2b764097b5efb06c8883c84dcac1b0d8}{%
+           family={Brito},
+           familyi={B\bibinitperiod},
+           given={Kellyton},
+           giveni={K\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=8e857f2b9e9d5879b28bc0d23793b1c4}{%
+           family={Adeodato},
+           familyi={A\bibinitperiod},
+           given={Paulo\bibnamedelimb Jorge\bibnamedelima Leitão},
+           giveni={P\bibinitperiod\bibinitdelim J\bibinitperiod\bibinitdelim L\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{79edad1fb4b1fb4dbbe812c313173814}
+      \strng{fullhash}{79edad1fb4b1fb4dbbe812c313173814}
+      \strng{fullhashraw}{79edad1fb4b1fb4dbbe812c313173814}
+      \strng{bibnamehash}{79edad1fb4b1fb4dbbe812c313173814}
+      \strng{authorbibnamehash}{79edad1fb4b1fb4dbbe812c313173814}
+      \strng{authornamehash}{79edad1fb4b1fb4dbbe812c313173814}
+      \strng{authorfullhash}{79edad1fb4b1fb4dbbe812c313173814}
+      \strng{authorfullhashraw}{79edad1fb4b1fb4dbbe812c313173814}
+      \field{extraname}{1}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Government Information Quarterly}
+      \field{number}{4}
+      \field{title}{Measuring the performances of politicians on social media and the correlation with major {Latin American} election results}
+      \field{volume}{39}
+      \field{year}{2022}
+      \field{pages}{101745}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1016/j.giq.2022.101745
+      \endverb
+    \endentry
+    \entry{brito2023somen}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=2b764097b5efb06c8883c84dcac1b0d8}{%
+           family={Brito},
+           familyi={B\bibinitperiod},
+           given={Kellyton},
+           giveni={K\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=8e857f2b9e9d5879b28bc0d23793b1c4}{%
+           family={Adeodato},
+           familyi={A\bibinitperiod},
+           given={Paulo\bibnamedelimb Jorge\bibnamedelima Leitão},
+           giveni={P\bibinitperiod\bibinitdelim J\bibinitperiod\bibinitdelim L\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{79edad1fb4b1fb4dbbe812c313173814}
+      \strng{fullhash}{79edad1fb4b1fb4dbbe812c313173814}
+      \strng{fullhashraw}{79edad1fb4b1fb4dbbe812c313173814}
+      \strng{bibnamehash}{79edad1fb4b1fb4dbbe812c313173814}
+      \strng{authorbibnamehash}{79edad1fb4b1fb4dbbe812c313173814}
+      \strng{authornamehash}{79edad1fb4b1fb4dbbe812c313173814}
+      \strng{authorfullhash}{79edad1fb4b1fb4dbbe812c313173814}
+      \strng{authorfullhashraw}{79edad1fb4b1fb4dbbe812c313173814}
+      \field{extraname}{2}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Government Information Quarterly}
+      \field{number}{2}
+      \field{title}{Machine learning for predicting elections in {Latin America}}
+      \field{volume}{40}
+      \field{year}{2023}
+      \field{pages}{101782}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1016/j.giq.2022.101782
+      \endverb
+    \endentry
+    \entry{brito2024stop}{article}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=2b764097b5efb06c8883c84dcac1b0d8}{%
+           family={Brito},
+           familyi={B\bibinitperiod},
+           given={Kellyton},
+           giveni={K\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=6e6f699768feef4e1d0c6f5fe4328457}{%
+           family={Silva\bibnamedelima Filho},
+           familyi={S\bibinitperiod\bibinitdelim F\bibinitperiod},
+           given={Telmo},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=8e857f2b9e9d5879b28bc0d23793b1c4}{%
+           family={Adeodato},
+           familyi={A\bibinitperiod},
+           given={Paulo\bibnamedelimb Jorge\bibnamedelima Leitão},
+           giveni={P\bibinitperiod\bibinitdelim J\bibinitperiod\bibinitdelim L\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{fe353eb6d04d5707fcccd12d87f786e9}
+      \strng{fullhash}{8687521a0ece8aedef5ac757e11084e5}
+      \strng{fullhashraw}{8687521a0ece8aedef5ac757e11084e5}
+      \strng{bibnamehash}{8687521a0ece8aedef5ac757e11084e5}
+      \strng{authorbibnamehash}{8687521a0ece8aedef5ac757e11084e5}
+      \strng{authornamehash}{fe353eb6d04d5707fcccd12d87f786e9}
+      \strng{authorfullhash}{8687521a0ece8aedef5ac757e11084e5}
+      \strng{authorfullhashraw}{8687521a0ece8aedef5ac757e11084e5}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Government Information Quarterly}
+      \field{number}{1}
+      \field{title}{Stop trying to predict elections only with {Twitter}: There are other data}
+      \field{volume}{41}
+      \field{year}{2024}
+      \field{pages}{101899}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1016/j.giq.2023.101899
+      \endverb
+    \endentry
+    \entry{lewisbeck2011nowcasting}{article}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=231cfe1697dee24192ed8cb747333eee}{%
+           family={Lewis-Beck},
+           familyi={L\bibinithyphendelim B\bibinitperiod},
+           given={Michael\bibnamedelima S.},
+           giveni={M\bibinitperiod\bibinitdelim S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=149d9504ba37c452c1d2c8e55c89921e}{%
+           family={Nadeau},
+           familyi={N\bibinitperiod},
+           given={Richard},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=e338097521fd5eaa89f82240194a717c}{%
+           family={Bélanger},
+           familyi={B\bibinitperiod},
+           given={Éric},
+           giveni={É\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{b2ca7ebc6dad744c0fbf870ed83e69dd}
+      \strng{fullhash}{2465abc85a1d6bf381364dd24e895ea7}
+      \strng{fullhashraw}{2465abc85a1d6bf381364dd24e895ea7}
+      \strng{bibnamehash}{2465abc85a1d6bf381364dd24e895ea7}
+      \strng{authorbibnamehash}{2465abc85a1d6bf381364dd24e895ea7}
+      \strng{authornamehash}{b2ca7ebc6dad744c0fbf870ed83e69dd}
+      \strng{authorfullhash}{2465abc85a1d6bf381364dd24e895ea7}
+      \strng{authorfullhashraw}{2465abc85a1d6bf381364dd24e895ea7}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Electoral Studies}
+      \field{number}{2}
+      \field{title}{Nowcasting v. polling: The 2010 {UK} election trials}
+      \field{volume}{30}
+      \field{year}{2011}
+      \field{pages}{284\bibrangedash 287}
+      \range{pages}{4}
+      \verb{doi}
+      \verb 10.1016/j.electstud.2010.09.013
+      \endverb
+    \endentry
+    \entry{lewisbeck2014proxy}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=231cfe1697dee24192ed8cb747333eee}{%
+           family={Lewis-Beck},
+           familyi={L\bibinithyphendelim B\bibinitperiod},
+           given={Michael\bibnamedelima S.},
+           giveni={M\bibinitperiod\bibinitdelim S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=087b700bb7772ecb4daa9e427b6a5f76}{%
+           family={Tien},
+           familyi={T\bibinitperiod},
+           given={Charles},
+           giveni={C\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{fb422e52e358e90026f9421b82c7c8f7}
+      \strng{fullhash}{fb422e52e358e90026f9421b82c7c8f7}
+      \strng{fullhashraw}{fb422e52e358e90026f9421b82c7c8f7}
+      \strng{bibnamehash}{fb422e52e358e90026f9421b82c7c8f7}
+      \strng{authorbibnamehash}{fb422e52e358e90026f9421b82c7c8f7}
+      \strng{authornamehash}{fb422e52e358e90026f9421b82c7c8f7}
+      \strng{authorfullhash}{fb422e52e358e90026f9421b82c7c8f7}
+      \strng{authorfullhashraw}{fb422e52e358e90026f9421b82c7c8f7}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Presidential Studies Quarterly}
+      \field{number}{3}
+      \field{title}{Proxy models and nowcasting: {U.S.} presidential elections in the future}
+      \field{volume}{44}
+      \field{year}{2014}
+      \field{pages}{506\bibrangedash 521}
+      \range{pages}{16}
+    \endentry
+    \entry{skoric2020}{article}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=4ddb11a91a80fa4454cc4e4932eddada}{%
+           family={Skoric},
+           familyi={S\bibinitperiod},
+           given={Marko\bibnamedelima M.},
+           giveni={M\bibinitperiod\bibinitdelim M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=83f95dca7c81df3fe67380769eb0321c}{%
+           family={Liu},
+           familyi={L\bibinitperiod},
+           given={Jing},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=b03de1a00e85dea27c13b50c59a52638}{%
+           family={Jaidka},
+           familyi={J\bibinitperiod},
+           given={Kokil},
+           giveni={K\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{9f3030af8fd313c8e73a3da136d8854d}
+      \strng{fullhash}{f69b137daf6e6d380aab6e1afeebe977}
+      \strng{fullhashraw}{f69b137daf6e6d380aab6e1afeebe977}
+      \strng{bibnamehash}{f69b137daf6e6d380aab6e1afeebe977}
+      \strng{authorbibnamehash}{f69b137daf6e6d380aab6e1afeebe977}
+      \strng{authornamehash}{9f3030af8fd313c8e73a3da136d8854d}
+      \strng{authorfullhash}{f69b137daf6e6d380aab6e1afeebe977}
+      \strng{authorfullhashraw}{f69b137daf6e6d380aab6e1afeebe977}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Information}
+      \field{number}{4}
+      \field{title}{Electoral and Public Opinion Forecasts with Social Media Data: A Meta-Analysis}
+      \field{volume}{11}
+      \field{year}{2020}
+      \field{pages}{187}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.3390/info11040187
+      \endverb
+    \endentry
+    \entry{tumasjan2010}{article}{}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=478771634ee86d4ef56bb7d93e21aa00}{%
+           family={Tumasjan},
+           familyi={T\bibinitperiod},
+           given={Andranik},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=5b0e7539a7826c2a9ad91e82e9565a53}{%
+           family={Sprenger},
+           familyi={S\bibinitperiod},
+           given={Timm\bibnamedelima O.},
+           giveni={T\bibinitperiod\bibinitdelim O\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=d85e1d8b4c718e79ed38e2a9475b2dd4}{%
+           family={Sandner},
+           familyi={S\bibinitperiod},
+           given={Philipp\bibnamedelima G.},
+           giveni={P\bibinitperiod\bibinitdelim G\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=39520a845d8881062421934a51d77c4d}{%
+           family={Welpe},
+           familyi={W\bibinitperiod},
+           given={Isabell\bibnamedelima M.},
+           giveni={I\bibinitperiod\bibinitdelim M\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{3d75a230c57b75413684805db4c5a2d6}
+      \strng{fullhash}{abdb0913991593a3b465a635010032e6}
+      \strng{fullhashraw}{abdb0913991593a3b465a635010032e6}
+      \strng{bibnamehash}{abdb0913991593a3b465a635010032e6}
+      \strng{authorbibnamehash}{abdb0913991593a3b465a635010032e6}
+      \strng{authornamehash}{3d75a230c57b75413684805db4c5a2d6}
+      \strng{authorfullhash}{abdb0913991593a3b465a635010032e6}
+      \strng{authorfullhashraw}{abdb0913991593a3b465a635010032e6}
+      \field{sortinit}{T}
+      \field{sortinithash}{9af77f0292593c26bde9a56e688eaee9}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Proceedings of the Fourth International AAAI Conference on Weblogs and Social Media}
+      \field{title}{Predicting elections with {Twitter}: What 140 characters reveal about political sentiment}
+      \field{year}{2010}
+      \field{pages}{178\bibrangedash 185}
+      \range{pages}{8}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

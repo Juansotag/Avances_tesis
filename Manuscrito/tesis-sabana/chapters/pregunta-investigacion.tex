@@ -1,0 +1,34 @@
+%!TEX root = ../main.tex
+
+% ============================================================
+%  CAPÍTULO 2: PREGUNTA DE INVESTIGACIÓN
+% ============================================================
+
+\chapter{Pregunta de investigación}\label{ch:pregunta}
+
+Para abordar las limitaciones metodológicas previamente expuestas relativas a la dependencia de las encuestas y la imposibilidad de transferir los modelos de \textit{nowcasting} a nuevas elecciones, esta investigación se estructura alrededor de un interrogante central y una serie de preguntas derivadas que guían el diseño empírico del estudio.
+
+% ──────────────────────────────────────────────────────────────
+\section{Pregunta principal}
+% ──────────────────────────────────────────────────────────────
+
+La inquietud fundamental que motiva este trabajo se sintetiza en la siguiente pregunta de investigación:
+
+\begin{quote}
+    \textit{¿Es posible diseñar e implementar un modelo de nowcasting de la intención de voto que sea \textbf{elección-agnóstico} —es decir, cuyos parámetros se entrenen con datos de múltiples elecciones simultáneas y sean transferibles a contiendas no vistas—, que no dependa en ninguna etapa de encuestas de opinión pública, y que pueda aplicarse con precisión a elecciones locales en Colombia utilizando únicamente señales extraídas de interacciones en redes sociales?}
+\end{quote}
+
+Esta pregunta desafía el paradigma establecido en la literatura (representado por modelos como el SOMEN-DC), buscando independizar por completo el pronóstico de las encuestas y evaluar si las huellas digitales por sí solas contienen suficiente información estructural para estimar el apoyo político en un ecosistema electoral altamente fragmentado como el colombiano.
+
+% ──────────────────────────────────────────────────────────────
+\section{Preguntas derivadas}
+% ──────────────────────────────────────────────────────────────
+
+Para dar respuesta a la pregunta principal de manera secuencial y estructurada, el estudio plantea cuatro preguntas de investigación derivadas, cada una asociada a un desafío metodológico o empírico específico:
+
+\begin{enumerate}
+    \item \textbf{Sobre la capacidad predictiva intrínseca de la red:} ¿Las interacciones en redes sociales de los candidatos (volumen de \textit{likes}, comentarios, visualizaciones, etc.) tienen un poder predictivo estadísticamente significativo sobre el resultado electoral real en el contexto latinoamericano?
+    \item \textbf{Sobre la viabilidad de la reconstrucción de series temporales:} Dado que las plataformas digitales no almacenan un registro público del historial de interacciones de una publicación, ¿es posible reconstruir matemáticamente la curva de crecimiento de las interacciones de publicaciones pasadas sin haber realizado \textit{scraping} en tiempo real durante la campaña original?
+    \item \textbf{Sobre la selección de características (feature engineering):} Entre las múltiples señales disponibles, ¿qué tipo de métricas digitales resultan más informativas para el pronóstico electoral: el volumen absoluto de interacciones de un candidato, su \textit{dominancia relativa} en comparación con sus contrincantes, o su capacidad para generar tracción tardía en los últimos días de la campaña?
+    \item \textbf{Sobre la escalabilidad y el tipo de modelado:} Considerando las limitaciones en el tamaño de muestra de elecciones históricas viables para estudio, ¿con cuántos ejemplos de entrenamiento es estadísticamente factible y robusto entrenar un modelo de \textbf{clasificación} (predecir quién gana) versus un modelo de \textbf{regresión} (predecir el porcentaje exacto de votos)?
+\end{enumerate}

@@ -1,0 +1,100 @@
+%!TEX root = ../main.tex
+
+% ============================================================
+%  CAPÍTULO 5: METODOLOGÍA
+% ============================================================
+
+\chapter{Metodología}\label{ch:metodologia}
+
+% ──────────────────────────────────────────────────────────────
+\section{Diseño general del pipeline}
+% ──────────────────────────────────────────────────────────────
+
+La arquitectura metodológica de esta investigación está estructurada como un \textit{pipeline} secuencial dividido en tres etapas empíricas. La Etapa 1 corresponde a una prueba de concepto en Bolivia para replicar y evidenciar los problemas estructurales del modelo base. La Etapa 2 aborda el problema de la asimetría de la información temporal, calibrando un modelo de crecimiento matemático en Costa Rica. Finalmente, la Etapa 3 consolida el modelo elección-agnóstico en Colombia.
+
+La arquitectura general del \textit{pipeline} de predicción propuesto opera bajo la siguiente secuencia lógica: en primer lugar, se extraen los datos acumulados actuales de las redes sociales de los candidatos (restringidos a publicaciones realizadas en los últimos 14 días pre-elección); posteriormente, se procesan mediante un modelo paramétrico de Weibull específico por plataforma para estimar la reconstrucción histórica de la curva de crecimiento diario; con esta información, se construyen las \textit{features} diarias por candidato; y, finalmente, un modelo elección-agnóstico pre-entrenado procesa el vector para proyectar un vector $C$-dimensional con la intención de voto o la probabilidad de victoria de cada contendor.
+
+Todo el ecosistema de recolección de datos fue diseñado para garantizar su accesibilidad y bajo costo, operando sin requerir infraestructura institucional. Para ello, se integraron herramientas comerciales y \textit{scripts} a medida utilizando la plataforma de automatización Make.com, clientes de \textit{scraping} de Apify, la API oficial de Twitter/X y \textit{scripts} de navegación programática o \textit{headless browsers} desarrollados con Playwright.
+
+% ──────────────────────────────────────────────────────────────
+\section{Etapa 1 — Bolivia: Replicación del SOMEN-DC y prueba de concepto}
+% ──────────────────────────────────────────────────────────────
+
+\subsection{Caso de estudio y recolección de datos}
+
+Para confirmar empíricamente las limitaciones inherentes a la literatura de \textit{nowcasting} dependiente de encuestas, se planteó un caso de estudio replicando la metodología SOMEN-DC en el contexto de la segunda vuelta presidencial de Bolivia (programada para el 19 de octubre de 2025). Esta contienda polarizada entre Rodrigo Paz Pereira (PDC) y Jorge ``Tuto'' Quiroga (Alianza Libre) representó un escenario ideal de prueba. El resultado real proyectado para el estudio determinó a Paz como ganador con el 54.53\% frente al 45.47\% de Quiroga.
+
+Se definió una ventana temporal retrospectiva de 180 días (del 18 de mayo al 18 de octubre de 2025), extrayendo datos diariamente de las cuentas oficiales de ambos candidatos en Facebook, Twitter/X, Instagram y TikTok. Esto generó un vector de 29 características (\textit{features}) por candidato y por día, incluyendo métricas absolutas (volumen de publicaciones, \textit{likes}, comentarios, compartidos) y métricas relativas (como el \textit{engagement} promedio por publicación), normalizadas posteriormente mediante puntajes Z (\textit{z-scores}).
+
+La variable objetivo se construyó interpolando linealmente los resultados de las principales encuestas publicadas durante ese período (firmas como Ipsos Ciesmori, SPIE, Captura Consulting y Ciemcorp), anclando el último punto de la serie al resultado electoral real. El \textit{dataset} final consolidó 308 registros diarios independientes.
+
+\subsection{Evaluación de modelos}
+
+Siguiendo la arquitectura original, se entrenaron y evaluaron múltiples topologías algorítmicas, incluyendo Regresión Lineal Clásica, Perceptrón Multicapa con \textit{Backpropagation} (MLP-BP) y Redes Neuronales de Regresión Generalizada (GRNN), explorando también variantes con Análisis de Componentes Principales (PCA). 
+
+El modelo con mejor desempeño predictivo resultó ser el ensamble MLP-BP + PCA, alcanzando un Error Absoluto Medio (MAE) de 0.0279 y un Error Porcentual Absoluto Medio (MAPE) aproximado del 5.1\%. Este resultado superó considerablemente el \textit{baseline} trivial basado en tomar simplemente el valor de la última encuesta disponible antes de la elección (cuyo MAE en el caso del candidato Paz fue del 0.1803). Cabe destacar que los modelos estrictamente lineales fracasaron sistemáticamente en el ajuste (presentando MAEs entre 0.29 y 0.31), confirmando empíricamente que la relación entre el volumen de interacciones digitales y la tracción en las encuestas exhibe dinámicas fuertemente no lineales.
+
+Los resultados de esta primera etapa confirmaron de manera concluyente los problemas teóricos del SOMEN-DC señalados en la hipótesis: la dependencia estructural de las encuestas para el entrenamiento, el altísimo costo logístico de mantener infraestructura de \textit{scraping} continuo y, más grave aún, la imposibilidad de extrapolar los pesos de la red neuronal a una nueva elección (no generalizabilidad).
+
+% ──────────────────────────────────────────────────────────────
+\section{Etapa 2 — Costa Rica: Modelado del crecimiento de interacciones}
+% ──────────────────────────────────────────────────────────────
+
+\subsection{El problema estructural}
+
+Para construir un modelo generalizable a partir de $M$ elecciones pasadas se requiere observar los datos. Sin embargo, las plataformas digitales únicamente muestran el total acumulado de interacciones observables en la fecha actual de la consulta (por ejemplo, si se raspan datos en 2026 sobre una elección de 2023). Este fenómeno imposibilita conocer cuántas de esas interacciones se habían acumulado legítimamente el día de la elección y cuántas correspondieron a tráfico residual o póstumo tras conocerse los resultados electorales. Para resolver esto, es forzoso estimar una curva teórica de crecimiento de interacciones.
+
+\subsection{Metodología y Modelo Weibull}
+
+Se condujo un proceso de recolección intensiva diaria (\textit{panel data}) sobre 2,026 publicaciones únicas correspondientes a los candidatos presidenciales de la campaña de Costa Rica 2026. Al depurar los registros, se aislaron 1,922 publicaciones aptas para el modelado temporal continuo, generando más de 19,439 observaciones cruzadas.
+
+El modelado del crecimiento orgánico de interacciones se parametrizó bajo una curva de distribución Weibull con \textit{offset} temporal, expresada formalmente en la Ecuación \ref{eq:weibull} (Sección 3.4). Mediante rutinas de optimización no lineal, se calibraron los parámetros óptimos para cada plataforma, como se resume a continuación:
+
+\begin{table}[h]
+\centering
+\caption{Parámetros Weibull calibrados por plataforma}
+\begin{tabular}{l c c c c}
+\toprule
+\textbf{Plataforma} & \textbf{Escala ($k$)} & \textbf{Forma ($\alpha$)} & \textbf{Offset ($t_0$) [días]} & \textbf{$R^2$ Panel} \\
+\midrule
+Facebook    & 0.9480 & 0.8230 & 1.93 & 0.3514 \\
+Instagram   & 1.1369 & 0.5210 & 0.04 & 0.4026 \\
+TikTok      & 1.3272 & 0.5124 & 0.79 & 0.3509 \\
+Twitter/X   & 1.4453 & 1.1422 & 0.26 & 0.6905 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Aunque los valores de bondad de ajuste ($R^2$) del panel parecen matemáticamente discretos, estudios de descomposición de varianza evidenciaron que cerca del 66.8\% del error cuadrático proviene del ruido intrínseco de cada publicación (varianza intra-publicación). Por lo tanto, la verdadera métrica de éxito evaluada fue la precisión proyectiva al último día.
+
+Las validaciones cruzadas determinaron que, si se observaba la publicación al día 3 desde su emisión, entre el 89\% y el 99\% de las inferencias sobre su total asintótico final caían dentro de un margen de error estricto (MAPE $< 20\%$). Adicionalmente, pruebas T demostraron que, si bien el crecimiento es estadísticamente significativo ($p < 0.0001$) hasta el día 10, desde una óptica empírica el incremento se vuelve marginal a partir del día 5 al 7 ($< 2\%$ diario), justificando sólidamente que una ventana de análisis retrospectivo de 14 días previos a la jornada de votación es matemáticamente suficiente y robusta. Si bien se evaluó la hipótesis cualitativa del ``arrastre post-victoria'' (por ejemplo, el aceleramiento en las métricas de la ganadora proyectada), este efecto no demostró significancia estadística sobre la muestra analizada, permitiendo que el modelo asuma patrones estacionarios indiferentes al resultado.
+
+% ──────────────────────────────────────────────────────────────
+\section{Etapa 3 — Colombia: Construcción del dataset y modelado}
+% ──────────────────────────────────────────────────────────────
+
+Con la solución temporal formalizada, la tercera etapa se concentró en la construcción del \textit{dataset} de entrenamiento masivo. Se estableció un protocolo riguroso de diseño para capturar información exclusiva de las campañas de las elecciones locales de alcaldías en Colombia de octubre de 2023. Se definió un universo geográfico abarcando las 33 ciudades más pobladas de Colombia, procediendo a compilar interacciones generadas estrictamente en la ventana de 14 días previos a los comicios.
+
+Por políticas y restricciones agresivas de la API \textit{Graph} impuestas corporativamente por Meta en sus versiones recientes, Instagram tuvo que ser excluido de la extracción sistematizada. Por tanto, la adquisición de datos de fuentes abiertas iteró sobre tres infraestructuras concurrentes automatizadas a través de un \textit{pipeline} (\textit{scripts} `scrapping\_general.py` y `unificar\_redes.py`): Playwright para automatización de navegadores ocultos (\textit{headless}) contra la interfaz web de Twitter/X (con restricción de hasta 50 \textit{tweets} por actor); y consultas de alto rendimiento hacia la API privada no documentada de TikTok y las colecciones indexadas de Facebook a través de \textit{Apify}. 
+
+Para asegurar la validez inferencial, se aplicaron filtros de exclusión: solo ingresaron al \textit{dataset} actores políticos con más de 10,000 votos confirmados en los escrutinios finales. Se excluyeron deliberadamente dos ciudades, la capital Bogotá (debido al sesgo de representatividad por el perfil de \textit{influencer} de Gustavo Bolívar, cuya masiva tracción general superaba demográficamente la esfera meramente local) y Piedecuesta (debido a que la candidatura ganadora enfrentó problemas legales que resultaron en la desaparición intencional de sus perfiles y rastros de campaña). En casos anómalos como el de Santa Marta, donde la candidatura de mayor votación enfrentó revocatoria legal posterior, el estudio consideró ganador computacional al actor con mayor volumen bruto de votos consignados, para preservar la correlación con la intención ciudadana.
+
+Tras los filtros geográficos y de calidad de datos documentados en el análisis exploratorio preliminar (`analisis\_exploratorio.ipynb`), el universo hábil final consolidó 5,776 publicaciones únicas distribuidas a través de las tres infraestructuras monitoreadas (2,511 en Facebook, 2,346 en Twitter/X y 919 en TikTok). Estas entradas correspondieron a un censo final de 328 candidatos repartidos a través de 31 ciudades competitivas. Sobre los 112 candidatos que superaban la barrera estadística de los 10,000 votos (cuya cobertura digital era altísima, con 92.6\% de ellos poseyendo publicaciones de red activas en el archivo), los análisis paramétricos confirmaron tempranamente la existencia de señal predictiva: las interacciones totales medias evidenciaban que los ganadores promediaban 44,252 frente a 28,011 de los perdedores, y las pruebas U de Mann-Whitney validaban una superioridad de \textit{engagement} medio por publicación estadísticamente significativa para un 95\% de confianza ($p = 0.0481$). De manera asilada, un pronosticador empírico básico (\textit{baseline}) asumiendo que el ganador fuera siempre aquel con mayor volumen nominal habría acertado en el 57.58\% de las jurisdicciones municipales.
+
+La integración operativa del modelo de crecimiento de la Etapa 2 se ejecutó a través de la rutina `Reconstruccion\_Panel\_Historico.ipynb`. Aplicando los parámetros $k, \alpha$ estáticos y derivando el $t_0$ dinámico en función del lapso transcurrido desde la creación particular de cada post, la red reconstruyó la matriz histórica produciendo un super-\textit{dataset} validado de 5,776 instancias por 340 campos numéricos (representando las permutaciones correspondientes a 11 subclases de métricas y sus rezagos o sumatorias acumuladas en plazos iterativos de 30 días escalables). Las calibraciones documentales confirmaron que la monotonicidad de las curvas sintéticas era impecable (cumplimiento en 5,776 de 5,776 ensayos) y el factor de error mediano inyectado sobre las estimaciones finales se situaba matemáticamente en un 0.000\% absoluto para proyecciones convergentes en el día 14.
+
+% ──────────────────────────────────────────────────────────────
+\section{Modelado predictivo}
+% ──────────────────────────────────────────────────────────────
+
+La etapa terminal concentró los análisis econométricos y heurísticos bajo dos grandes paradigmas clásicos de la Inteligencia Artificial. 
+
+\subsection{Modelo de regresión}
+
+El enfoque predictivo continuo (`Modelo\_Predictivo\_Electoral.ipynb`) pretendía encontrar un mapeo directo para estimar la magnitud escalar porcentual de votos. Con un tensor de entrenamiento reducido dimensionalmente (112 individuos por 84 variables explicativas macro), las optimizaciones se condujeron aplicando el protocolo analítico de validación cruzada dejando uno fuera (\textit{Leave-One-Out Cross-Validation}, LOO-CV) para mitigar correlaciones espaciales endógenas. Las arquitecturas de Vectores de Soporte Regresivo (SVR) provistas de \textit{kernel} radial (RBF) lograron los mejores comportamientos topográficos, pero exhibieron resultados mediocres de inferencia (Error Absoluto Medio de 15.22 puntos porcentuales de desviación por estimación y una varianza explicada o $R^2$ irrisoria del 0.054). La saturación matemática diagnosticó enfáticamente un sobreajuste estructural de la red; la abundancia masiva de variables intervinientes no era asimilable para el pequeño volumen de observaciones empíricas. Se desestimó este enfoque, por ahora, como una ruta viable a corto plazo.
+
+\subsection{Modelo de clasificación binaria}
+
+Tras constatar la asimetría matricial, el análisis se reconceptualizó sobre el paradigma probabilístico discreto (`Clasificacion\_Binaria\_Electoral.ipynb`), simplificando la tarea del algoritmo a una función discriminatoria simple: adivinar el ganador o vencedor absoluto por distrito (\textit{¿quién gana?}). El hiperplano se centró en priorizar masivamente el constructo analítico de la \textbf{dominancia relativa} como entrada primordial. Con un balance de clases nativo de 24.1\% (casos positivos, victoriosos) versus 75.9\% (casos negativos), los clasificadores de Regresión Logística Penalizada (LOO-CV) dominaron ampliamente, registrando niveles de \textit{Accuracy} ponderado de 0.812 y coeficientes AUC-ROC de 0.770, traduciéndose en pronósticos asertivos para el 59.3\% de las municipalidades (16 aciertos en 27 contiendas). 
+
+Aunque estas mediciones confirman irreprochablemente que el capital político latente sí se manifiesta y decodifica a través de las interacciones sociales (la señal existe y el ruido no la silencia estadísticamente), un heurístico ingenuo (\textit{baseline}) estipulado al comienzo de la experimentación —pronosticar ciegamente a favor del postulante con el mayor indicador bruto acumulado de \textit{dominancia\_engagement} en el ecosistema municipal— ostentaba un nivel de predicción efectiva del 70.4\% (19 aciertos de 27). Por ende, el algoritmo no pudo rebasar este techo estadístico debido a la falta de masa crítica de entrenamiento y volumen electoral comparado en los rangos analíticos; con mayores tamaños y adiciones de contiendas iteradas, la profundidad topológica se revelaría.

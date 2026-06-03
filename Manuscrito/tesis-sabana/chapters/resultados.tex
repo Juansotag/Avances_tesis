@@ -1,0 +1,57 @@
+%!TEX root = ../main.tex
+
+% ============================================================
+%  CAPÍTULO 6: RESULTADOS
+% ============================================================
+
+\chapter{Resultados}\label{ch:resultados}
+
+% ──────────────────────────────────────────────────────────────
+\section{Resultados de Bolivia (Etapa 1)}
+% ──────────────────────────────────────────────────────────────
+
+La replicación de las técnicas de pronóstico dependientes de encuestas en el contexto de la segunda vuelta boliviana de 2025 arrojó resultados mixtos que confirmaron las sospechas teóricas iniciales sobre la viabilidad de la metodología convencional.
+
+En términos de precisión bruta, la experimentación demostró que la relación entre la acumulación de interacciones y la proyección demoscópica no obedece a dinámicas lineales. Los modelos lineales clásicos fallaron de manera sistemática, pero el ensamble óptimo de Perceptrón Multicapa con Análisis de Componentes Principales (MLP-BP + PCA) logró un Error Absoluto Medio (MAE) de 0.0279 y un MAPE de 5.1\%. Este resultado mejoró abrumadoramente el estimador básico (\textit{baseline}) de predecir basándose únicamente en el valor inercial de la última encuesta publicada (cuyo MAE se disparaba al 0.1803 para el candidato ganador, Paz).
+
+Sin embargo, a nivel operativo y analítico, se evidenciaron falencias críticas que desaconsejaron continuar por esta ruta de \textit{nowcasting}. Primero, se ratificó la absoluta falta de generalización: la topología y los pesos optimizados de la red neuronal carecían de validez semántica fuera de esa elección particular, confinando el esfuerzo computacional a un único evento irrepetible. Segundo, el modelo mostró una preocupante ceguera ante giros súbitos del electorado; los cambios de favorabilidad que ocurrieron en la última semana crítica de campaña no fueron reflejados por las métricas de interacciones acumuladas. Por último, un análisis detallado de importancia de variables identificó que la dinámica de viralidad de TikTok operaba en un plano disociado del resto de plataformas, inyectando varianza espuria en momentos en que la intención de voto real permanecía estacionaria.
+
+% ──────────────────────────────────────────────────────────────
+\section{Resultados de Costa Rica (Etapa 2)}
+% ──────────────────────────────────────────────────────────────
+
+El modelado paramétrico de la variable tiempo resolvió satisfactoriamente el obstáculo estructural para la explotación de registros históricos sin depender de infraestructura activa de extracción. A través de la calibración supervisada de 1,922 publicaciones presidenciales del panel costarricense, el sistema logró aislar parámetros $k, \alpha$ universales para cuatro plataformas hegemónicas (Facebook, Instagram, TikTok, Twitter/X).
+
+Las pruebas de precisión y decaimiento del error proyectivo resultaron formidables. Al observar cualquier publicación con apenas tres días (\textit{t = 3}) de vida útil, el modelo matemático de distribución Weibull logró predecir el límite asintótico total final de esa publicación con un error inferior al 20\% para entre el 89\% y el 99\% de los casos de la muestra empírica. 
+
+A nivel estadístico descriptivo, aunque las curvas de crecimiento mantenían una gradiente matemáticamente significativa (con $p < 0.0001$) hasta por lo menos 10 días tras el evento de publicación, el estudio demostró que desde una perspectiva pragmática o de negocio, la curva se vuelve plana (crecimiento diario menor al 2\%) a partir de una ventana de 5 a 7 días. Esta dinámica de saturación viral rápida validó metodológicamente la decisión de encapsular los \textit{datasets} de extracción a una ventana móvil o estática de 14 días (holgura de seguridad del doble del tiempo de saturación).
+
+Consecuentemente, se consolidó la herramienta computacional de \textbf{reconstrucción histórica temporal}, la cual evidenció una calidad algorítmica intachable: no se documentaron violaciones de monotonicidad (una publicación nunca perdía interacciones reconstruidas al retroceder en el tiempo), y el error mediano inyectado a la serie temporal original en el día 14 pre-elección fue matemáticamente cero.
+
+% ──────────────────────────────────────────────────────────────
+\section{Resultados de Colombia (Etapa 3)}
+% ──────────────────────────────────────────────────────────────
+
+La evaluación del ecosistema digital de las elecciones de alcaldes 2023 sobre las 31 ciudades competitivas colombianas confirmó irrevocablemente la hipótesis fundacional del estudio empírico: las interacciones en redes sociales sí albergan una señal predictiva real y cuantificable sobre el comportamiento en urnas. 
+
+Las pruebas no paramétricas de distribución confirmaron que, en promedio, los candidatos ganadores movilizaron más interacciones globales y poseían un \textit{engagement} marginal por post significativamente más alto ($p < 0.05$) que el resto de contendientes derrotados de sus respectivos tarjetones. Más profundamente, la experimentación estableció un paradigma de extracción de características: la \textbf{dominancia relativa} de la conversación digital en el territorio superó con creces al volumen nominal de interacciones como predictor de éxito, logrando índices de correlación monótona de Spearman superiores a 0.46.
+
+Frente a la escalabilidad de modelado en escasez de datos (112 muestras), los resultados fueron contrastantes. El abordaje de \textbf{regresión lineal / no-lineal} para adivinar márgenes porcentuales exactos de voto fracasó categóricamente (el máximo techo explicativo o pseudo-$R^2$ alcanzado fue apenas del 0.118), indicando que el espacio dimensional es excesivamente grande y ruidoso frente a la disponibilidad de observaciones. 
+
+Por el contrario, la \textbf{clasificación probabilística discreta} (resolver quién es el ganador binario del certamen en cada ciudad) exhibió una convergencia parcial y funcional. Los modelos de ensamble superaron métricas conservadoras con tasas de aciertos ponderadas del 59.3\% en adivinar correctamente el mapa político regional de ganadores por capitales. No obstante, las arquitecturas entrenadas no lograron desbancar al heurístico analítico puro (\textit{baseline}): simplemente asignar como ganador determinista al candidato que en solitario concentró la mayor dominancia de \textit{engagement} en su respectiva ciudad reportó una tasa de acierto del 70.4\%. La señal existe intrínsecamente en el vector espacial, pero la reducida cardinalidad de la matriz actual imposibilita que una red compleja de aprendizaje automatizado abstraiga patrones topológicos multidimensionales que le permitan abatir una simple regla algorítmica descriptiva. 
+
+% ──────────────────────────────────────────────────────────────
+\section{Síntesis: contribuciones al estado del arte}
+% ──────────────────────────────────────────────────────────────
+
+Los hallazgos empíricos y los desarrollos técnicos documentados a lo largo de este estudio confluyen en cuatro contribuciones sustanciales al dominio de la analítica política y los modelos predictivos heterodoxos:
+
+\begin{enumerate}
+    \item \textbf{Elección-Agnosticismo Empírico:} Se establece una ruta metodológica viable (demostrada a través de la clasificación binaria basada en la métrica transversal de dominancia relativa) para romper la asimetría temporal del SOMEN-DC, permitiendo entrenar algoritmos con observaciones de múltiples contiendas de alcaldías paralelas simultáneamente y abstraer reglas de decisión exportables.
+    
+    \item \textbf{Total Independencia Demoscópica:} A diferencia de la inmensa mayoría de la literatura contemporánea en estimación digital electoral, este esquema sustituye la obligatoriedad de usar encuestas como variable dependiente, anclando directamente su optimización sobre la variable \textit{ground truth} universal: el escrutinio final. 
+    
+    \item \textbf{Restaurador Temporal de Series (Modelo Weibull):} Se introduce y formaliza una arquitectura matemática de interpolación capaz de retrotraer variables acumulativas hacia instantes en el pasado. Esto soluciona drásticamente el que quizás sea el mayor obstáculo técnico para la investigación retrospectiva de dinámicas digitales, facultando a los analistas a poblar \textit{datasets} de series temporales históricas partiendo exclusivamente de un raspado actual estático, sin requerir despliegues preventivos costosos.
+    
+    \item \textbf{Democratización del \textit{Pipeline}:} Se desmitifica la barrera logística del analfabetismo algorítmico, comprobando la total escalabilidad y operatividad de la solución utilizando, de principio a fin, una orquestación ligera ensamblada con herramientas de mercado genéricas (\textit{Make}, \textit{Apify}, API oficiales, librerías \textit{Headless}), demostrando que la predicción y monitoreo algorítmico no es una tecnología que deba residir exclusivamente bajo el control de infraestructuras corporativas, gubernamentales o institucionales avanzadas.
+\end{enumerate}

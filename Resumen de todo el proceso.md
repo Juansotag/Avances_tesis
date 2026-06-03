@@ -20,6 +20,16 @@ Este proyecto busca desarrollar y probar una metodología para la **estimación 
 
 ## 2. Contexto y estado del arte
 
+### Estado del arte de los modelos de nowcasting
+
+Los modelos de nowcasting buscan estimar una variable subyacente que no puede ser medida de forma dada, por ejemplo, la aprobación de un candidato, la opinión de una marca o una persona o la intención de voto de una campaña.
+
+Para esto, se han desarrollado modelos de nowcasting desde los años 70s y desde los 90s han existido modelos de nowcasting para usos electorales. Estos modelos empezaron siendo estrictamente paramétricos, al usar datos de series de tiempo macroeconómicas y encuestas. Aún así, con la aparición y aplicación de modelos de Machine Learning, han aparecido modelos que usan big data, particularmente interacciones en redes sociales, variables económicas y otras fuentes de datos para hacer estimativos de la intención de voto. 
+
+Aún así, estos modelos tienen algunos problemas metodológicos, el primero y más importante es que manejar grandes volúmenes de publicaciones, de hasta millones, hace la aplicación de estos modelos costoso y dificilmente replicable. En este contexto aparece el modelo SOMEN-DC como una forma de hacer nowcasting solo con las interacciones de candidatos. 
+
+- IMPORTANTE: todo este desarrollo se ha hecho en elecciones a puestos ejecutivos de una persona, no hay casi desarrollos para modelos para cuerpos colegiados, los desarrollos han sido para elecciones de único ganador, casi siempre presidentes.
+
 ### El modelo SOMEN-DC como punto de partida
 
 Existen metodologías que usan ciencia de datos y fuentes abiertas (redes sociales) para pronósticos electorales. El modelo de *nowcasting* más relevante es el **SOMEN-DC** (*Social Media Electoral Nowcasting with Dynamic Crawling*), desarrollado por Brito & Adeodato de la Universidad Federal de Pernambuco (Brasil). Este modelo usa encuestas e interacciones en redes sociales recopiladas **durante** la campaña electoral.

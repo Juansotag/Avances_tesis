@@ -1,0 +1,98 @@
+%!TEX TS-program = pdflatex
+%!TEX encoding = UTF-8 Unicode
+
+% ============================================================
+%  TESIS — Universidad de La Sabana
+%  Maestría en Analítica Aplicada
+%
+%  Autor: Juan Sotelo Aguilar
+%  Template: unisabana-thesis.cls (adaptado de unipd-thesis-modern)
+% ============================================================
+
+\documentclass{unisabana-thesis}
+
+% ── Paquetes adicionales ─────────────────────────────────────
+% (agrega aquí lo que necesites; los esenciales ya están en la clase)
+
+
+% ── Profundidad de la tabla de contenido ────────────────────
+\setcounter{tocdepth}{3}
+
+
+% ── METADATOS DE LA TESIS ───────────────────────────────────
+
+\title{Diseño e implementación de un modelo de \textit{nowcasting}
+       elección-agnóstico para la intención de voto aplicado
+       a elecciones locales en Colombia 2023}
+
+\thesisHeader{%
+  Maestría en Analítica Aplicada\\
+  Facultad de Ingeniería%
+}
+
+\annoAcademico{2026}
+
+% Autor
+\author{Juan Sotelo Aguilar}
+
+% Director(es)
+\director{Prof. PhD. Miguel Uribe Laverde}{Universidad de La Sabana}
+% \codirector{Prof. [Nombre Codirector]}{Universidad de La Sabana}  % descomenta si aplica
+
+
+% ── PÁGINAS OPCIONALES ──────────────────────────────────────
+
+% Dedicatoria (comenta la línea para eliminarla)
+\dedication{\textit{A María José, mi familia y quienes creyeron en esto antes de que yo mismo creyera.}}
+
+
+% ── SÍMBOLOS Y ATAJOS PERSONALIZADOS ────────────────────────
+\input{custom-symbols}
+
+
+% ── BIBLIOGRAFÍA ─────────────────────────────────────────────
+\addbibresource{refs.bib}
+
+
+% ============================================================
+\begin{document}
+
+    % ── Portada, índice, resumen ─────────────────────────────
+    \frontmatter
+
+    % ── Contenido principal ──────────────────────────────────
+    \mainmatter
+
+    % Capítulo 1: Introducción
+    \input{chapters/introduccion}
+
+    % Capítulo 2: Pregunta de investigación
+    \input{chapters/pregunta-investigacion}
+
+    % Capítulo 3: Marco conceptual
+    \input{chapters/marco-conceptual}
+
+    % Capítulo 4: Objetivos
+    \input{chapters/objetivos}
+
+    % Capítulo 5: Metodología
+    \input{chapters/metodologia}
+
+    % Capítulo 6: Resultados
+    \input{chapters/resultados}
+
+    % Capítulo 7: Impacto esperado
+    \input{chapters/impacto-esperado}
+
+    % Capítulo 8: Conclusiones
+    \input{chapters/conclusiones}
+
+    % ── Apéndices ────────────────────────────────────────────
+    \begin{appendices}
+        \include{chapters/apendice-a}
+    \end{appendices}
+
+    % ── Bibliografía y agradecimientos ──────────────────────
+    \backmatter
+
+\end{document}

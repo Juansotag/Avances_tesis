@@ -1,0 +1,53 @@
+%!TEX root = ../main.tex
+
+% ============================================================
+%  CAPÍTULO 1: INTRODUCCIÓN
+% ============================================================
+
+\chapter{Introducción}\label{ch:introduccion}
+
+% ──────────────────────────────────────────────────────────────
+\section{Motivación del problema}
+% ──────────────────────────────────────────────────────────────
+
+El seguimiento de la intención de voto durante una campaña electoral es, en casi todos los países del mundo, una industria dominada por un único instrumento metodológico: la encuesta de opinión pública \cite{brito2024stop}. En el contexto latinoamericano, y particularmente en Colombia, esta dependencia es todavía más pronunciada. No existen herramientas alternativas consolidadas ni estandarizadas que permitan estimar la opinión del electorado en tiempo real durante una campaña activa de forma sistemática y rigurosa.
+
+A pesar de su ubicuidad, las encuestas electorales en Colombia enfrentan profundos retos estructurales. Como ha señalado Andrés Caballero, director de Cifras y Conceptos {\color{red} PENDIENTE}, estos instrumentos presentan problemas significativos de sesgo y representatividad. La dificultad logística de abarcar territorios extensos, la alta tasa de no respuesta y los altos costos operativos limitan la frecuencia y el tamaño muestral de los estudios, especialmente en elecciones locales. En este panorama, se hace cada vez más necesario desarrollar herramientas novedosas para el pronóstico electoral que no dependan exclusivamente de las encuestas y que aprovechen fuentes alternativas de datos masivos.
+
+% ──────────────────────────────────────────────────────────────
+\section{Estado del arte: el modelo SOMEN-DC}
+% ──────────────────────────────────────────────────────────────
+
+El modelo que representa el estado del arte más relevante para este trabajo es el denominado \textbf{SOMEN-DC} (\textit{Social Media Electoral Nowcasting During Campaign}), desarrollado por investigadores de la Universidad Federal de Pernambuco en Brasil \cite{brito2023somen}. Este modelo propone un avance metodológico importante al utilizar una combinación de datos de encuestas e interacciones en redes sociales, recopiladas sistemáticamente durante el transcurso de la campaña electoral, para entrenar un algoritmo predictivo específico para cada elección.
+
+Sin embargo, a pesar de sus aportes, el modelo SOMEN-DC presenta tres limitaciones metodológicas fundamentales que restringen su aplicabilidad a gran escala:
+\begin{enumerate}
+    \item \textbf{Techo encuestocéntrico:} Dado que el modelo utiliza los resultados de las encuestas como variable objetivo (\textit{ground truth}) durante su fase de entrenamiento, su capacidad predictiva se ve estructuralmente limitada. No puede superar la precisión de las encuestas mismas porque está diseñado para replicar su comportamiento.
+    \item \textbf{Dependencia de infraestructura costosa:} La recolección de interacciones en redes sociales exige un proceso de extracción de datos (\textit{scraping}) continuo y en tiempo real a lo largo de toda la campaña, lo cual requiere una infraestructura técnica y computacional de alto costo que no suele estar al alcance de investigadores independientes o medios de comunicación locales.
+    \item \textbf{No transferibilidad:} Los pesos aprendidos por el algoritmo son útiles exclusivamente para la elección en la que fueron entrenados. Al no poder generalizar patrones, el modelo carece de transferibilidad y debe construirse desde cero en cada nuevo contexto electoral.
+\end{enumerate}
+
+% ──────────────────────────────────────────────────────────────
+\section{Hipótesis de trabajo}
+% ──────────────────────────────────────────────────────────────
+
+El punto de partida conceptual de este proyecto es la hipótesis seminal formulada por \citeauthor{tumasjan2010} (\citeyear{tumasjan2010}), quienes postulan que el volumen de actividad digital y menciones de un candidato en plataformas de microblogging, como Twitter, funciona como un estimador razonable de su capital electoral subyacente. 
+
+Este trabajo extiende dicha hipótesis mediante una premisa metodológica propia: dado que la relación entre la tracción digital y el apoyo en las urnas es un fenómeno conductual común que trasciende contextos aislados, es teóricamente posible entrenar un único modelo estadístico utilizando datos de \textit{múltiples elecciones simultáneamente}. Esto permitiría desarrollar una herramienta capaz de modelar la intención de voto de manera independiente, sin la necesidad de integrar encuestas en la ecuación predictiva.
+
+Bajo este marco, el modelo propuesto opera recibiendo como \textit{input} las interacciones digitales (ya sean totales o promediadas por publicación) generadas en una ventana de tiempo específica previa a la jornada electoral. A partir de estas señales, el \textit{output} proyectado es un vector de tamaño $C$ (donde $C$ es el número de candidatos competitivos), que representa el porcentaje estimado de intención de voto para cada contendiente.
+
+% ──────────────────────────────────────────────────────────────
+\section{Estructura del documento}
+% ──────────────────────────────────────────────────────────────
+
+Para abordar esta hipótesis, la investigación se estructuró a través de tres etapas empíricas que guían la organización de este documento. El \textbf{Capítulo 2} define formalmente la pregunta de investigación y los interrogantes derivados. El \textbf{Capítulo 3} presenta el marco conceptual, explorando la literatura sobre \textit{nowcasting} electoral y la viabilidad de los modelos elección-agnósticos. Seguidamente, el \textbf{Capítulo 4} detalla los objetivos del estudio.
+
+El \textbf{Capítulo 5} desarrolla la metodología, dividida en las tres fases del proyecto: 
+\begin{itemize}
+    \item \textbf{Bolivia (Prueba de concepto):} Donde se replica el modelo SOMEN-DC para evaluar empíricamente sus limitaciones.
+    \item \textbf{Costa Rica (Modelado de crecimiento):} Enfocada en resolver el problema del registro histórico mediante la calibración matemática de la curva de crecimiento de las interacciones.
+    \item \textbf{Colombia (Construcción y modelado final):} Donde se compila el \textit{dataset} elección-agnóstico de elecciones locales (2023) y se entrenan los algoritmos de clasificación y regresión.
+\end{itemize}
+
+Finalmente, el \textbf{Capítulo 6} expone los resultados obtenidos en cada fase, mientras que los \textbf{Capítulos 7 y 8} discuten el impacto esperado de la herramienta, sus limitaciones inherentes y las conclusiones definitivas del estudio.
