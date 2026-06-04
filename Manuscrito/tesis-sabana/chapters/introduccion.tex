@@ -175,15 +175,97 @@ Estas tres limitaciones definen el espacio de contribución de esta tesis.
 \section{Hipótesis de trabajo}
 % ──────────────────────────────────────────────────────────────
 
-El punto de partida conceptual de este proyecto es la hipótesis seminal formulada por \citeauthor{tumasjan2010} (\citeyear{tumasjan2010}), quienes postulan que el volumen de actividad digital y menciones de un candidato en plataformas de microblogging, como Twitter, funciona como un estimador insesgado y razonable de su capital electoral subyacente. 
+El punto de partida conceptual de este proyecto es la hipótesis seminal
+formulada por \textcite{tumasjan2010}, quienes postulan que el volumen
+de actividad digital de un candidato en plataformas de redes sociales
+funciona como un estimador de su capital electoral subyacente. Esta
+intuición ha encontrado respaldo empírico consistente en contextos
+distintos al original: \textcite{brito2022measuring} demostraron que
+las métricas de \textit{engagement} por publicación en los perfiles
+oficiales de candidatos presidenciales en Argentina, Brasil, Colombia
+y México correlacionan fuertemente con el resultado electoral
+($r = 0{,}75$--$0{,}98$), mientras que las interacciones absolutas o
+el volumen de publicaciones presentan correlaciones nulas o negativas.
 
-Teniendo esto en cuenta, y considerando exclusivamente las elecciones de único ganador para posiciones ejecutivas (Alcaldes/prefectos, presidentes o gobernadores regionales), es posible considerar que todas las elecciones de estas características, desde la elección del alcalde de una ciudad pequeña hasta la elección de presidente de un país de cientos de millones de habitantes tiene, es, en principio, el mismo problema a modelar;
+No obstante, existe un argumento estructural en contra de esta
+hipótesis que merece atención explícita: la penetración de las redes
+sociales no es aleatoria. La probabilidad de que un ciudadano tenga
+presencia activa en redes sociales depende de factores económicos,
+geográficos y culturales, lo que introduce un sesgo sistemático si se
+asume que la audiencia digital de un candidato representa fielmente
+a su electorado potencial \parencite{skoric2020}. Sin embargo, este
+argumento pierde fuerza en la medida en que la cobertura digital se
+aproxima a la universalidad. Según \textcite{datareportal2026}, el
+70{,}4\,\% de la población colombiana usa redes sociales al cierre de
+2025 —cifra que creció en 1{,}6 millones de personas solo en 2024,
+con Facebook, TikTok, YouTube, Instagram y LinkedIn alcanzando al
+89{,}3\,\%, 93{,}0\,\%, 74{,}4\,\%, 52{,}3\,\% y 44{,}4\,\% de los
+adultos colombianos, respectivamente. Significativamente, X/Twitter, la plataforma que concentra la mayor parte de la literatura de
+predicción electoral con redes sociales, solo alcanza al 12{,}0\,\%
+de los adultos en Colombia, lo que compromete estructuralmente
+cualquier modelo que dependa exclusivamente de esa fuente.
 
-Tenemos un conjunto positivo y limitado de candidatos que realizan una campaña en un periodo específico y el ganador escogido es aquel que obtenga el mayor número de votos. Para lograrlo, usa herramientas entre las que están 
+\subsection*{Formulación del problema}
 
-Este trabajo extiende dicha hipótesis mediante una premisa metodológica propia: dado que la relación entre la tracción digital y el apoyo en las urnas es un fenómeno conductual común que trasciende contextos aislados, es teóricamente posible entrenar un único modelo estadístico utilizando datos de \textit{múltiples elecciones simultáneamente}. Esto permitiría desarrollar una herramienta capaz de modelar la intención de voto de manera independiente, sin la necesidad de integrar encuestas en la ecuación predictiva.
+Considérese una elección de ganador único para un cargo ejecutivo
+, alcalde, gobernador o presidentea con un conjunto finito de
+$C$ candidatos competitivos $\mathcal{C} = \{c_1, c_2, \ldots, c_C\}$.
+Para cada candidato $c_i$, se observa un vector de características
+digitales:
 
-Bajo este marco, el modelo propuesto opera recibiendo como \textit{input} las interacciones digitales (ya sean totales o promediadas por publicación) generadas en una ventana de tiempo específica previa a la jornada electoral. A partir de estas señales, el \textit{output} proyectado es un vector de tamaño $C$ (donde $C$ es el número de candidatos competitivos), que representa el porcentaje estimado de intención de voto para cada contendiente.
+\begin{equation}
+    \mathbf{x}_i \in \mathbb{R}^d
+    \label{eq:vector-caracteristicas}
+\end{equation}
+
+\noindent construido a partir de las interacciones acumuladas en sus
+publicaciones de redes sociales durante una ventana de $n$ días previos
+a la jornada electoral. Este vector puede incluir interacciones totales,
+\textit{engagement} por publicación, dominancia relativa respecto al
+total de interacciones de la elección, entre otras métricas.
+
+La hipótesis central de este trabajo postula que existe una función:
+
+\begin{equation}
+    f: \mathbb{R}^d \rightarrow [0, 1]^C
+    \label{eq:funcion-modelo}
+\end{equation}
+
+\noindent tal que $f(\mathbf{x}_i)$ aproxima la cuota de voto esperada
+del candidato $c_i$, con la restricción natural de que las predicciones
+sumen a la unidad sobre todos los candidatos de la misma elección:
+
+\begin{equation}
+    \sum_{i=1}^{C} f(\mathbf{x}_i) = 1
+    \label{eq:restriccion-suma}
+\end{equation}
+
+La contribución metodológica de este trabajo respecto a la literatura
+previa reside en el mecanismo de aprendizaje de $f$. En los modelos
+existentes, incluyendo el \textsc{somen-dc}
+\parencite{brito2023somen}, esta función se aprende de forma
+independiente para cada elección, usando las encuestas de intención de
+voto como variable objetivo. En el modelo propuesto, $f$ se aprende
+sobre un conjunto de $M$ elecciones históricas
+$\mathcal{E} = \{e_1, e_2, \ldots, e_M\}$, usando directamente el
+resultado electoral como fuente de verdad. Esto tiene dos implicaciones
+fundamentales: primero, elimina la dependencia de encuestas en cualquier
+etapa del proceso; segundo, permite que los parámetros aprendidos
+capturen patrones que son comunes entre elecciones, la relación
+estructural entre tracción digital y respaldo electoral, y no los
+detalles particulares de una campaña en específico. Una vez entrenada,
+$f$ puede aplicarse a una elección nueva $e_{M+1} \notin \mathcal{E}$
+sin necesidad de datos de entrenamiento adicionales, lo que constituye
+la propiedad de \textbf{elección-agnosticismo} que da nombre al modelo.
+
+Bajo este marco, el modelo opera recibiendo como \textit{input} el
+vector $\mathbf{x}_i$ de interacciones digitales de cada candidato,
+calculado sobre una ventana de $n$ días previos a la jornada electoral.
+El \textit{output} es un vector $\hat{\mathbf{y}} \in [0,1]^C$ donde
+cada componente $\hat{y}_i = f(\mathbf{x}_i)$ representa la cuota de
+voto estimada para el candidato $c_i$, respondiendo a la pregunta:
+\textit{si las elecciones ocurrieran hoy, ¿Qué porcentaje de los
+votantes apoyaría a cada candidato?}
 
 % ──────────────────────────────────────────────────────────────
 \section{Estructura del documento}

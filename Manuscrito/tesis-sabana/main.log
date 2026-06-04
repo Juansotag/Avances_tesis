@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.1.23)  3 JUN 2026 19:53
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.1.23)  3 JUN 2026 22:12
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1923,15 +1923,20 @@ LaTeX Info: Redefining \. on input line 170.
 LaTeX Info: Redefining \% on input line 170.
 [4]
 
-LaTeX Info: Redefining \. on input line 199.
-LaTeX Info: Redefining \% on input line 199.
+LaTeX Info: Redefining \. on input line 238.
+LaTeX Info: Redefining \% on input line 238.
 [5]) (chapters/pregunta-investigacion.tex
 Cap\'{\i }tulo 2.
+
+
+[6]
 LaTeX Font Info:    Font shape `T1/zpltlf/b/it' will be
 (Font)              scaled to size 10.95pt on input line 18.
 
 
-[6]) (chapters/marco-conceptual.tex
+LaTeX Info: Redefining \. on input line 33.
+LaTeX Info: Redefining \% on input line 33.
+[7]) (chapters/marco-conceptual.tex
 Cap\'{\i }tulo 3.
 LaTeX Font Info:    Font shape `T1/zpltlf/b/it' will be
 (Font)              scaled to size 14.4pt on input line 10.
@@ -1939,64 +1944,64 @@ LaTeX Font Info:    Font shape `T1/zpltlf/b/it' will be
 (Font)              scaled to size 12.0pt on input line 13.
 
 
-[7]
+[8]
 
-LaTeX Info: Redefining \. on input line 52.
-LaTeX Info: Redefining \% on input line 52.
-[8]) (chapters/objetivos.tex
+LaTeX Info: Redefining \. on input line 55.
+LaTeX Info: Redefining \% on input line 55.
+[9]) (chapters/objetivos.tex
 Cap\'{\i }tulo 4.
 
 
-[9]) (chapters/metodologia.tex
+[10]) (chapters/metodologia.tex
 Cap\'{\i }tulo 5.
 
 
-[10]
+[11]
 
 LaTeX Info: Redefining \. on input line 46.
 LaTeX Info: Redefining \% on input line 46.
-[11]
+[12]
 LaTeX Font Info:    Font shape `T1/zpltlf/m/n' will be
 (Font)              scaled to size 10.0pt on input line 55.
 LaTeX Font Info:    Font shape `T1/zpltlf/b/n' will be
 (Font)              scaled to size 10.0pt on input line 55.
 
 
-LaTeX Info: Redefining \. on input line 71.
-LaTeX Info: Redefining \% on input line 71.
-[12]
+LaTeX Info: Redefining \. on input line 79.
+LaTeX Info: Redefining \% on input line 79.
+[13]
 
-LaTeX Info: Redefining \. on input line 85.
-LaTeX Info: Redefining \% on input line 85.
-[13])
-
-LaTeX Info: Redefining \. on input line 80.
-LaTeX Info: Redefining \% on input line 80.
-[14] (chapters/resultados.tex
+LaTeX Info: Redefining \. on input line 92.
+LaTeX Info: Redefining \% on input line 92.
+[14]) (chapters/resultados.tex
 Cap\'{\i }tulo 6.
 
 
 [15]
 
-LaTeX Info: Redefining \. on input line 48.
-LaTeX Info: Redefining \% on input line 48.
-[16]) (chapters/impacto-esperado.tex
+LaTeX Info: Redefining \. on input line 28.
+LaTeX Info: Redefining \% on input line 28.
+[16]
+
+LaTeX Info: Redefining \. on input line 50.
+LaTeX Info: Redefining \% on input line 50.
+[17]) (chapters/impacto-esperado.tex
 Cap\'{\i }tulo 7.
 
 
-[17])
+[18])
 
 LaTeX Info: Redefining \. on input line 86.
 LaTeX Info: Redefining \% on input line 86.
-[18] (chapters/conclusiones.tex
+[19] (chapters/conclusiones.tex
 Cap\'{\i }tulo 8.
 
 
-[19])
+[20])
 
 LaTeX Info: Redefining \. on input line 92.
 LaTeX Info: Redefining \% on input line 92.
-[20]
+[21]
 \openout2 = `chapters/apendice-a.aux'.
 
 
@@ -2008,7 +2013,7 @@ Overfull \hbox (7.93759pt too wide) in paragraph at lines 97--97
 
 
 
-[21
+[22
 
 
 
@@ -2023,7 +2028,7 @@ This document will not have a glossary.
 
 LaTeX Info: Redefining \. on input line 98.
 LaTeX Info: Redefining \% on input line 98.
-[22] (main.aux
+[23] (main.aux
 LaTeX Info: Redefining \sptext on input line 23.
 LaTeX Info: Redefining \. on input line 23.
 LaTeX Info: Redefining \% on input line 23.
@@ -2037,17 +2042,17 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 49495 strings out of 473536
- 961950 string characters out of 5713504
- 1901307 words of memory out of 5000000
- 71827 multiletter control sequences out of 15000+600000
+ 49514 strings out of 473536
+ 962398 string characters out of 5713504
+ 1901529 words of memory out of 5000000
+ 71841 multiletter control sequences out of 15000+600000
  622268 words of font info for 78 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  123i,17n,131p,2561b,4248s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Users/juansoag/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/juansoag/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/juansoag/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/juansoag/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/juansoag/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/juansoag/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/juansoag/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/juansoag/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/juansoag/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/juansoag/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Users/juansoag/AppData/Local/Programs/MiKTeX/fonts/type1/public/newpx/zplb.pfb><C:/Users/juansoag/AppData/Local/Programs/MiKTeX/fonts/type1/public/newpx/zplbi.pfb><C:/Users/juansoag/AppData/Local/Programs/MiKTeX/fonts/type1/public/newpx/zplr.pfb><C:/Users/juansoag/AppData/Local/Programs/MiKTeX/fonts/type1/public/newpx/zplri.pfb>
-Output written on main.pdf (26 pages, 414288 bytes).
+<C:/Users/juansoag/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/juansoag/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/juansoag/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/juansoag/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/juansoag/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/juansoag/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/juansoag/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/juansoag/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/juansoag/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/juansoag/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/juansoag/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Users/juansoag/AppData/Local/Programs/MiKTeX/fonts/type1/public/newpx/zplb.pfb><C:/Users/juansoag/AppData/Local/Programs/MiKTeX/fonts/type1/public/newpx/zplbi.pfb><C:/Users/juansoag/AppData/Local/Programs/MiKTeX/fonts/type1/public/newpx/zplr.pfb><C:/Users/juansoag/AppData/Local/Programs/MiKTeX/fonts/type1/public/newpx/zplri.pfb>
+Output written on main.pdf (27 pages, 430721 bytes).
 PDF statistics:
- 574 PDF objects out of 1000 (max. 8388607)
- 120 named destinations out of 1000 (max. 500000)
+ 594 PDF objects out of 1000 (max. 8388607)
+ 125 named destinations out of 1000 (max. 500000)
  406 words of extra memory for PDF output out of 10000 (max. 10000000)
 

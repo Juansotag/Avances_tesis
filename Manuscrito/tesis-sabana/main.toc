@@ -5,44 +5,44 @@
 \contentsline {section}{\numberline {1.1}Motivación del problema}{1}{section.1.1}%
 \contentsline {section}{\numberline {1.2}Estado del arte: de los modelos paramétricos al SOMEN-DC}{2}{section.1.2}%
 \contentsline {section}{\numberline {1.3}Hipótesis de trabajo}{5}{section.1.3}%
-\contentsline {section}{\numberline {1.4}Estructura del documento}{5}{section.1.4}%
-\contentsline {chapter}{\numberline {2}Pregunta de investigación}{6}{chapter.2}%
-\contentsline {section}{\numberline {2.1}Pregunta principal}{6}{section.2.1}%
-\contentsline {section}{\numberline {2.2}Preguntas derivadas}{6}{section.2.2}%
-\contentsline {chapter}{\numberline {3}Marco conceptual}{7}{chapter.3}%
-\contentsline {section}{\numberline {3.1}\textit {Nowcasting} electoral y predicción con redes sociales}{7}{section.3.1}%
-\contentsline {subsection}{\numberline {3.1.a}Definición de \textit {nowcasting} en contexto electoral}{7}{subsection.3.1.1}%
+\contentsline {section}{\numberline {1.4}Estructura del documento}{6}{section.1.4}%
+\contentsline {chapter}{\numberline {2}Pregunta de investigación}{7}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Pregunta principal}{7}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Preguntas derivadas}{7}{section.2.2}%
+\contentsline {chapter}{\numberline {3}Marco conceptual}{8}{chapter.3}%
+\contentsline {section}{\numberline {3.1}\textit {Nowcasting} electoral y predicción con redes sociales}{8}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.a}Definición de \textit {nowcasting} en contexto electoral}{8}{subsection.3.1.1}%
 \contentsline {section}{\numberline {3.2}Modelos elección-agnósticos: definición y ventajas}{8}{section.3.2}%
-\contentsline {section}{\numberline {3.3}Interacciones digitales como \textit {proxy} de intención de voto}{8}{section.3.3}%
-\contentsline {subsection}{\numberline {3.3.a}La hipótesis Tumasjan}{8}{subsection.3.3.1}%
-\contentsline {subsection}{\numberline {3.3.b}Interacciones absolutas vs. dominancia relativa}{8}{subsection.3.3.2}%
-\contentsline {section}{\numberline {3.4}El problema del histórico de interacciones}{9}{section.3.4}%
-\contentsline {chapter}{\numberline {4}Objetivos}{9}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Objetivo general}{9}{section.4.1}%
+\contentsline {section}{\numberline {3.3}Interacciones digitales como \textit {proxy} de intención de voto}{9}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.a}La hipótesis Tumasjan}{9}{subsection.3.3.1}%
+\contentsline {subsection}{\numberline {3.3.b}Interacciones absolutas vs. dominancia relativa}{9}{subsection.3.3.2}%
+\contentsline {section}{\numberline {3.4}El problema del histórico de interacciones}{10}{section.3.4}%
+\contentsline {chapter}{\numberline {4}Objetivos}{10}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Objetivo general}{10}{section.4.1}%
 \contentsline {section}{\numberline {4.2}Objetivos específicos}{10}{section.4.2}%
-\contentsline {chapter}{\numberline {5}Metodología}{10}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Diseño general del pipeline}{10}{section.5.1}%
+\contentsline {chapter}{\numberline {5}Metodología}{11}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Diseño general del pipeline}{11}{section.5.1}%
 \contentsline {section}{\numberline {5.2}Etapa 1 — Bolivia: Replicación del SOMEN-DC y prueba de concepto}{11}{section.5.2}%
 \contentsline {subsection}{\numberline {5.2.a}Caso de estudio y recolección de datos}{11}{subsection.5.2.1}%
-\contentsline {subsection}{\numberline {5.2.b}Evaluación de modelos}{11}{subsection.5.2.2}%
+\contentsline {subsection}{\numberline {5.2.b}Evaluación de modelos}{12}{subsection.5.2.2}%
 \contentsline {section}{\numberline {5.3}Etapa 2 — Costa Rica: Modelado del crecimiento de interacciones}{12}{section.5.3}%
 \contentsline {subsection}{\numberline {5.3.a}El problema estructural}{12}{subsection.5.3.1}%
-\contentsline {subsection}{\numberline {5.3.b}Metodología y Modelo Weibull}{12}{subsection.5.3.2}%
+\contentsline {subsection}{\numberline {5.3.b}Metodología y Modelo Weibull}{13}{subsection.5.3.2}%
 \contentsline {section}{\numberline {5.4}Etapa 3 — Colombia: Construcción del dataset y modelado}{13}{section.5.4}%
-\contentsline {section}{\numberline {5.5}Modelado predictivo}{14}{section.5.5}%
-\contentsline {subsection}{\numberline {5.5.a}Modelo de regresión}{14}{subsection.5.5.1}%
-\contentsline {subsection}{\numberline {5.5.b}Modelo de clasificación binaria}{14}{subsection.5.5.2}%
-\contentsline {chapter}{\numberline {6}Resultados}{15}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Resultados de Bolivia (Etapa 1)}{15}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Resultados de Costa Rica (Etapa 2)}{15}{section.6.2}%
-\contentsline {section}{\numberline {6.3}Resultados de Colombia (Etapa 3)}{16}{section.6.3}%
+\contentsline {section}{\numberline {5.5}Modelado predictivo}{15}{section.5.5}%
+\contentsline {subsection}{\numberline {5.5.a}Modelo de regresión}{15}{subsection.5.5.1}%
+\contentsline {subsection}{\numberline {5.5.b}Modelo de clasificación binaria}{15}{subsection.5.5.2}%
+\contentsline {chapter}{\numberline {6}Resultados}{16}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Resultados de Bolivia (Etapa 1)}{16}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Resultados de Costa Rica (Etapa 2)}{16}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Resultados de Colombia (Etapa 3)}{17}{section.6.3}%
 \contentsline {section}{\numberline {6.4}Síntesis: contribuciones al estado del arte}{17}{section.6.4}%
-\contentsline {chapter}{\numberline {7}Impacto esperado}{17}{chapter.7}%
-\contentsline {section}{\numberline {7.1}Impacto académico}{17}{section.7.1}%
-\contentsline {section}{\numberline {7.2}Impacto práctico}{18}{section.7.2}%
-\contentsline {section}{\numberline {7.3}Limitaciones y trabajo futuro}{18}{section.7.3}%
-\contentsline {chapter}{\numberline {8}Conclusiones}{19}{chapter.8}%
-\contentsline {section}{\numberline {8.1}Respuesta a la pregunta de investigación}{19}{section.8.1}%
+\contentsline {chapter}{\numberline {7}Impacto esperado}{18}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Impacto académico}{18}{section.7.1}%
+\contentsline {section}{\numberline {7.2}Impacto práctico}{19}{section.7.2}%
+\contentsline {section}{\numberline {7.3}Limitaciones y trabajo futuro}{19}{section.7.3}%
+\contentsline {chapter}{\numberline {8}Conclusiones}{20}{chapter.8}%
+\contentsline {section}{\numberline {8.1}Respuesta a la pregunta de investigación}{20}{section.8.1}%
 \contentsline {section}{\numberline {8.2}Lecciones aprendidas}{20}{section.8.2}%
-\contentsline {section}{\numberline {8.3}Próximos pasos}{20}{section.8.3}%
-\contentsline {chapter}{Bibliograf\'{\i }a}{21}{section*.6}%
+\contentsline {section}{\numberline {8.3}Próximos pasos}{21}{section.8.3}%
+\contentsline {chapter}{Bibliograf\'{\i }a}{22}{section*.6}%

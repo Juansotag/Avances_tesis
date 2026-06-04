@@ -286,6 +286,38 @@
       \field{title}{Ley 2494 de 2025, por la cual se regula la elaboración, publicación y divulgación de encuestas electorales}
       \field{year}{2025}
     \endentry
+    \entry{datareportal2026}{misc}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=521cd76c97ca2b4cb17c6aa8d1e02001}{%
+           family={{DataReportal}},
+           familyi={D\bibinitperiod}}}%
+      }
+      \strng{namehash}{521cd76c97ca2b4cb17c6aa8d1e02001}
+      \strng{fullhash}{521cd76c97ca2b4cb17c6aa8d1e02001}
+      \strng{fullhashraw}{521cd76c97ca2b4cb17c6aa8d1e02001}
+      \strng{bibnamehash}{521cd76c97ca2b4cb17c6aa8d1e02001}
+      \strng{authorbibnamehash}{521cd76c97ca2b4cb17c6aa8d1e02001}
+      \strng{authornamehash}{521cd76c97ca2b4cb17c6aa8d1e02001}
+      \strng{authorfullhash}{521cd76c97ca2b4cb17c6aa8d1e02001}
+      \strng{authorfullhashraw}{521cd76c97ca2b4cb17c6aa8d1e02001}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{11}
+      \field{note}{Datos de octubre 2025. Publicado por Kepios / We Are Social / Meltwater}
+      \field{title}{Digital 2026: {Colombia}}
+      \field{year}{2025}
+      \verb{urlraw}
+      \verb https://datareportal.com/reports/digital-2026-colombia
+      \endverb
+      \verb{url}
+      \verb https://datareportal.com/reports/digital-2026-colombia
+      \endverb
+    \endentry
     \entry{esomar2025}{report}{}{}
       \name{author}{1}{}{%
         {{un=0,uniquepart=base,hash=716ae026b76417019e8b459b99752160}{%
@@ -1338,6 +1370,38 @@
       \field{note}{Diario Oficial de Colombia}
       \field{title}{Ley 2494 de 2025, por la cual se regula la elaboración, publicación y divulgación de encuestas electorales}
       \field{year}{2025}
+    \endentry
+    \entry{datareportal2026}{misc}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=521cd76c97ca2b4cb17c6aa8d1e02001}{%
+           family={{DataReportal}},
+           familyi={D\bibinitperiod}}}%
+      }
+      \strng{namehash}{521cd76c97ca2b4cb17c6aa8d1e02001}
+      \strng{fullhash}{521cd76c97ca2b4cb17c6aa8d1e02001}
+      \strng{fullhashraw}{521cd76c97ca2b4cb17c6aa8d1e02001}
+      \strng{bibnamehash}{521cd76c97ca2b4cb17c6aa8d1e02001}
+      \strng{authorbibnamehash}{521cd76c97ca2b4cb17c6aa8d1e02001}
+      \strng{authornamehash}{521cd76c97ca2b4cb17c6aa8d1e02001}
+      \strng{authorfullhash}{521cd76c97ca2b4cb17c6aa8d1e02001}
+      \strng{authorfullhashraw}{521cd76c97ca2b4cb17c6aa8d1e02001}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{11}
+      \field{note}{Datos de octubre 2025. Publicado por Kepios / We Are Social / Meltwater}
+      \field{title}{Digital 2026: {Colombia}}
+      \field{year}{2025}
+      \verb{urlraw}
+      \verb https://datareportal.com/reports/digital-2026-colombia
+      \endverb
+      \verb{url}
+      \verb https://datareportal.com/reports/digital-2026-colombia
+      \endverb
     \endentry
     \entry{esomar2025}{report}{}{}
       \name{author}{1}{}{%
