@@ -10,28 +10,176 @@
 \section{Motivación del problema}
 % ──────────────────────────────────────────────────────────────
 
-El seguimiento de la intención de voto durante una campaña electoral es, en casi todos los países del mundo, una industria dominada por un único instrumento metodológico: la encuesta de opinión pública \cite{brito2024stop}. En el contexto latinoamericano, y particularmente en Colombia, esta dependencia es todavía más pronunciada. No existen herramientas alternativas consolidadas ni estandarizadas que permitan estimar la opinión del electorado en tiempo real durante una campaña activa de forma sistemática y rigurosa.
 
-A pesar de su ubicuidad, las encuestas electorales en Colombia enfrentan profundos retos estructurales. Como ha señalado Andrés Caballero, director de Cifras y Conceptos {\color{red} PENDIENTE}, estos instrumentos presentan problemas significativos de sesgo y representatividad. La dificultad logística de abarcar territorios extensos, la alta tasa de no respuesta y los altos costos operativos limitan la frecuencia y el tamaño muestral de los estudios, especialmente en elecciones locales. En este panorama, se hace cada vez más necesario desarrollar herramientas novedosas para el pronóstico electoral que no dependan exclusivamente de las encuestas y que aprovechen fuentes alternativas de datos masivos.
+La industria global de investigación de mercados y opinión pública, que incluye el pronóstico electoral, alcanzó 153.000 millones de dólares en 2024, un crecimiento del 8\% frente al año anterior, según \textit{ESOMAR} (\citeyear{esomar2025}), la asociación mundial del sector. En Colombia, la misma industria facturó 743.058 millones de pesos en 2024 (equivalentes a aproximadamente 208.000 dólares a la tasa de cambio de mayo de 2026), con un crecimiento del 1\,\% frente al año anterior, según la \textit{Asociación Colombiana de Empresas de Investigación de Mercados y Opinión Pública} (\cite{acei2024}). 
+
+Este crecimiento contrasta con el de los mercados alternativos de pronóstico: plataformas como \textit{Polymarket} y \textit{Kalshi} registraron en conjunto cerca de 60.000 millones de dólares en volumen de operaciones en los primeros meses de 2026, superando ya el total de 2025, y se proyecta que alcancen un billón de dólares anuales para 2030, según estimaciones de Bernstein Research (\cite{bernstein2026}). Esta divergencia sugiere que la demanda por información predictiva sobre resultados futuros crece a un ritmo que las encuestas tradicionales no están capturando.
+
+A pesar de su ubicuidad, las encuestas electorales en Colombia enfrentan profundos retos estructurales que se han agudizado recientemente. La dificultad logística de abarcar territorios extensos, la alta tasa de no respuesta y los elevados costos operativos limitan la frecuencia y el tamaño muestral de los estudios, especialmente en elecciones locales.
+
+A estos problemas estructurales se suma un nuevo marco regulatorio que ha tensionado aún más el sector: la \textbf{Ley 2494 de 2025}, que estableció requisitos metodológicos estrictos para la elaboración y publicación de encuestas electorales, incluyendo una veda de publicación que interrumpió el flujo de información entre julio y noviembre de 2025 (\cite{ley2494_2025}). 
+
+La aplicación práctica de esta norma generó tal nivel de fricción entre el \textit{Consejo Nacional Electoral} (CNE) y las firmas encuestadoras, que la consultora española GAD3 suspendió definitivamente sus mediciones en el país en mayo de 2026, argumentando que la interpretación de la Comisión Técnica exige demostrar condiciones de muestreo que ``ninguna metodología demoscópica puede satisfacer en la práctica''(\cite{gad3_2026}). 
+
+La norma, al invalidar encuestas telefónicas, paneles digitales y métodos mixtos en favor de encuestas presenciales domiciliarias, encareció operativamente el sector y concentró el mercado en pocas firmas con suficiente capacidad económica para operar en campo en todo el territorio nacional (\cite{occidente2026}). En este panorama, resulta cada vez más urgente desarrollar herramientas de pronóstico electoral que no dependan exclusivamente de encuestas y que aprovechen fuentes alternativas de datos masivos.
 
 % ──────────────────────────────────────────────────────────────
-\section{Estado del arte: el modelo SOMEN-DC}
+\section{Estado del arte: de los modelos paramétricos al SOMEN-DC}
 % ──────────────────────────────────────────────────────────────
 
-El modelo que representa el estado del arte más relevante para este trabajo es el denominado \textbf{SOMEN-DC} (\textit{Social Media Electoral Nowcasting During Campaign}), desarrollado por investigadores de la Universidad Federal de Pernambuco en Brasil \cite{brito2023somen}. Este modelo propone un avance metodológico importante al utilizar una combinación de datos de encuestas e interacciones en redes sociales, recopiladas sistemáticamente durante el transcurso de la campaña electoral, para entrenar un algoritmo predictivo específico para cada elección.
+La capacidad de anticipar resultados electorales ha sido un reto persistente
+para la ciencia política desde los años setenta, cuando surgieron los primeros
+modelos predictivos formales en Estados Unidos y el Reino Unido. Los trabajos
+pioneros de \textcite{sigelman1979} y \textcite{whiteley1979} demostraron que
+la popularidad presidencial medida meses antes de una elección era un predictor
+estadísticamente significativo del resultado electoral, abriendo la puerta a
+una tradición de modelos formales de pronóstico que hasta entonces era
+prácticamente inexistente en la ciencia política.
 
-Sin embargo, a pesar de sus aportes, el modelo SOMEN-DC presenta tres limitaciones metodológicas fundamentales que restringen su aplicabilidad a gran escala:
+Esta tradición evolucionó rápidamente hacia arquitecturas econométricas más
+sofisticadas. \textcite{mughan1987} comparó tres modelos simples de pronóstico
+para elecciones generales en el Reino Unido, concluyendo que las variables
+macroeconómicas, en particular el desempleo y la aprobación gubernamental,
+ofrecían mayor poder predictivo que los indicadores de popularidad aislados.
+Por su parte, \textcite{sanders1991} desarrolló un modelo de función de
+popularidad para el gobierno británico que incorporaba condiciones económicas
+y eventos políticos exógenos, anticipando el resultado de las elecciones
+generales con seis meses de antelación. Durante los años noventa y la primera
+década del siglo XXI, estos modelos alcanzaron su madurez técnica,
+apoyándose en herramientas de series de tiempo como VAR y ARMA. En el
+contexto del Reino Unido, ()\textcite{lewisbeck2004} formularon un modelo de
+economía política que explicaba más del 80\,\% de la varianza en el apoyo
+gubernamental usando solo tres variables: aprobación del gobierno, inflación
+y el número de términos consecutivos en el poder. En paralelo,
+\textcite{norpoth2004} propuso una perspectiva dinámica que modelaba el retorno
+del voto al equilibrio histórico mediante un proceso autorregresivo AR(1),
+demostrando que el partido ganador tiende a perder aproximadamente la mitad
+de su ventaja en la siguiente elección. En varios ciclos electorales, estos
+modelos superaban en precisión a las propias encuestadoras.
+
+Sin embargo, desde aproximadamente 2015, la capacidad predictiva de estos
+enfoques se deterioró de forma pronunciada. En el Reino Unido, ningún modelo
+establecido logró anticipar la mayoría conservadora de ese año
+\parencite{stegmaier2023}; un año después, los mismos enfoques fallaron en
+predecir la victoria de Donald Trump, el Brexit y la salida del Reino Unido
+de la Unión Europea \parencite{stegmaier2023, brito2024stop}. Esta crisis
+generalizada no fue accidental: \textcite{kennedy2018} documentaron, en una
+evaluación exhaustiva encargada por la Asociación Americana de Investigación
+de Opinión Pública (AAPOR), que los sondeos de 2016 sobreestimaron
+sistemáticamente el apoyo a Hillary Clinton debido a sesgos de no-respuesta
+diferencial, especialmente entre votantes de Trump sin estudios universitarios.
+A esto se sumaron los cambios estructurales en la comunicación política
+propiciados por las redes sociales \parencite{tucker2018} y la creciente
+fragmentación y polarización de los electorados \parencite{barbera2020}, que
+volvieron menos predecibles los comportamientos que los modelos paramétricos
+habían aprendido a capturar.
+
+La crisis impulsó a los investigadores a explorar fuentes de datos
+alternativas. El auge del \textit{Big Data} y las plataformas digitales abrió
+una nueva línea de investigación: usar las huellas digitales de los ciudadanos
+como covariables en tiempo real para el pronóstico electoral. El estudio
+seminal de \textcite{tumasjan2010} sobre las elecciones federales alemanas de
+2009 fue el primer trabajo de referencia en este campo. Analizando más de
+104.000 \textit{tweets} publicados en las semanas previas a la elección,
+los autores encontraron que el simple volumen de menciones de cada partido
+replicaba el resultado electoral con un error absoluto medio de apenas
+1{,}65\,\%, comparable al de las encuestadoras tradicionales. Más allá de
+la predicción, Tumasjan et al.\ demostraron que los perfiles de sentimiento
+de los mensajes correspondían a las posiciones políticas reales de los
+partidos, y que las menciones conjuntas de dos partidos reflejaban las
+alianzas políticas existentes. Esta hipótesis, que la atención digital
+equivale a capital político, abrió una década de investigación intensa.
+
+No obstante, la promesa inicial no se sostuvo en la replicación sistemática.
+\textcite{skoric2020}, en un meta-análisis de 74 estudios publicados entre
+2007 y 2018, encontraron que las predicciones basadas en redes sociales
+quedaban en promedio por debajo de los \textit{benchmarks} de la encuesta
+tradicional, con alta varianza entre estudios y sin convergencia metodológica.
+Sus resultados mostraron que las predicciones basadas únicamente en análisis
+de sentimiento léxico no superaban a las basadas en características
+estructurales de red, y que la combinación de ambas, usando aprendizaje
+automático, producía los mejores resultados (MAE = 2{,}14\,\%;
+$R^2 = 0{,}818$). \textcite{brito2024stop}, en una revisión crítica de doce
+años de investigación, formalizaron el problema: el enfoque de
+\textit{Twitter} solo, basado en volumen de menciones o sentimiento, no rinde
+mejor que el azar, con tasas de acierto de entre el 50\,\% y el 63\,\%.
+Los autores identificaron cinco causas estructurales de este fracaso: la
+imposibilidad de encuestar representativamente a través de Twitter, la
+dependencia de decisiones arbitrarias de recolección, los cambios constantes
+en el ecosistema de plataformas, la falta de datos históricos comparables,
+y la repetición de los errores metodológicos de las \textit{straw polls}
+anteriores a 1936. El problema de fondo es metodológico: rastrear millones
+de publicaciones abiertas es costoso, ruidoso y difícilmente replicable
+fuera de entornos universitarios con infraestructura computacional avanzada
+\parencite{skoric2020}.
+
+La respuesta más sofisticada a estos problemas llegó desde Brasil.
+\textcite{brito2020predicting} propusieron un cambio fundamental de paradigma:
+en lugar de rastrear lo que la ciudadanía dice sobre los candidatos,
+menciones abiertas, \textit{hashtags}, sentimiento, el modelo analiza
+exclusivamente lo que la ciudadanía hace con el contenido que los propios
+candidatos publican en sus perfiles oficiales. Combinando datos de Facebook,
+Twitter e Instagram de las elecciones presidenciales de Brasil (2018) y
+Estados Unidos (2016) con encuestas tradicionales como variable objetivo,
+entrenaron redes neuronales tipo MLP que superaron estadísticamente a las
+encuestadoras en Brasil, donde los candidatos son muchos y las encuestas
+son pocas, y fueron competitivos en Estados Unidos. Este enfoque fue
+posteriormente sistematizado por \textcite{brito2022measuring}, quienes
+analizaron más de 67.000 publicaciones de candidatos presidenciales en
+Argentina, Brasil, Colombia y México (2018--2019), demostrando que las
+métricas de \textit{engagement} por publicación, en particular los
+\textit{likes} por \textit{post} en Instagram, correlacionaban fuertemente
+con el resultado electoral ($r = 0{,}75$--$0{,}98$), mientras que el
+número absoluto de publicaciones presentaba correlación nula o negativa.
+
+El conjunto de estas contribuciones se formalizó en el marco
+\textbf{SOMEN-DC} (\textit{Social Media Electoral Nowcasting During Campaign}),
+desarrollado por \textcite{brito2023somen} en la Universidad Federal de
+Pernambuco. El modelo propone un proceso de cinco pasos, comprensión del
+evento, recolección de datos, preparación, modelado y evaluación, y una
+estrategia de ejecución continua (DC) que permite emitir predicciones diarias
+durante la campaña. Usando datos de más de 65.000 publicaciones y 195
+encuestas de cuatro países latinoamericanos, los ensambles de redes neuronales
+(MLP y GRNN) entrenados con métricas de \textit{engagement} y encuestas como
+etiquetas alcanzaron errores absolutos medios frecuentemente inferiores a
+3 puntos porcentuales, dentro del umbral histórico de las encuestadoras.
+
+Sin embargo, el \textsc{somen-dc} presenta tres limitaciones estructurales que
+este trabajo busca superar:
+
 \begin{enumerate}
-    \item \textbf{Techo encuestocéntrico:} Dado que el modelo utiliza los resultados de las encuestas como variable objetivo (\textit{ground truth}) durante su fase de entrenamiento, su capacidad predictiva se ve estructuralmente limitada. No puede superar la precisión de las encuestas mismas porque está diseñado para replicar su comportamiento.
-    \item \textbf{Dependencia de infraestructura costosa:} La recolección de interacciones en redes sociales exige un proceso de extracción de datos (\textit{scraping}) continuo y en tiempo real a lo largo de toda la campaña, lo cual requiere una infraestructura técnica y computacional de alto costo que no suele estar al alcance de investigadores independientes o medios de comunicación locales.
-    \item \textbf{No transferibilidad:} Los pesos aprendidos por el algoritmo son útiles exclusivamente para la elección en la que fueron entrenados. Al no poder generalizar patrones, el modelo carece de transferibilidad y debe construirse desde cero en cada nuevo contexto electoral.
+  \item \textbf{Techo encuestocéntrico.} Al usar las encuestas como variable
+        objetivo de entrenamiento, el modelo no puede superar la capacidad
+        predictiva de las propias encuestas. Es, en esencia, un replicador
+        sofisticado de sondeos: aprende a imitar la señal de las encuestas
+        a partir de datos digitales, sin acceso a una fuente de verdad
+        independiente.
+
+  \item \textbf{Dependencia de infraestructura costosa.} El modelo requiere
+        \textit{scraping} continuo desde el inicio de la campaña para registrar
+        la evolución temporal de las interacciones, acceso que los autores
+        originales tenían a través de servicios institucionales de la
+        Universidad Federal de Pernambuco, hoy inasequibles o inexistentes
+        para la mayoría de investigadores independientes.
+
+  \item \textbf{No transferibilidad.} Los pesos aprendidos son válidos
+        exclusivamente para la elección en que se entrenaron. Cada nueva
+        contienda exige repetir desde cero el ciclo completo de recolección y
+        entrenamiento, sin posibilidad de acumular aprendizaje entre elecciones
+        o de generalizar patrones entre contextos electorales distintos.
 \end{enumerate}
+
+Estas tres limitaciones definen el espacio de contribución de esta tesis.
 
 % ──────────────────────────────────────────────────────────────
 \section{Hipótesis de trabajo}
 % ──────────────────────────────────────────────────────────────
 
-El punto de partida conceptual de este proyecto es la hipótesis seminal formulada por \citeauthor{tumasjan2010} (\citeyear{tumasjan2010}), quienes postulan que el volumen de actividad digital y menciones de un candidato en plataformas de microblogging, como Twitter, funciona como un estimador razonable de su capital electoral subyacente. 
+El punto de partida conceptual de este proyecto es la hipótesis seminal formulada por \citeauthor{tumasjan2010} (\citeyear{tumasjan2010}), quienes postulan que el volumen de actividad digital y menciones de un candidato en plataformas de microblogging, como Twitter, funciona como un estimador insesgado y razonable de su capital electoral subyacente. 
+
+Teniendo esto en cuenta, y considerando exclusivamente las elecciones de único ganador para posiciones ejecutivas (Alcaldes/prefectos, presidentes o gobernadores regionales), es posible considerar que todas las elecciones de estas características, desde la elección del alcalde de una ciudad pequeña hasta la elección de presidente de un país de cientos de millones de habitantes tiene, es, en principio, el mismo problema a modelar;
+
+Tenemos un conjunto positivo y limitado de candidatos que realizan una campaña en un periodo específico y el ganador escogido es aquel que obtenga el mayor número de votos. Para lograrlo, usa herramientas entre las que están 
 
 Este trabajo extiende dicha hipótesis mediante una premisa metodológica propia: dado que la relación entre la tracción digital y el apoyo en las urnas es un fenómeno conductual común que trasciende contextos aislados, es teóricamente posible entrenar un único modelo estadístico utilizando datos de \textit{múltiples elecciones simultáneamente}. Esto permitiría desarrollar una herramienta capaz de modelar la intención de voto de manera independiente, sin la necesidad de integrar encuestas en la ecuación predictiva.
 

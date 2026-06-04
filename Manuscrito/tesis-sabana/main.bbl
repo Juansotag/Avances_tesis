@@ -19,14 +19,92 @@
 
 \refsection{0}
   \datalist[entry]{apa/apasortcite//global/global/global}
+    \entry{acei2024}{misc}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=f2e77b85501ce661f61ee62779a369c0}{%
+           family={{ACEI}},
+           familyi={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{f2e77b85501ce661f61ee62779a369c0}
+      \strng{fullhash}{f2e77b85501ce661f61ee62779a369c0}
+      \strng{fullhashraw}{f2e77b85501ce661f61ee62779a369c0}
+      \strng{bibnamehash}{f2e77b85501ce661f61ee62779a369c0}
+      \strng{authorbibnamehash}{f2e77b85501ce661f61ee62779a369c0}
+      \strng{authornamehash}{f2e77b85501ce661f61ee62779a369c0}
+      \strng{authorfullhash}{f2e77b85501ce661f61ee62779a369c0}
+      \strng{authorfullhashraw}{f2e77b85501ce661f61ee62779a369c0}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Asociación Colombiana de Empresas de Investigación de Mercados y Opinión Pública}
+      \field{title}{Perspectivas de la Industria de Investigación de Mercados en Colombia 2025}
+      \field{year}{2025}
+    \endentry
+    \entry{barbera2020}{inbook}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=1758712d115799f565778c557042b413}{%
+           family={Barberá},
+           familyi={B\bibinitperiod},
+           given={Pablo},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+      }
+      \name{editor}{2}{}{%
+        {{hash=f6306fb6c9e0eddcc26ce7ffb1957f6e}{%
+           family={Persily},
+           familyi={P\bibinitperiod},
+           given={Nathaniel},
+           giveni={N\bibinitperiod}}}%
+        {{hash=4f53cfe3add6fe77182af81aa7aeff73}{%
+           family={Tucker},
+           familyi={T\bibinitperiod},
+           given={Joshua\bibnamedelima A.},
+           giveni={J\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Cambridge University Press}%
+      }
+      \strng{namehash}{1758712d115799f565778c557042b413}
+      \strng{fullhash}{1758712d115799f565778c557042b413}
+      \strng{fullhashraw}{1758712d115799f565778c557042b413}
+      \strng{bibnamehash}{1758712d115799f565778c557042b413}
+      \strng{authorbibnamehash}{1758712d115799f565778c557042b413}
+      \strng{authornamehash}{1758712d115799f565778c557042b413}
+      \strng{authorfullhash}{1758712d115799f565778c557042b413}
+      \strng{authorfullhashraw}{1758712d115799f565778c557042b413}
+      \strng{editorbibnamehash}{433a2c64f952d2a671a7a659f706634b}
+      \strng{editornamehash}{433a2c64f952d2a671a7a659f706634b}
+      \strng{editorfullhash}{433a2c64f952d2a671a7a659f706634b}
+      \strng{editorfullhashraw}{433a2c64f952d2a671a7a659f706634b}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Social Media and Democracy: The State of the Field and Prospects for Reform}
+      \field{title}{Social Media, Echo Chambers, and Political Polarization}
+      \field{year}{2020}
+      \verb{urlraw}
+      \verb https://www.researchgate.net/publication/343996442
+      \endverb
+      \verb{url}
+      \verb https://www.researchgate.net/publication/343996442
+      \endverb
+    \endentry
     \entry{brito2022measuring}{article}{}{}
       \name{author}{2}{}{%
-        {{un=0,uniquepart=base,hash=2b764097b5efb06c8883c84dcac1b0d8}{%
+        {{un=1,uniquepart=given,hash=2b764097b5efb06c8883c84dcac1b0d8}{%
            family={Brito},
            familyi={B\bibinitperiod},
            given={Kellyton},
            giveni={K\bibinitperiod},
-           givenun=0}}%
+           givenun=1}}%
         {{un=0,uniquepart=base,hash=8e857f2b9e9d5879b28bc0d23793b1c4}{%
            family={Adeodato},
            familyi={A\bibinitperiod},
@@ -47,7 +125,6 @@
       \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
       \field{extradatescope}{labelyear}
       \field{labeldatesource}{}
-      \true{uniqueprimaryauthor}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Government Information Quarterly}
@@ -63,12 +140,12 @@
     \endentry
     \entry{brito2023somen}{article}{}{}
       \name{author}{2}{}{%
-        {{un=0,uniquepart=base,hash=2b764097b5efb06c8883c84dcac1b0d8}{%
+        {{un=1,uniquepart=given,hash=2b764097b5efb06c8883c84dcac1b0d8}{%
            family={Brito},
            familyi={B\bibinitperiod},
            given={Kellyton},
            giveni={K\bibinitperiod},
-           givenun=0}}%
+           givenun=1}}%
         {{un=0,uniquepart=base,hash=8e857f2b9e9d5879b28bc0d23793b1c4}{%
            family={Adeodato},
            familyi={A\bibinitperiod},
@@ -89,7 +166,6 @@
       \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
       \field{extradatescope}{labelyear}
       \field{labeldatesource}{}
-      \true{uniqueprimaryauthor}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Government Information Quarterly}
@@ -105,12 +181,12 @@
     \endentry
     \entry{brito2024stop}{article}{}{}
       \name{author}{3}{}{%
-        {{un=0,uniquepart=base,hash=2b764097b5efb06c8883c84dcac1b0d8}{%
+        {{un=1,uniquepart=given,hash=2b764097b5efb06c8883c84dcac1b0d8}{%
            family={Brito},
            familyi={B\bibinitperiod},
            given={Kellyton},
            giveni={K\bibinitperiod},
-           givenun=0}}%
+           givenun=1}}%
         {{un=0,uniquepart=base,hash=6e6f699768feef4e1d0c6f5fe4328457}{%
            family={Silva\bibnamedelima Filho},
            familyi={S\bibinitperiod\bibinitdelim F\bibinitperiod},
@@ -136,7 +212,6 @@
       \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
       \field{extradatescope}{labelyear}
       \field{labeldatesource}{}
-      \true{uniqueprimaryauthor}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Government Information Quarterly}
@@ -148,6 +223,282 @@
       \range{pages}{1}
       \verb{doi}
       \verb 10.1016/j.giq.2023.101899
+      \endverb
+    \endentry
+    \entry{brito2020predicting}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=1,uniquepart=given,hash=56a4c8eeac91fe0aca0fb184872922d9}{%
+           family={Brito},
+           familyi={B\bibinitperiod},
+           given={Kellyton\bibnamedelimb dos\bibnamedelima Santos},
+           giveni={K\bibinitperiod\bibinitdelim d\bibinitperiod\bibinitdelim S\bibinitperiod},
+           givenun=1}}%
+        {{un=0,uniquepart=base,hash=8e857f2b9e9d5879b28bc0d23793b1c4}{%
+           family={Adeodato},
+           familyi={A\bibinitperiod},
+           given={Paulo\bibnamedelimb Jorge\bibnamedelima Leitão},
+           giveni={P\bibinitperiod\bibinitdelim J\bibinitperiod\bibinitdelim L\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{76f7a83bd22a9248bcb5a76c1cf27c5b}
+      \strng{fullhash}{76f7a83bd22a9248bcb5a76c1cf27c5b}
+      \strng{fullhashraw}{76f7a83bd22a9248bcb5a76c1cf27c5b}
+      \strng{bibnamehash}{76f7a83bd22a9248bcb5a76c1cf27c5b}
+      \strng{authorbibnamehash}{76f7a83bd22a9248bcb5a76c1cf27c5b}
+      \strng{authornamehash}{76f7a83bd22a9248bcb5a76c1cf27c5b}
+      \strng{authorfullhash}{76f7a83bd22a9248bcb5a76c1cf27c5b}
+      \strng{authorfullhashraw}{76f7a83bd22a9248bcb5a76c1cf27c5b}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{2020 IEEE International Conference on Big Data (Big Data)}
+      \field{title}{Predicting Brazilian and U.S. Elections with Machine Learning and Social Media Data}
+      \field{year}{2020}
+    \endentry
+    \entry{ley2494_2025}{misc}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=a8e9c8918df2f6e7135ef51eb86f868f}{%
+           family={{Congreso de la República de Colombia}},
+           familyi={C\bibinitperiod}}}%
+      }
+      \strng{namehash}{a8e9c8918df2f6e7135ef51eb86f868f}
+      \strng{fullhash}{a8e9c8918df2f6e7135ef51eb86f868f}
+      \strng{fullhashraw}{a8e9c8918df2f6e7135ef51eb86f868f}
+      \strng{bibnamehash}{a8e9c8918df2f6e7135ef51eb86f868f}
+      \strng{authorbibnamehash}{a8e9c8918df2f6e7135ef51eb86f868f}
+      \strng{authornamehash}{a8e9c8918df2f6e7135ef51eb86f868f}
+      \strng{authorfullhash}{a8e9c8918df2f6e7135ef51eb86f868f}
+      \strng{authorfullhashraw}{a8e9c8918df2f6e7135ef51eb86f868f}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Diario Oficial de Colombia}
+      \field{title}{Ley 2494 de 2025, por la cual se regula la elaboración, publicación y divulgación de encuestas electorales}
+      \field{year}{2025}
+    \endentry
+    \entry{esomar2025}{report}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=716ae026b76417019e8b459b99752160}{%
+           family={{ESOMAR}},
+           familyi={E\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {ESOMAR}%
+      }
+      \strng{namehash}{716ae026b76417019e8b459b99752160}
+      \strng{fullhash}{716ae026b76417019e8b459b99752160}
+      \strng{fullhashraw}{716ae026b76417019e8b459b99752160}
+      \strng{bibnamehash}{716ae026b76417019e8b459b99752160}
+      \strng{authorbibnamehash}{716ae026b76417019e8b459b99752160}
+      \strng{authornamehash}{716ae026b76417019e8b459b99752160}
+      \strng{authorfullhash}{716ae026b76417019e8b459b99752160}
+      \strng{authorfullhashraw}{716ae026b76417019e8b459b99752160}
+      \field{sortinit}{E}
+      \field{sortinithash}{8da8a182d344d5b9047633dfc0cc9131}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Global Market Research 2025}
+      \field{year}{2025}
+      \verb{urlraw}
+      \verb https://esomar.org/publications/global-market-research-2025
+      \endverb
+      \verb{url}
+      \verb https://esomar.org/publications/global-market-research-2025
+      \endverb
+    \endentry
+    \entry{gad3_2026}{misc}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=955528f90e525550926c8f985c547831}{%
+           family={{GAD3}},
+           familyi={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{955528f90e525550926c8f985c547831}
+      \strng{fullhash}{955528f90e525550926c8f985c547831}
+      \strng{fullhashraw}{955528f90e525550926c8f985c547831}
+      \strng{bibnamehash}{955528f90e525550926c8f985c547831}
+      \strng{authorbibnamehash}{955528f90e525550926c8f985c547831}
+      \strng{authornamehash}{955528f90e525550926c8f985c547831}
+      \strng{authorfullhash}{955528f90e525550926c8f985c547831}
+      \strng{authorfullhashraw}{955528f90e525550926c8f985c547831}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{5}
+      \field{title}{Comunicado: Suspensión de publicación de encuestas electorales en {Colombia}}
+      \field{year}{2026}
+      \verb{urlraw}
+      \verb https://www.lasillavacia.com/en-vivo/por-ley-mordaza-gad3-suspende-publicacion-de-encuestas-en-colombia/
+      \endverb
+      \verb{url}
+      \verb https://www.lasillavacia.com/en-vivo/por-ley-mordaza-gad3-suspende-publicacion-de-encuestas-en-colombia/
+      \endverb
+    \endentry
+    \entry{bernstein2026}{misc}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=f1b4c3a6380b4b9ed26678dca7f480ed}{%
+           family={Giangiulio},
+           familyi={G\bibinitperiod},
+           given={Davis},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{institution}{1}{%
+        {Bernstein Research}%
+      }
+      \strng{namehash}{f1b4c3a6380b4b9ed26678dca7f480ed}
+      \strng{fullhash}{f1b4c3a6380b4b9ed26678dca7f480ed}
+      \strng{fullhashraw}{f1b4c3a6380b4b9ed26678dca7f480ed}
+      \strng{bibnamehash}{f1b4c3a6380b4b9ed26678dca7f480ed}
+      \strng{authorbibnamehash}{f1b4c3a6380b4b9ed26678dca7f480ed}
+      \strng{authornamehash}{f1b4c3a6380b4b9ed26678dca7f480ed}
+      \strng{authorfullhash}{f1b4c3a6380b4b9ed26678dca7f480ed}
+      \strng{authorfullhashraw}{f1b4c3a6380b4b9ed26678dca7f480ed}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{4}
+      \field{note}{Citado en CNBC, 14 de abril de 2026}
+      \field{title}{Prediction Markets: On Pace for \$1 Trillion by 2030}
+      \field{year}{2026}
+      \verb{urlraw}
+      \verb https://www.cnbc.com/2026/04/14/prediction-markets-will-grow-to-1-trillion-by-2030-bernstein-says.html
+      \endverb
+      \verb{url}
+      \verb https://www.cnbc.com/2026/04/14/prediction-markets-will-grow-to-1-trillion-by-2030-bernstein-says.html
+      \endverb
+    \endentry
+    \entry{kennedy2018}{article}{}{}
+      \name{author}{13}{}{%
+        {{un=0,uniquepart=base,hash=3ea090e255e21da514e7117cce48877f}{%
+           family={Kennedy},
+           familyi={K\bibinitperiod},
+           given={Courtney},
+           giveni={C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=008c763d10959acf86144f7a74050c88}{%
+           family={Blumenthal},
+           familyi={B\bibinitperiod},
+           given={Mark},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=f98651e1a304bd9cbe1fa0d3c6ea0f88}{%
+           family={Clement},
+           familyi={C\bibinitperiod},
+           given={Scott},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=e14f8d7c6cb96839da34722315d9ed12}{%
+           family={Clinton},
+           familyi={C\bibinitperiod},
+           given={Joshua\bibnamedelima D.},
+           giveni={J\bibinitperiod\bibinitdelim D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=2aa0f2fe41470c4cba4bc6ded359af92}{%
+           family={Durand},
+           familyi={D\bibinitperiod},
+           given={Claire},
+           giveni={C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=b0b9a1c6f276d1bd36e36ea86f5b2a52}{%
+           family={Franklin},
+           familyi={F\bibinitperiod},
+           given={Charles},
+           giveni={C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=b2f69490c9934e833708a7e0b5f50f54}{%
+           family={McGeeney},
+           familyi={M\bibinitperiod},
+           given={Kyley},
+           giveni={K\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=3671e07dbe177455ae2528583e050d40}{%
+           family={Miringoff},
+           familyi={M\bibinitperiod},
+           given={Lee},
+           giveni={L\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=2b99f4ca590048b5522c2c539c94b270}{%
+           family={Olson},
+           familyi={O\bibinitperiod},
+           given={Kristen},
+           giveni={K\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=683904edcb8111ad1573a25e1b6f6d56}{%
+           family={Rivers},
+           familyi={R\bibinitperiod},
+           given={Douglas},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=a6f17a81259d751cd22f3041c3502789}{%
+           family={Saad},
+           familyi={S\bibinitperiod},
+           given={Lydia},
+           giveni={L\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=934eef7f9f0cb72eac0c787ed6cce4c2}{%
+           family={Witt},
+           familyi={W\bibinitperiod},
+           given={G.\bibnamedelimi Evans},
+           giveni={G\bibinitperiod\bibinitdelim E\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=e552c4297b662e4c4f9c1d2125625d5a}{%
+           family={Wlezien},
+           familyi={W\bibinitperiod},
+           given={Christopher},
+           giveni={C\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{48be602e05bb4abe1d3f21deee09bf12}
+      \strng{fullhash}{18a693f83b5f6a63daf247f4452f691a}
+      \strng{fullhashraw}{18a693f83b5f6a63daf247f4452f691a}
+      \strng{bibnamehash}{18a693f83b5f6a63daf247f4452f691a}
+      \strng{authorbibnamehash}{18a693f83b5f6a63daf247f4452f691a}
+      \strng{authornamehash}{48be602e05bb4abe1d3f21deee09bf12}
+      \strng{authorfullhash}{18a693f83b5f6a63daf247f4452f691a}
+      \strng{authorfullhashraw}{18a693f83b5f6a63daf247f4452f691a}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Public Opinion Quarterly}
+      \field{number}{1}
+      \field{title}{An Evaluation of the 2016 Election Polls in the {United States}}
+      \field{volume}{82}
+      \field{year}{2018}
+      \field{pages}{1\bibrangedash 33}
+      \range{pages}{33}
+      \verb{doi}
+      \verb 10.1093/poq/nfx047
+      \endverb
+      \verb{urlraw}
+      \verb https://digitalcommons.unl.edu/sociologyfacpub/543/
+      \endverb
+      \verb{url}
+      \verb https://digitalcommons.unl.edu/sociologyfacpub/543/
       \endverb
     \endentry
     \entry{lewisbeck2014proxy}{article}{}{}
@@ -188,6 +539,54 @@
       \field{pages}{506\bibrangedash 521}
       \range{pages}{16}
     \endentry
+    \entry{lewisbeck2004}{article}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=231cfe1697dee24192ed8cb747333eee}{%
+           family={Lewis-Beck},
+           familyi={L\bibinithyphendelim B\bibinitperiod},
+           given={Michael\bibnamedelima S.},
+           giveni={M\bibinitperiod\bibinitdelim S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=149d9504ba37c452c1d2c8e55c89921e}{%
+           family={Nadeau},
+           familyi={N\bibinitperiod},
+           given={Richard},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=e338097521fd5eaa89f82240194a717c}{%
+           family={Bélanger},
+           familyi={B\bibinitperiod},
+           given={Éric},
+           giveni={É\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{b2ca7ebc6dad744c0fbf870ed83e69dd}
+      \strng{fullhash}{2465abc85a1d6bf381364dd24e895ea7}
+      \strng{fullhashraw}{2465abc85a1d6bf381364dd24e895ea7}
+      \strng{bibnamehash}{2465abc85a1d6bf381364dd24e895ea7}
+      \strng{authorbibnamehash}{2465abc85a1d6bf381364dd24e895ea7}
+      \strng{authornamehash}{b2ca7ebc6dad744c0fbf870ed83e69dd}
+      \strng{authorfullhash}{2465abc85a1d6bf381364dd24e895ea7}
+      \strng{authorfullhashraw}{2465abc85a1d6bf381364dd24e895ea7}
+      \field{extraname}{1}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Electoral Studies}
+      \field{number}{2}
+      \field{title}{General Election Forecasts in the {United Kingdom}: A Political Economy Model}
+      \field{volume}{23}
+      \field{year}{2004}
+      \field{pages}{279\bibrangedash 290}
+      \range{pages}{12}
+      \verb{doi}
+      \verb 10.1016/S0261-3794(02)00071-9
+      \endverb
+    \endentry
     \entry{lewisbeck2011nowcasting}{article}{}{}
       \name{author}{3}{}{%
         {{un=0,uniquepart=base,hash=231cfe1697dee24192ed8cb747333eee}{%
@@ -217,6 +616,7 @@
       \strng{authornamehash}{b2ca7ebc6dad744c0fbf870ed83e69dd}
       \strng{authorfullhash}{2465abc85a1d6bf381364dd24e895ea7}
       \strng{authorfullhashraw}{2465abc85a1d6bf381364dd24e895ea7}
+      \field{extraname}{2}
       \field{sortinit}{L}
       \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
       \field{extradatescope}{labelyear}
@@ -233,6 +633,183 @@
       \range{pages}{4}
       \verb{doi}
       \verb 10.1016/j.electstud.2010.09.013
+      \endverb
+    \endentry
+    \entry{mughan1987}{article}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=7325701f63e55bf400972aff2f8ee9eb}{%
+           family={Mughan},
+           familyi={M\bibinitperiod},
+           given={Anthony},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{7325701f63e55bf400972aff2f8ee9eb}
+      \strng{fullhash}{7325701f63e55bf400972aff2f8ee9eb}
+      \strng{fullhashraw}{7325701f63e55bf400972aff2f8ee9eb}
+      \strng{bibnamehash}{7325701f63e55bf400972aff2f8ee9eb}
+      \strng{authorbibnamehash}{7325701f63e55bf400972aff2f8ee9eb}
+      \strng{authornamehash}{7325701f63e55bf400972aff2f8ee9eb}
+      \strng{authorfullhash}{7325701f63e55bf400972aff2f8ee9eb}
+      \strng{authorfullhashraw}{7325701f63e55bf400972aff2f8ee9eb}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Electoral Studies}
+      \field{number}{3}
+      \field{title}{General Election Forecasting in {Britain}: A Comparison of Three Simple Models}
+      \field{volume}{6}
+      \field{year}{1987}
+      \field{pages}{195\bibrangedash 207}
+      \range{pages}{13}
+      \verb{doi}
+      \verb 10.1016/0261-3794(87)90031-X
+      \endverb
+    \endentry
+    \entry{norpoth2004}{article}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=261c88d0dfe2d88c15250172c49720f8}{%
+           family={Norpoth},
+           familyi={N\bibinitperiod},
+           given={Helmut},
+           giveni={H\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{261c88d0dfe2d88c15250172c49720f8}
+      \strng{fullhash}{261c88d0dfe2d88c15250172c49720f8}
+      \strng{fullhashraw}{261c88d0dfe2d88c15250172c49720f8}
+      \strng{bibnamehash}{261c88d0dfe2d88c15250172c49720f8}
+      \strng{authorbibnamehash}{261c88d0dfe2d88c15250172c49720f8}
+      \strng{authornamehash}{261c88d0dfe2d88c15250172c49720f8}
+      \strng{authorfullhash}{261c88d0dfe2d88c15250172c49720f8}
+      \strng{authorfullhashraw}{261c88d0dfe2d88c15250172c49720f8}
+      \field{sortinit}{N}
+      \field{sortinithash}{22369a73d5f88983a108b63f07f37084}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Electoral Studies}
+      \field{number}{2}
+      \field{title}{Forecasting {British} Elections: A Dynamic Perspective}
+      \field{volume}{23}
+      \field{year}{2004}
+      \field{pages}{297\bibrangedash 305}
+      \range{pages}{9}
+      \verb{doi}
+      \verb 10.1016/S0261-3794(02)00070-7
+      \endverb
+    \endentry
+    \entry{occidente2026}{article}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=9fb49d82a5cac8a2fd348b074b17d240}{%
+           family={Ríos\bibnamedelima Giraldo},
+           familyi={R\bibinitperiod\bibinitdelim G\bibinitperiod},
+           given={Mauricio},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{9fb49d82a5cac8a2fd348b074b17d240}
+      \strng{fullhash}{9fb49d82a5cac8a2fd348b074b17d240}
+      \strng{fullhashraw}{9fb49d82a5cac8a2fd348b074b17d240}
+      \strng{bibnamehash}{9fb49d82a5cac8a2fd348b074b17d240}
+      \strng{authorbibnamehash}{9fb49d82a5cac8a2fd348b074b17d240}
+      \strng{authornamehash}{9fb49d82a5cac8a2fd348b074b17d240}
+      \strng{authorfullhash}{9fb49d82a5cac8a2fd348b074b17d240}
+      \strng{authorfullhashraw}{9fb49d82a5cac8a2fd348b074b17d240}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Diario de Occidente}
+      \field{title}{Ley de encuestas en {Colombia}: la polémica norma}
+      \field{year}{2026}
+      \verb{urlraw}
+      \verb https://occidente.co/politica/graffiti/ley-de-encuestas-colombia-derogatoria-cne-investigaciones-2026/
+      \endverb
+      \verb{url}
+      \verb https://occidente.co/politica/graffiti/ley-de-encuestas-colombia-derogatoria-cne-investigaciones-2026/
+      \endverb
+    \endentry
+    \entry{sanders1991}{article}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=35841453fb19e5929dc84ddf3a224fd0}{%
+           family={Sanders},
+           familyi={S\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{35841453fb19e5929dc84ddf3a224fd0}
+      \strng{fullhash}{35841453fb19e5929dc84ddf3a224fd0}
+      \strng{fullhashraw}{35841453fb19e5929dc84ddf3a224fd0}
+      \strng{bibnamehash}{35841453fb19e5929dc84ddf3a224fd0}
+      \strng{authorbibnamehash}{35841453fb19e5929dc84ddf3a224fd0}
+      \strng{authornamehash}{35841453fb19e5929dc84ddf3a224fd0}
+      \strng{authorfullhash}{35841453fb19e5929dc84ddf3a224fd0}
+      \strng{authorfullhashraw}{35841453fb19e5929dc84ddf3a224fd0}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{The Political Quarterly}
+      \field{number}{2}
+      \field{title}{Government Popularity and the Next General Election}
+      \field{volume}{62}
+      \field{year}{1991}
+      \field{pages}{235\bibrangedash 261}
+      \range{pages}{27}
+      \verb{doi}
+      \verb 10.1111/j.1467-923X.1991.tb00856.x
+      \endverb
+    \endentry
+    \entry{sigelman1979}{article}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=c512a67ad5eb9d243953ddb92d7e976b}{%
+           family={Sigelman},
+           familyi={S\bibinitperiod},
+           given={Lee},
+           giveni={L\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{c512a67ad5eb9d243953ddb92d7e976b}
+      \strng{fullhash}{c512a67ad5eb9d243953ddb92d7e976b}
+      \strng{fullhashraw}{c512a67ad5eb9d243953ddb92d7e976b}
+      \strng{bibnamehash}{c512a67ad5eb9d243953ddb92d7e976b}
+      \strng{authorbibnamehash}{c512a67ad5eb9d243953ddb92d7e976b}
+      \strng{authornamehash}{c512a67ad5eb9d243953ddb92d7e976b}
+      \strng{authorfullhash}{c512a67ad5eb9d243953ddb92d7e976b}
+      \strng{authorfullhashraw}{c512a67ad5eb9d243953ddb92d7e976b}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Public Opinion Quarterly}
+      \field{number}{4}
+      \field{title}{Presidential Popularity and Presidential Elections}
+      \field{volume}{43}
+      \field{year}{1979}
+      \field{pages}{532\bibrangedash 534}
+      \range{pages}{3}
+      \verb{urlraw}
+      \verb https://www-jstor-org.ez.unisabana.edu.co/stable/2749005
+      \endverb
+      \verb{url}
+      \verb https://www-jstor-org.ez.unisabana.edu.co/stable/2749005
       \endverb
     \endentry
     \entry{skoric2020}{article}{}{}
@@ -282,6 +859,134 @@
       \verb 10.3390/info11040187
       \endverb
     \endentry
+    \entry{stegmaier2023}{article}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=bc0306b02bf27ee067ff5a12ec8e831b}{%
+           family={Stegmaier},
+           familyi={S\bibinitperiod},
+           given={Mary},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=2d87141a9e2d2b9b23daca56cadec2f2}{%
+           family={Jokinsky},
+           familyi={J\bibinitperiod},
+           given={Steven},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=231cfe1697dee24192ed8cb747333eee}{%
+           family={Lewis-Beck},
+           familyi={L\bibinithyphendelim B\bibinitperiod},
+           given={Michael\bibnamedelima S.},
+           giveni={M\bibinitperiod\bibinitdelim S\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{8b1ddb1e697ba9b29b96b81534e75c9d}
+      \strng{fullhash}{aa226208dae3cb219d0ec6555b8140e0}
+      \strng{fullhashraw}{aa226208dae3cb219d0ec6555b8140e0}
+      \strng{bibnamehash}{aa226208dae3cb219d0ec6555b8140e0}
+      \strng{authorbibnamehash}{aa226208dae3cb219d0ec6555b8140e0}
+      \strng{authornamehash}{8b1ddb1e697ba9b29b96b81534e75c9d}
+      \strng{authorfullhash}{aa226208dae3cb219d0ec6555b8140e0}
+      \strng{authorfullhashraw}{aa226208dae3cb219d0ec6555b8140e0}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Electoral Studies}
+      \field{title}{The Evolution of Election Forecasting Models in the {UK}}
+      \field{volume}{86}
+      \field{year}{2023}
+      \field{pages}{102694}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1016/j.electstud.2023.102694
+      \endverb
+    \endentry
+    \entry{tucker2018}{report}{}{}
+      \name{author}{8}{}{%
+        {{un=0,uniquepart=base,hash=4f53cfe3add6fe77182af81aa7aeff73}{%
+           family={Tucker},
+           familyi={T\bibinitperiod},
+           given={Joshua\bibnamedelima A.},
+           giveni={J\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=70740f8981727fbf1acd586e43b16b11}{%
+           family={Guess},
+           familyi={G\bibinitperiod},
+           given={Andrew},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=1758712d115799f565778c557042b413}{%
+           family={Barberá},
+           familyi={B\bibinitperiod},
+           given={Pablo},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=5c2024877e4063d155a2e2a409b91c1b}{%
+           family={Vaccari},
+           familyi={V\bibinitperiod},
+           given={Cristian},
+           giveni={C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=173159c804f58dd3f2335c37b7106594}{%
+           family={Siegel},
+           familyi={S\bibinitperiod},
+           given={Alexandra},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=709792cf9d5c464387bf55af5f98f7e8}{%
+           family={Sanovich},
+           familyi={S\bibinitperiod},
+           given={Sergey},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=a9ed09dfa83bff1ae99d29415562dffe}{%
+           family={Stukal},
+           familyi={S\bibinitperiod},
+           given={Denis},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=8ef5bca6f403168706ad93d11351ed60}{%
+           family={Nyhan},
+           familyi={N\bibinitperiod},
+           given={Brendan},
+           giveni={B\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{institution}{1}{%
+        {SSRN}%
+      }
+      \strng{namehash}{01093f807b5fd6f948deaf9a38dea911}
+      \strng{fullhash}{762c700181fb1dedc92270d6469a1da3}
+      \strng{fullhashraw}{762c700181fb1dedc92270d6469a1da3}
+      \strng{bibnamehash}{762c700181fb1dedc92270d6469a1da3}
+      \strng{authorbibnamehash}{762c700181fb1dedc92270d6469a1da3}
+      \strng{authornamehash}{01093f807b5fd6f948deaf9a38dea911}
+      \strng{authorfullhash}{762c700181fb1dedc92270d6469a1da3}
+      \strng{authorfullhashraw}{762c700181fb1dedc92270d6469a1da3}
+      \field{sortinit}{T}
+      \field{sortinithash}{9af77f0292593c26bde9a56e688eaee9}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Social Media, Political Polarization, and Political Disinformation: A Review of the Scientific Literature}
+      \field{type}{techreport}
+      \field{year}{2018}
+      \verb{doi}
+      \verb 10.2139/ssrn.3144139
+      \endverb
+      \verb{urlraw}
+      \verb https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3144139
+      \endverb
+      \verb{url}
+      \verb https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3144139
+      \endverb
+    \endentry
     \entry{tumasjan2010}{article}{}{}
       \name{author}{4}{}{%
         {{un=0,uniquepart=base,hash=478771634ee86d4ef56bb7d93e21aa00}{%
@@ -329,17 +1034,130 @@
       \field{year}{2010}
       \field{pages}{178\bibrangedash 185}
       \range{pages}{8}
+    \endentry
+    \entry{whiteley1979}{article}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=be0577164ca61b588f79f8aa14b49e9b}{%
+           family={Whiteley},
+           familyi={W\bibinitperiod},
+           given={Paul},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{be0577164ca61b588f79f8aa14b49e9b}
+      \strng{fullhash}{be0577164ca61b588f79f8aa14b49e9b}
+      \strng{fullhashraw}{be0577164ca61b588f79f8aa14b49e9b}
+      \strng{bibnamehash}{be0577164ca61b588f79f8aa14b49e9b}
+      \strng{authorbibnamehash}{be0577164ca61b588f79f8aa14b49e9b}
+      \strng{authornamehash}{be0577164ca61b588f79f8aa14b49e9b}
+      \strng{authorfullhash}{be0577164ca61b588f79f8aa14b49e9b}
+      \strng{authorfullhashraw}{be0577164ca61b588f79f8aa14b49e9b}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{British Journal of Political Science}
+      \field{number}{2}
+      \field{title}{Electoral Forecasting from Poll Data: The {British} Case}
+      \field{volume}{9}
+      \field{year}{1979}
+      \field{pages}{219\bibrangedash 236}
+      \range{pages}{18}
+      \verb{doi}
+      \verb 10.1017/S0007123400001733
+      \endverb
     \endentry
   \enddatalist
   \datalist[entry]{apa/global//global/global/global}
+    \entry{acei2024}{misc}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=f2e77b85501ce661f61ee62779a369c0}{%
+           family={{ACEI}},
+           familyi={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{f2e77b85501ce661f61ee62779a369c0}
+      \strng{fullhash}{f2e77b85501ce661f61ee62779a369c0}
+      \strng{fullhashraw}{f2e77b85501ce661f61ee62779a369c0}
+      \strng{bibnamehash}{f2e77b85501ce661f61ee62779a369c0}
+      \strng{authorbibnamehash}{f2e77b85501ce661f61ee62779a369c0}
+      \strng{authornamehash}{f2e77b85501ce661f61ee62779a369c0}
+      \strng{authorfullhash}{f2e77b85501ce661f61ee62779a369c0}
+      \strng{authorfullhashraw}{f2e77b85501ce661f61ee62779a369c0}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Asociación Colombiana de Empresas de Investigación de Mercados y Opinión Pública}
+      \field{title}{Perspectivas de la Industria de Investigación de Mercados en Colombia 2025}
+      \field{year}{2025}
+    \endentry
+    \entry{barbera2020}{inbook}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=1758712d115799f565778c557042b413}{%
+           family={Barberá},
+           familyi={B\bibinitperiod},
+           given={Pablo},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+      }
+      \name{editor}{2}{}{%
+        {{hash=f6306fb6c9e0eddcc26ce7ffb1957f6e}{%
+           family={Persily},
+           familyi={P\bibinitperiod},
+           given={Nathaniel},
+           giveni={N\bibinitperiod}}}%
+        {{hash=4f53cfe3add6fe77182af81aa7aeff73}{%
+           family={Tucker},
+           familyi={T\bibinitperiod},
+           given={Joshua\bibnamedelima A.},
+           giveni={J\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Cambridge University Press}%
+      }
+      \strng{namehash}{1758712d115799f565778c557042b413}
+      \strng{fullhash}{1758712d115799f565778c557042b413}
+      \strng{fullhashraw}{1758712d115799f565778c557042b413}
+      \strng{bibnamehash}{1758712d115799f565778c557042b413}
+      \strng{authorbibnamehash}{1758712d115799f565778c557042b413}
+      \strng{authornamehash}{1758712d115799f565778c557042b413}
+      \strng{authorfullhash}{1758712d115799f565778c557042b413}
+      \strng{authorfullhashraw}{1758712d115799f565778c557042b413}
+      \strng{editorbibnamehash}{433a2c64f952d2a671a7a659f706634b}
+      \strng{editornamehash}{433a2c64f952d2a671a7a659f706634b}
+      \strng{editorfullhash}{433a2c64f952d2a671a7a659f706634b}
+      \strng{editorfullhashraw}{433a2c64f952d2a671a7a659f706634b}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Social Media and Democracy: The State of the Field and Prospects for Reform}
+      \field{title}{Social Media, Echo Chambers, and Political Polarization}
+      \field{year}{2020}
+      \verb{urlraw}
+      \verb https://www.researchgate.net/publication/343996442
+      \endverb
+      \verb{url}
+      \verb https://www.researchgate.net/publication/343996442
+      \endverb
+    \endentry
     \entry{brito2022measuring}{article}{}{}
       \name{author}{2}{}{%
-        {{un=0,uniquepart=base,hash=2b764097b5efb06c8883c84dcac1b0d8}{%
+        {{un=1,uniquepart=given,hash=2b764097b5efb06c8883c84dcac1b0d8}{%
            family={Brito},
            familyi={B\bibinitperiod},
            given={Kellyton},
            giveni={K\bibinitperiod},
-           givenun=0}}%
+           givenun=1}}%
         {{un=0,uniquepart=base,hash=8e857f2b9e9d5879b28bc0d23793b1c4}{%
            family={Adeodato},
            familyi={A\bibinitperiod},
@@ -360,7 +1178,6 @@
       \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
       \field{extradatescope}{labelyear}
       \field{labeldatesource}{}
-      \true{uniqueprimaryauthor}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Government Information Quarterly}
@@ -376,12 +1193,12 @@
     \endentry
     \entry{brito2023somen}{article}{}{}
       \name{author}{2}{}{%
-        {{un=0,uniquepart=base,hash=2b764097b5efb06c8883c84dcac1b0d8}{%
+        {{un=1,uniquepart=given,hash=2b764097b5efb06c8883c84dcac1b0d8}{%
            family={Brito},
            familyi={B\bibinitperiod},
            given={Kellyton},
            giveni={K\bibinitperiod},
-           givenun=0}}%
+           givenun=1}}%
         {{un=0,uniquepart=base,hash=8e857f2b9e9d5879b28bc0d23793b1c4}{%
            family={Adeodato},
            familyi={A\bibinitperiod},
@@ -402,7 +1219,6 @@
       \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
       \field{extradatescope}{labelyear}
       \field{labeldatesource}{}
-      \true{uniqueprimaryauthor}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Government Information Quarterly}
@@ -418,12 +1234,12 @@
     \endentry
     \entry{brito2024stop}{article}{}{}
       \name{author}{3}{}{%
-        {{un=0,uniquepart=base,hash=2b764097b5efb06c8883c84dcac1b0d8}{%
+        {{un=1,uniquepart=given,hash=2b764097b5efb06c8883c84dcac1b0d8}{%
            family={Brito},
            familyi={B\bibinitperiod},
            given={Kellyton},
            giveni={K\bibinitperiod},
-           givenun=0}}%
+           givenun=1}}%
         {{un=0,uniquepart=base,hash=6e6f699768feef4e1d0c6f5fe4328457}{%
            family={Silva\bibnamedelima Filho},
            familyi={S\bibinitperiod\bibinitdelim F\bibinitperiod},
@@ -449,7 +1265,6 @@
       \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
       \field{extradatescope}{labelyear}
       \field{labeldatesource}{}
-      \true{uniqueprimaryauthor}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Government Information Quarterly}
@@ -461,6 +1276,330 @@
       \range{pages}{1}
       \verb{doi}
       \verb 10.1016/j.giq.2023.101899
+      \endverb
+    \endentry
+    \entry{brito2020predicting}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=1,uniquepart=given,hash=56a4c8eeac91fe0aca0fb184872922d9}{%
+           family={Brito},
+           familyi={B\bibinitperiod},
+           given={Kellyton\bibnamedelimb dos\bibnamedelima Santos},
+           giveni={K\bibinitperiod\bibinitdelim d\bibinitperiod\bibinitdelim S\bibinitperiod},
+           givenun=1}}%
+        {{un=0,uniquepart=base,hash=8e857f2b9e9d5879b28bc0d23793b1c4}{%
+           family={Adeodato},
+           familyi={A\bibinitperiod},
+           given={Paulo\bibnamedelimb Jorge\bibnamedelima Leitão},
+           giveni={P\bibinitperiod\bibinitdelim J\bibinitperiod\bibinitdelim L\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{76f7a83bd22a9248bcb5a76c1cf27c5b}
+      \strng{fullhash}{76f7a83bd22a9248bcb5a76c1cf27c5b}
+      \strng{fullhashraw}{76f7a83bd22a9248bcb5a76c1cf27c5b}
+      \strng{bibnamehash}{76f7a83bd22a9248bcb5a76c1cf27c5b}
+      \strng{authorbibnamehash}{76f7a83bd22a9248bcb5a76c1cf27c5b}
+      \strng{authornamehash}{76f7a83bd22a9248bcb5a76c1cf27c5b}
+      \strng{authorfullhash}{76f7a83bd22a9248bcb5a76c1cf27c5b}
+      \strng{authorfullhashraw}{76f7a83bd22a9248bcb5a76c1cf27c5b}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{2020 IEEE International Conference on Big Data (Big Data)}
+      \field{title}{Predicting Brazilian and U.S. Elections with Machine Learning and Social Media Data}
+      \field{year}{2020}
+    \endentry
+    \entry{ley2494_2025}{misc}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=a8e9c8918df2f6e7135ef51eb86f868f}{%
+           family={{Congreso de la República de Colombia}},
+           familyi={C\bibinitperiod}}}%
+      }
+      \strng{namehash}{a8e9c8918df2f6e7135ef51eb86f868f}
+      \strng{fullhash}{a8e9c8918df2f6e7135ef51eb86f868f}
+      \strng{fullhashraw}{a8e9c8918df2f6e7135ef51eb86f868f}
+      \strng{bibnamehash}{a8e9c8918df2f6e7135ef51eb86f868f}
+      \strng{authorbibnamehash}{a8e9c8918df2f6e7135ef51eb86f868f}
+      \strng{authornamehash}{a8e9c8918df2f6e7135ef51eb86f868f}
+      \strng{authorfullhash}{a8e9c8918df2f6e7135ef51eb86f868f}
+      \strng{authorfullhashraw}{a8e9c8918df2f6e7135ef51eb86f868f}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Diario Oficial de Colombia}
+      \field{title}{Ley 2494 de 2025, por la cual se regula la elaboración, publicación y divulgación de encuestas electorales}
+      \field{year}{2025}
+    \endentry
+    \entry{esomar2025}{report}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=716ae026b76417019e8b459b99752160}{%
+           family={{ESOMAR}},
+           familyi={E\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {ESOMAR}%
+      }
+      \strng{namehash}{716ae026b76417019e8b459b99752160}
+      \strng{fullhash}{716ae026b76417019e8b459b99752160}
+      \strng{fullhashraw}{716ae026b76417019e8b459b99752160}
+      \strng{bibnamehash}{716ae026b76417019e8b459b99752160}
+      \strng{authorbibnamehash}{716ae026b76417019e8b459b99752160}
+      \strng{authornamehash}{716ae026b76417019e8b459b99752160}
+      \strng{authorfullhash}{716ae026b76417019e8b459b99752160}
+      \strng{authorfullhashraw}{716ae026b76417019e8b459b99752160}
+      \field{sortinit}{E}
+      \field{sortinithash}{8da8a182d344d5b9047633dfc0cc9131}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Global Market Research 2025}
+      \field{year}{2025}
+      \verb{urlraw}
+      \verb https://esomar.org/publications/global-market-research-2025
+      \endverb
+      \verb{url}
+      \verb https://esomar.org/publications/global-market-research-2025
+      \endverb
+    \endentry
+    \entry{gad3_2026}{misc}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=955528f90e525550926c8f985c547831}{%
+           family={{GAD3}},
+           familyi={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{955528f90e525550926c8f985c547831}
+      \strng{fullhash}{955528f90e525550926c8f985c547831}
+      \strng{fullhashraw}{955528f90e525550926c8f985c547831}
+      \strng{bibnamehash}{955528f90e525550926c8f985c547831}
+      \strng{authorbibnamehash}{955528f90e525550926c8f985c547831}
+      \strng{authornamehash}{955528f90e525550926c8f985c547831}
+      \strng{authorfullhash}{955528f90e525550926c8f985c547831}
+      \strng{authorfullhashraw}{955528f90e525550926c8f985c547831}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{5}
+      \field{title}{Comunicado: Suspensión de publicación de encuestas electorales en {Colombia}}
+      \field{year}{2026}
+      \verb{urlraw}
+      \verb https://www.lasillavacia.com/en-vivo/por-ley-mordaza-gad3-suspende-publicacion-de-encuestas-en-colombia/
+      \endverb
+      \verb{url}
+      \verb https://www.lasillavacia.com/en-vivo/por-ley-mordaza-gad3-suspende-publicacion-de-encuestas-en-colombia/
+      \endverb
+    \endentry
+    \entry{bernstein2026}{misc}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=f1b4c3a6380b4b9ed26678dca7f480ed}{%
+           family={Giangiulio},
+           familyi={G\bibinitperiod},
+           given={Davis},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{institution}{1}{%
+        {Bernstein Research}%
+      }
+      \strng{namehash}{f1b4c3a6380b4b9ed26678dca7f480ed}
+      \strng{fullhash}{f1b4c3a6380b4b9ed26678dca7f480ed}
+      \strng{fullhashraw}{f1b4c3a6380b4b9ed26678dca7f480ed}
+      \strng{bibnamehash}{f1b4c3a6380b4b9ed26678dca7f480ed}
+      \strng{authorbibnamehash}{f1b4c3a6380b4b9ed26678dca7f480ed}
+      \strng{authornamehash}{f1b4c3a6380b4b9ed26678dca7f480ed}
+      \strng{authorfullhash}{f1b4c3a6380b4b9ed26678dca7f480ed}
+      \strng{authorfullhashraw}{f1b4c3a6380b4b9ed26678dca7f480ed}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{4}
+      \field{note}{Citado en CNBC, 14 de abril de 2026}
+      \field{title}{Prediction Markets: On Pace for \$1 Trillion by 2030}
+      \field{year}{2026}
+      \verb{urlraw}
+      \verb https://www.cnbc.com/2026/04/14/prediction-markets-will-grow-to-1-trillion-by-2030-bernstein-says.html
+      \endverb
+      \verb{url}
+      \verb https://www.cnbc.com/2026/04/14/prediction-markets-will-grow-to-1-trillion-by-2030-bernstein-says.html
+      \endverb
+    \endentry
+    \entry{kennedy2018}{article}{}{}
+      \name{author}{13}{}{%
+        {{un=0,uniquepart=base,hash=3ea090e255e21da514e7117cce48877f}{%
+           family={Kennedy},
+           familyi={K\bibinitperiod},
+           given={Courtney},
+           giveni={C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=008c763d10959acf86144f7a74050c88}{%
+           family={Blumenthal},
+           familyi={B\bibinitperiod},
+           given={Mark},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=f98651e1a304bd9cbe1fa0d3c6ea0f88}{%
+           family={Clement},
+           familyi={C\bibinitperiod},
+           given={Scott},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=e14f8d7c6cb96839da34722315d9ed12}{%
+           family={Clinton},
+           familyi={C\bibinitperiod},
+           given={Joshua\bibnamedelima D.},
+           giveni={J\bibinitperiod\bibinitdelim D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=2aa0f2fe41470c4cba4bc6ded359af92}{%
+           family={Durand},
+           familyi={D\bibinitperiod},
+           given={Claire},
+           giveni={C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=b0b9a1c6f276d1bd36e36ea86f5b2a52}{%
+           family={Franklin},
+           familyi={F\bibinitperiod},
+           given={Charles},
+           giveni={C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=b2f69490c9934e833708a7e0b5f50f54}{%
+           family={McGeeney},
+           familyi={M\bibinitperiod},
+           given={Kyley},
+           giveni={K\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=3671e07dbe177455ae2528583e050d40}{%
+           family={Miringoff},
+           familyi={M\bibinitperiod},
+           given={Lee},
+           giveni={L\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=2b99f4ca590048b5522c2c539c94b270}{%
+           family={Olson},
+           familyi={O\bibinitperiod},
+           given={Kristen},
+           giveni={K\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=683904edcb8111ad1573a25e1b6f6d56}{%
+           family={Rivers},
+           familyi={R\bibinitperiod},
+           given={Douglas},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=a6f17a81259d751cd22f3041c3502789}{%
+           family={Saad},
+           familyi={S\bibinitperiod},
+           given={Lydia},
+           giveni={L\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=934eef7f9f0cb72eac0c787ed6cce4c2}{%
+           family={Witt},
+           familyi={W\bibinitperiod},
+           given={G.\bibnamedelimi Evans},
+           giveni={G\bibinitperiod\bibinitdelim E\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=e552c4297b662e4c4f9c1d2125625d5a}{%
+           family={Wlezien},
+           familyi={W\bibinitperiod},
+           given={Christopher},
+           giveni={C\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{48be602e05bb4abe1d3f21deee09bf12}
+      \strng{fullhash}{18a693f83b5f6a63daf247f4452f691a}
+      \strng{fullhashraw}{18a693f83b5f6a63daf247f4452f691a}
+      \strng{bibnamehash}{18a693f83b5f6a63daf247f4452f691a}
+      \strng{authorbibnamehash}{18a693f83b5f6a63daf247f4452f691a}
+      \strng{authornamehash}{48be602e05bb4abe1d3f21deee09bf12}
+      \strng{authorfullhash}{18a693f83b5f6a63daf247f4452f691a}
+      \strng{authorfullhashraw}{18a693f83b5f6a63daf247f4452f691a}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Public Opinion Quarterly}
+      \field{number}{1}
+      \field{title}{An Evaluation of the 2016 Election Polls in the {United States}}
+      \field{volume}{82}
+      \field{year}{2018}
+      \field{pages}{1\bibrangedash 33}
+      \range{pages}{33}
+      \verb{doi}
+      \verb 10.1093/poq/nfx047
+      \endverb
+      \verb{urlraw}
+      \verb https://digitalcommons.unl.edu/sociologyfacpub/543/
+      \endverb
+      \verb{url}
+      \verb https://digitalcommons.unl.edu/sociologyfacpub/543/
+      \endverb
+    \endentry
+    \entry{lewisbeck2004}{article}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=231cfe1697dee24192ed8cb747333eee}{%
+           family={Lewis-Beck},
+           familyi={L\bibinithyphendelim B\bibinitperiod},
+           given={Michael\bibnamedelima S.},
+           giveni={M\bibinitperiod\bibinitdelim S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=149d9504ba37c452c1d2c8e55c89921e}{%
+           family={Nadeau},
+           familyi={N\bibinitperiod},
+           given={Richard},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=e338097521fd5eaa89f82240194a717c}{%
+           family={Bélanger},
+           familyi={B\bibinitperiod},
+           given={Éric},
+           giveni={É\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{b2ca7ebc6dad744c0fbf870ed83e69dd}
+      \strng{fullhash}{2465abc85a1d6bf381364dd24e895ea7}
+      \strng{fullhashraw}{2465abc85a1d6bf381364dd24e895ea7}
+      \strng{bibnamehash}{2465abc85a1d6bf381364dd24e895ea7}
+      \strng{authorbibnamehash}{2465abc85a1d6bf381364dd24e895ea7}
+      \strng{authornamehash}{b2ca7ebc6dad744c0fbf870ed83e69dd}
+      \strng{authorfullhash}{2465abc85a1d6bf381364dd24e895ea7}
+      \strng{authorfullhashraw}{2465abc85a1d6bf381364dd24e895ea7}
+      \field{extraname}{1}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Electoral Studies}
+      \field{number}{2}
+      \field{title}{General Election Forecasts in the {United Kingdom}: A Political Economy Model}
+      \field{volume}{23}
+      \field{year}{2004}
+      \field{pages}{279\bibrangedash 290}
+      \range{pages}{12}
+      \verb{doi}
+      \verb 10.1016/S0261-3794(02)00071-9
       \endverb
     \endentry
     \entry{lewisbeck2011nowcasting}{article}{}{}
@@ -492,6 +1631,7 @@
       \strng{authornamehash}{b2ca7ebc6dad744c0fbf870ed83e69dd}
       \strng{authorfullhash}{2465abc85a1d6bf381364dd24e895ea7}
       \strng{authorfullhashraw}{2465abc85a1d6bf381364dd24e895ea7}
+      \field{extraname}{2}
       \field{sortinit}{L}
       \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
       \field{extradatescope}{labelyear}
@@ -548,6 +1688,183 @@
       \field{pages}{506\bibrangedash 521}
       \range{pages}{16}
     \endentry
+    \entry{mughan1987}{article}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=7325701f63e55bf400972aff2f8ee9eb}{%
+           family={Mughan},
+           familyi={M\bibinitperiod},
+           given={Anthony},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{7325701f63e55bf400972aff2f8ee9eb}
+      \strng{fullhash}{7325701f63e55bf400972aff2f8ee9eb}
+      \strng{fullhashraw}{7325701f63e55bf400972aff2f8ee9eb}
+      \strng{bibnamehash}{7325701f63e55bf400972aff2f8ee9eb}
+      \strng{authorbibnamehash}{7325701f63e55bf400972aff2f8ee9eb}
+      \strng{authornamehash}{7325701f63e55bf400972aff2f8ee9eb}
+      \strng{authorfullhash}{7325701f63e55bf400972aff2f8ee9eb}
+      \strng{authorfullhashraw}{7325701f63e55bf400972aff2f8ee9eb}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Electoral Studies}
+      \field{number}{3}
+      \field{title}{General Election Forecasting in {Britain}: A Comparison of Three Simple Models}
+      \field{volume}{6}
+      \field{year}{1987}
+      \field{pages}{195\bibrangedash 207}
+      \range{pages}{13}
+      \verb{doi}
+      \verb 10.1016/0261-3794(87)90031-X
+      \endverb
+    \endentry
+    \entry{norpoth2004}{article}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=261c88d0dfe2d88c15250172c49720f8}{%
+           family={Norpoth},
+           familyi={N\bibinitperiod},
+           given={Helmut},
+           giveni={H\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{261c88d0dfe2d88c15250172c49720f8}
+      \strng{fullhash}{261c88d0dfe2d88c15250172c49720f8}
+      \strng{fullhashraw}{261c88d0dfe2d88c15250172c49720f8}
+      \strng{bibnamehash}{261c88d0dfe2d88c15250172c49720f8}
+      \strng{authorbibnamehash}{261c88d0dfe2d88c15250172c49720f8}
+      \strng{authornamehash}{261c88d0dfe2d88c15250172c49720f8}
+      \strng{authorfullhash}{261c88d0dfe2d88c15250172c49720f8}
+      \strng{authorfullhashraw}{261c88d0dfe2d88c15250172c49720f8}
+      \field{sortinit}{N}
+      \field{sortinithash}{22369a73d5f88983a108b63f07f37084}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Electoral Studies}
+      \field{number}{2}
+      \field{title}{Forecasting {British} Elections: A Dynamic Perspective}
+      \field{volume}{23}
+      \field{year}{2004}
+      \field{pages}{297\bibrangedash 305}
+      \range{pages}{9}
+      \verb{doi}
+      \verb 10.1016/S0261-3794(02)00070-7
+      \endverb
+    \endentry
+    \entry{occidente2026}{article}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=9fb49d82a5cac8a2fd348b074b17d240}{%
+           family={Ríos\bibnamedelima Giraldo},
+           familyi={R\bibinitperiod\bibinitdelim G\bibinitperiod},
+           given={Mauricio},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{9fb49d82a5cac8a2fd348b074b17d240}
+      \strng{fullhash}{9fb49d82a5cac8a2fd348b074b17d240}
+      \strng{fullhashraw}{9fb49d82a5cac8a2fd348b074b17d240}
+      \strng{bibnamehash}{9fb49d82a5cac8a2fd348b074b17d240}
+      \strng{authorbibnamehash}{9fb49d82a5cac8a2fd348b074b17d240}
+      \strng{authornamehash}{9fb49d82a5cac8a2fd348b074b17d240}
+      \strng{authorfullhash}{9fb49d82a5cac8a2fd348b074b17d240}
+      \strng{authorfullhashraw}{9fb49d82a5cac8a2fd348b074b17d240}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Diario de Occidente}
+      \field{title}{Ley de encuestas en {Colombia}: la polémica norma}
+      \field{year}{2026}
+      \verb{urlraw}
+      \verb https://occidente.co/politica/graffiti/ley-de-encuestas-colombia-derogatoria-cne-investigaciones-2026/
+      \endverb
+      \verb{url}
+      \verb https://occidente.co/politica/graffiti/ley-de-encuestas-colombia-derogatoria-cne-investigaciones-2026/
+      \endverb
+    \endentry
+    \entry{sanders1991}{article}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=35841453fb19e5929dc84ddf3a224fd0}{%
+           family={Sanders},
+           familyi={S\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{35841453fb19e5929dc84ddf3a224fd0}
+      \strng{fullhash}{35841453fb19e5929dc84ddf3a224fd0}
+      \strng{fullhashraw}{35841453fb19e5929dc84ddf3a224fd0}
+      \strng{bibnamehash}{35841453fb19e5929dc84ddf3a224fd0}
+      \strng{authorbibnamehash}{35841453fb19e5929dc84ddf3a224fd0}
+      \strng{authornamehash}{35841453fb19e5929dc84ddf3a224fd0}
+      \strng{authorfullhash}{35841453fb19e5929dc84ddf3a224fd0}
+      \strng{authorfullhashraw}{35841453fb19e5929dc84ddf3a224fd0}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{The Political Quarterly}
+      \field{number}{2}
+      \field{title}{Government Popularity and the Next General Election}
+      \field{volume}{62}
+      \field{year}{1991}
+      \field{pages}{235\bibrangedash 261}
+      \range{pages}{27}
+      \verb{doi}
+      \verb 10.1111/j.1467-923X.1991.tb00856.x
+      \endverb
+    \endentry
+    \entry{sigelman1979}{article}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=c512a67ad5eb9d243953ddb92d7e976b}{%
+           family={Sigelman},
+           familyi={S\bibinitperiod},
+           given={Lee},
+           giveni={L\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{c512a67ad5eb9d243953ddb92d7e976b}
+      \strng{fullhash}{c512a67ad5eb9d243953ddb92d7e976b}
+      \strng{fullhashraw}{c512a67ad5eb9d243953ddb92d7e976b}
+      \strng{bibnamehash}{c512a67ad5eb9d243953ddb92d7e976b}
+      \strng{authorbibnamehash}{c512a67ad5eb9d243953ddb92d7e976b}
+      \strng{authornamehash}{c512a67ad5eb9d243953ddb92d7e976b}
+      \strng{authorfullhash}{c512a67ad5eb9d243953ddb92d7e976b}
+      \strng{authorfullhashraw}{c512a67ad5eb9d243953ddb92d7e976b}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Public Opinion Quarterly}
+      \field{number}{4}
+      \field{title}{Presidential Popularity and Presidential Elections}
+      \field{volume}{43}
+      \field{year}{1979}
+      \field{pages}{532\bibrangedash 534}
+      \range{pages}{3}
+      \verb{urlraw}
+      \verb https://www-jstor-org.ez.unisabana.edu.co/stable/2749005
+      \endverb
+      \verb{url}
+      \verb https://www-jstor-org.ez.unisabana.edu.co/stable/2749005
+      \endverb
+    \endentry
     \entry{skoric2020}{article}{}{}
       \name{author}{3}{}{%
         {{un=0,uniquepart=base,hash=4ddb11a91a80fa4454cc4e4932eddada}{%
@@ -593,6 +1910,134 @@
       \range{pages}{1}
       \verb{doi}
       \verb 10.3390/info11040187
+      \endverb
+    \endentry
+    \entry{stegmaier2023}{article}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=bc0306b02bf27ee067ff5a12ec8e831b}{%
+           family={Stegmaier},
+           familyi={S\bibinitperiod},
+           given={Mary},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=2d87141a9e2d2b9b23daca56cadec2f2}{%
+           family={Jokinsky},
+           familyi={J\bibinitperiod},
+           given={Steven},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=231cfe1697dee24192ed8cb747333eee}{%
+           family={Lewis-Beck},
+           familyi={L\bibinithyphendelim B\bibinitperiod},
+           given={Michael\bibnamedelima S.},
+           giveni={M\bibinitperiod\bibinitdelim S\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{8b1ddb1e697ba9b29b96b81534e75c9d}
+      \strng{fullhash}{aa226208dae3cb219d0ec6555b8140e0}
+      \strng{fullhashraw}{aa226208dae3cb219d0ec6555b8140e0}
+      \strng{bibnamehash}{aa226208dae3cb219d0ec6555b8140e0}
+      \strng{authorbibnamehash}{aa226208dae3cb219d0ec6555b8140e0}
+      \strng{authornamehash}{8b1ddb1e697ba9b29b96b81534e75c9d}
+      \strng{authorfullhash}{aa226208dae3cb219d0ec6555b8140e0}
+      \strng{authorfullhashraw}{aa226208dae3cb219d0ec6555b8140e0}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Electoral Studies}
+      \field{title}{The Evolution of Election Forecasting Models in the {UK}}
+      \field{volume}{86}
+      \field{year}{2023}
+      \field{pages}{102694}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1016/j.electstud.2023.102694
+      \endverb
+    \endentry
+    \entry{tucker2018}{report}{}{}
+      \name{author}{8}{}{%
+        {{un=0,uniquepart=base,hash=4f53cfe3add6fe77182af81aa7aeff73}{%
+           family={Tucker},
+           familyi={T\bibinitperiod},
+           given={Joshua\bibnamedelima A.},
+           giveni={J\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=70740f8981727fbf1acd586e43b16b11}{%
+           family={Guess},
+           familyi={G\bibinitperiod},
+           given={Andrew},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=1758712d115799f565778c557042b413}{%
+           family={Barberá},
+           familyi={B\bibinitperiod},
+           given={Pablo},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=5c2024877e4063d155a2e2a409b91c1b}{%
+           family={Vaccari},
+           familyi={V\bibinitperiod},
+           given={Cristian},
+           giveni={C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=173159c804f58dd3f2335c37b7106594}{%
+           family={Siegel},
+           familyi={S\bibinitperiod},
+           given={Alexandra},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=709792cf9d5c464387bf55af5f98f7e8}{%
+           family={Sanovich},
+           familyi={S\bibinitperiod},
+           given={Sergey},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=a9ed09dfa83bff1ae99d29415562dffe}{%
+           family={Stukal},
+           familyi={S\bibinitperiod},
+           given={Denis},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=8ef5bca6f403168706ad93d11351ed60}{%
+           family={Nyhan},
+           familyi={N\bibinitperiod},
+           given={Brendan},
+           giveni={B\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{institution}{1}{%
+        {SSRN}%
+      }
+      \strng{namehash}{01093f807b5fd6f948deaf9a38dea911}
+      \strng{fullhash}{762c700181fb1dedc92270d6469a1da3}
+      \strng{fullhashraw}{762c700181fb1dedc92270d6469a1da3}
+      \strng{bibnamehash}{762c700181fb1dedc92270d6469a1da3}
+      \strng{authorbibnamehash}{762c700181fb1dedc92270d6469a1da3}
+      \strng{authornamehash}{01093f807b5fd6f948deaf9a38dea911}
+      \strng{authorfullhash}{762c700181fb1dedc92270d6469a1da3}
+      \strng{authorfullhashraw}{762c700181fb1dedc92270d6469a1da3}
+      \field{sortinit}{T}
+      \field{sortinithash}{9af77f0292593c26bde9a56e688eaee9}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Social Media, Political Polarization, and Political Disinformation: A Review of the Scientific Literature}
+      \field{type}{techreport}
+      \field{year}{2018}
+      \verb{doi}
+      \verb 10.2139/ssrn.3144139
+      \endverb
+      \verb{urlraw}
+      \verb https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3144139
+      \endverb
+      \verb{url}
+      \verb https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3144139
       \endverb
     \endentry
     \entry{tumasjan2010}{article}{}{}
@@ -642,6 +2087,41 @@
       \field{year}{2010}
       \field{pages}{178\bibrangedash 185}
       \range{pages}{8}
+    \endentry
+    \entry{whiteley1979}{article}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=be0577164ca61b588f79f8aa14b49e9b}{%
+           family={Whiteley},
+           familyi={W\bibinitperiod},
+           given={Paul},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{be0577164ca61b588f79f8aa14b49e9b}
+      \strng{fullhash}{be0577164ca61b588f79f8aa14b49e9b}
+      \strng{fullhashraw}{be0577164ca61b588f79f8aa14b49e9b}
+      \strng{bibnamehash}{be0577164ca61b588f79f8aa14b49e9b}
+      \strng{authorbibnamehash}{be0577164ca61b588f79f8aa14b49e9b}
+      \strng{authornamehash}{be0577164ca61b588f79f8aa14b49e9b}
+      \strng{authorfullhash}{be0577164ca61b588f79f8aa14b49e9b}
+      \strng{authorfullhashraw}{be0577164ca61b588f79f8aa14b49e9b}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{British Journal of Political Science}
+      \field{number}{2}
+      \field{title}{Electoral Forecasting from Poll Data: The {British} Case}
+      \field{volume}{9}
+      \field{year}{1979}
+      \field{pages}{219\bibrangedash 236}
+      \range{pages}{18}
+      \verb{doi}
+      \verb 10.1017/S0007123400001733
+      \endverb
     \endentry
   \enddatalist
 \endrefsection
