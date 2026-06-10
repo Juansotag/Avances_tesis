@@ -21,28 +21,32 @@
 \contentsline {section}{\numberline {4.1}Objetivo general}{10}{section.4.1}%
 \contentsline {section}{\numberline {4.2}Objetivos específicos}{10}{section.4.2}%
 \contentsline {chapter}{\numberline {5}Metodología}{11}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Diseño general del pipeline}{11}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Etapa 1 — Bolivia: Replicación del SOMEN-DC y prueba de concepto}{11}{section.5.2}%
-\contentsline {subsection}{\numberline {5.2.a}Caso de estudio y recolección de datos}{11}{subsection.5.2.1}%
-\contentsline {subsection}{\numberline {5.2.b}Evaluación de modelos}{12}{subsection.5.2.2}%
-\contentsline {section}{\numberline {5.3}Etapa 2 — Costa Rica: Modelado del crecimiento de interacciones}{12}{section.5.3}%
-\contentsline {subsection}{\numberline {5.3.a}El problema estructural}{12}{subsection.5.3.1}%
-\contentsline {subsection}{\numberline {5.3.b}Metodología y Modelo Weibull}{13}{subsection.5.3.2}%
-\contentsline {section}{\numberline {5.4}Etapa 3 — Colombia: Construcción del dataset y modelado}{13}{section.5.4}%
-\contentsline {section}{\numberline {5.5}Modelado predictivo}{15}{section.5.5}%
-\contentsline {subsection}{\numberline {5.5.a}Modelo de regresión}{15}{subsection.5.5.1}%
-\contentsline {subsection}{\numberline {5.5.b}Modelo de clasificación binaria}{15}{subsection.5.5.2}%
-\contentsline {chapter}{\numberline {6}Resultados}{16}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Resultados de Bolivia (Etapa 1)}{16}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Resultados de Costa Rica (Etapa 2)}{16}{section.6.2}%
-\contentsline {section}{\numberline {6.3}Resultados de Colombia (Etapa 3)}{17}{section.6.3}%
-\contentsline {section}{\numberline {6.4}Síntesis: contribuciones al estado del arte}{17}{section.6.4}%
-\contentsline {chapter}{\numberline {7}Impacto esperado}{18}{chapter.7}%
-\contentsline {section}{\numberline {7.1}Impacto académico}{18}{section.7.1}%
-\contentsline {section}{\numberline {7.2}Impacto práctico}{19}{section.7.2}%
-\contentsline {section}{\numberline {7.3}Limitaciones y trabajo futuro}{19}{section.7.3}%
-\contentsline {chapter}{\numberline {8}Conclusiones}{20}{chapter.8}%
-\contentsline {section}{\numberline {8.1}Respuesta a la pregunta de investigación}{20}{section.8.1}%
-\contentsline {section}{\numberline {8.2}Lecciones aprendidas}{20}{section.8.2}%
-\contentsline {section}{\numberline {8.3}Próximos pasos}{21}{section.8.3}%
-\contentsline {chapter}{Bibliograf\'{\i }a}{22}{section*.6}%
+\contentsline {section}{\numberline {5.1}Definición formal del problema}{11}{section.5.1}%
+\contentsline {subsection}{\numberline {5.1.a}Definición de la elección}{11}{subsection.5.1.1}%
+\contentsline {subsection}{\numberline {5.1.b}Definición de la intención de voto y los resultados}{11}{subsection.5.1.2}%
+\contentsline {subsection}{\numberline {5.1.c}Definición formal de las publicaciones y su comportamiento temporal}{12}{subsection.5.1.3}%
+\contentsline {section}{\numberline {5.2}Diseño general del pipeline}{12}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Etapa 1 — Bolivia: Replicación del SOMEN-DC y prueba de concepto}{13}{section.5.3}%
+\contentsline {subsection}{\numberline {5.3.a}Caso de estudio y recolección de datos}{13}{subsection.5.3.1}%
+\contentsline {subsection}{\numberline {5.3.b}Evaluación de modelos}{14}{subsection.5.3.2}%
+\contentsline {section}{\numberline {5.4}Etapa 2 — Costa Rica: Modelado del crecimiento de interacciones}{14}{section.5.4}%
+\contentsline {subsection}{\numberline {5.4.a}El problema estructural}{14}{subsection.5.4.1}%
+\contentsline {subsection}{\numberline {5.4.b}Metodología y Modelo Weibull}{14}{subsection.5.4.2}%
+\contentsline {section}{\numberline {5.5}Etapa 3 — Colombia: Construcción del dataset y modelado}{15}{section.5.5}%
+\contentsline {section}{\numberline {5.6}Modelado predictivo}{16}{section.5.6}%
+\contentsline {subsection}{\numberline {5.6.a}Modelo de regresión}{16}{subsection.5.6.1}%
+\contentsline {subsection}{\numberline {5.6.b}Modelo de clasificación binaria}{17}{subsection.5.6.2}%
+\contentsline {chapter}{\numberline {6}Resultados}{17}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Resultados de Bolivia (Etapa 1)}{17}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Resultados de Costa Rica (Etapa 2)}{18}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Resultados de Colombia (Etapa 3)}{18}{section.6.3}%
+\contentsline {section}{\numberline {6.4}Síntesis: contribuciones al estado del arte}{19}{section.6.4}%
+\contentsline {chapter}{\numberline {7}Impacto esperado}{20}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Impacto académico}{20}{section.7.1}%
+\contentsline {section}{\numberline {7.2}Impacto práctico}{20}{section.7.2}%
+\contentsline {section}{\numberline {7.3}Limitaciones y trabajo futuro}{21}{section.7.3}%
+\contentsline {chapter}{\numberline {8}Conclusiones}{21}{chapter.8}%
+\contentsline {section}{\numberline {8.1}Respuesta a la pregunta de investigación}{21}{section.8.1}%
+\contentsline {section}{\numberline {8.2}Lecciones aprendidas}{22}{section.8.2}%
+\contentsline {section}{\numberline {8.3}Próximos pasos}{23}{section.8.3}%
+\contentsline {chapter}{Bibliograf\'{\i }a}{24}{section*.6}%

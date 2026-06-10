@@ -7,8 +7,50 @@
 \chapter{Metodología}\label{ch:metodologia}
 
 % ──────────────────────────────────────────────────────────────
+\section{Definición formal del problema}
+% ──────────────────────────────────────────────────────────────
+
+\subsection{Definición de la elección}
+
+Definimos una elección, llamada \textbf{elección agnóstica} como $e$ donde $e \in E$ y $E$ es el conjunto de todas las elecciones agnósticas que cumplen los siguientes requisitos:
+
+\begin{itemize}
+    \item Es un proceso competitivo no deterministico definido como la participación de dos o más candidatos con posibilidades reales de ganar y condiciones equitativas \cite{kayser2015}.
+    \item Tiene por ganador a un único candidato por elección $c_{ganador,e} \in C_e$ con $C_e$ siendo el conjunto de candidatos para la elección $e$.
+    \item El candidato ganador $c_{ganador,e}$ es aquel que obtuvo más votos entre las opciones posibles de la elección $e$.
+    \item Se desarrolla en un periodo de tiempo acotado $t \in [t_0, t_f]$, con $t_0$ y $t_f$ siendo el inicio y fin de la campaña, que sería el día anterior a la elección.
+    \item Se mide mediante los votos de los electores $v_e \in V_e$, siendo $V_e$ el conjunto de todos los electores de la elección $e$.
+    \item Todos los candidatos del universo de elecciones $E$ tienen cuentas oficiales de un conjunto de redes sociales $R$ con $r \in R$ y publican activamente en ellas para el momento $t_0$. En el ejercicio de Bolivia y Costa Rica estas fueron Facebook, TikTok, X/Twitter e Instagram mientras que para Colombia se omitió Instagram.
+\end{itemize}
+
+\subsection {Definición de la intención de voto y los resultados}
+
+Definimos la intención de voto como el número de votantes $v_{e}$ que, en un momento $t$, escogerían al candidato $c_e$. Esta es una variable subyacente, ya que no todos los votantes tienen definido su voto desde el $t_0$, algunos no van a votar o pueden hacerlo en blanco. Las encuestas son estimadores de esta misma variable, pero dado que esta variable solo toma un valor definido el día de las elecciones, no podemos usar una metodología clásica de series de tiempo para modelar la evolución temporal de la intención de voto. Por lo tanto, modelamos la relación entre los vectores de métricas de redes sociales de los candidatos desde una cantidad de días antes de la elección y el valor que sabemos que toma la intensión de voto el día de las elecciones. 
+
+La elección $e$ tiene una intención de voto asociada, representada por un vector $i_e \in I_e$, donde $I_e$ es el conjunto de intenciones de voto para la elección $e$. Este vector está compuesto por una secuencia de intenciones de voto, una por cada candidato, ordenadas de forma idéntica al vector de candidatos $C_e$. Es decir, $i_e = (i_{e,c_1}, i_{e,c_2}, \dots, i_{e,c_{|C_e|}})$, donde $i_{e,c_j}$ es la intención de voto del candidato $c_j$ para la elección $e$.
+Esta intención de voto para el candidato $c_e$ se calcula como su número de votos porcentual obtenido en la elección $e$, es decir: $$i_{e,c_j} = \frac{v_{e,c_j}}{v_e} $$ donde $v_{e,c_j}$ es el número de votos del candidato $c_j$ para la elección $e$ y $v_e$ es el número total de votos para cualquiera de los candidatos de la elección $e$, es decir $\sum_{j=1}^{|C_e|} v_{e,c_j} = 1$. Es muy importante denotar que esta suma NO incluye votos nulos, en blanco o similares.
+
+Dadas estas condiciones, tenemos que una elección de estas características es un evento que es posible acotar a métricas comparables del conjunto de elecciones sin importar su número de candidatos. De esta forma, pasamos a definir como funcionan las publicaciones, interacciones e intención de voto. 
+
+\subsection{Definición formal de las publicaciones y su comportamiento temporal}
+
+Partimos de una publicación cualquiera, es decir un elemento $p$, de un candidato $c_e$, en una fecha $t$, en una red social $r_j$, es decir, un $p_{e,c,r,t}$, que simplificamos a $p_{i} \forall i \in I$ para un momento de recolección de información $t$. Esta publicación posee un conjunto de características que permite su comparación con otras publicaciones:
+
+\begin{itemize}
+    \item Fecha de publicación $t_{pub}$
+    \item Fecha de recolección de información $t_{rec}$
+    \item Vector de interacciones a fecha de recolección: me gusta, compartir, comentar, guardar, etc. ${x}_{i,t_{rec}}$
+\end{itemize}
+
+Este trabajo parte de la idea fundamental que el conjunto de vectores $x_i$ para un candidato $c$ tiene algún tipo y nivel de correlación con su intención de voto ${i}_{e,c}$ y es lo que el trabajo busca modelar. Este vector puede ser apoyado por otras variables microfundamentadas, como la relación gobierno/oposición, variables económicas, entre otras. 
+
+Este vector de interacciones ${x}_{i,t_{rec}}$ posee una propiedad importante y es que es acumulativo. Con muy notables excepciones causadas por intervención de la plataforma o del candidato, las interacciones de una publicación no caen, por lo que para un momento $t$, podemos decir que los elementos del vector ${x}_{i,t}$ son monótonamente no decrecientes. Por lo tanto el vector de interacciones se puede modelar mediante una función ${f}_{j}(t_{pub},t_{rec},x_i)$ para cada red social, que modela el crecimiento de las interacciones de una publicación a lo largo del tiempo, donde $t$ está en días desde la fecha de publicación. 
+
+% ──────────────────────────────────────────────────────────────
 \section{Diseño general del pipeline}
 % ──────────────────────────────────────────────────────────────
+
+La arquitectura metodológica de esta investigación está estructurada como un \textit{pipeline} secuencial dividido en tres etapas no continuas. La Etapa 1 corresponde al levantamiento de los datos de entrenamiento 
 
 La arquitectura metodológica de esta investigación está estructurada como un \textit{pipeline} secuencial dividido en tres etapas empíricas. La Etapa 1 corresponde a una prueba de concepto en Bolivia para replicar y evidenciar los problemas estructurales del modelo base. La Etapa 2 aborda el problema de la asimetría de la información temporal, calibrando un modelo de crecimiento matemático en Costa Rica. Finalmente, la Etapa 3 consolida el modelo elección-agnóstico en Colombia.
 
