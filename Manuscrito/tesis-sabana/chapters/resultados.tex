@@ -10,23 +10,92 @@
 \section{Resultados de Bolivia (Etapa 1)}
 % ──────────────────────────────────────────────────────────────
 
-La replicación de las técnicas de pronóstico dependientes de encuestas en el contexto de la segunda vuelta boliviana de 2025 arrojó resultados mixtos que confirmaron las sospechas teóricas iniciales sobre la viabilidad de la metodología convencional.
+La replicación del enfoque de \textit{nowcasting} electoral basado en encuestas sobre la segunda vuelta presidencial boliviana (Paz vs. Quiroga, octubre de 2025) arrojó resultados mixtos que confirmaron las limitaciones estructurales de este paradigma y justificaron el viraje metodológico hacia la Etapa~2.
 
-En términos de precisión bruta, la experimentación demostró que la relación entre la acumulación de interacciones y la proyección demoscópica no obedece a dinámicas lineales. Los modelos lineales clásicos fallaron de manera sistemática, pero el ensamble óptimo de Perceptrón Multicapa con Análisis de Componentes Principales (MLP-BP + PCA) logró un Error Absoluto Medio (MAE) de 0.0279 y un MAPE de 5.1\%. Este resultado mejoró abrumadoramente el estimador básico (\textit{baseline}) de predecir basándose únicamente en el valor inercial de la última encuesta publicada (cuyo MAE se disparaba al 0.1803 para el candidato ganador, Paz).
+\subsection*{Datos y configuración experimental}
 
-Sin embargo, a nivel operativo y analítico, se evidenciaron falencias críticas que desaconsejaron continuar por esta ruta de \textit{nowcasting}. Primero, se ratificó la absoluta falta de generalización: la topología y los pesos optimizados de la red neuronal carecían de validez semántica fuera de esa elección particular, confinando el esfuerzo computacional a un único evento irrepetible. Segundo, el modelo mostró una preocupante ceguera ante giros súbitos del electorado; los cambios de favorabilidad que ocurrieron en la última semana crítica de campaña no fueron reflejados por las métricas de interacciones acumuladas. Por último, un análisis detallado de importancia de variables identificó que la dinámica de viralidad de TikTok operaba en un plano disociado del resto de plataformas, inyectando varianza espuria en momentos en que la intención de voto real permanecía estacionaria.
+Se construyó un \textit{dataset} de 308 observaciones diarias (26 columnas de características) que combinaba métricas diarias de interacción, \textit{posts}, \textit{likes}, \textit{shares} y comentarios, de Facebook, Instagram, TikTok y Twitter/X para ambos candidatos. La variable objetivo fue la intención de voto real interpolada a partir de las encuestas publicadas entre la primera y la última medición demoscópica disponible. El resultado real del 19 de octubre de 2025 fue: \textbf{Paz: 54.53\%}, \textbf{Quiroga: 45.47\%}.
+
+\subsection*{Comparativa de modelos}
+
+Se evaluaron seis modelos (más el \textit{baseline} de última encuesta) sobre su predicción en el día de elecciones. La Tabla~\ref{tab:bolivia_metricas} resume las métricas para el candidato Paz (el ganador), que son las más relevantes para la predicción. La Figura~\ref{fig:bolivia_mlp_pca} ilustra la evolución temporal del mejor modelo.
+
+\begin{table}[htbp]
+\centering
+\caption{Métricas de predicción en el día de elecciones - candidato Paz (real: 54.53\%).}
+\label{tab:bolivia_metricas}
+\begin{tabular}{l c c c c}
+\toprule
+\textbf{Modelo} & \textbf{Predicción Paz} & \textbf{MAE} & \textbf{MAPE} & \textbf{RMSE} \\
+\midrule
+Baseline (última encuesta)    & 36.50\% & 0.1803 & 33.1\% & 0.1803 \\
+Regresión Lineal              & 24.85\% & 0.2968 & 54.4\% & 0.2968 \\
+Regresión Lineal + PCA        & 23.38\% & 0.3115 & 57.1\% & 0.3115 \\
+MLP-BP                        & 46.91\% & 0.0762 & 14.0\% & 0.0762 \\
+\textbf{MLP-BP + PCA}         & \textbf{51.74\%} & \textbf{0.0279} & \textbf{5.1\%} & \textbf{0.0279} \\
+GRNN                          & 34.67\% & 0.1986 & 36.4\% & 0.1986 \\
+GRNN + PCA                    & 34.48\% & 0.2005 & 36.8\% & 0.2005 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+El modelo \textbf{MLP-BP + PCA} fue el único que superó al \textit{baseline}: predijo un 51.74\% para Paz (error absoluto de solo 2.79 puntos porcentuales frente al resultado real de 54.53\%), mejorando más de seis veces al estimador inercial de última encuesta (MAE = 0.1803). Los modelos de regresión lineal fallaron de manera categórica, incluso invirtiendo el resultado (prediciendo a Quiroga como ganador con 75.15\%), lo que confirma que la relación entre interacciones digitales e intención de voto no es lineal. El GRNN quedó sistemáticamente ``atascado'' sobreestimando a Quiroga durante toda la serie temporal (véase Figura~\ref{fig:bolivia_mlp_pca}).
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{img/bolivia_model_MLP-BP_PCA.png}
+    \caption{Evolución diaria de la intención de voto estimada por el modelo MLP-BP+PCA (líneas continuas) vs. la intención de voto real interpolada desde encuestas (líneas discontinuas) para Paz (verde) y Quiroga (rojo). Las líneas verticales punteadas marcan la fecha de publicación de cada encuesta. El modelo captura la tendencia ascendente de Paz en las últimas semanas, aunque con alta varianza diaria.}
+    \label{fig:bolivia_mlp_pca}
+\end{figure}
+
+\subsection*{Limitaciones estructurales identificadas}
+
+A pesar del resultado numérico del MLP-BP+PCA, el análisis reveló tres falencias críticas que desaconsejaron continuar esta ruta:
+
+\begin{enumerate}
+    \item \textbf{Falta de generalización}: Los pesos y la topología de la red neuronal son específicos de este evento electoral. No existe mecanismo para transferir el aprendizaje a otra contienda sin reentrenamiento completo, haciendo el modelo irrepetible.
+
+    \item \textbf{Ceguera ante giros súbitos}: Los cambios de favorabilidad ocurridos en la última semana de campaña, cuando Paz remontó significativamente en las encuestas, no fueron capturados por las métricas de interacciones acumuladas. El modelo operó con un rezago estructural irrecuperable.
+
+    \item \textbf{Disociación de la señal TikTok}: Un análisis de importancia de variables identificó que la dinámica de viralidad de TikTok operaba en un plano desacoplado del resto de plataformas. Los picos de interacción en TikTok inyectaban varianza espuria en momentos en que la intención de voto real permanecía estacionaria, degradando la señal agregada.
+\end{enumerate}
+
+Un experimento adicional con \textit{lag features} (memorias de 1, 2 y 3 días) y ponderación temporal exponencial (mayor peso a días recientes) buscó dotar al modelo de capacidad para detectar cambios de tendencia. Si bien este enfoque redujo el sesgo en períodos de alta actividad, amplificó el ruido diario y no logró resolver la inestabilidad en los días de elección. Estos hallazgos consolidaron la decisión de redirigir el enfoque hacia un modelo de clasificación binaria multi-elección, agnóstico a las dinámicas específicas de un único evento.
+
+
 
 % ──────────────────────────────────────────────────────────────
 \section{Resultados de Costa Rica (Etapa 2)}
 % ──────────────────────────────────────────────────────────────
 
-El modelado paramétrico de la variable tiempo resolvió satisfactoriamente el obstáculo estructural para la explotación de registros históricos sin depender de infraestructura activa de extracción. A través de la calibración supervisada de 1,922 publicaciones presidenciales del panel costarricense, el sistema logró aislar parámetros $k, \alpha$ universales para cuatro plataformas hegemónicas (Facebook, Instagram, TikTok, Twitter/X).
+El modelado paramétrico del crecimiento de interacciones resolvió satisfactoriamente el obstáculo estructural que impide explotar registros históricos sin infraestructura activa de extracción. El panel de 30 días (15 antes y 15 después del día de elecciones), recogido con cadencia diaria sobre las cuatro plataformas hegemónicas, produjo \textbf{1,922 publicaciones válidas} y \textbf{19,439 observaciones} con las que se calibraron los parámetros del modelo Weibull.
 
-Las pruebas de precisión y decaimiento del error proyectivo resultaron formidables. Al observar cualquier publicación con apenas tres días (\textit{t = 3}) de vida útil, el modelo matemático de distribución Weibull logró predecir el límite asintótico total final de esa publicación con un error inferior al 20\% para entre el 89\% y el 99\% de los casos de la muestra empírica. 
+\subsection*{Morfología del crecimiento: ganadores y no ganadores}
 
-A nivel estadístico descriptivo, aunque las curvas de crecimiento mantenían una gradiente matemáticamente significativa (con $p < 0.0001$) hasta por lo menos 10 días tras el evento de publicación, el estudio demostró que desde una perspectiva pragmática o de negocio, la curva se vuelve plana (crecimiento diario menor al 2\%) a partir de una ventana de 5 a 7 días. Esta dinámica de saturación viral rápida validó metodológicamente la decisión de encapsular los \textit{datasets} de extracción a una ventana móvil o estática de 14 días (holgura de seguridad del doble del tiempo de saturación).
+Un hallazgo central del análisis es que la \textbf{curva de crecimiento acumulado de interacciones es morfológicamente idéntica entre la candidata ganadora y el resto de los competidores} (véase Figura~\ref{fig:ganadora_vs_resto} en la sección de metodología). En ambos grupos, más del 80\% de las interacciones totales se acumulan en los primeros 2--3 días desde la publicación, y a partir del Día~7 la curva es prácticamente plana. Las pruebas T día a día confirman que el crecimiento es estadísticamente significativo ($p < 0{,}0001$) hasta el Día~10, pero empíricamente irrelevante ($< 2\%$ diario) a partir del Día~5--7.
 
-Consecuentemente, se consolidó la herramienta computacional de \textbf{reconstrucción histórica temporal}, la cual evidenció una calidad algorítmica intachable: no se documentaron violaciones de monotonicidad (una publicación nunca perdía interacciones reconstruidas al retroceder en el tiempo), y el error mediano inyectado a la serie temporal original en el día 14 pre-elección fue matemáticamente cero.
+Este resultado tiene una implicación metodológica crítica: \textbf{el patrón de crecimiento orgánico es una propiedad de la plataforma, no del candidato ni del resultado electoral}. Esto valida el supuesto de estacionariedad del modelo Weibull y permite aplicar los mismos parámetros calibrados en Costa Rica 2026 para reconstruir históricamente las interacciones de cualquier otra elección.
+
+\subsection*{Precisión proyectiva del modelo Weibull}
+
+Los parámetros calibrados ($k$, $\alpha$, $t_0$) para cada plataforma se detallan en la Tabla~\ref{tab:weibull_params}. La evaluación de precisión se realizó simulando el escenario real de uso: tomando la medición de un día $t$ y estimando el total final como $\hat{N} = n_t / F(t; k, \alpha, t_0)$. Los resultados del MAPE mediano se resumen en la Tabla~\ref{tab:mape_plataforma} y se visualizan en la Figura~\ref{fig:error_estimacion}.
+
+Los hallazgos son formidables en la mayoría de las plataformas. Al observar una publicación en su \textbf{Día~3}:
+
+\begin{itemize}
+    \item \textbf{Facebook}: MAPE mediano de \textbf{2.12\%} - prácticamente sin error desde el día 3.
+    \item \textbf{TikTok}: MAPE mediano de \textbf{5.94\%} - muy por debajo del umbral de referencia del 20\%.
+    \item \textbf{Twitter/X}: MAPE mediano de \textbf{0.38\%} - error casi nulo; las publicaciones de Twitter se saturan en horas.
+    \item \textbf{Instagram}: MAPE mediano de \textbf{12.06\%} - el más alto, explicado por la extrema concentración de interacciones en las primeras horas (offset $t_0 = 0.04$ días = 1 hora).
+\end{itemize}
+
+En términos globales, entre el 89\% y el 99\% de las publicaciones (según la plataforma) se estiman con un error inferior al 20\% al observarlas en el Día~3. A partir del \textbf{Día~7}, el error mediano cae por debajo del 4\% en todas las plataformas.
+
+\subsection*{Función de reconstrucción histórica}
+
+Con los parámetros calibrados se implementó y validó la \textbf{función de reconstrucción histórica} (véase Figura~\ref{fig:ejemplos_reconstruccion}), que dado el total de interacciones observado en un día $t$ y la plataforma, genera la curva diaria completa de interacciones nuevas e infiere el estado del post en cualquier fecha pasada. No se documentaron violaciones de monotonicidad (una publicación nunca pierde interacciones al retroceder en el tiempo), y el error mediano inyectado a la serie temporal en el Día~14 pre-elección es matemáticamente cero para Facebook y Twitter/X.
+
+
 
 % ──────────────────────────────────────────────────────────────
 \section{Resultados de Colombia (Etapa 3)}

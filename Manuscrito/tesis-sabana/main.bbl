@@ -257,8 +257,8 @@
       \field{labeldatesource}{}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{journaltitle}{2020 IEEE International Conference on Big Data (Big Data)}
-      \field{title}{Predicting Brazilian and U.S. Elections with Machine Learning and Social Media Data}
+      \field{journaltitle}{Proceedings of the 2020 International Joint Conference on Neural Networks (IJCNN)}
+      \field{title}{Predicting {Brazilian} and {U.S.} Elections with Machine Learning and Social Media Data}
       \field{year}{2020}
     \endentry
     \entry{ley2494_2025}{misc}{}{}
@@ -418,6 +418,47 @@
       \endverb
       \verb{url}
       \verb https://www.cnbc.com/2026/04/14/prediction-markets-will-grow-to-1-trillion-by-2030-bernstein-says.html
+      \endverb
+    \endentry
+    \entry{kayser2015}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=82d4baed4958a6c29f441618c673a49c}{%
+           family={Kayser},
+           familyi={K\bibinitperiod},
+           given={Mark\bibnamedelima Andreas},
+           giveni={M\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=b692e6987ca0ef1f7d094ce9a4472091}{%
+           family={Lindstädt},
+           familyi={L\bibinitperiod},
+           given={René},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{001d4775f39f4bf7aca3fd9c647269e6}
+      \strng{fullhash}{001d4775f39f4bf7aca3fd9c647269e6}
+      \strng{fullhashraw}{001d4775f39f4bf7aca3fd9c647269e6}
+      \strng{bibnamehash}{001d4775f39f4bf7aca3fd9c647269e6}
+      \strng{authorbibnamehash}{001d4775f39f4bf7aca3fd9c647269e6}
+      \strng{authornamehash}{001d4775f39f4bf7aca3fd9c647269e6}
+      \strng{authorfullhash}{001d4775f39f4bf7aca3fd9c647269e6}
+      \strng{authorfullhashraw}{001d4775f39f4bf7aca3fd9c647269e6}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Political Analysis}
+      \field{number}{2}
+      \field{title}{A Cross-National Measure of Electoral Competitiveness}
+      \field{volume}{23}
+      \field{year}{2015}
+      \field{pages}{242\bibrangedash 253}
+      \range{pages}{12}
+      \verb{doi}
+      \verb 10.1093/pan/mpv001
       \endverb
     \endentry
     \entry{kennedy2018}{article}{}{}
@@ -1342,8 +1383,8 @@
       \field{labeldatesource}{}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{journaltitle}{2020 IEEE International Conference on Big Data (Big Data)}
-      \field{title}{Predicting Brazilian and U.S. Elections with Machine Learning and Social Media Data}
+      \field{journaltitle}{Proceedings of the 2020 International Joint Conference on Neural Networks (IJCNN)}
+      \field{title}{Predicting {Brazilian} and {U.S.} Elections with Machine Learning and Social Media Data}
       \field{year}{2020}
     \endentry
     \entry{ley2494_2025}{misc}{}{}
@@ -1503,6 +1544,47 @@
       \endverb
       \verb{url}
       \verb https://www.cnbc.com/2026/04/14/prediction-markets-will-grow-to-1-trillion-by-2030-bernstein-says.html
+      \endverb
+    \endentry
+    \entry{kayser2015}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=82d4baed4958a6c29f441618c673a49c}{%
+           family={Kayser},
+           familyi={K\bibinitperiod},
+           given={Mark\bibnamedelima Andreas},
+           giveni={M\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=b692e6987ca0ef1f7d094ce9a4472091}{%
+           family={Lindstädt},
+           familyi={L\bibinitperiod},
+           given={René},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{001d4775f39f4bf7aca3fd9c647269e6}
+      \strng{fullhash}{001d4775f39f4bf7aca3fd9c647269e6}
+      \strng{fullhashraw}{001d4775f39f4bf7aca3fd9c647269e6}
+      \strng{bibnamehash}{001d4775f39f4bf7aca3fd9c647269e6}
+      \strng{authorbibnamehash}{001d4775f39f4bf7aca3fd9c647269e6}
+      \strng{authornamehash}{001d4775f39f4bf7aca3fd9c647269e6}
+      \strng{authorfullhash}{001d4775f39f4bf7aca3fd9c647269e6}
+      \strng{authorfullhashraw}{001d4775f39f4bf7aca3fd9c647269e6}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Political Analysis}
+      \field{number}{2}
+      \field{title}{A Cross-National Measure of Electoral Competitiveness}
+      \field{volume}{23}
+      \field{year}{2015}
+      \field{pages}{242\bibrangedash 253}
+      \range{pages}{12}
+      \verb{doi}
+      \verb 10.1093/pan/mpv001
       \endverb
     \endentry
     \entry{kennedy2018}{article}{}{}

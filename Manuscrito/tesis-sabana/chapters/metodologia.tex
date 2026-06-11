@@ -15,7 +15,7 @@
 Definimos una elección, llamada \textbf{elección agnóstica} como $e$ donde $e \in E$ y $E$ es el conjunto de todas las elecciones agnósticas que cumplen los siguientes requisitos:
 
 \begin{itemize}
-    \item Es un proceso competitivo no deterministico definido como la participación de dos o más candidatos con posibilidades reales de ganar y condiciones equitativas \cite{kayser2015}.
+    \item Es un proceso competitivo no deterministico definido como la participación de dos o más candidatos con posibilidades reales de ganar y condiciones equitativas (\cite{kayser2015}).
     \item Tiene por ganador a un único candidato por elección $c_{ganador,e} \in C_e$ con $C_e$ siendo el conjunto de candidatos para la elección $e$.
     \item El candidato ganador $c_{ganador,e}$ es aquel que obtuvo más votos entre las opciones posibles de la elección $e$.
     \item Se desarrolla en un periodo de tiempo acotado $t \in [t_0, t_f]$, con $t_0$ y $t_f$ siendo el inicio y fin de la campaña, que sería el día anterior a la elección.
@@ -46,73 +46,209 @@ Este trabajo parte de la idea fundamental que el conjunto de vectores $x_i$ para
 
 Este vector de interacciones ${x}_{i,t_{rec}}$ posee una propiedad importante y es que es acumulativo. Con muy notables excepciones causadas por intervención de la plataforma o del candidato, las interacciones de una publicación no caen, por lo que para un momento $t$, podemos decir que los elementos del vector ${x}_{i,t}$ son monótonamente no decrecientes. Por lo tanto el vector de interacciones se puede modelar mediante una función ${f}_{j}(t_{pub},t_{rec},x_i)$ para cada red social, que modela el crecimiento de las interacciones de una publicación a lo largo del tiempo, donde $t$ está en días desde la fecha de publicación. 
 
+\subsection{Definición del problema}
+
+Con estos elementos construidos, postulamos la existencia de una función que tenga como \textit{input} un vector de características de las interacciones en redes sociales junto con otras variables de un conjunto $\mathcal{C}_{e}$ de candidatos y que tenga como \textit{output} la intención de voto de los candidatos, como porcentaje del total de los votos a candidatos válidos. Dicho en notación matemática, este trabajo busca encontrar:
+
+\begin{equation}
+    \mathbf{i}_{e} = f(\mathbf{x}_{e}, \mathbf{c}_{e}, t_{rec}, \mathcal{C}_{e})
+    \label{eq:funcion-intencion-voto}
+\end{equation}
+
+Donde:
+
+\begin{itemize}
+    \item $i_{e,c}$ es la intención de voto del candidato $c$ para la elección $e$.
+    \item $x_{e,c}$ es el vector de características de las interacciones en redes sociales del candidato $c$ para la elección $e$.
+    \item $c_{e,c}$ es el vector de características del candidato $c$ para la elección $e$.
+    \item $t_{rec}$ es la fecha de recolección de información.
+    \item $\mathcal{C}_{e}$ es el conjunto de candidatos para la elección $e$.
+\end{itemize}
+
+Y esta función debería de tener un conjunto de características tales que la hagan una alternativa viable para la toma de decisiones en campaña, con una relación costo/calidad similar o mejor a las encuestas. Entre estas: ser elección agnóstica, funcionar independiente del número de candidatos y tener un costo inferior al de una encuesta.
+
+Para poder construir esta función se vuelve necesario solucionar un conjunto de problemas:
+
+\begin{itemize}
+\item \textbf{P1} \textit{¿El modelo SOMEN-DC es replicable con herramientas comerciales no-académicas?} 
+\item \textbf{P2} \textit{¿Cómo se comporta el modelo SOMEN-DC ante un cambio en su lógica de recolección de datos?} 
+\item \textbf{P3} \textit{¿Cómo se puede construir un conjunto de datos de entrenamiento para este problema?} 
+\item \textbf{P4} \textit{¿Cómo se puede convertir este modelo en una herramienta de \textit{nowcasting} electoral si es un problema de corte transversal más que un problema de serie de tiempo?} 
+\end{itemize}
+
+Para resolver estas preguntas se hizo necesario realizar los tres ejercicios definidos en el trabajo; la elección presidencial de Segunda Vuelta en Bolivia del 2025, de Primera Vuelta en Costa Rica del 2026 y las Elecciones locales de Colombia en el 2023. El ejercicio de Bolivia ayudó a solucionar las preguntas P1 y P2, mientras que el ejercicio de Costa Rica y de Colombia ayudó a solucionar la pregunta P3. Por último, la pregunta P4 se puede resolver con los resultados del ejercicio con la Segunda Vuelta de las Elecciones presidenciales en Colombia en el 2026.
+
 % ──────────────────────────────────────────────────────────────
-\section{Diseño general del pipeline}
+\section{Diseño general del proceso}
 % ──────────────────────────────────────────────────────────────
 
-La arquitectura metodológica de esta investigación está estructurada como un \textit{pipeline} secuencial dividido en tres etapas no continuas. La Etapa 1 corresponde al levantamiento de los datos de entrenamiento 
-
-La arquitectura metodológica de esta investigación está estructurada como un \textit{pipeline} secuencial dividido en tres etapas empíricas. La Etapa 1 corresponde a una prueba de concepto en Bolivia para replicar y evidenciar los problemas estructurales del modelo base. La Etapa 2 aborda el problema de la asimetría de la información temporal, calibrando un modelo de crecimiento matemático en Costa Rica. Finalmente, la Etapa 3 consolida el modelo elección-agnóstico en Colombia.
-
-La arquitectura general del \textit{pipeline} de predicción propuesto opera bajo la siguiente secuencia lógica: en primer lugar, se extraen los datos acumulados actuales de las redes sociales de los candidatos (restringidos a publicaciones realizadas en los últimos 14 días pre-elección); posteriormente, se procesan mediante un modelo paramétrico de Weibull específico por plataforma para estimar la reconstrucción histórica de la curva de crecimiento diario; con esta información, se construyen las \textit{features} diarias por candidato; y, finalmente, un modelo elección-agnóstico pre-entrenado procesa el vector para proyectar un vector $C$-dimensional con la intención de voto o la probabilidad de victoria de cada contendor.
-
-Todo el ecosistema de recolección de datos fue diseñado para garantizar su accesibilidad y bajo costo, operando sin requerir infraestructura institucional. Para ello, se integraron herramientas comerciales y \textit{scripts} a medida utilizando la plataforma de automatización Make.com, clientes de \textit{scraping} de Apify, la API oficial de Twitter/X y \textit{scripts} de navegación programática o \textit{headless browsers} desarrollados con Playwright.
+La arquitectura metodológica de esta investigación está estructurada como un proceso secuencial dividido en cuatro etapas empíricas. La Etapa 1 corresponde a una prueba de concepto en Bolivia para replicar y evidenciar los problemas estructurales del modelo SOMEN-DC base. La Etapa 2 aborda el problema de la asimetría de la información temporal, calibrando un modelo de crecimiento matemático en Costa Rica, la Etapa 3 consolida el modelo elección-agnóstico en las Elecciones Locales en Colombia en el 2023 y el modelo aplicado a predicción continua se aplica en la Segunda Vuelta de la Elección presidencial de Colombia de 2026.
 
 % ──────────────────────────────────────────────────────────────
-\section{Etapa 1 — Bolivia: Replicación del SOMEN-DC y prueba de concepto}
+\section{Etapa 1 - Bolivia: Replicación del SOMEN-DC y prueba de concepto}
 % ──────────────────────────────────────────────────────────────
 
 \subsection{Caso de estudio y recolección de datos}
 
-Para confirmar empíricamente las limitaciones inherentes a la literatura de \textit{nowcasting} dependiente de encuestas, se planteó un caso de estudio replicando la metodología SOMEN-DC en el contexto de la segunda vuelta presidencial de Bolivia (programada para el 19 de octubre de 2025). Esta contienda polarizada entre Rodrigo Paz Pereira (PDC) y Jorge ``Tuto'' Quiroga (Alianza Libre) representó un escenario ideal de prueba. El resultado real proyectado para el estudio determinó a Paz como ganador con el 54.53\% frente al 45.47\% de Quiroga.
+Para confirmar empíricamente las limitaciones inherentes a la literatura de \textit{nowcasting} dependiente de encuestas, se planteó un caso de estudio replicando la metodología SOMEN-DC en el contexto de la segunda vuelta presidencial de Bolivia (programada para el 19 de octubre de 2025). Esta contienda polarizada entre Rodrigo Paz Pereira y Jorge ``Tuto'' Quiroga representó un escenario ideal de prueba por ser una elección presidencial en un país Latinoamericano no tratado por los autores (Brito y Andeoato) en su producción científica. El resultado real proyectado para el estudio determinó a Paz como ganador con el 54.53\% frente al 45.47\% de Quiroga.
 
-Se definió una ventana temporal retrospectiva de 180 días (del 18 de mayo al 18 de octubre de 2025), extrayendo datos diariamente de las cuentas oficiales de ambos candidatos en Facebook, Twitter/X, Instagram y TikTok. Esto generó un vector de 29 características (\textit{features}) por candidato y por día, incluyendo métricas absolutas (volumen de publicaciones, \textit{likes}, comentarios, compartidos) y métricas relativas (como el \textit{engagement} promedio por publicación), normalizadas posteriormente mediante puntajes Z (\textit{z-scores}).
+Se definió como ventana temporal retrospectiva 180 días (del 18 de mayo al 18 de octubre de 2025). Para extraer los datos se usaron herramientas como Apify operando como \textit{scrapers} web y Make.com como orquestador lógico, programados para extraer diariamente las interacciones a las 10:00 p.m. hora de La Paz de las cuentas oficiales de ambos candidatos en Facebook, Twitter/X, Instagram y TikTok. Los datos crudos se agregaron a nivel diario, garantizando continuidad temporal al imputar con cero (0) aquellos días sin publicaciones. El procesamiento incluyó el cálculo de promedios de interacción por publicación (ej. \textit{likes} por post) para medir tanto el volumen bruto como la calidad del \textit{engagement}, consolidando un vector final de 24 características explicativas numéricas en un \textit{dataset} de 308 registros independientes.
 
-La variable objetivo se construyó interpolando linealmente los resultados de las principales encuestas publicadas durante ese período (firmas como Ipsos Ciesmori, SPIE, Captura Consulting y Ciemcorp), anclando el último punto de la serie al resultado electoral real. El \textit{dataset} final consolidó 308 registros diarios independientes.
+\subsection{Preparación de datos y variable objetivo}
+
+El preprocesamiento de la información digital fue exhaustivo para lidiar con el ruido de las redes sociales. Primero, se aplicó una estandarización intra-plataforma mediante puntajes Z (\textit{z-scores}) para equiparar el peso relativo de redes con distintos niveles de masividad. Seguidamente, se normalizaron de forma independiente los indicadores numéricos de cada candidato a una escala [0, 1] utilizando escalado \textit{Min-Max}, y para mitigar la alta variabilidad diaria inherente a las publicaciones, se aplicó un filtro de suavizado temporal consistente en una media móvil de dos períodos (\textit{window=2}).
+
+La generación de la variable dependiente o variable objetivo (\textit{IntencionVotoReal}) es uno de los pasos más críticos. Se extrajeron los resultados de 14 encuestas de diversas firmas (Ipsos Ciesmori, SPIE, Captura Consulting y Ciemcorp) divulgadas durante la ventana de análisis. Los porcentajes declarados fueron normalizados matemáticamente para que la intención de ambos contendientes sumara estrictamente 1 (o 100\%). Posteriormente, se ancló el último valor de la serie temporal al resultado electoral real del día de los comicios y se generó una serie de tiempo diaria ininterrumpida utilizando métodos de interpolación lineal matemática. 
+
+El modelo de entrenamiento (\textit{train}) consumió únicamente los datos abarcados desde la primera hasta la última encuesta pública, reservando la porción final para la ventana de proyección predictiva (\textit{pred}) hasta el día cero de las elecciones. Con este corte, las normalizaciones de validación (\textit{StandardScaler}) se calibraron rigurosamente sobre el conjunto de entrenamiento para imposibilitar fugas de información futura (\textit{data leakage}).
 
 \subsection{Evaluación de modelos}
 
-Siguiendo la arquitectura original, se entrenaron y evaluaron múltiples topologías algorítmicas, incluyendo Regresión Lineal Clásica, Perceptrón Multicapa con \textit{Backpropagation} (MLP-BP) y Redes Neuronales de Regresión Generalizada (GRNN), explorando también variantes con Análisis de Componentes Principales (PCA). 
+Siguiendo la arquitectura original, se entrenaron y evaluaron múltiples topologías algorítmicas bajo un esquema determinista de aprendizaje supervisado, comparando algoritmos lineales versus no lineales y validando el impacto de la reducción de dimensionalidad (\textit{Principal Component Analysis}, PCA). El portafolio de modelos evaluados incluyó Regresión Lineal Clásica, Redes Neuronales de Regresión Generalizada (GRNN) ajustando el \textit{sigma} mediante la mediana de las distancias euclidianas, y Perceptrón Multicapa con \textit{Backpropagation} (MLP-BP) configurado con capas ocultas de 48 y 24 neuronas, función de activación \textit{ReLU}, optimizador Adam y una tasa de aprendizaje iterativo. Adicionalmente, las salidas predictivas de las redes neuronales fueron filtradas con medias móviles exponenciales algorítmicas ($\beta$ asimétrico dependiendo del cambio de tendencia) para suavizar la intención predictiva final.
 
-El modelo con mejor desempeño predictivo resultó ser el ensamble MLP-BP + PCA, alcanzando un Error Absoluto Medio (MAE) de 0.0279 y un Error Porcentual Absoluto Medio (MAPE) aproximado del 5.1\%. Este resultado superó considerablemente el \textit{baseline} trivial basado en tomar simplemente el valor de la última encuesta disponible antes de la elección (cuyo MAE en el caso del candidato Paz fue del 0.1803). Cabe destacar que los modelos estrictamente lineales fracasaron sistemáticamente en el ajuste (presentando MAEs entre 0.29 y 0.31), confirmando empíricamente que la relación entre el volumen de interacciones digitales y la tracción en las encuestas exhibe dinámicas fuertemente no lineales.
+El modelo con mejor desempeño predictivo resultó ser el ensamble MLP-BP acoplado con PCA, tal como se observa de manera suavizada en la Figura \ref{fig:mlp_bp_pca}, alcanzando un Error Absoluto Medio (MAE) de 0.0279 y un Error Porcentual Absoluto Medio (MAPE) aproximado del 5.1\%. Este resultado superó considerablemente el \textit{baseline} trivial basado en tomar simplemente el valor de la última encuesta disponible antes de la elección (cuyo MAE en el caso del candidato Paz fue del 0.1803). Cabe destacar que los modelos estrictamente lineales fracasaron sistemáticamente en el ajuste (presentando MAEs entre 0.29 y 0.31), confirmando empíricamente que la relación entre el volumen de interacciones digitales y la tracción en las encuestas exhibe dinámicas fuertemente no lineales.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.9\textwidth]{img/mlp_bp_pca_timeseries.png}
+    \caption{Series de tiempo de la evolución de la intención de voto utilizando el modelo MLP-BP con PCA.}
+    \label{fig:mlp_bp_pca}
+\end{figure}
 
 Los resultados de esta primera etapa confirmaron de manera concluyente los problemas teóricos del SOMEN-DC señalados en la hipótesis: la dependencia estructural de las encuestas para el entrenamiento, el altísimo costo logístico de mantener infraestructura de \textit{scraping} continuo y, más grave aún, la imposibilidad de extrapolar los pesos de la red neuronal a una nueva elección (no generalizabilidad).
 
 % ──────────────────────────────────────────────────────────────
-\section{Etapa 2 — Costa Rica: Modelado del crecimiento de interacciones}
+\section{Etapa 2 - Costa Rica: Modelado del crecimiento de interacciones}
 % ──────────────────────────────────────────────────────────────
 
 \subsection{El problema estructural}
 
-Para construir un modelo generalizable a partir de $M$ elecciones pasadas se requiere observar los datos. Sin embargo, las plataformas digitales únicamente muestran el total acumulado de interacciones observables en la fecha actual de la consulta (por ejemplo, si se raspan datos en 2026 sobre una elección de 2023). Este fenómeno imposibilita conocer cuántas de esas interacciones se habían acumulado legítimamente el día de la elección y cuántas correspondieron a tráfico residual o póstumo tras conocerse los resultados electorales. Para resolver esto, es forzoso estimar una curva teórica de crecimiento de interacciones.
+Para construir un modelo generalizable a partir de $M$ elecciones pasadas se requiere observar datos históricos. Sin embargo, las plataformas digitales únicamente muestran el total acumulado de interacciones en la fecha actual de la consulta: si se rasparan datos en 2026 sobre una elección de 2023, sería imposible saber cuántas interacciones se habían acumulado el día de la elección y cuántas corresponden a tráfico residual o póstumo generado tras conocerse los resultados. Para resolver esto, es necesario estimar una curva teórica de crecimiento de interacciones que permita reconstruir el estado del post en cualquier momento pasado.
 
-\subsection{Metodología y Modelo Weibull}
+\subsection{Recolección y validación del panel}
 
-Se condujo un proceso de recolección intensiva diaria (\textit{panel data}) sobre 2,026 publicaciones únicas correspondientes a los candidatos presidenciales de la campaña de Costa Rica 2026. Al depurar los registros, se aislaron 1,922 publicaciones aptas para el modelado temporal continuo, generando más de 19,439 observaciones cruzadas.
+Se recolectaron datos con una cadencia de extracción \textbf{diaria} durante un período de \textbf{30 días}: los 15 días previos a la primera vuelta presidencial del 2 de febrero de 2026 y los 15 días posteriores. Esta ventana simétrica garantizó capturar tanto el pico de actividad de campaña como la curva de decaimiento posterior, cubriendo así el ciclo de vida completo de las publicaciones más recientes. El proceso abarcó \textbf{cuatro plataformas} (Facebook, Instagram, TikTok y Twitter/X) y \textbf{4 candidatos presidenciales}.
 
-El modelado del crecimiento orgánico de interacciones se parametrizó bajo una curva de distribución Weibull con \textit{offset} temporal, expresada formalmente en la Ecuación \ref{eq:weibull} (Sección 3.4). Mediante rutinas de optimización no lineal, se calibraron los parámetros óptimos para cada plataforma, como se resume a continuación:
+Durante la validación de integridad se detectó que Twitter presentaba ausencia masiva de identificadores de publicación (\textit{postIds}). Para solucionar esto, se generaron identificadores únicos calculando un hash MD5 sobre el contenido textual de cada \textit{tweet}, permitiendo agrupar correctamente las observaciones longitudinales de una misma publicación. Se documentaron 765 publicaciones únicas de Facebook, 603 de Instagram, 344 de TikTok y 210 de Twitter/X.
 
-\begin{table}[h]
+La estandarización temporal se realizó calculando el \textbf{Día Relativo}: el tiempo transcurrido en días desde la fecha de publicación hasta el momento de extracción, siendo el día de publicación el Día~0. Sobre el panel bruto se observó el denominado \textbf{Sesgo de Composición}: cuando publicaciones de crecimiento rápido alcanzan su máximo y dejan de observarse, el promedio global cae artificialmente porque solo permanecen en la muestra las publicaciones con crecimiento más lento. Para corregirlo, se aplicó:
+
+\begin{itemize}
+    \item \textbf{Forzado monótono} (\textit{cummax}): las interacciones solo pueden crecer o mantenerse, nunca bajar.
+    \item \textbf{Interpolación lineal}: los días sin observación dentro del período de vida de un \textit{post} se rellenan por interpolación entre los puntos conocidos.
+    \item \textbf{Forward Fill}: si un post alcanza el 100\% y deja de observarse, su valor se mantiene en los días siguientes para no deprimir el promedio.
+    \item \textbf{Normalización a fracción}: las interacciones absolutas se convierten en fracción del máximo observado ($\in [0,1]$), haciendo comparables publicaciones de distinto volumen.
+\end{itemize}
+
+Tras aplicar estos filtros, se retuvieron las publicaciones con al menos dos observaciones y con máximo alcanzado en el Día~3 o posterior. El resultado final del panel fue de \textbf{1,922 publicaciones únicas} (765 de Facebook, 603 de Instagram, 344 de TikTok y 210 de Twitter/X, que suman exactamente 1,922), generando \textbf{19,439 pares} (día, fracción) aptos para el modelado.
+
+\subsection{Análisis de la persistencia de interacciones}
+
+El primer objetivo del análisis fue cuantificar cuánto tiempo persiste la actividad de una publicación y si la candidata ganadora mostraba un patrón diferente al resto. Se aplicaron pruebas T de una muestra para cada Día Relativo: el crecimiento es estadísticamente significativo ($p < 0{,}0001$) hasta el día 10, pero desde una perspectiva empírica se vuelve marginal a partir del día 5–7 ($< 2\%$ diario). Esto justifica que una ventana de 14 días previos a la jornada de votación es suficiente y robusta para capturar el \textit{engagement} relevante de una publicación.
+
+La Figura~\ref{fig:ganadora_vs_resto} compara la curva promedio de interacciones acumuladas (estabilizada con \textit{Forward Fill}) de la candidata ganadora Laura Fernández versus el promedio del resto de candidatos. Ambas curvas exhiben una forma de saturación prácticamente idéntica: en los primeros 2–3 días se acumula más del 80\% del total de interacciones, y a partir del Día~7 ambas han alcanzado el 100\% para fines prácticos. Esta convergencia morfológica confirma que los factores de crecimiento orgánico son propiedades de la plataforma, no del candidato, validando el supuesto de estacionariedad del modelo y que el resultado electoral no altera la forma de la curva.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{img/costa_rica_ganadora.png}
+    \caption{Porcentaje de interacciones acumuladas por Día Relativo (curvas estabilizadas): Laura Fernández, candidata ganadora (línea dorada continua), vs. promedio del resto de candidatos (línea azul discontinua). Ambas curvas son morfológicamente indistinguibles, lo que confirma que el patrón de crecimiento es una propiedad de la plataforma y no del candidato.}
+    \label{fig:ganadora_vs_resto}
+\end{figure}
+
+\subsection{Selección y calibración del modelo Weibull}
+
+Para modelar la curva de crecimiento acumulado de interacciones se evaluaron tres familias de funciones: exponencial simple, logística y Weibull con \textit{offset} temporal $t_0$. La función exponencial simple $F(t) = 1 - e^{-kt}$ fue descartada porque no incorpora el retardo inicial de activación que exhiben las publicaciones de Facebook (cuyo pico de distribución de contenido ocurre horas después de publicado, no de forma inmediata). La curva logística fue descartada porque su punto de inflexión simétrico obligaría a fijar artificialmente la mitad del crecimiento en un día específico, algo que no se observa en los datos. La distribución Weibull con \textit{offset}:
+\begin{equation}
+    F(t; k, \alpha, t_0) = 1 - e^{-k\,(t + t_0)^{\alpha}}
+\end{equation}
+fue seleccionada por tres razones: (i) está acotada en $[0,1]$, lo que la hace matemáticamente compatible con la fracción de interacciones acumuladas; (ii) el parámetro de forma $\alpha$ le permite ajustar curvas cóncavas o convexas según el comportamiento empírico de cada plataforma; y (iii) el \textit{offset} $t_0$ captura el retardo real de distribución del algoritmo de cada red sin necesidad de trasladar manualmente el eje temporal.
+
+Los parámetros $k$ (escala), $\alpha$ (forma) y $t_0$ (retardo) se calibraron por plataforma mediante optimización no lineal por mínimos cuadrados (\textit{curve\_fit}), ensayando múltiples puntos de partida para evitar mínimos locales. Los parámetros óptimos se presentan en la Tabla~\ref{tab:weibull_params}.
+
+\begin{table}[htbp]
 \centering
-\caption{Parámetros Weibull calibrados por plataforma}
-\begin{tabular}{l c c c c}
+\caption{Parámetros Weibull calibrados por plataforma y bondad de ajuste ($R^2$) sobre el panel de fracciones.}
+\label{tab:weibull_params}
+\begin{tabular}{l c c c c c}
 \toprule
-\textbf{Plataforma} & \textbf{Escala ($k$)} & \textbf{Forma ($\alpha$)} & \textbf{Offset ($t_0$) [días]} & \textbf{$R^2$ Panel} \\
+\textbf{Plataforma} & \textbf{$k$} & \textbf{$\alpha$} & \textbf{$t_0$ [días]} & \textbf{$t_0$ [horas]} & \textbf{$R^2$} \\
 \midrule
-Facebook    & 0.9480 & 0.8230 & 1.93 & 0.3514 \\
-Instagram   & 1.1369 & 0.5210 & 0.04 & 0.4026 \\
-TikTok      & 1.3272 & 0.5124 & 0.79 & 0.3509 \\
-Twitter/X   & 1.4453 & 1.1422 & 0.26 & 0.6905 \\
+Facebook    & 0.9480 & 0.8230 & 1.93 & 46h & 0.351 \\
+Instagram   & 1.1369 & 0.5210 & 0.04 &  1h & 0.403 \\
+TikTok      & 1.3272 & 0.5124 & 0.79 & 19h & 0.351 \\
+Twitter/X   & 1.4453 & 1.1422 & 0.26 &  6h & 0.691 \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-Aunque los valores de bondad de ajuste ($R^2$) del panel parecen matemáticamente discretos, estudios de descomposición de varianza evidenciaron que cerca del 66.8\% del error cuadrático proviene del ruido intrínseco de cada publicación (varianza intra-publicación). Por lo tanto, la verdadera métrica de éxito evaluada fue la precisión proyectiva al último día.
+Los $R^2$ del panel resultan matemáticamente bajos en Facebook y TikTok. Un análisis de descomposición de varianza reveló que la varianza \textit{intra-publicación} (ruido de medición dentro de un mismo \textit{post}: hora de publicación, viralidad puntual, algoritmo de la plataforma) representa el \textbf{66.8\%} de la varianza total, frente al \textbf{29.2\%} de varianza \textit{inter-publicaciones} (diferencias entre publicaciones distintas). Esto implica que un $R^2$ bajo es matemáticamente irreducible para cualquier modelo de curva promedio, y que el modelo captura correctamente la forma global de la curva. El diagnóstico se ilustra en la Figura~\ref{fig:distribucion_fracciones}: la mediana de las fracciones se concentra rápidamente cerca del 100\% (72\% en el día 0, 87\% al día 1, 98\% al día 3), pero la dispersión es alta en los primeros días, reflejando la heterogeneidad entre publicaciones.
 
-Las validaciones cruzadas determinaron que, si se observaba la publicación al día 3 desde su emisión, entre el 89\% y el 99\% de las inferencias sobre su total asintótico final caían dentro de un margen de error estricto (MAPE $< 20\%$). Adicionalmente, pruebas T demostraron que, si bien el crecimiento es estadísticamente significativo ($p < 0.0001$) hasta el día 10, desde una óptica empírica el incremento se vuelve marginal a partir del día 5 al 7 ($< 2\%$ diario), justificando sólidamente que una ventana de análisis retrospectivo de 14 días previos a la jornada de votación es matemáticamente suficiente y robusta. Si bien se evaluó la hipótesis cualitativa del ``arrastre post-victoria'' (por ejemplo, el aceleramiento en las métricas de la ganadora proyectada), este efecto no demostró significancia estadística sobre la muestra analizada, permitiendo que el modelo asuma patrones estacionarios indiferentes al resultado.
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{img/costa_rica_r2.png}
+    \caption{Distribución de la fracción acumulada de interacciones ($n_t / n_{\max}$) por Día Relativo, sobre el panel completo de 1,922 publicaciones. La línea roja muestra la mediana: en el Día~0 ya se acumula el 72\% del total final; al Día~3, el 98\%. La dispersión en los días iniciales refleja la heterogeneidad entre publicaciones, razón por la que el $R^2$ global es bajo pero el modelo promedio es válido.}
+    \label{fig:distribucion_fracciones}
+\end{figure}
+
+La Figura~\ref{fig:weibull_por_plataforma} muestra el ajuste del modelo Weibull para cada plataforma. Cada panel presenta la mediana empírica (puntos negros), el rango intercuartílico empírico (área azul) y la curva del modelo calibrado (roja). Twitter/X exhibe el mejor ajuste ($R^2 = 0.691$) dado que sus publicaciones alcanzan el 100\% muy rápidamente y con poca dispersión.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{img/costa_rica_r2_1.png}
+    \caption{Ajuste del modelo Weibull con \textit{offset} temporal por plataforma. Puntos negros: mediana empírica. Área azul: rango intercuartílico (IQR) empírico. Curva roja: modelo calibrado. Los parámetros $k$, $\alpha$ y $t_0$ de cada plataforma se detallan en la Tabla~\ref{tab:weibull_params}.}
+    \label{fig:weibull_por_plataforma}
+\end{figure}
+
+\subsection{Validación: precisión en la estimación del total final}
+
+Dado que el objetivo no es ajustar curvas sino reconstruir el total final de interacciones a partir de una observación parcial, la métrica de evaluación relevante es el \textbf{Error Porcentual Absoluto Mediano} (MAPE) entre el total estimado $\hat{N} = n_t / F(t)$ y el total real $N$ observado al final del período. La Tabla~\ref{tab:mape_plataforma} resume estos errores por plataforma y día de observación.
+
+\begin{table}[htbp]
+\centering
+\caption{MAPE mediano (\%) en la estimación del total final de interacciones, por plataforma y día de observación.}
+\label{tab:mape_plataforma}
+\begin{tabular}{l c c c c c}
+\toprule
+\textbf{Plataforma} & \textbf{Día 0} & \textbf{Día 1} & \textbf{Día 2} & \textbf{Día 3} & \textbf{Día 7} \\
+\midrule
+Facebook   & 11.27\% &  6.92\% & 3.73\% & 2.12\% & 0.32\% \\
+Instagram  & 64.77\% & 20.72\% &15.67\% &12.06\% & 3.76\% \\
+TikTok     & 25.36\% & 14.20\% & 8.35\% & 5.94\% & 2.29\% \\
+Twitter/X  & 56.37\% & 11.09\% & 2.55\% & 0.38\% & 0.00\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+La Figura~\ref{fig:error_estimacion} muestra visualmente estos resultados. En el panel izquierdo se observa que el MAPE decae exponencialmente con el día de observación: a partir del Día~3, todos los modelos, excepto Instagram, se ubican por debajo del umbral de referencia del 20\%. El panel derecho ilustra la distribución completa del error al Día~3, mostrando que la gran mayoría de las publicaciones se estima con alta precisión. Instagram presenta el MAPE más alto en días tempranos debido a la fuerte concentración de interacciones en las primeras horas, que el modelo no captura completamente con el offset $t_0 = 0.04$ días.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{img/costa_rica_r2_2.png}
+    \caption{Evaluación de la precisión proyectiva del modelo Weibull. \textbf{Izquierda}: MAPE mediano por plataforma y día de observación; la línea discontinua marca el 20\% de referencia. \textbf{Derecha}: distribución del error por publicación al Día~3. A partir del Día~3, Facebook, TikTok y Twitter/X alcanzan errores medianos inferiores al 12\%.}
+    \label{fig:error_estimacion}
+\end{figure}
+
+\subsection{Función de reconstrucción histórica}
+
+Con los parámetros calibrados, se implementó una función de reconstrucción que, dada la fecha de publicación, las interacciones observadas en un día $t$ y la plataforma, estima el total final de interacciones y genera la curva diaria completa. Formalmente, el total final estimado es:
+
+\begin{equation}
+    \hat{N} = \frac{n_t}{F(t; k, \alpha, t_0)}
+\end{equation}
+
+donde $n_t$ son las interacciones observadas en el Día~$t$ y $F(t; k, \alpha, t_0) = 1 - e^{-k(t + t_0)^\alpha}$ es la fracción acumulada predicha por el modelo. La Figura~\ref{fig:ejemplos_reconstruccion} muestra dos ejemplos concretos: una publicación de Facebook con un total final conocido de 50,000 interacciones, y una publicación de Instagram con 43,000 interacciones observadas parcialmente en el Día~10. El modelo reconstruye la curva de interacciones nuevas por día (barras azules) y el porcentaje acumulado (línea roja), permitiendo inferir el estado histórico de cualquier publicación en cualquier momento pasado.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{img/costa_rica_r2_3.png}
+    \caption{Ejemplos de reconstrucción histórica de interacciones con el modelo Weibull calibrado. \textbf{Izquierda}: publicación de Facebook con 50,000 interacciones totales conocidas; el modelo distribuye las interacciones nuevas por día (barras) y la fracción acumulada (curva roja). \textbf{Derecha}: publicación de Instagram con 43,000 interacciones medidas el Día~10; el modelo infiere el total final y reconstruye la curva completa.}
+    \label{fig:ejemplos_reconstruccion}
+\end{figure}
+
+Los parámetros $k$, $\alpha$ y $t_0$ de las cuatro plataformas, junto con los MAPE por día de observación, se exportaron en un archivo de configuración que es consumido directamente por la etapa de construcción del \textit{dataset} de Colombia (Etapa~3), garantizando consistencia entre las dos fases del estudio.
 
 % ──────────────────────────────────────────────────────────────
-\section{Etapa 3 — Colombia: Construcción del dataset y modelado}
+\section{Etapa 3 - Colombia: Construcción del dataset y modelado}
 % ──────────────────────────────────────────────────────────────
 
 Con la solución temporal formalizada, la tercera etapa se concentró en la construcción del \textit{dataset} de entrenamiento masivo. Se estableció un protocolo riguroso de diseño para capturar información exclusiva de las campañas de las elecciones locales de alcaldías en Colombia de octubre de 2023. Se definió un universo geográfico abarcando las 33 ciudades más pobladas de Colombia, procediendo a compilar interacciones generadas estrictamente en la ventana de 14 días previos a los comicios.
@@ -139,4 +275,4 @@ El enfoque predictivo continuo (`Modelo\_Predictivo\_Electoral.ipynb`) pretendí
 
 Tras constatar la asimetría matricial, el análisis se reconceptualizó sobre el paradigma probabilístico discreto (`Clasificacion\_Binaria\_Electoral.ipynb`), simplificando la tarea del algoritmo a una función discriminatoria simple: adivinar el ganador o vencedor absoluto por distrito (\textit{¿quién gana?}). El hiperplano se centró en priorizar masivamente el constructo analítico de la \textbf{dominancia relativa} como entrada primordial. Con un balance de clases nativo de 24.1\% (casos positivos, victoriosos) versus 75.9\% (casos negativos), los clasificadores de Regresión Logística Penalizada (LOO-CV) dominaron ampliamente, registrando niveles de \textit{Accuracy} ponderado de 0.812 y coeficientes AUC-ROC de 0.770, traduciéndose en pronósticos asertivos para el 59.3\% de las municipalidades (16 aciertos en 27 contiendas). 
 
-Aunque estas mediciones confirman irreprochablemente que el capital político latente sí se manifiesta y decodifica a través de las interacciones sociales (la señal existe y el ruido no la silencia estadísticamente), un heurístico ingenuo (\textit{baseline}) estipulado al comienzo de la experimentación —pronosticar ciegamente a favor del postulante con el mayor indicador bruto acumulado de \textit{dominancia\_engagement} en el ecosistema municipal— ostentaba un nivel de predicción efectiva del 70.4\% (19 aciertos de 27). Por ende, el algoritmo no pudo rebasar este techo estadístico debido a la falta de masa crítica de entrenamiento y volumen electoral comparado en los rangos analíticos; con mayores tamaños y adiciones de contiendas iteradas, la profundidad topológica se revelaría.
+Aunque estas mediciones confirman irreprochablemente que el capital político latente sí se manifiesta y decodifica a través de las interacciones sociales (la señal existe y el ruido no la silencia estadísticamente), un heurístico ingenuo (\textit{baseline}) estipulado al comienzo de la experimentación, pronosticar ciegamente a favor del postulante con el mayor indicador bruto acumulado de \textit{dominancia\_engagement} en el ecosistema municipal, ostentaba un nivel de predicción efectiva del 70.4\% (19 aciertos de 27). Por ende, el algoritmo no pudo rebasar este techo estadístico debido a la falta de masa crítica de entrenamiento y volumen electoral comparado en los rangos analíticos; con mayores tamaños y adiciones de contiendas iteradas, la profundidad topológica se revelaría.

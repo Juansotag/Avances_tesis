@@ -8,9 +8,9 @@
 
 ## **4/06/2026**
 
-- Terminar el manuscito hasta el ejercicio de Costa Rica
-- Sacar seguidores por candidato
+- Terminar el manuscito hasta el ejercicio de Costa Rica (Hecho)
+- Sacar seguidores por candidato (No se pudo sacar)
 - Saca columna 1/0 de oposición y gobierno de los candidatos
-- Poner desempleo u otro dato relevante
-- Normalizar respecto al número de seguidores, pero no eliminar los datos sin normalizar y los normalizados. 
-- Tener ya el jurado politólogo
+- Poner desempleo u otro dato relevante 
+- Normalizar respecto al número de seguidores, pero no eliminar los datos sin normalizar y los normalizados (No se pudo sacar)
+- Tener ya el jurado politólogo (Hecho)

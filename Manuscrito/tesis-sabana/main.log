@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.1.23)  5 JUN 2026 15:16
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.1.23)  10 JUN 2026 23:10
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1892,7 +1892,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 
 LaTeX Font Info:    Font shape `T1/zpltlf/b/sc' will be
-(Font)              scaled to size 10.95pt on input line 36.
+(Font)              scaled to size 10.95pt on input line 37.
 [3
 
 ])
@@ -1955,68 +1955,131 @@ Cap\'{\i }tulo 4.
 [10]) (chapters/metodologia.tex
 Cap\'{\i }tulo 5.
 
-LaTeX Warning: Citation 'kayser2015' on page 11 undefined on input line 18.
-
-
 
 [11]
 
-LaTeX Info: Redefining \. on input line 55.
-LaTeX Info: Redefining \% on input line 55.
+LaTeX Info: Redefining \. on input line 52.
+LaTeX Info: Redefining \% on input line 52.
 [12]
 
-LaTeX Info: Redefining \. on input line 76.
-LaTeX Info: Redefining \% on input line 76.
+LaTeX Info: Redefining \. on input line 94.
+LaTeX Info: Redefining \% on input line 94.
 [13]
-LaTeX Font Info:    Font shape `T1/zpltlf/m/n' will be
-(Font)              scaled to size 10.0pt on input line 97.
-LaTeX Font Info:    Font shape `T1/zpltlf/b/n' will be
-(Font)              scaled to size 10.0pt on input line 97.
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-
-LaTeX Info: Redefining \. on input line 111.
-LaTeX Info: Redefining \% on input line 111.
+LaTeX Info: Redefining \. on input line 108.
+LaTeX Info: Redefining \% on input line 108.
 [14]
+<img/mlp_bp_pca_timeseries.png, id=305, 708.246pt x 419.166pt>
+File: img/mlp_bp_pca_timeseries.png Graphic file (type png)
+<use img/mlp_bp_pca_timeseries.png>
+Package pdftex.def Info: img/mlp_bp_pca_timeseries.png  used on input line 113.
+(pdftex.def)             Requested size: 384.1096pt x 227.33763pt.
+LaTeX Font Info:    Font shape `T1/zpltlf/m/n' will be
+(Font)              scaled to size 10.0pt on input line 114.
+LaTeX Font Info:    Font shape `T1/zpltlf/b/n' will be
+(Font)              scaled to size 10.0pt on input line 114.
 
-LaTeX Info: Redefining \. on input line 123.
-LaTeX Info: Redefining \% on input line 123.
-[15]
 
-LaTeX Info: Redefining \. on input line 137.
-LaTeX Info: Redefining \% on input line 137.
-[16]) (chapters/resultados.tex
+LaTeX Info: Redefining \. on input line 127.
+LaTeX Info: Redefining \% on input line 127.
+[15 <./img/mlp_bp_pca_timeseries.png>]
+
+LaTeX Info: Redefining \. on input line 144.
+LaTeX Info: Redefining \% on input line 144.
+[16]
+<img/costa_rica_ganadora.png, id=319, 617.1858pt x 341.8371pt>
+File: img/costa_rica_ganadora.png Graphic file (type png)
+<use img/costa_rica_ganadora.png>
+Package pdftex.def Info: img/costa_rica_ganadora.png  used on input line 153.
+(pdftex.def)             Requested size: 426.79135pt x 236.39465pt.
+
+
+LaTeX Info: Redefining \. on input line 161.
+LaTeX Info: Redefining \% on input line 161.
+[17 <./img/costa_rica_ganadora.png>]
+<img/costa_rica_r2.png, id=328, 1143.3114pt x 295.5843pt>
+File: img/costa_rica_r2.png Graphic file (type png)
+<use img/costa_rica_r2.png>
+Package pdftex.def Info: img/costa_rica_r2.png  used on input line 188.
+(pdftex.def)             Requested size: 426.79135pt x 110.33868pt.
+<img/costa_rica_r2_1.png, id=330, 1438.8957pt x 370.0224pt>
+File: img/costa_rica_r2_1.png Graphic file (type png)
+<use img/costa_rica_r2_1.png>
+Package pdftex.def Info: img/costa_rica_r2_1.png  used on input line 197.
+(pdftex.def)             Requested size: 426.79135pt x 109.74849pt.
+LaTeX Font Info:    Font shape `T1/zpltlf/m/it' will be
+(Font)              scaled to size 10.0pt on input line 198.
+
+
+LaTeX Info: Redefining \. on input line 220.
+LaTeX Info: Redefining \% on input line 220.
+[18]
+<img/costa_rica_r2_2.png, id=345, 1000.2168pt x 349.7868pt>
+File: img/costa_rica_r2_2.png Graphic file (type png)
+<use img/costa_rica_r2_2.png>
+Package pdftex.def Info: img/costa_rica_r2_2.png  used on input line 226.
+(pdftex.def)             Requested size: 426.79135pt x 149.25253pt.
+
+
+LaTeX Info: Redefining \. on input line 234.
+LaTeX Info: Redefining \% on input line 234.
+[19 <./img/costa_rica_r2.png> <./img/costa_rica_r2_1.png>]
+<img/costa_rica_r2_3.png, id=355, 1000.2168pt x 349.7868pt>
+File: img/costa_rica_r2_3.png Graphic file (type png)
+<use img/costa_rica_r2_3.png>
+Package pdftex.def Info: img/costa_rica_r2_3.png  used on input line 243.
+(pdftex.def)             Requested size: 426.79135pt x 149.25253pt.
+
+
+LaTeX Info: Redefining \. on input line 251.
+LaTeX Info: Redefining \% on input line 251.
+[20 <./img/costa_rica_r2_2.png> <./img/costa_rica_r2_3.png>]
+
+LaTeX Info: Redefining \. on input line 263.
+LaTeX Info: Redefining \% on input line 263.
+[21])
+
+LaTeX Info: Redefining \. on input line 80.
+LaTeX Info: Redefining \% on input line 80.
+[22] (chapters/resultados.tex
 Cap\'{\i }tulo 6.
 
 
-[17]
+[23]
+<img/bolivia_model_MLP-BP_PCA.png, id=382, 708.246pt x 419.166pt>
+File: img/bolivia_model_MLP-BP_PCA.png Graphic file (type png)
+<use img/bolivia_model_MLP-BP_PCA.png>
+Package pdftex.def Info: img/bolivia_model_MLP-BP_PCA.png  used on input line 46.
+(pdftex.def)             Requested size: 426.79135pt x 252.59525pt.
 
-LaTeX Info: Redefining \. on input line 38.
-LaTeX Info: Redefining \% on input line 38.
-[18]) (chapters/impacto-esperado.tex
+
+LaTeX Info: Redefining \. on input line 64.
+LaTeX Info: Redefining \% on input line 64.
+[24 <./img/bolivia_model_MLP-BP_PCA.png>]
+
+LaTeX Info: Redefining \. on input line 93.
+LaTeX Info: Redefining \% on input line 93.
+[25]
+
+LaTeX Info: Redefining \. on input line 117.
+LaTeX Info: Redefining \% on input line 117.
+[26]) (chapters/impacto-esperado.tex
 Cap\'{\i }tulo 7.
 
 
-[19]
+[27])
 
-LaTeX Info: Redefining \. on input line 32.
-LaTeX Info: Redefining \% on input line 32.
-[20]) (chapters/conclusiones.tex
+LaTeX Info: Redefining \. on input line 86.
+LaTeX Info: Redefining \% on input line 86.
+[28] (chapters/conclusiones.tex
 Cap\'{\i }tulo 8.
 
 
-[21])
-
-LaTeX Info: Redefining \. on input line 89.
-LaTeX Info: Redefining \% on input line 89.
-[22]
+[29])
 
 LaTeX Info: Redefining \. on input line 92.
 LaTeX Info: Redefining \% on input line 92.
-[23]
+[30]
 \openout2 = `chapters/apendice-a.aux'.
 
 
@@ -2028,7 +2091,7 @@ Overfull \hbox (7.93759pt too wide) in paragraph at lines 97--97
 
 
 
-[24
+[31
 
 
 
@@ -2043,7 +2106,7 @@ This document will not have a glossary.
 
 LaTeX Info: Redefining \. on input line 98.
 LaTeX Info: Redefining \% on input line 98.
-[25] (main.aux
+[32] (main.aux
 LaTeX Info: Redefining \sptext on input line 23.
 LaTeX Info: Redefining \. on input line 23.
 LaTeX Info: Redefining \% on input line 23.
@@ -2054,29 +2117,24 @@ L3 programming layer <2020/03/25>
  ***********
 
 
-LaTeX Warning: There were undefined references.
-
-
-Package biblatex Warning: Please (re)run Biber on the file:
-(biblatex)                main
-(biblatex)                and rerun LaTeX afterwards.
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 49530 strings out of 473536
- 962622 string characters out of 5713504
- 1901645 words of memory out of 5000000
- 71851 multiletter control sequences out of 15000+600000
- 622268 words of font info for 78 fonts, out of 8000000 for 9000
+ 49673 strings out of 473536
+ 965765 string characters out of 5713504
+ 1907979 words of memory out of 5000000
+ 71961 multiletter control sequences out of 15000+600000
+ 627848 words of font info for 90 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  123i,17n,131p,2561b,4248s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Users/juansoag/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/juansoag/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/juansoag/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/juansoag/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/juansoag/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/juansoag/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/juansoag/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/juansoag/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/juansoag/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/juansoag/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Users/juansoag/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/juansoag/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Users/juansoag/AppData/Local/Programs/MiKTeX/fonts/type1/public/newpx/zplb.pfb><C:/Users/juansoag/AppData/Local/Programs/MiKTeX/fonts/type1/public/newpx/zplbi.pfb><C:/Users/juansoag/AppData/Local/Programs/MiKTeX/fonts/type1/public/newpx/zplr.pfb><C:/Users/juansoag/AppData/Local/Programs/MiKTeX/fonts/type1/public/newpx/zplri.pfb>
-Output written on main.pdf (29 pages, 455939 bytes).
+<C:/Users/juansoag/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/juansoag/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/juansoag/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/juansoag/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/juansoag/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/juansoag/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/juansoag/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/juansoag/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/juansoag/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/juansoag/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/juansoag/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/juansoag/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Users/juansoag/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/juansoag/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Users/juansoag/AppData/Local/Programs/MiKTeX/fonts/type1/public/newpx/zplb.pfb><C:/Users/juansoag/AppData/Local/Programs/MiKTeX/fonts/type1/public/newpx/zplbi.pfb><C:/Users/juansoag/AppData/Local/Programs/MiKTeX/fonts/type1/public/newpx/zplr.pfb><C:/Users/juansoag/AppData/Local/Programs/MiKTeX/fonts/type1/public/newpx/zplri.pfb>
+Output written on main.pdf (36 pages, 1034342 bytes).
 PDF statistics:
- 628 PDF objects out of 1000 (max. 8388607)
- 131 named destinations out of 1000 (max. 500000)
- 438 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 753 PDF objects out of 1000 (max. 8388607)
+ 160 named destinations out of 1000 (max. 500000)
+ 521 words of extra memory for PDF output out of 10000 (max. 10000000)
 
