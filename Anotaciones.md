@@ -14,3 +14,18 @@
 - Poner desempleo u otro dato relevante 
 - Normalizar respecto al número de seguidores, pero no eliminar los datos sin normalizar y los normalizados (No se pudo sacar)
 - Tener ya el jurado politólogo (Hecho)
+
+## **11/06/2026**
+
+- No meterle más al documento, solo mejorar el modelo
+- Insistir en sacar el número de seguidores
+    - Sacar el número de seguidores de cada candidato HOY y castigar a los candidatos ganadores multiplicando por un número entre 0 y 1
+- Revisar A PROFUNDIDAD el modelo binario, porque hay algo que no cuadra
+
+
+Se puede concluir que el modelo SOMEN-DC funciona, pero nuestro modelo busca más flexible. 
+Lo más importante es "pintarlo como una historia", es un storytelling, hay que resaltar las soluciones ingeniosas para tapar la información no tenemos. Por ejemplo las curvas Weibull y castigar a los que no ganaron en sus seguidores. Lo que más le gusta a un jurado o que en 3 de cada 4 elecciones, el candidato con más interacciones a 7 días de la elección, ganó. 
+
+- Adrian Santana/Juan Pablo Guanipa
+- César Caballero
+- William Oquendo

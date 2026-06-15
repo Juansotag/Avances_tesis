@@ -108,7 +108,9 @@ def unificar_datos():
         # Llenar NaNs con 0 y convertir a entero (int64)
         interact_cols = ['likes', 'comentarios', 'compartidos', 'vistas', 'favoritos', 
                         'fb_love', 'fb_haha', 'fb_care', 'fb_wow', 'fb_sad', 'fb_angry']
-        df_final[interact_cols] = df_final[interact_cols].fillna(0).astype('int64')
+        df_final[interact_cols] = df_final[interact_cols].apply(
+            lambda col: pd.to_numeric(col, errors='coerce')
+        ).fillna(0).astype('int64')
         
         output_file = os.path.join(resultados_path, 'redes_unificadas.csv')
         df_final.to_csv(output_file, index=False, sep=';', encoding='utf-8-sig')
