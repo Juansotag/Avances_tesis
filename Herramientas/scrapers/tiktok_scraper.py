@@ -42,7 +42,13 @@ class TikTokScraper:
             run = self.client.actor(self.actor_id).call(run_input=run_input)
             print(f"✅ Proceso completado en Apify. Descargando resultados...")
             
-            items = list(self.client.dataset(run["defaultDatasetId"]).iterate_items())
+            # Compatibilidad con apify-client (dict u object)
+            if isinstance(run, dict):
+                dataset_id = run.get("defaultDatasetId") or run.get("default_dataset_id")
+            else:
+                dataset_id = getattr(run, "defaultDatasetId", None) or getattr(run, "default_dataset_id", None)
+                
+            items = list(self.client.dataset(dataset_id).iterate_items())
             
             if not items:
                 print("⚠️ No se encontraron resultados en TikTok.")

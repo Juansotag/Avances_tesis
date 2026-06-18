@@ -14,13 +14,17 @@ class TwitterPlaywrightScraper:
         
     def parse_number(self, text):
         if not text: return 0
-        text = re.sub(r'[^0-9.KMB]', '', text.upper())
+        text = text.upper()
         multiplier = 1
-        if 'K' in text: multiplier = 1000; text = text.replace('K', '')
-        elif 'M' in text: multiplier = 1000000; text = text.replace('M', '')
-        elif 'B' in text: multiplier = 1000000000; text = text.replace('B', '')
+        if 'K' in text or 'MIL' in text: multiplier = 1000
+        elif 'M' in text or 'MILLON' in text or 'MILLÓN' in text: multiplier = 1000000
+        elif 'B' in text: multiplier = 1000000000
+        
+        text = re.sub(r'[^0-9.]', '', text.replace(',', '.'))
         try:
             val = float(text)
+            if val < 1000 and multiplier == 1 and '.' in text and len(text.split('.')[-1]) == 3:
+                val = val * 1000
             return int(val * multiplier)
         except:
             return 0
@@ -28,7 +32,7 @@ class TwitterPlaywrightScraper:
     def extract_metric(self, aria_label, keywords):
         if not aria_label: return 0
         for kw in keywords:
-            match = re.search(r'(\d+[.,]?\d*[KMB]?)\s+' + kw, aria_label, re.IGNORECASE)
+            match = re.search(r'(\d+[.,]?\d*(?:\s*(?:K|M|B|mil|millones|millón)\b)?)[^0-9]*?' + kw, aria_label, re.IGNORECASE)
             if match:
                 return self.parse_number(match.group(1))
         return 0
@@ -82,19 +86,18 @@ class TwitterPlaywrightScraper:
                         text_el = tweet.locator('div[data-testid="tweetText"]')
                         text = await text_el.first.inner_text() if await text_el.count() > 0 else ""
                         time_str = await tweet.locator('time').first.get_attribute('datetime')
-                        
                         reply_label = await tweet.locator('button[data-testid="reply"]').get_attribute('aria-label')
-                        replies = self.extract_metric(reply_label, ['repl'])
+                        replies = self.extract_metric(reply_label, ['repl', 'respuest', 'respuesta'])
                         
                         repost_label = await tweet.locator('button[data-testid="retweet"]').get_attribute('aria-label')
-                        reposts = self.extract_metric(repost_label, ['repost'])
+                        reposts = self.extract_metric(repost_label, ['repost', 'retweet'])
                         
                         like_label = await tweet.locator('button[data-testid="like"]').get_attribute('aria-label')
-                        likes = self.extract_metric(like_label, ['like'])
+                        likes = self.extract_metric(like_label, ['like', 'gusta', 'corazón', 'corazon'])
                         
                         views_el = tweet.locator('a[href*="/analytics"]')
                         views_label = await views_el.get_attribute('aria-label') if await views_el.count() > 0 else ""
-                        views = self.extract_metric(views_label, ['view'])
+                        views = self.extract_metric(views_label, ['view', 'reproduccion', 'reproducción', 'vista', 'visualizacion', 'visualización'])
 
                         posts_data.append({
                             'account': handle,

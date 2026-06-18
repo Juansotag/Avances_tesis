@@ -15,7 +15,7 @@ load_dotenv(os.path.join(HERRAMIENTAS_DIR, '.env'))
 def main():
     # --- CONFIGURACIÓN ---
     APIFY_TOKEN = os.getenv("APIFY_TOKEN")
-    START_DATE = "2023-10-22"
+    START_DATE = "2023-10-15"
     END_DATE = "2023-10-29"
     
     # Interruptores
@@ -23,10 +23,10 @@ def main():
     SCRAPE_TIKTOK = False
     SCRAPE_FACEBOOK = False
     
-    LIMIT_ACCOUNTS = 5
-    MAX_TWEETS_PER_CANDIDATE = 50
-    MAX_TIKTOK_PER_CANDIDATE = 50
-    MAX_FACEBOOK_PER_CANDIDATE = 50
+    LIMIT_ACCOUNTS = None
+    MAX_TWEETS_PER_CANDIDATE = 200
+    MAX_TIKTOK_PER_CANDIDATE = 200
+    MAX_FACEBOOK_PER_CANDIDATE = 200
     
     EXCEL_INPUT = os.path.join(os.path.dirname(HERRAMIENTAS_DIR), "Colombia", "Resultados electorales.xlsx")
     SHEET_NAME = "Redes Sociales"

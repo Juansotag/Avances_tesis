@@ -48,8 +48,14 @@ class FacebookScraper:
             
             print(f"✅ Proceso completado en Apify para Facebook. Descargando dataset...")
             
+            # Compatibilidad con nuevas versiones de apify-client donde 'run' es un objeto
+            if isinstance(run, dict):
+                dataset_id = run.get("defaultDatasetId") or run.get("default_dataset_id")
+            else:
+                dataset_id = getattr(run, "defaultDatasetId", None) or getattr(run, "default_dataset_id", None)
+
             # Obtener resultados
-            items = list(self.client.dataset(run["defaultDatasetId"]).iterate_items())
+            items = list(self.client.dataset(dataset_id).iterate_items())
             
             if not items:
                 print(f"⚠️ No se encontraron posts de Facebook para esta URL.")

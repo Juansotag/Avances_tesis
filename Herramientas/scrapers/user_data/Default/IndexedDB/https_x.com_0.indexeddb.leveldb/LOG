@@ -1,3 +1,6 @@
-2026/06/15-16:15:17.253 17a4 Reusing MANIFEST C:\Users\juansoag\Downloads\Avances_tesis (modificado)\Herramientas\scrapers\user_data\Default\IndexedDB\https_x.com_0.indexeddb.leveldb/MANIFEST-000001
-2026/06/15-16:15:17.254 17a4 Recovering log #3
-2026/06/15-16:15:17.260 17a4 Reusing old log C:\Users\juansoag\Downloads\Avances_tesis (modificado)\Herramientas\scrapers\user_data\Default\IndexedDB\https_x.com_0.indexeddb.leveldb/000003.log 
+2026/06/17-11:39:25.095 2cc4 Reusing MANIFEST C:\Users\juansoag\Downloads\Avances_tesis (modificado)\Herramientas\scrapers\user_data\Default\IndexedDB\https_x.com_0.indexeddb.leveldb/MANIFEST-000001
+2026/06/17-11:39:25.097 2cc4 Recovering log #7
+2026/06/17-11:39:25.121 2cc4 Reusing old log C:\Users\juansoag\Downloads\Avances_tesis (modificado)\Herramientas\scrapers\user_data\Default\IndexedDB\https_x.com_0.indexeddb.leveldb/000007.log 
+2026/06/17-11:39:31.717 2cc4 Level-0 table #11: started
+2026/06/17-11:39:31.796 2cc4 Level-0 table #11: 3008164 bytes OK
+2026/06/17-11:39:31.805 2cc4 Delete type=0 #7
