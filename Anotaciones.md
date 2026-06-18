@@ -26,6 +26,14 @@
 Se puede concluir que el modelo SOMEN-DC funciona, pero nuestro modelo busca más flexible. 
 Lo más importante es "pintarlo como una historia", es un storytelling, hay que resaltar las soluciones ingeniosas para tapar la información no tenemos. Por ejemplo las curvas Weibull y castigar a los que no ganaron en sus seguidores. Lo que más le gusta a un jurado o que en 3 de cada 4 elecciones, el candidato con más interacciones a 7 días de la elección, ganó. 
 
-- Adrian Santana/Juan Pablo Guanipa
-- César Caballero
+- Adrian Santana/Juan Pablo Guanipa (Confirmado)
+- César Caballero (Confirmado)
 - William Oquendo
+
+## **18/06/2026**
+
+- "*Esto es marketing*" - hay que ser el primer convencido de su trabajo
+- El artículo donde se le puso el nombre de *Physics-Informed Neural Networks* obtuvo muchas más citaciones 
+- Próxima semana hay que tener el manuscrito y la presentación hechas
+
+Election-Agnóstic Nowcasting Model - ELA-NOM
