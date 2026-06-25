@@ -1,6 +1,6 @@
 \babel@toc {spanish}{}\relax 
-\contentsline {chapter}{Resumen}{1}{section*.3}%
-\contentsline {chapter}{Abstract}{1}{section*.4}%
+\contentsline {chapter}{Resumen}{\es@scroman {v}}{section*.3}%
+\contentsline {chapter}{Abstract}{\es@scroman {v}}{section*.4}%
 \contentsline {chapter}{\numberline {1}Introducción}{1}{chapter.1}%
 \contentsline {section}{\numberline {1.1}Motivación del problema}{1}{section.1.1}%
 \contentsline {section}{\numberline {1.2}Estado del arte: de los modelos paramétricos al SOMEN-DC}{2}{section.1.2}%
@@ -38,21 +38,26 @@
 \contentsline {subsection}{\numberline {5.4.d}Selección y calibración del modelo Weibull}{17}{subsection.5.4.4}%
 \contentsline {subsection}{\numberline {5.4.e}Validación: precisión en la estimación del total final}{18}{subsection.5.4.5}%
 \contentsline {subsection}{\numberline {5.4.f}Función de reconstrucción histórica}{19}{subsection.5.4.6}%
-\contentsline {section}{\numberline {5.5}Etapa 3 - Colombia: Construcción del dataset y modelado}{21}{section.5.5}%
-\contentsline {section}{\numberline {5.6}Modelado predictivo}{22}{section.5.6}%
-\contentsline {subsection}{\numberline {5.6.a}Modelo de regresión}{22}{subsection.5.6.1}%
-\contentsline {subsection}{\numberline {5.6.b}Modelo de clasificación binaria}{22}{subsection.5.6.2}%
-\contentsline {chapter}{\numberline {6}Resultados}{23}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Resultados de Bolivia (Etapa 1)}{23}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Resultados de Costa Rica (Etapa 2)}{25}{section.6.2}%
-\contentsline {section}{\numberline {6.3}Resultados de Colombia (Etapa 3)}{26}{section.6.3}%
-\contentsline {section}{\numberline {6.4}Síntesis: contribuciones al estado del arte}{27}{section.6.4}%
-\contentsline {chapter}{\numberline {7}Impacto esperado}{27}{chapter.7}%
-\contentsline {section}{\numberline {7.1}Impacto académico}{27}{section.7.1}%
-\contentsline {section}{\numberline {7.2}Impacto práctico}{28}{section.7.2}%
-\contentsline {section}{\numberline {7.3}Limitaciones y trabajo futuro}{28}{section.7.3}%
-\contentsline {chapter}{\numberline {8}Conclusiones}{29}{chapter.8}%
-\contentsline {section}{\numberline {8.1}Respuesta a la pregunta de investigación}{29}{section.8.1}%
-\contentsline {section}{\numberline {8.2}Lecciones aprendidas}{30}{section.8.2}%
-\contentsline {section}{\numberline {8.3}Próximos pasos}{30}{section.8.3}%
-\contentsline {chapter}{Bibliograf\'{\i }a}{31}{section*.15}%
+\contentsline {section}{\numberline {5.5}Etapa 3 - Colombia: Construcción del dataset y modelado}{19}{section.5.5}%
+\contentsline {section}{\numberline {5.6}Modelado predictivo}{21}{section.5.6}%
+\contentsline {subsection}{\numberline {5.6.a}Modelo de regresión fraccional (cuota de voto)}{21}{subsection.5.6.1}%
+\contentsline {subsection}{\numberline {5.6.b}Selección de especificación y regularización (ElasticNet)}{22}{subsection.5.6.2}%
+\contentsline {subsection}{\numberline {5.6.c}Aplicación prospectiva: Segunda Vuelta Presidencial Colombia 2026}{23}{subsection.5.6.3}%
+\contentsline {chapter}{\numberline {6}Resultados}{24}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Resultados de Bolivia (Etapa 1)}{24}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Resultados de Costa Rica (Etapa 2)}{26}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Resultados de Colombia (Etapa 3)}{27}{section.6.3}%
+\contentsline {subsection}{\numberline {6.3.a}Señal digital y correlación con el voto}{27}{subsection.6.3.1}%
+\contentsline {subsection}{\numberline {6.3.b}Modelo de regresión fraccional}{27}{subsection.6.3.2}%
+\contentsline {subsection}{\numberline {6.3.c}Especificación ganadora ElasticNet}{29}{subsection.6.3.3}%
+\contentsline {subsection}{\numberline {6.3.d}Aplicación a la Segunda Vuelta Presidencial 2026}{31}{subsection.6.3.4}%
+\contentsline {section}{\numberline {6.4}Síntesis: contribuciones al estado del arte}{32}{section.6.4}%
+\contentsline {chapter}{\numberline {7}Impacto esperado}{32}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Impacto académico}{32}{section.7.1}%
+\contentsline {section}{\numberline {7.2}Impacto práctico}{33}{section.7.2}%
+\contentsline {section}{\numberline {7.3}Limitaciones y trabajo futuro}{33}{section.7.3}%
+\contentsline {chapter}{\numberline {8}Conclusiones}{34}{chapter.8}%
+\contentsline {section}{\numberline {8.1}Respuesta a la pregunta de investigación}{34}{section.8.1}%
+\contentsline {section}{\numberline {8.2}Lecciones aprendidas}{35}{section.8.2}%
+\contentsline {section}{\numberline {8.3}Próximos pasos}{36}{section.8.3}%
+\contentsline {chapter}{Bibliograf\'{\i }a}{37}{section*.23}%

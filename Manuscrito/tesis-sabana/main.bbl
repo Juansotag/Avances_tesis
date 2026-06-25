@@ -778,6 +778,47 @@
       \verb 10.1016/S0261-3794(02)00070-7
       \endverb
     \endentry
+    \entry{papke1996}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=e53e8716c86f3e323deed22a90fdc9ab}{%
+           family={Papke},
+           familyi={P\bibinitperiod},
+           given={Leslie\bibnamedelima E.},
+           giveni={L\bibinitperiod\bibinitdelim E\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=c93aeef4998e670d5343b7e632c431dc}{%
+           family={Wooldridge},
+           familyi={W\bibinitperiod},
+           given={Jeffrey\bibnamedelima M.},
+           giveni={J\bibinitperiod\bibinitdelim M\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{5f9a3bf7c8ea752f93b7457e2a8635a7}
+      \strng{fullhash}{5f9a3bf7c8ea752f93b7457e2a8635a7}
+      \strng{fullhashraw}{5f9a3bf7c8ea752f93b7457e2a8635a7}
+      \strng{bibnamehash}{5f9a3bf7c8ea752f93b7457e2a8635a7}
+      \strng{authorbibnamehash}{5f9a3bf7c8ea752f93b7457e2a8635a7}
+      \strng{authornamehash}{5f9a3bf7c8ea752f93b7457e2a8635a7}
+      \strng{authorfullhash}{5f9a3bf7c8ea752f93b7457e2a8635a7}
+      \strng{authorfullhashraw}{5f9a3bf7c8ea752f93b7457e2a8635a7}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Applied Econometrics}
+      \field{number}{6}
+      \field{title}{Econometric Methods for Fractional Response Variables with an Application to 401(k) Plan Participation Rates}
+      \field{volume}{11}
+      \field{year}{1996}
+      \field{pages}{619\bibrangedash 632}
+      \range{pages}{14}
+      \verb{doi}
+      \verb 10.1002/(SICI)1099-1255(199611)11:6<619::AID-JAE418>3.0.CO;2-1
+      \endverb
+    \endentry
     \entry{occidente2026}{article}{}{}
       \name{author}{1}{}{%
         {{un=0,uniquepart=base,hash=9fb49d82a5cac8a2fd348b074b17d240}{%
@@ -1902,6 +1943,47 @@
       \range{pages}{9}
       \verb{doi}
       \verb 10.1016/S0261-3794(02)00070-7
+      \endverb
+    \endentry
+    \entry{papke1996}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=e53e8716c86f3e323deed22a90fdc9ab}{%
+           family={Papke},
+           familyi={P\bibinitperiod},
+           given={Leslie\bibnamedelima E.},
+           giveni={L\bibinitperiod\bibinitdelim E\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=c93aeef4998e670d5343b7e632c431dc}{%
+           family={Wooldridge},
+           familyi={W\bibinitperiod},
+           given={Jeffrey\bibnamedelima M.},
+           giveni={J\bibinitperiod\bibinitdelim M\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{5f9a3bf7c8ea752f93b7457e2a8635a7}
+      \strng{fullhash}{5f9a3bf7c8ea752f93b7457e2a8635a7}
+      \strng{fullhashraw}{5f9a3bf7c8ea752f93b7457e2a8635a7}
+      \strng{bibnamehash}{5f9a3bf7c8ea752f93b7457e2a8635a7}
+      \strng{authorbibnamehash}{5f9a3bf7c8ea752f93b7457e2a8635a7}
+      \strng{authornamehash}{5f9a3bf7c8ea752f93b7457e2a8635a7}
+      \strng{authorfullhash}{5f9a3bf7c8ea752f93b7457e2a8635a7}
+      \strng{authorfullhashraw}{5f9a3bf7c8ea752f93b7457e2a8635a7}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Applied Econometrics}
+      \field{number}{6}
+      \field{title}{Econometric Methods for Fractional Response Variables with an Application to 401(k) Plan Participation Rates}
+      \field{volume}{11}
+      \field{year}{1996}
+      \field{pages}{619\bibrangedash 632}
+      \range{pages}{14}
+      \verb{doi}
+      \verb 10.1002/(SICI)1099-1255(199611)11:6<619::AID-JAE418>3.0.CO;2-1
       \endverb
     \endentry
     \entry{occidente2026}{article}{}{}

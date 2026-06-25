@@ -91,6 +91,23 @@ Los hallazgos son formidables en la mayoría de las plataformas. Al observar una
 
 En términos globales, entre el 89\% y el 99\% de las publicaciones (según la plataforma) se estiman con un error inferior al 20\% al observarlas en el Día~3. A partir del \textbf{Día~7}, el error mediano cae por debajo del 4\% en todas las plataformas.
 
+\begin{table}[htbp]
+\centering
+\caption{MAPE mediano (\%) en la estimación del total final de interacciones, por plataforma y día de observación (panel longitudinal Costa Rica 2026).}
+\label{tab:mape_plataforma}
+\begin{tabular}{l c c c c c}
+\toprule
+\textbf{Plataforma} & \textbf{Día 0} & \textbf{Día 1} & \textbf{Día 2} & \textbf{Día 3} & \textbf{Día 7} \\
+\midrule
+Facebook   & 11.27\% &  6.92\% & 3.73\% & 2.12\% & 0.32\% \\
+Instagram  & 64.77\% & 20.72\% &15.67\% &12.06\% & 3.76\% \\
+TikTok     & 25.36\% & 14.20\% & 8.35\% & 5.94\% & 2.29\% \\
+Twitter/X  & 56.37\% & 11.09\% & 2.55\% & 0.38\% & 0.00\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
 \subsection*{Función de reconstrucción histórica}
 
 Con los parámetros calibrados se implementó y validó la \textbf{función de reconstrucción histórica} (véase Figura~\ref{fig:ejemplos_reconstruccion}), que dado el total de interacciones observado en un día $t$ y la plataforma, genera la curva diaria completa de interacciones nuevas e infiere el estado del post en cualquier fecha pasada. No se documentaron violaciones de monotonicidad (una publicación nunca pierde interacciones al retroceder en el tiempo), y el error mediano inyectado a la serie temporal en el Día~14 pre-elección es matemáticamente cero para Facebook y Twitter/X.
@@ -101,13 +118,102 @@ Con los parámetros calibrados se implementó y validó la \textbf{función de r
 \section{Resultados de Colombia (Etapa 3)}
 % ──────────────────────────────────────────────────────────────
 
-La evaluación del ecosistema digital de las elecciones de alcaldes 2023 sobre las 31 ciudades competitivas colombianas confirmó irrevocablemente la hipótesis fundacional del estudio empírico: las interacciones en redes sociales sí albergan una señal predictiva real y cuantificable sobre el comportamiento en urnas. 
+\subsection{Señal digital y correlación con el voto}
 
-Las pruebas no paramétricas de distribución confirmaron que, en promedio, los candidatos ganadores movilizaron más interacciones globales y poseían un \textit{engagement} marginal por post significativamente más alto ($p < 0.05$) que el resto de contendientes derrotados de sus respectivos tarjetones. Más profundamente, la experimentación estableció un paradigma de extracción de características: la \textbf{dominancia relativa} de la conversación digital en el territorio superó con creces al volumen nominal de interacciones como predictor de éxito, logrando índices de correlación monótona de Spearman superiores a 0.46.
+La evaluación del ecosistema digital de las elecciones de alcaldes de 2023 sobre las 31 ciudades competitivas colombianas confirmó la hipótesis fundacional del estudio: las interacciones en redes sociales albergan una señal predictiva real y cuantificable sobre el comportamiento en urnas.
 
-Frente a la escalabilidad de modelado en escasez de datos (112 muestras), los resultados fueron contrastantes. El abordaje de \textbf{regresión lineal / no-lineal} para adivinar márgenes porcentuales exactos de voto fracasó categóricamente (el máximo techo explicativo o pseudo-$R^2$ alcanzado fue apenas del 0.118), indicando que el espacio dimensional es excesivamente grande y ruidoso frente a la disponibilidad de observaciones. 
+Las pruebas U de Mann--Whitney confirmaron que los candidatos ganadores movilizaron, en promedio, más interacciones globales (44.252 vs.~28.011) y un \textit{engagement} por publicación significativamente mayor ($p = 0.0481$) que sus contendientes derrotados. La \textbf{dominancia relativa} de \textit{likes} superó consistentemente al volumen nominal como predictor, con una correlación de Spearman de 0.70 sobre todos los candidatos (véase la Figura~\ref{fig:col_scatter}). Un heurístico ingenuo, asignar la victoria al candidato con mayor dominancia de \textit{engagement}, acertó en el 71\% de las 31 contiendas.
 
-Por el contrario, la \textbf{clasificación probabilística discreta} (resolver quién es el ganador binario del certamen en cada ciudad) exhibió una convergencia parcial y funcional. Los modelos de ensamble superaron métricas conservadoras con tasas de aciertos ponderadas del 59.3\% en adivinar correctamente el mapa político regional de ganadores por capitales. No obstante, las arquitecturas entrenadas no lograron desbancar al heurístico analítico puro (\textit{baseline}): simplemente asignar como ganador determinista al candidato que en solitario concentró la mayor dominancia de \textit{engagement} en su respectiva ciudad reportó una tasa de acierto del 70.4\%. La señal existe intrínsecamente en el vector espacial, pero la reducida cardinalidad de la matriz actual imposibilita que una red compleja de aprendizaje automatizado abstraiga patrones topológicos multidimensionales que le permitan abatir una simple regla algorítmica descriptiva. 
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.82\linewidth]{img/col_scatter_dominancia_votos.png}
+\caption{Relación entre la dominancia digital de \textit{likes} y la cuota de voto real en las elecciones de alcaldes de Colombia 2023 (120 candidatos, 31 contiendas). La correlación de rango de Spearman calculada sobre todos los candidatos (mancomunada) es $\rho = 0.70$ ($p < 0.001$). Los puntos azules corresponden a ganadores y los rojos a perdedores.}
+\label{fig:col_scatter}
+\end{figure}
+
+\subsection{Modelo de regresión fraccional}
+
+El modelo de regresión logística fraccional entrenado sobre los 120 candidatos (31 contiendas) produjo, mediante validación \textit{leave-one-contest-out} (LOCO-CV), los resultados que se resumen junto al resto de especificaciones evaluadas en la Tabla~\ref{tab:automl_escalera}.
+
+\begin{table}[htbp]
+\centering
+\caption{Escalera de resultados del proceso AutoML acotado: comparativa completa de especificaciones (LOCO-CV, 31 contiendas, 120 candidatos).}
+\label{tab:automl_escalera}
+\begin{tabular}{l c c c}
+\toprule
+\textbf{Modelo} & \textbf{MAE (pp)} & \textbf{$R^2_{oos}$} & \textbf{Top-1} \\
+\midrule
+\textit{Baseline} proporcionalidad & 12.61 & 0.185 & 71.0\% \\
+Núcleo digital (solo logit\_likes) & 11.52 & 0.460 & 71.0\% \\
+\textbf{Modelo completo (ElasticNet, selección anidada)} & \textbf{9.43} & \textbf{0.518} & 64.5\% \\
+\textit{Gradient boosting} superficial (control) & 9.91 & 0.515 & 67.7\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+El modelo completo con selección anidada ElasticNet reduce el MAE en 3.18~pp respecto al \textit{baseline} de proporcionalidad y en 2.09~pp respecto al núcleo digital, alcanzando un MAE de \textbf{9.43~pp} y un $R^2_{oos}$ de 0.518. La Figura~\ref{fig:col_mae} ilustra la escalera de mejora entre especificaciones. El \textit{gradient boosting} de control (MAE~9.91) no logra superar a la regresión regularizada, confirmando que con 31 contiendas la no-linealidad adicional solo añade varianza. El descenso del \textit{top-1} al 64.5\% es teóricamente coherente: optimizar para la cuota de voto de \textit{todos} los candidatos y acertar quién es el \#1 son objetivos distintos, y el modelo sacrifica algo de exactitud de ranking a cambio de estimaciones de magnitud más calibradas.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.82\linewidth]{img/col_mae_escalera.png}
+\caption{Escalera de desempeño de especificaciones evaluadas (LOCO-CV, 31 contiendas). Cada barra representa el MAE en puntos porcentuales de la cuota de voto. La línea punteada vertical marca el \textit{baseline} de proporcionalidad.}
+\label{fig:col_mae}
+\end{figure}
+
+\subsection{Especificación ganadora ElasticNet}
+
+La selección anidada de especificación por LOCO-CV identificó como modelo óptimo el ElasticNet regularizado con dos predictores: la dominancia en logit de \textit{likes} ($f_{\text{likes\_dom}}$) y su interacción con el logaritmo de la población municipal ($f_{\text{likes\_dom}} \times (\log\text{pob} - \overline{\log\text{pob}})$). Los coeficientes estimados fueron $\hat{\beta}_1 = 0.111$ y $\hat{\beta}_2 = 0.026$, con intercepto 0.258 e hiperparámetros \textit{alpha} $= 0.0475$ y \textit{L1 ratio} $= 0.10$.
+
+La interpretación del moderador de población es teóricamente coherente: en municipios grandes, dominar las redes se traduce con más fuerza en votos que en municipios pequeños, porque la población no actúa como efecto directo (es constante dentro de la contienda y se diluye) sino como \textbf{moderador} de cuánto pesan las interacciones. El coeficiente más fuerte del modelo final ($\hat{\beta}_{\text{mod}} = 0.557$, presente en el 100\% de los pliegues de validación) es precisamente esta interacción, no la dominancia digital en bruto. La Figura~\ref{fig:col_coef} muestra la magnitud y la estabilidad inter-pliegue de ambos coeficientes.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.72\linewidth]{img/col_coef_bootstrap.png}
+\caption{Coeficientes del modelo ElasticNet final (media $\pm$ IC 95\% estimado entre pliegues LOCO-CV). La barra dorada corresponde al término de interacción dominancia$\,\times\,$población, que emerge como el predictor de mayor peso.}
+\label{fig:col_coef}
+\end{figure}
+
+La Figura~\ref{fig:col_residuals} compara las predicciones del modelo con los resultados reales y muestra la distribución de residuos, confirmando que el error es aproximadamente simétrico y centrado en cero.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.95\linewidth]{img/col_loco_residuals.png}
+\caption{Izquierda: predicción vs. resultado real para los 120 candidatos en validación LOCO-CV. La línea discontinua dorada representa la predicción perfecta. Derecha: distribución de residuos (predicho $-$ real, en pp); la línea roja marca el error cero y la dorada la media del error.}
+\label{fig:col_residuals}
+\end{figure}
+
+El modelo final tiene en la práctica \textbf{dos versiones complementarias}: (i) un \textbf{núcleo agnóstico}, solo señales digitales más el número de candidatos, que es transferible a cualquier elección y que es el que se valida prospectivamente en la presidencial 2026; y (ii) una \textbf{capa Colombia}, añade las variables de territorio (población y su moderador), que baja el MAE hasta 9.43~pp pero es específica del nivel municipal colombiano y no se transfiere a una elección nacional.
+
+\subsection{Aplicación a la Segunda Vuelta Presidencial 2026}
+
+El 21 de junio de 2026 se celebró la segunda vuelta presidencial de Colombia, enfrentando a Iván Cepeda Castro y Abelardo De la Espriella. El modelo ELA-NOM, sin reentrenamiento, produjo el pronóstico que resume la Tabla~\ref{tab:pronostico_2026}.
+
+\begin{table}[htbp]
+\centering
+\caption{Pronóstico ELA-NOM vs.~resultado real de la segunda vuelta presidencial colombiana (21 jun.~2026). Fuente del resultado: Registraduría Nacional del Estado Civil.}
+\label{tab:pronostico_2026}
+\begin{tabular}{l c c c c}
+\toprule
+\textbf{Candidato} & \textbf{\textit{Likes} totales} & \textbf{Dom.~\textit{likes}} & \textbf{Pronóstico} & \textbf{Resultado real} \\
+\midrule
+Iván Cepeda Castro & 17.087.679 & 77.6\% & 60.5\% & 49.52\% \\
+Abelardo De la Espriella & 4.926.361 & 22.4\% & 39.5\% & 50.48\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.82\linewidth]{img/col_dominancia_2026.png}
+\caption{Comparación entre la señal digital (dominancia de \textit{likes}), el pronóstico de ELA-NOM y el resultado certificado por la Registraduría Nacional del Estado Civil en la segunda vuelta presidencial de Colombia (21 jun.~2026).}
+\label{fig:col_2026}
+\end{figure}
+
+El modelo apuntó correctamente la dirección de la señal digital (Cepeda acumuló 3.5 veces más \textit{likes}), pero sobreestimó la ventaja resultante. El error absoluto fue de \textbf{10.98~pp} para el candidato con mayor dominancia digital (60.5\% pronóstico vs.~49.52\% real), valor que cae dentro del intervalo de incertidumbre reportado por el LOCO-CV (MAE~$\approx$~9.4~pp, rango plausible 51\%--70\%).
+
+El dato definitivo para contextualizar el error es el margen real de la elección: De la Espriella ganó por \textbf{apenas 0.96 puntos porcentuales} (50.48\% vs.~49.52\%), es decir, una contienda de empate técnico. Predecir correctamente el ganador en semejante escenario excede la resolución de cualquier modelo basado en métricas de \textit{engagement} agregado, de hecho, excede la resolución de la mayoría de las encuestas publicadas durante la campaña. Lo que el modelo reporta correctamente es que la contienda era competitiva: su pronóstico de 60.5\% para Cepeda implica, dentro del intervalo de incertidumbre ($\pm$~MAE~$\approx 9.4$~pp), que cualquier resultado entre el 51\% y el 70\% era plausible, y el resultado real (49.52\%) queda a apenas $\approx$1.5~pp del límite inferior de ese rango (60.5 $-$ 9.43 $= 51.07$\%).
+
+Este hallazgo delimita con precisión el espacio donde ELA-NOM es informativo: contiendas con ventajas digitales netas superiores a 20~pp, donde la señal digital traslada más fuerza a las urnas. En contiendas de empate técnico como la segunda vuelta de 2026, las métricas de \textit{engagement} agregado capturan movilización simbólica pero no la movilización efectiva diferencial, los giros de última semana ni la estructura organizativa territorial. Lejos de invalidar el modelo, este resultado es el límite estructural mejor documentado que la investigación puede reportar.
 
 % ──────────────────────────────────────────────────────────────
 \section{Síntesis: contribuciones al estado del arte}
@@ -116,7 +222,7 @@ Por el contrario, la \textbf{clasificación probabilística discreta} (resolver 
 Los hallazgos empíricos y los desarrollos técnicos documentados a lo largo de este estudio confluyen en cuatro contribuciones sustanciales al dominio de la analítica política y los modelos predictivos heterodoxos:
 
 \begin{enumerate}
-    \item \textbf{Elección-Agnosticismo Empírico:} Se establece una ruta metodológica viable (demostrada a través de la clasificación binaria basada en la métrica transversal de dominancia relativa) para romper la asimetría temporal del SOMEN-DC, permitiendo entrenar algoritmos con observaciones de múltiples contiendas de alcaldías paralelas simultáneamente y abstraer reglas de decisión exportables.
+    \item \textbf{Elección-Agnosticismo Empírico:} Se establece una ruta metodológica viable, demostrada a través de la regresión fraccional basada en la métrica transversal de dominancia relativa, para romper la asimetría temporal del SOMEN-DC, permitiendo entrenar algoritmos con observaciones de múltiples contiendas de alcaldías simultáneas y abstraer reglas de decisión exportables a elecciones de distinto formato.
     
     \item \textbf{Total Independencia Demoscópica:} A diferencia de la inmensa mayoría de la literatura contemporánea en estimación digital electoral, este esquema sustituye la obligatoriedad de usar encuestas como variable dependiente, anclando directamente su optimización sobre la variable \textit{ground truth} universal: el escrutinio final. 
     

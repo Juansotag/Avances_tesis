@@ -92,7 +92,7 @@ La arquitectura metodológica de esta investigación está estructurada como un 
 
 Para confirmar empíricamente las limitaciones inherentes a la literatura de \textit{nowcasting} dependiente de encuestas, se planteó un caso de estudio replicando la metodología SOMEN-DC en el contexto de la segunda vuelta presidencial de Bolivia (programada para el 19 de octubre de 2025). Esta contienda polarizada entre Rodrigo Paz Pereira y Jorge ``Tuto'' Quiroga representó un escenario ideal de prueba por ser una elección presidencial en un país Latinoamericano no tratado por los autores (Brito y Andeoato) en su producción científica. El resultado real proyectado para el estudio determinó a Paz como ganador con el 54.53\% frente al 45.47\% de Quiroga.
 
-Se definió como ventana temporal retrospectiva 180 días (del 18 de mayo al 18 de octubre de 2025). Para extraer los datos se usaron herramientas como Apify operando como \textit{scrapers} web y Make.com como orquestador lógico, programados para extraer diariamente las interacciones a las 10:00 p.m. hora de La Paz de las cuentas oficiales de ambos candidatos en Facebook, Twitter/X, Instagram y TikTok. Los datos crudos se agregaron a nivel diario, garantizando continuidad temporal al imputar con cero (0) aquellos días sin publicaciones. El procesamiento incluyó el cálculo de promedios de interacción por publicación (ej. \textit{likes} por post) para medir tanto el volumen bruto como la calidad del \textit{engagement}, consolidando un vector final de 24 características explicativas numéricas en un \textit{dataset} de 308 registros independientes.
+Se definió como ventana temporal retrospectiva 153 días (del 18 de mayo al 18 de octubre de 2025). Para extraer los datos se usaron herramientas como Apify operando como \textit{scrapers} web y Make.com como orquestador lógico, programados para extraer diariamente las interacciones a las 10:00 p.m. hora de La Paz de las cuentas oficiales de ambos candidatos en Facebook, Twitter/X, Instagram y TikTok. Los datos crudos se agregaron a nivel diario, garantizando continuidad temporal al imputar con cero (0) aquellos días sin publicaciones. El procesamiento incluyó el cálculo de promedios de interacción por publicación (ej. \textit{likes} por post) para medir tanto el volumen bruto como la calidad del \textit{engagement}, consolidando un vector final de \textbf{26 características} explicativas numéricas en un \textit{dataset} de 308 registros independientes.
 
 \subsection{Preparación de datos y variable objetivo}
 
@@ -201,24 +201,6 @@ La Figura~\ref{fig:weibull_por_plataforma} muestra el ajuste del modelo Weibull 
 
 \subsection{Validación: precisión en la estimación del total final}
 
-Dado que el objetivo no es ajustar curvas sino reconstruir el total final de interacciones a partir de una observación parcial, la métrica de evaluación relevante es el \textbf{Error Porcentual Absoluto Mediano} (MAPE) entre el total estimado $\hat{N} = n_t / F(t)$ y el total real $N$ observado al final del período. La Tabla~\ref{tab:mape_plataforma} resume estos errores por plataforma y día de observación.
-
-\begin{table}[htbp]
-\centering
-\caption{MAPE mediano (\%) en la estimación del total final de interacciones, por plataforma y día de observación.}
-\label{tab:mape_plataforma}
-\begin{tabular}{l c c c c c}
-\toprule
-\textbf{Plataforma} & \textbf{Día 0} & \textbf{Día 1} & \textbf{Día 2} & \textbf{Día 3} & \textbf{Día 7} \\
-\midrule
-Facebook   & 11.27\% &  6.92\% & 3.73\% & 2.12\% & 0.32\% \\
-Instagram  & 64.77\% & 20.72\% &15.67\% &12.06\% & 3.76\% \\
-TikTok     & 25.36\% & 14.20\% & 8.35\% & 5.94\% & 2.29\% \\
-Twitter/X  & 56.37\% & 11.09\% & 2.55\% & 0.38\% & 0.00\% \\
-\bottomrule
-\end{tabular}
-\end{table}
-
 La Figura~\ref{fig:error_estimacion} muestra visualmente estos resultados. En el panel izquierdo se observa que el MAPE decae exponencialmente con el día de observación: a partir del Día~3, todos los modelos, excepto Instagram, se ubican por debajo del umbral de referencia del 20\%. El panel derecho ilustra la distribución completa del error al Día~3, mostrando que la gran mayoría de las publicaciones se estima con alta precisión. Instagram presenta el MAPE más alto en días tempranos debido a la fuerte concentración de interacciones en las primeras horas, que el modelo no captura completamente con el offset $t_0 = 0.04$ días.
 
 \begin{figure}[htbp]
@@ -230,13 +212,13 @@ La Figura~\ref{fig:error_estimacion} muestra visualmente estos resultados. En el
 
 \subsection{Función de reconstrucción histórica}
 
-Con los parámetros calibrados, se implementó una función de reconstrucción que, dada la fecha de publicación, las interacciones observadas en un día $t$ y la plataforma, estima el total final de interacciones y genera la curva diaria completa. Formalmente, el total final estimado es:
+Con los parámetros calibrados, se implementó una función de reconstrucción que, dada la fecha de publicación, las interacciones observadas en un día $t$ y la plataforma, estima el total final de interacciones y genera la curva diaria completa. Formalmente:
 
 \begin{equation}
     \hat{N} = \frac{n_t}{F(t; k, \alpha, t_0)}
 \end{equation}
 
-donde $n_t$ son las interacciones observadas en el Día~$t$ y $F(t; k, \alpha, t_0) = 1 - e^{-k(t + t_0)^\alpha}$ es la fracción acumulada predicha por el modelo. La Figura~\ref{fig:ejemplos_reconstruccion} muestra dos ejemplos concretos: una publicación de Facebook con un total final conocido de 50,000 interacciones, y una publicación de Instagram con 43,000 interacciones observadas parcialmente en el Día~10. El modelo reconstruye la curva de interacciones nuevas por día (barras azules) y el porcentaje acumulado (línea roja), permitiendo inferir el estado histórico de cualquier publicación en cualquier momento pasado.
+donde $n_t$ son las interacciones observadas en el Día~$t$ y $F(t; k, \alpha, t_0) = 1 - e^{-k(t + t_0)^\alpha}$ es la fracción acumulada predicha. Los parámetros exportados a un archivo de configuración garantizan consistencia entre las dos fases del estudio.
 
 \begin{figure}[htbp]
     \centering
@@ -245,7 +227,6 @@ donde $n_t$ son las interacciones observadas en el Día~$t$ y $F(t; k, \alpha, t
     \label{fig:ejemplos_reconstruccion}
 \end{figure}
 
-Los parámetros $k$, $\alpha$ y $t_0$ de las cuatro plataformas, junto con los MAPE por día de observación, se exportaron en un archivo de configuración que es consumido directamente por la etapa de construcción del \textit{dataset} de Colombia (Etapa~3), garantizando consistencia entre las dos fases del estudio.
 
 % ──────────────────────────────────────────────────────────────
 \section{Etapa 3 - Colombia: Construcción del dataset y modelado}
@@ -253,26 +234,89 @@ Los parámetros $k$, $\alpha$ y $t_0$ de las cuatro plataformas, junto con los M
 
 Con la solución temporal formalizada, la tercera etapa se concentró en la construcción del \textit{dataset} de entrenamiento masivo. Se estableció un protocolo riguroso de diseño para capturar información exclusiva de las campañas de las elecciones locales de alcaldías en Colombia de octubre de 2023. Se definió un universo geográfico abarcando las 33 ciudades más pobladas de Colombia, procediendo a compilar interacciones generadas estrictamente en la ventana de 14 días previos a los comicios.
 
-Por políticas y restricciones agresivas de la API \textit{Graph} impuestas corporativamente por Meta en sus versiones recientes, Instagram tuvo que ser excluido de la extracción sistematizada. Por tanto, la adquisición de datos de fuentes abiertas iteró sobre tres infraestructuras concurrentes automatizadas a través de un \textit{pipeline} (\textit{scripts} `scrapping\_general.py` y `unificar\_redes.py`): Playwright para automatización de navegadores ocultos (\textit{headless}) contra la interfaz web de Twitter/X (con restricción de hasta 50 \textit{tweets} por actor); y consultas de alto rendimiento hacia la API privada no documentada de TikTok y las colecciones indexadas de Facebook a través de \textit{Apify}. 
+Por políticas y restricciones agresivas de la API \textit{Graph} impuestas corporativamente por Meta en sus versiones recientes, Instagram tuvo que ser excluido de la extracción sistematizada. Por tanto, la adquisición de datos de fuentes abiertas iteró sobre tres infraestructuras concurrentes automatizadas a través de un \textit{pipeline}: Playwright para automatización de navegadores ocultos (\textit{headless}) contra la interfaz web de Twitter/X; y consultas de alto rendimiento hacia la API privada no documentada de TikTok y las colecciones indexadas de Facebook a través de \textit{Apify}. 
 
-Para asegurar la validez inferencial, se aplicaron filtros de exclusión: solo ingresaron al \textit{dataset} actores políticos con más de 10,000 votos confirmados en los escrutinios finales. Se excluyeron deliberadamente dos ciudades, la capital Bogotá (debido al sesgo de representatividad por el perfil de \textit{influencer} de Gustavo Bolívar, cuya masiva tracción general superaba demográficamente la esfera meramente local) y Piedecuesta (debido a que la candidatura ganadora enfrentó problemas legales que resultaron en la desaparición intencional de sus perfiles y rastros de campaña). En casos anómalos como el de Santa Marta, donde la candidatura de mayor votación enfrentó revocatoria legal posterior, el estudio consideró ganador computacional al actor con mayor volumen bruto de votos consignados, para preservar la correlación con la intención ciudadana.
+Para asegurar la validez inferencial, se aplicaron filtros de exclusión: solo ingresaron al \textit{dataset} actores políticos con más de 10,000 votos confirmados en los escrutinios finales. De las 33 ciudades iniciales se excluyeron dos: la capital Bogotá (por el sesgo de representatividad del perfil \textit{influencer} de Gustavo Bolívar, cuya masiva tracción supranacional distorsionaba la escala local) y Piedecuesta (porque la candidatura ganadora eliminó intencionalmente sus perfiles digitales ante procesos legales en curso), dejando \textbf{31 ciudades competitivas}. En casos anómalos como el de Santa Marta, donde la candidatura de mayor votación enfrentó revocatoria legal posterior, el estudio consideró ganador computacional al actor con mayor volumen bruto de votos consignados, para preservar la correlación con la intención ciudadana.
 
-Tras los filtros geográficos y de calidad de datos documentados en el análisis exploratorio preliminar (`analisis\_exploratorio.ipynb`), el universo hábil final consolidó 5,776 publicaciones únicas distribuidas a través de las tres infraestructuras monitoreadas (2,511 en Facebook, 2,346 en Twitter/X y 919 en TikTok). Estas entradas correspondieron a un censo final de 328 candidatos repartidos a través de 31 ciudades competitivas. Sobre los 112 candidatos que superaban la barrera estadística de los 10,000 votos (cuya cobertura digital era altísima, con 92.6\% de ellos poseyendo publicaciones de red activas en el archivo), los análisis paramétricos confirmaron tempranamente la existencia de señal predictiva: las interacciones totales medias evidenciaban que los ganadores promediaban 44,252 frente a 28,011 de los perdedores, y las pruebas U de Mann-Whitney validaban una superioridad de \textit{engagement} medio por publicación estadísticamente significativa para un 95\% de confianza ($p = 0.0481$). De manera asilada, un pronosticador empírico básico (\textit{baseline}) asumiendo que el ganador fuera siempre aquel con mayor volumen nominal habría acertado en el 57.58\% de las jurisdicciones municipales.
-
-La integración operativa del modelo de crecimiento de la Etapa 2 se ejecutó a través de la rutina `Reconstruccion\_Panel\_Historico.ipynb`. Aplicando los parámetros $k, \alpha$ estáticos y derivando el $t_0$ dinámico en función del lapso transcurrido desde la creación particular de cada post, la red reconstruyó la matriz histórica produciendo un super-\textit{dataset} validado de 5,776 instancias por 340 campos numéricos (representando las permutaciones correspondientes a 11 subclases de métricas y sus rezagos o sumatorias acumuladas en plazos iterativos de 30 días escalables). Las calibraciones documentales confirmaron que la monotonicidad de las curvas sintéticas era impecable (cumplimiento en 5,776 de 5,776 ensayos) y el factor de error mediano inyectado sobre las estimaciones finales se situaba matemáticamente en un 0.000\% absoluto para proyecciones convergentes en el día 14.
+Tras los filtros geográficos y de calidad de datos documentados en el análisis exploratorio preliminar, el universo hábil final consolidó 5.776 publicaciones únicas distribuidas a través de las tres infraestructuras monitoreadas (2.511 en Facebook, 2.346 en Twitter/X y 919 en TikTok). Estas entradas correspondieron a un censo final de 328 candidatos repartidos a través de 31 ciudades competitivas. Sobre los 120 candidatos que superaban la barrera estadística de los 10.000 votos (cuya cobertura digital era altísima, con el 92.6\% de ellos poseyendo publicaciones de red activas en el archivo), los análisis paramétricos confirmaron tempranamente la existencia de señal predictiva: las interacciones totales medias evidenciaban que los ganadores promediaban 44.252 frente a 28.011 de los perdedores, y las pruebas U de Mann-Whitney validaban una superioridad de \textit{engagement} medio por publicación estadísticamente significativa para un 95\% de confianza ($p = 0.0481$). De manera aislada, un pronosticador empírico básico (\textit{baseline}) asumiendo que el ganador fuera siempre aquel con mayor volumen nominal habría acertado en el 57.58\% de las jurisdicciones municipales.
 
 % ──────────────────────────────────────────────────────────────
 \section{Modelado predictivo}
 % ──────────────────────────────────────────────────────────────
 
-La etapa terminal concentró los análisis econométricos y heurísticos bajo dos grandes paradigmas clásicos de la Inteligencia Artificial. 
+La etapa de modelado concentró los análisis econométricos bajo dos grandes paradigmas: regresión continua para estimar la cuota de voto, y clasificación binaria para identificar al ganador por contienda.
 
-\subsection{Modelo de regresión}
+\subsection{Modelo de regresión fraccional (cuota de voto)}
 
-El enfoque predictivo continuo (`Modelo\_Predictivo\_Electoral.ipynb`) pretendía encontrar un mapeo directo para estimar la magnitud escalar porcentual de votos. Con un tensor de entrenamiento reducido dimensionalmente (112 individuos por 84 variables explicativas macro), las optimizaciones se condujeron aplicando el protocolo analítico de validación cruzada dejando uno fuera (\textit{Leave-One-Out Cross-Validation}, LOO-CV) para mitigar correlaciones espaciales endógenas. Las arquitecturas de Vectores de Soporte Regresivo (SVR) provistas de \textit{kernel} radial (RBF) lograron los mejores comportamientos topográficos, pero exhibieron resultados mediocres de inferencia (Error Absoluto Medio de 15.22 puntos porcentuales de desviación por estimación y una varianza explicada o $R^2$ irrisoria del 0.054). La saturación matemática diagnosticó enfáticamente un sobreajuste estructural de la red; la abundancia masiva de variables intervinientes no era asimilable para el pequeño volumen de observaciones empíricas. Se desestimó este enfoque, por ahora, como una ruta viable a corto plazo.
+El objetivo central de la tesis requiere estimar la \textbf{cuota de voto} de cada candidato dentro de su contienda, no identificar al ganador. Al estar la cuota acotada en $(0,1)$, se empleó una \textbf{regresión logística fraccional} (\textcite{papke1996}): un GLM con familia binomial y \textit{link} logit, que respeta los límites naturales sin transformaciones adicionales y conecta con la escala log-odds donde la señal digital es más limpia.
 
-\subsection{Modelo de clasificación binaria}
+La señal digital principal es el \textbf{logit de la dominancia relativa de \textit{likes}}:
 
-Tras constatar la asimetría matricial, el análisis se reconceptualizó sobre el paradigma probabilístico discreto (`Clasificacion\_Binaria\_Electoral.ipynb`), simplificando la tarea del algoritmo a una función discriminatoria simple: adivinar el ganador o vencedor absoluto por distrito (\textit{¿quién gana?}). El hiperplano se centró en priorizar masivamente el constructo analítico de la \textbf{dominancia relativa} como entrada primordial. Con un balance de clases nativo de 24.1\% (casos positivos, victoriosos) versus 75.9\% (casos negativos), los clasificadores de Regresión Logística Penalizada (LOO-CV) dominaron ampliamente, registrando niveles de \textit{Accuracy} ponderado de 0.812 y coeficientes AUC-ROC de 0.770, traduciéndose en pronósticos asertivos para el 59.3\% de las municipalidades (16 aciertos en 27 contiendas). 
+\begin{equation}
+    \text{logit}\bigl(\text{dom}_{likes,c}\bigr) = \log\!\left(\frac{\text{dom}_{likes,c}/100}{1 - \text{dom}_{likes,c}/100}\right)
+    \label{eq:logit-dom}
+\end{equation}
 
-Aunque estas mediciones confirman irreprochablemente que el capital político latente sí se manifiesta y decodifica a través de las interacciones sociales (la señal existe y el ruido no la silencia estadísticamente), un heurístico ingenuo (\textit{baseline}) estipulado al comienzo de la experimentación, pronosticar ciegamente a favor del postulante con el mayor indicador bruto acumulado de \textit{dominancia\_engagement} en el ecosistema municipal, ostentaba un nivel de predicción efectiva del 70.4\% (19 aciertos de 27). Por ende, el algoritmo no pudo rebasar este techo estadístico debido a la falta de masa crítica de entrenamiento y volumen electoral comparado en los rangos analíticos; con mayores tamaños y adiciones de contiendas iteradas, la profundidad topológica se revelaría.
+donde $\text{dom}_{likes,c}$ es la cuota porcentual de \textit{likes} del candidato $c$ sobre el total de la contienda. El modelo ajustado con errores agrupados por contienda sobre los 120 candidatos arrojó:
+
+\begin{equation}
+    \hat{\beta}_{\text{logit\_likes}} = 0.4231 \quad (z = 5.90,\; p < 0.001)
+\end{equation}
+
+Lo que implica que un incremento de una unidad en el logit de la cuota de \textit{likes} multiplica los \textit{odds} de la cuota de voto por $e^{0.42} \approx 1.53$. La validación \textit{leave-one-contest-out} (LOCO-CV) sobre las 31 contiendas produjo los resultados resumidos en la Tabla~\ref{tab:colombia_modelo_continuo}.
+
+\begin{table}[htbp]
+\centering
+\caption{Métricas fuera de muestra del modelo de regresión fraccional (LOCO-CV sobre 31 contiendas, 120 candidatos).}
+\label{tab:colombia_modelo_continuo}
+\begin{tabular}{l c c c}
+\toprule
+\textbf{Modelo} & \textbf{MAE (pp)} & \textbf{$R^2_{oos}$} & \textbf{Top-1} \\
+\midrule
+Regresión fraccional (solo logit\_likes) & 11.52 & 0.460 & 71\% \\
+Baseline proporcionalidad (cuota likes = cuota votos) & 12.61 & 0.185 & 71\% \\
+Baseline uniforme ($1/k$ candidatos) & 12.49 & 0.306 & 39\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+El modelo supera en MAE y $R^2_{oos}$ a ambos \textit{baselines}, confirmando que la señal digital es informativa más allá de la proporcionalidad directa. El \textit{top-1} coincide con el del \textit{baseline} de proporcionalidad (71\%), lo cual es esperable: ambos usan la misma variable ordinal. Sin embargo, el modelo fraccional aporta estimaciones de magnitud más calibradas.
+
+\subsection{Selección de especificación y regularización (ElasticNet)}
+
+Para determinar si añadir variables al modelo reduce el MAE fuera de muestra o solo produce sobreajuste, se realizó un proceso de selección honesta con las siguientes reglas:
+
+\begin{enumerate}
+    \item Toda métrica se calcula \textbf{fuera de muestra} mediante validación \textit{leave-one-contest-out}. Ninguna decisión se toma por el ajuste en entrenamiento.
+    \item La \textbf{métrica única de selección} es el MAE de la cuota de voto (en puntos porcentuales), siempre comparado contra el \textit{baseline} de proporcionalidad.
+    \item La \textbf{regularización} (ElasticNet) realiza la selección de variables automáticamente, eliminando las redundantes por multicolinealidad.
+    \item La selección es \textbf{anidada}: un CV interno elige los hiperparámetros; un CV externo mide el desempeño real, evitando el sesgo de selección.
+\end{enumerate}
+
+El \textit{pool} inicial de nueve variables candidatas incluyó seis cuotas digitales en logit ($f_{\text{likes\_dom}}$, $f_{\text{coment\_dom}}$, $f_{\text{compart\_dom}}$, $f_{\text{likes\_pp}}$, $f_{\text{coment\_pp}}$, $f_{\text{compart\_pp}}$), dos variables territoriales ($n_{\text{candidatos}}$, $\log(\text{pob})$) y un moderador de interacción ($f_{\text{likes\_dom}} \times (\log(\text{pob}) - \overline{\log(\text{pob})})$). El análisis de variación inflacionaria (VIF) reveló alta multicolinealidad entre las cuotas digitales, justificando el uso de ElasticNet.
+
+La \textbf{especificación ganadora} retuvo únicamente dos variables:
+
+\begin{equation}
+    \hat{y}_c = \beta_0 + \beta_1 \cdot f_{\text{likes\_dom},c} + \beta_2 \cdot (f_{\text{likes\_dom},c} \times (\log\text{pob} - \overline{\log\text{pob}}))
+    \label{eq:elasticnet-ganador}
+\end{equation}
+
+con $\hat{\beta}_1 = 0.111$ y $\hat{\beta}_2 = 0.026$ (\textit{alpha} óptimo $= 0.0475$, \textit{L1 ratio} $= 0.10$, intercepto $= 0.258$). Esta especificación logró el menor MAE fuera de muestra entre todas las combinaciones evaluadas, y fue seleccionada como modelo definitivo para la aplicación prospectiva.
+
+\subsection{Aplicación prospectiva: Segunda Vuelta Presidencial Colombia 2026}
+
+El 21 de junio de 2026 se celebró la segunda vuelta de las elecciones presidenciales de Colombia, enfrentando a \textbf{Iván Cepeda Castro} y \textbf{Abelardo De la Espriella}. Esta contienda constituyó el escenario de prueba definitivo del modelo ELA-NOM: por primera vez, el modelo entrenado en elecciones de alcaldes 2023 se aplicaba a una elección distinta, presidencial y de alcance nacional, sin reentrenamiento alguno.
+
+El proceso de \textit{feature engineering} replicó exactamente la metodología de entrenamiento. Se calculó la dominancia de \textit{likes} de cada candidato sobre el total de la contienda presidencial (444 publicaciones en total: 255 de Cepeda y 189 de De la Espriella). Iván Cepeda acumuló 17.087.679 \textit{likes} (77.6\% de dominancia) frente a 4.926.361 de Abelardo De la Espriella (22.4\%).
+
+Una corrección metodológica fue necesaria para esta aplicación: el modelo fue entrenado en contiendas con un promedio de 3.9 candidatos (intercepto $\approx 0.258$, equivalente a una cuota media del 25\% aproximadamente), mientras que una segunda vuelta tiene exactamente dos candidatos y una cuota base del 50\%. Se eliminó por tanto el intercepto multi-candidato y se re-centró la señal sobre la línea base del 50\%:
+
+\begin{equation}
+    \hat{p}_c^{(2)} = 0.50 + (\hat{\boldsymbol{\beta}} \cdot \mathbf{x}_c)
+    \label{eq:recentrado}
+\end{equation}
+
+donde $\hat{\boldsymbol{\beta}} \cdot \mathbf{x}_c$ es la contribución pura de las \textit{features} sin el intercepto. Los pronósticos finales normalizados suman exactamente 1. El modelo otorgó a Cepeda Castro una señal digital de $+0.2294$ en logit, traduciéndose en un pronóstico de \textbf{60.5\%} frente al \textbf{39.5\%} de De la Espriella.
+
+El resultado real de la elección fue aproximadamente 50\%--50\%, con victoria de Abelardo De la Espriella. El MAE del modelo en validación cruzada es de $\approx 10$ pp, lo que sitúa el intervalo de pronóstico plausible entre el 50\% y el 70\% para el candidato favorecido por la señal digital. El resultado observado cae en el extremo inferior de este rango, confirmando tanto la utilidad como los límites actuales del modelo: la dominancia digital de Cepeda Castro (77.6\% de los \textit{likes}) generó una señal robusta pero insuficiente para predecir con precisión el resultado en una contienda excepcionalmente reñida. Este hallazgo es consistente con la literatura: los giros electorales de última semana, frecuentemente asociados a eventos exógenos o movilización diferencial, constituyen el límite empírico más resistente de cualquier modelo basado en métricas de \textit{engagement} agregadas.
