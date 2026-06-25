@@ -1,0 +1,62 @@
+﻿% sections/02_pregunta.tex
+\newcommand{\pregunta}{%
+
+\begin{frame}{Pregunta de investigación}
+\vspace{0.5em}
+\begin{center}
+\begin{tikzpicture}
+  \fill[elanPanel] (0,0) rectangle (13,1.8);
+  \draw[elanGold, line width=1.5pt] (0,0) rectangle (13,1.8);
+  \node[text width=12.5cm, align=center] at (6.5,0.9)
+    {{\color{elanWhite}\normalsize\itshape
+    ``¿Es metodológicamente posible diseñar un modelo de \textit{nowcasting} electoral\\
+    \textbf{election-agnóstico} y \textbf{emancipado de encuestas} para el entorno local colombiano?''}};
+\end{tikzpicture}
+\end{center}
+\vspace{0.8em}
+\begin{columns}[T]
+\column{0.48\textwidth}
+  \textbf{\color{elanGold}Hipótesis operacionales}
+  \begin{itemize}\itemsep0.4em
+    \item[\color{elanGold}H1] Las interacciones en redes contienen señal predictiva real ($\rho > 0$, $p < 0.05$)
+    \item[\color{elanGold}H2] La \textit{dominancia relativa} supera al volumen absoluto como predictor
+    \item[\color{elanGold}H3] Un modelo entrenado en Colombia puede transferirse a elecciones presidenciales sin reentrenamiento
+  \end{itemize}
+\column{0.48\textwidth}
+  \textbf{\color{elanGold}Diseño en 3 etapas}
+  \begin{itemize}\itemsep0.4em
+    \item[\color{elanBlue}E1] \textbf{Bolivia}: replicar SOMEN-DC y documentar sus límites
+    \item[\color{elanBlue}E2] \textbf{Costa Rica}: resolver el problema de la asimetría temporal
+    \item[\color{elanBlue}E3] \textbf{Colombia}: construir ELA-NOM y validarlo prospectivamente
+  \end{itemize}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Variable objetivo: dominancia digital}
+\begin{columns}[c]
+\column{0.5\textwidth}
+  \textbf{\color{elanGold}Definición formal}\\[0.6em]
+  Sea $\mathcal{C}_d$ el conjunto de candidatos en la contienda $d$.\\[0.4em]
+  La \textbf{dominancia digital} del candidato $c$ es:
+  \[
+    \delta_c^{(d)} = \frac{\sum_{p \in P_c} \text{likes}_p}
+                          {\displaystyle\sum_{c' \in \mathcal{C}_d}\sum_{p \in P_{c'}} \text{likes}_p}
+  \]
+  donde $P_c$ son las publicaciones del candidato $c$ en la ventana de 14 días previos.\\[0.6em]
+  \textbf{Propiedad clave}: $\displaystyle\sum_{c \in \mathcal{C}_d} \delta_c^{(d)} = 1$
+  \quad {\color{elanGray}\small(suma cero dentro de contienda)}
+
+\column{0.46\textwidth}
+  \begin{tikzpicture}
+    \fill[elanPanel] (0,0) rectangle (5.6,5.5);
+    \node[anchor=north, yshift=-0.2cm, text=elanGold, font=\small\bfseries] at (2.8,5.5)
+      {Cuota de likes vs.\ cuota de votos};
+    \node[anchor=south, yshift=0.2cm, text=elanGray, font=\footnotesize] at (2.8,0)
+      {$\rho = 0.70$ sobre 120 candidatos (31 contiendas)};
+    \node[anchor=center] at (2.8,2.8)
+      {\includegraphics[width=5.0cm]{img/colombia/col_scatter_dominancia_votos.png}};
+  \end{tikzpicture}
+\end{columns}
+\end{frame}
+
+}% fin \pregunta

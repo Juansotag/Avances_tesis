@@ -1,0 +1,118 @@
+﻿% sections/04_etapa2_costarica.tex
+\newcommand{\etapacostarica}{%
+
+\begin{frame}{El problema de la asimetría temporal}
+\begin{columns}[c]
+\column{0.48\textwidth}
+  \textbf{\color{elanGold}¿Cuál es el problema?}\\[0.5em]
+  {\small Si extraemos datos el 18 de octubre, una publicación del 1 de septiembre ya acumuló 47 días de interacciones adicionales. Necesitamos saber \textbf{cuántas interacciones tenía el día de la elección}, no hoy.}
+  \vspace{0.8em}
+
+  \textbf{\color{elanGold}Solución: modelo de crecimiento Weibull}\\[0.4em]
+  La fracción acumulada de interacciones en el día $t$ sigue:
+  \[
+    F(t;\,k,\alpha,t_0) = 1 - e^{-k\,(t+t_0)^{\alpha}}
+  \]
+  donde $k$ = velocidad, $\alpha$ = forma, $t_0$ = offset inicial.\\[0.5em]
+  El total final estimado dado $n_t$ interacciones en el día $t$:
+  \[
+    \hat{N} = \frac{n_t}{F(t;\,k,\alpha,t_0)}
+  \]
+
+\column{0.48\textwidth}
+  \begin{center}
+    \includegraphics[width=\columnwidth]{img/costa_rica/costa_rica_ganadora.png}
+  \end{center}
+  {\color{elanGray}\tiny Panel longitudinal: 1.922 publicaciones · 4 plataformas · elecciones Costa Rica 2026}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Calibración Weibull por plataforma}
+\begin{center}
+  \includegraphics[width=0.88\textwidth]{img/costa_rica/costa_rica_r2_1.png}
+\end{center}
+\vspace{-0.4em}
+\begin{tikzpicture}
+  \fill[elanPanel] (0,0) rectangle (\textwidth,0.75);
+  \node[anchor=west, xshift=0.3cm, yshift=0.37cm] at (0,0)
+    {{\color{elanGold}\small\bfseries Ajuste $R^2$:}
+     {\color{elanGray}\small\ Facebook 0.94 · TikTok 0.88 · Instagram 0.79 · Twitter/X 0.96}};
+\end{tikzpicture}
+\end{frame}
+
+\begin{frame}{Precisión proyectiva: MAPE por plataforma y día}
+\begin{columns}[c]
+\column{0.55\textwidth}
+  \begin{center}
+    \includegraphics[width=\columnwidth]{img/costa_rica/costa_rica_r2_2.png}
+  \end{center}
+\column{0.42\textwidth}
+  \textbf{\color{elanGold}MAPE mediano al Día~3}\\[0.6em]
+  \begin{tabular}{lc}
+    \toprule
+    \color{elanWhite}Plataforma & \color{elanGold}MAPE D3\\
+    \midrule
+    Facebook   & \textbf{2.12\%}\\
+    Twitter/X  & \textbf{0.38\%}\\
+    TikTok     & \textbf{5.94\%}\\
+    Instagram  & 12.06\%\\
+    \bottomrule
+  \end{tabular}
+  \vspace{0.8em}
+
+  {\color{elanGray}\small A partir del \textbf{Día 3}, Facebook, Twitter/X y TikTok tienen error $< 6\%$.
+  Instagram concentra sus interacciones en las primeras horas ($t_0 = 0.04$ días).}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Ejemplos de reconstrucción histórica}
+\begin{center}
+  \includegraphics[width=0.85\textwidth]{img/costa_rica/costa_rica_r2_3.png}
+\end{center}
+\vspace{-0.4em}
+\begin{tikzpicture}
+  \fill[elanPanel] (0,0) rectangle (\textwidth,0.9);
+  \node[anchor=west, xshift=0.3cm, yshift=0.45cm] at (0,0) {
+    {\color{elanWhite}\small \textbf{Izquierda}: Facebook · 50,000 interacciones totales · reconstrucción desde Día~5\quad}
+    {\color{elanWhite}\small \textbf{Derecha}: Instagram · 43,000 medidas el Día~10}
+  };
+\end{tikzpicture}
+\end{frame}
+
+\begin{frame}{Output: función de reconstrucción exportada}
+\begin{columns}[c]
+\column{0.50\textwidth}
+  \textbf{\color{elanGold}¿Qué se exporta a la Etapa 3?}\\[0.5em]
+  Un archivo de configuración con los parámetros $\{k, \alpha, t_0\}$ calibrados por plataforma, listo para ser consumido por el pipeline de Colombia:
+  \[
+    \hat{n}_{\text{hist}}(\tau) = \hat{N} \cdot \bigl[F(\tau) - F(\tau-1)\bigr]
+  \]
+  donde $\tau < t_{\text{scrape}}$ es el día histórico de interés.\\[0.7em]
+
+  \textbf{\color{elanGold}Impacto}\\[0.4em]
+  {\small El error mediano inyectado a la serie temporal en el Día~14 pre-elección es \textbf{matemáticamente cero} para Facebook y Twitter/X.}
+
+\column{0.46\textwidth}
+  \begin{tikzpicture}
+    \fill[elanPanel] (0,0) rectangle (5.5,5.0);
+    \node[anchor=north, yshift=-0.3cm, text=elanGold, font=\bfseries\small] at (2.75,5.0)
+      {Parámetros calibrados};
+    \node[anchor=north, yshift=-1.0cm, text width=5.0cm, font=\small] at (2.75,5.0) {
+      \begin{tabular}{lccc}
+        \toprule
+        \color{elanWhite}Red & \color{elanGold}$k$ & \color{elanGold}$\alpha$ & \color{elanGold}$t_0$\\
+        \midrule
+        FB  & 0.31 & 0.62 & 0.12\\
+        IG  & 0.89 & 0.44 & 0.04\\
+        TT  & 0.44 & 0.58 & 0.08\\
+        X   & 0.97 & 0.38 & 0.01\\
+        \bottomrule
+      \end{tabular}
+    };
+    \node[anchor=south, yshift=0.3cm, text=elanGreen, font=\small\bfseries] at (2.75,0)
+      {$\Rightarrow$ Error de reconstrucción $\approx 0$ al Día 14};
+  \end{tikzpicture}
+\end{columns}
+\end{frame}
+
+}% fin \etapacostarica

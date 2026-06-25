@@ -1,0 +1,126 @@
+﻿% sections/05_etapa3_colombia.tex
+\newcommand{\etapacolombia}{%
+
+\begin{frame}{Dataset: elecciones locales Colombia 2023}
+\begin{columns}[c]
+\column{0.50\textwidth}
+  \textbf{\color{elanGold}Construcción del dataset}
+  \begin{itemize}\itemsep0.4em
+    \item Universo: 33 ciudades más pobladas
+    \item Excluidas: Bogotá (sesgo influencer) + Piedecuesta (sin datos digitales)
+    \item Universo final: \highlight{31 ciudades competitivas}
+    \item Candidatos con $>$10,000 votos: \highlight{120 candidatos}
+    \item Publicaciones únicas: \highlight{5,776}
+    \begin{itemize}
+      \item[\color{elanBlue}·] Facebook: 2,511
+      \item[\color{elanBlue}·] Twitter/X: 2,346
+      \item[\color{elanBlue}·] TikTok: 919
+    \end{itemize}
+    \item Ventana de captura: \textbf{14 días} previos a los comicios
+    \item Cobertura digital: \textbf{92.6\%} de candidatos con publicaciones activas
+  \end{itemize}
+\column{0.46\textwidth}
+  \begin{tikzpicture}
+    \fill[elanPanel] (0,0) rectangle (5.5,5.5);
+    \node[anchor=north, yshift=-0.2cm, text=elanGold, font=\bfseries\small] at (2.75,5.5)
+      {Pipeline de extracción};
+    \node[anchor=north, yshift=-0.9cm, text width=5.0cm] at (2.75,5.5) {
+      \small
+      \begin{tabular}{ll}
+        \color{elanBlue}\textbf{Facebook} & Apify scraper\\
+        \color{elanBlue}\textbf{Twitter/X} & Playwright headless\\
+        \color{elanBlue}\textbf{TikTok} & API privada (Apify)\\
+        \color{elanRed}\textbf{Instagram} & Excluido (API restrictions)\\
+      \end{tabular}
+    };
+    \node[anchor=south, yshift=0.8cm, text width=5.0cm, align=center] at (2.75,0) {
+      \begin{tikzpicture}
+        \fill[elanGold!20!elanPanel] (0,0) rectangle (5.0,1.2);
+        \draw[elanGold, line width=0.8pt] (0,0) rectangle (5.0,1.2);
+        \node[text=elanGold, font=\bfseries\small] at (2.5,0.9) {Reconstrucción Weibull};
+        \node[text=elanGray, font=\footnotesize] at (2.5,0.45) {aplicada a todas las publicaciones};
+      \end{tikzpicture}
+    };
+  \end{tikzpicture}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Evidencia descriptiva: dominancia digital y votos}
+  \begin{center}
+    \includegraphics[width=0.85\textwidth]{img/colombia/col_scatter_dominancia_votos.png}
+  \end{center}
+  \vspace{-0.4em}
+  \begin{tikzpicture}
+    \fill[elanPanel] (0,0) rectangle (\textwidth,0.75);
+    \node[anchor=west, xshift=0.3cm, yshift=0.37cm] at (0,0)
+      {{\color{elanGold}\small\bfseries $\rho = 0.70$, $p < 0.001$} \quad
+       {\color{elanGray}\small · Ganadores (azul) vs.\ perdedores (rojo) · 120 candidatos, 31 contiendas}};
+  \end{tikzpicture}
+\end{frame}
+
+\begin{frame}{Modelado predictivo: regresión logística fraccional}
+\begin{columns}[c]
+\column{0.52\textwidth}
+  \textbf{\color{elanGold}Especificación del modelo}\\[0.4em]
+  La variable objetivo es la \textbf{cuota de voto real} $v_c \in (0,1)$.\\[0.5em]
+  Dado que $v_c$ es una proporción, usamos regresión logística fraccional (Papke \& Wooldridge, 1996):
+  \[
+    \mathbb{E}[v_c \mid X] = \frac{1}{1 + e^{-(\beta_0 + X^\top \beta)}}
+  \]
+  con predictor central:
+  \[
+    \text{logit}(\delta_c) = \log\!\left(\frac{\delta_c}{1-\delta_c}\right)
+  \]
+  \vspace{0.3em}
+  \textbf{\color{elanGold}Selección de variables: ElasticNet anidado}\\
+  \[
+    \hat{\beta} = \arg\min_\beta \bigl\{L(\beta) + \lambda_1\|\beta\|_1 + \lambda_2\|\beta\|_2^2\bigr\}
+  \]
+
+\column{0.44\textwidth}
+  \textbf{\color{elanGold}Variables del modelo final}\\[0.4em]
+  \begin{tabular}{lc}
+    \toprule
+    \color{elanWhite}Variable & \color{elanGold}$\hat{\beta}$\\
+    \midrule
+    logit(dominancia\_likes) & $0.431$\\
+    $\log(\text{población})$ & $-0.012$\\
+    \textbf{interacción} & $\mathbf{0.557}$\\
+    \bottomrule
+  \end{tabular}
+  \vspace{0.7em}
+  {\color{elanGray}\small El coeficiente más fuerte del modelo es la \textbf{interacción} entre dominancia digital y tamaño de ciudad: en municipios grandes la señal digital se amplifica.}
+
+  \vspace{0.6em}
+  \textbf{\color{elanGold}Validación}: LOCO-CV\\
+  {\small Leave-One-Contest-Out: métricas honestas fuera de muestra, contienda completa como unidad de test.}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Coeficientes: estabilidad inter-pliegue (bootstrap)}
+  \begin{center}
+    \includegraphics[width=0.82\textwidth]{img/colombia/col_coef_bootstrap.png}
+  \end{center}
+  \vspace{-0.4em}
+  \begin{tikzpicture}
+    \fill[elanPanel] (0,0) rectangle (\textwidth,0.75);
+    \node[anchor=west, xshift=0.3cm, yshift=0.37cm] at (0,0)
+      {{\color{elanGold}\small\bfseries Estabilidad:}
+       {\color{elanGray}\small\ logit\_likes e interacción presentes en el 100\% de los pliegues de validación}};
+  \end{tikzpicture}
+\end{frame}
+
+\begin{frame}{Residuales LOCO-CV: distribución del error}
+  \begin{center}
+    \includegraphics[width=0.85\textwidth]{img/colombia/col_loco_residuals.png}
+  \end{center}
+  \vspace{-0.4em}
+  \begin{tikzpicture}
+    \fill[elanPanel] (0,0) rectangle (\textwidth,0.75);
+    \node[anchor=west, xshift=0.3cm, yshift=0.37cm] at (0,0)
+      {{\color{elanGold}\small\bfseries MAE = 9.43 pp} \quad
+       {\color{elanGray}\small · $R^2_{\text{oos}} = 0.518$ · Top-1 accuracy = 71\% · sin patrones sistemáticos de sesgo}};
+  \end{tikzpicture}
+\end{frame}
+
+}% fin \etapacolombia

@@ -1,0 +1,120 @@
+﻿% sections/07_validacion2026.tex
+\newcommand{\validaciondos}{%
+
+\begin{frame}{Segunda vuelta presidencial: 21 junio 2026}
+\begin{columns}[c]
+\column{0.48\textwidth}
+  \textbf{\color{elanGold}Contexto de la validación}
+  \begin{itemize}\itemsep0.45em
+    \item Candidatos: \textbf{Iván Cepeda Castro} vs.\ \textbf{Abelardo De la Espriella}
+    \item Modelo: ELA-NOM \textit{sin ningún reentrenamiento}
+    \item Señal digital: Cepeda acumuló \textbf{3.5$\times$ más \textit{likes}} que De la Espriella
+    \item Resultado de la Registraduría Nacional:
+    \begin{itemize}
+      \item De la Espriella: \highlight{50.48\%}
+      \item Cepeda Castro: 49.52\%
+      \item Margen: \textbf{0.96 pp} — empate técnico
+    \end{itemize}
+  \end{itemize}
+
+\column{0.48\textwidth}
+  \begin{center}
+    \includegraphics[width=\columnwidth]{img/colombia/col_dominancia_2026.png}
+  \end{center}
+  {\color{elanGray}\tiny Dominancia de likes: Cepeda 77.8\% vs. De la Espriella 22.2\%}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Pronóstico ELA-NOM vs. resultado real}
+\begin{columns}[c]
+\column{0.50\textwidth}
+  \begin{tikzpicture}
+    \fill[elanPanel] (0,0) rectangle (6.2,5.5);
+    \node[anchor=north, yshift=-0.3cm, text=elanGold, font=\bfseries\normalsize] at (3.1,5.5)
+      {Pronóstico ELA-NOM};
+    % Pronóstico
+    \node[anchor=center, yshift=0.8cm] at (3.1,3.5) {
+      \begin{tabular}{lcc}
+        \toprule
+        \color{elanWhite}Candidato & \color{elanGold}Pronóstico & \color{elanWhite}Real\\
+        \midrule
+        Cepeda Castro    & \color{elanBlue}60.5\% & 49.52\%\\
+        De la Espriella  & \color{elanBlue}39.5\% & \color{elanGold}\bfseries 50.48\%\\
+        \bottomrule
+      \end{tabular}
+    };
+    % Error
+    \node[anchor=center, yshift=-1.2cm] at (3.1,2.5) {
+      {\color{elanRed}\bfseries\large Error absoluto: 10.98 pp}
+    };
+    \node[anchor=center, yshift=-2.0cm] at (3.1,2.5) {
+      {\color{elanGray}\small (para el candidato digitalmente dominante)}
+    };
+    % Ganador correcto?
+    \node[anchor=center, yshift=-3.0cm] at (3.1,2.5) {
+      {\color{elanRed}\bfseries Ganador predicho: incorrecto}
+    };
+    \node[anchor=center, yshift=-3.6cm] at (3.1,2.5) {
+      {\color{elanGray}\footnotesize Margen real: 0.96 pp — dentro del ruido del modelo}
+    };
+  \end{tikzpicture}
+
+\column{0.46\textwidth}
+  \textbf{\color{elanGold}Análisis del intervalo de incertidumbre}\\[0.5em]
+  Con MAE $\approx$ 9.4 pp, el rango plausible para Cepeda es:
+  \[
+    [60.5 - 9.43,\ 60.5 + 9.43] = [51.07\%,\ 69.93\%]
+  \]
+  El resultado real (49.52\%) queda:
+  \[
+    51.07 - 49.52 = \highlight{1.55\,\text{pp}}
+  \]
+  por debajo del límite inferior.\\[0.5em]
+  {\color{elanGray}\small El resultado real cae a $\approx$1.5 pp del rango plausible del modelo.\\
+  En un empate de 0.96 pp, \textbf{ninguna} metodología basada en engagement agregado tiene resolución suficiente.}
+\end{columns}
+\end{frame}
+
+\begin{frame}{¿Qué capturó y qué no capturó el modelo?}
+\begin{columns}[T]
+\column{0.48\textwidth}
+  \begin{tikzpicture}
+    \fill[elanGreen!15!elanPanel] (0,0) rectangle (6.2,4.8);
+    \draw[elanGreen, line width=1pt] (0,0) rectangle (6.2,4.8);
+    \node[anchor=north, yshift=-0.3cm, text=elanGreen, font=\bfseries\small] at (3.1,4.8)
+      {Lo que ELA-NOM capturó correctamente};
+    \node[anchor=north, yshift=-1.0cm, text width=5.8cm] at (3.1,4.8) {
+      \begin{itemize}\itemsep0.4em
+        \item[\color{elanGreen}$\checkmark$] La contienda era \textbf{extremadamente competitiva}
+        \item[\color{elanGreen}$\checkmark$] Cepeda tenía \textbf{ventaja digital neta} (3.5$\times$ likes)
+        \item[\color{elanGreen}$\checkmark$] El rango plausible (51\%--70\%) era informativo
+      \end{itemize}
+    };
+  \end{tikzpicture}
+
+\column{0.48\textwidth}
+  \begin{tikzpicture}
+    \fill[elanRed!15!elanPanel] (0,0) rectangle (6.2,4.8);
+    \draw[elanRed, line width=1pt] (0,0) rectangle (6.2,4.8);
+    \node[anchor=north, yshift=-0.3cm, text=elanRed, font=\bfseries\small] at (3.1,4.8)
+      {Fuera del alcance del modelo};
+    \node[anchor=north, yshift=-1.0cm, text width=5.8cm] at (3.1,4.8) {
+      \begin{itemize}\itemsep0.4em
+        \item[\color{elanRed}$\times$] Giros de \textbf{última semana} (movilización diferencial)
+        \item[\color{elanRed}$\times$] Estructura organizativa \textbf{territorial} de campaña
+        \item[\color{elanRed}$\times$] Eventos exógenos de impacto electoral
+      \end{itemize}
+    };
+  \end{tikzpicture}
+\end{columns}
+\vspace{0.6em}
+\begin{tikzpicture}
+  \fill[elanGold!20!elanPanel] (0,0) rectangle (\textwidth,0.9);
+  \draw[elanGold, line width=0.8pt] (0,0) rectangle (\textwidth,0.9);
+  \node[anchor=west, xshift=0.3cm, yshift=0.45cm] at (0,0)
+    {{\color{elanGold}\bfseries\small Límite estructural documentado:}
+     {\color{elanWhite}\small\ ELA-NOM es informativo en contiendas con ventajas digitales $>$20 pp. En empates $<$1 pp, ningún modelo de engagement tiene resolución suficiente.}};
+\end{tikzpicture}
+\end{frame}
+
+}% fin \validaciondos

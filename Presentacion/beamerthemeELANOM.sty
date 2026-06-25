@@ -1,0 +1,81 @@
+﻿% beamerthemeELANOM.sty - VERSION CORREGIDA
+\ProvidesPackage{beamerthemeELANOM}[2026/06/25 ELA-NOM Beamer Theme]
+\RequirePackage{tikz}
+\RequirePackage{xcolor}
+\RequirePackage{amsmath}
+
+\definecolor{elanBG}{HTML}{0D1B2A}
+\definecolor{elanBGlight}{HTML}{162535}
+\definecolor{elanGold}{HTML}{E8B86D}
+\definecolor{elanBlue}{HTML}{4A9ECC}
+\definecolor{elanRed}{HTML}{E05A5A}
+\definecolor{elanGreen}{HTML}{5ABF8A}
+\definecolor{elanWhite}{HTML}{F0F4F8}
+\definecolor{elanGray}{HTML}{8899AA}
+\definecolor{elanPanel}{HTML}{1C2E42}
+
+\setbeamercolor{background canvas}{bg=elanBG}
+\setbeamercolor{normal text}{fg=elanWhite}
+\setbeamercolor{structure}{fg=elanGold}
+\setbeamercolor{frametitle}{fg=elanGold,bg=elanBGlight}
+\setbeamercolor{title}{fg=elanGold}
+\setbeamercolor{subtitle}{fg=elanBlue}
+\setbeamercolor{author}{fg=elanGray}
+\setbeamercolor{institute}{fg=elanGray}
+\setbeamercolor{date}{fg=elanGray}
+\setbeamercolor{footline}{fg=elanGray,bg=elanBGlight}
+\setbeamercolor{block title}{fg=elanBG,bg=elanGold}
+\setbeamercolor{block body}{fg=elanWhite,bg=elanPanel}
+\setbeamercolor{block title alerted}{fg=elanBG,bg=elanRed}
+\setbeamercolor{block body alerted}{fg=elanWhite,bg=elanPanel}
+\setbeamercolor{block title example}{fg=elanBG,bg=elanGreen}
+\setbeamercolor{block body example}{fg=elanWhite,bg=elanPanel}
+\setbeamercolor{item}{fg=elanGold}
+\setbeamercolor{subitem}{fg=elanBlue}
+\setbeamercolor{alerted text}{fg=elanRed}
+
+\setbeamerfont{title}{size=\Large,series=\bfseries}
+\setbeamerfont{subtitle}{size=\normalsize}
+\setbeamerfont{frametitle}{size=\large,series=\bfseries}
+\setbeamerfont{footline}{size=\tiny}
+
+\setbeamertemplate{frametitle}{%
+  \nointerlineskip
+  \begin{beamercolorbox}[wd=\paperwidth,ht=2.4ex,dp=1ex,leftskip=0.6cm]{frametitle}
+    \usebeamerfont{frametitle}\insertframetitle
+    \ifx\insertframesubtitle\@empty\else
+      \hfill{\color{elanGray}\small\insertframesubtitle}
+    \fi
+  \end{beamercolorbox}
+  \nointerlineskip
+  \begin{tikzpicture}
+    \fill[elanGold] (0,0) rectangle (\paperwidth,0.04);
+  \end{tikzpicture}
+}
+
+\setbeamertemplate{footline}{%
+  \begin{beamercolorbox}[wd=\paperwidth,ht=2.25ex,dp=1ex,leftskip=0.4cm,rightskip=0.4cm]{footline}
+    {\color{elanGold}\textbf{ELA-NOM}}\quad
+    {\color{elanGray}\insertshorttitle}\hfill
+    {\color{elanGray}\insertshortauthor}\hfill
+    {\color{elanGold}\insertframenumber~/~\inserttotalframenumber}
+  \end{beamercolorbox}
+}
+
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{itemize item}{\color{elanGold}$\blacktriangleright$}
+\setbeamertemplate{itemize subitem}{\color{elanBlue}$\triangleright$}
+
+\newcommand{\highlight}[1]{{\color{elanGold}\textbf{#1}}}
+
+% Slide separador de seccion - llamar manualmente con \sectionslide{Nombre}
+\newcommand{\sectionslide}[1]{%
+  \begin{frame}[plain]
+    \begin{tikzpicture}[remember picture,overlay]
+      \fill[elanBGlight] (current page.north west) rectangle (current page.south east);
+      \fill[elanGold] ([yshift=-2.9cm]current page.north west)
+                      rectangle ([yshift=-2.96cm]current page.north east);
+      \node[anchor=center,text=elanGold,font=\Huge\bfseries] at (current page.center) {#1};
+    \end{tikzpicture}
+  \end{frame}%
+}

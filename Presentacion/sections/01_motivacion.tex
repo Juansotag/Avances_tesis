@@ -1,0 +1,78 @@
+﻿% sections/01_motivacion.tex
+\newcommand{\motivacion}{%
+
+\begin{frame}{El problema: dependencia estructural de las encuestas}
+\begin{columns}[c]
+\column{0.55\textwidth}
+  \begin{itemize}\itemsep0.6em
+    \item En América Latina, las encuestas son \highlight{virtualmente el único} instrumento de seguimiento de intención de voto
+    \item \textbf{Tres fallas estructurales} documentadas en la literatura:
+    \begin{itemize}\itemsep0.3em
+      \item {\color{elanRed}Sesgo de respuesta} creciente (tasa de respuesta $<$15\%)
+      \item {\color{elanRed}Dependencia de entrenamiento}: modelos no generalizables entre elecciones
+      \item {\color{elanRed}Costo}: una encuesta de calidad cuesta USD 15,000--80,000
+    \end{itemize}
+    \item Las \textbf{redes sociales} ofrecen señal digital continua, gratuita y pública
+  \end{itemize}
+\column{0.42\textwidth}
+  \begin{tikzpicture}
+    \fill[elanPanel] (0,0) rectangle (5.5,5.5);
+    \node[anchor=north, yshift=-0.3cm] at (2.75,5.5)
+      {{\color{elanGold}\bfseries\small América Latina: cobertura de encuestas}};
+    % Mini tabla de cobertura
+    \node[text=elanGray, font=\tiny, anchor=north] at (2.75,4.8) {
+      \begin{tabular}{lr}
+      \toprule
+      \color{elanWhite}País & \color{elanWhite}Casas encuestadoras\\
+      \midrule
+      Brasil & 12\\
+      México & 8\\
+      Colombia & 4\\
+      Ecuador & 2\\
+      Bolivia & 1\\
+      Costa Rica & 3\\
+      \bottomrule
+      \end{tabular}
+    };
+    \node[text=elanRed, font=\footnotesize\bfseries, anchor=south] at (2.75,0.3)
+      {Mercados pequeños: sin encuestas};
+  \end{tikzpicture}
+\end{columns}
+\end{frame}
+
+\begin{frame}{¿Por qué es difícil usar redes sociales para predicción?}
+\begin{columns}[c]
+\column{0.48\textwidth}
+  \textbf{\color{elanGold}Problema 1: Asimetría temporal}\\[0.4em]
+  {\small Las plataformas solo exponen el conteo \textit{actual} de interacciones.\\
+  Si scrapeas hoy una publicación de hace 30 días, ves el total acumulado,\\
+  no el estado que tenía el día que importaba.}
+  \vspace{0.8em}
+
+  \textbf{\color{elanGold}Problema 2: Escala y agregación}\\[0.4em]
+  {\small Un candidato nacional con 2M de seguidores tiene más \textit{likes} absolutos\\
+  que cualquier candidato local, aunque pierda en su ciudad.}
+  \vspace{0.8em}
+
+  \textbf{\color{elanGold}Problema 3: Generalización}\\[0.4em]
+  {\small Modelos entrenados en elecciones presidenciales no\\
+  predicen elecciones locales y viceversa.}
+
+\column{0.48\textwidth}
+  \begin{tikzpicture}
+    \fill[elanPanel] (0,0) rectangle (5.8,5.8);
+    \node[anchor=north, text=elanGold, font=\bfseries\small, yshift=-0.2cm]
+      at (2.9,5.8) {Soluciones propuestas en ELA-NOM};
+    \node[anchor=center, text width=5.2cm, yshift=-1.8cm] at (2.9,4.8) {
+      \textcolor{elanGreen}{$\checkmark$} \small\textcolor{elanWhite}{Modelo de crecimiento Weibull}\\
+      {\color{elanGray}\footnotesize reconstruye el historial de interacciones}\\[0.5em]
+      \textcolor{elanGreen}{$\checkmark$} \small\textcolor{elanWhite}{Dominancia relativa (share of voice)}\\
+      {\color{elanGray}\footnotesize normaliza dentro de cada contienda}\\[0.5em]
+      \textcolor{elanGreen}{$\checkmark$} \small\textcolor{elanWhite}{Diseño election-agnóstico}\\
+      {\color{elanGray}\footnotesize un núcleo transferible entre elecciones}
+    };
+  \end{tikzpicture}
+\end{columns}
+\end{frame}
+
+}% fin \motivacion

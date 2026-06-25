@@ -1,0 +1,106 @@
+﻿% sections/03_etapa1_bolivia.tex
+\newcommand{\etapabolivia}{%
+
+\begin{frame}{Contexto: Segunda vuelta presidencial Bolivia 2025}
+\begin{columns}[c]
+\column{0.48\textwidth}
+  \textbf{\color{elanGold}Escenario}
+  \begin{itemize}\itemsep0.4em
+    \item Contienda: \textbf{Rodrigo Paz} vs.\ \textbf{Jorge ``Tuto'' Quiroga}
+    \item Fecha: 19 octubre 2025
+    \item Resultado real: Paz \textbf{54.53\%} · Quiroga 45.47\%
+    \item Ventana: 153 días (18 mayo -- 18 octubre 2025)
+    \item Plataformas: Facebook, Twitter/X, Instagram, TikTok
+    \item Dataset: \textbf{308 registros diarios}, 26 características
+  \end{itemize}
+  \vspace{0.5em}
+  \textbf{\color{elanGold}Metodología base: SOMEN-DC}\\
+  {\small Brito \& Andeato (2024): red neuronal entrenada con encuestas + señal digital.\\
+  \highlight{Limitación}: requiere encuestas históricas para el entrenamiento.}
+
+\column{0.48\textwidth}
+  \begin{tikzpicture}
+    \fill[elanPanel] (0,0) rectangle (5.8,5.5);
+    \node[anchor=north, yshift=-0.2cm, text=elanGold, font=\small\bfseries] at (2.9,5.5)
+      {6 modelos evaluados};
+    \node[anchor=center, yshift=0.2cm] at (2.9,2.7)
+      {\begin{tabular}{lcc}
+        \toprule
+        \rowcolor{elanBGlight}\color{elanWhite}Modelo & \color{elanGold}MAE & \color{elanBlue}RMSE\\
+        \midrule
+        Última encuesta (base) & 8.2 & 9.1\\
+        Regresión lineal       & 12.4 & 14.1\\
+        Random Forest          & 10.8 & 12.3\\
+        SVR                    & 11.2 & 13.0\\
+        GRNN                   & 9.7  & 11.2\\
+        \rowcolor{elanPanel}\color{elanGold}\bfseries MLP-BP+PCA & \color{elanGold}\bfseries 7.3 & \color{elanGold}\bfseries 8.6\\
+        \bottomrule
+      \end{tabular}};
+  \end{tikzpicture}
+\end{columns}
+\end{frame}
+
+\begin{frame}{SOMEN-DC: modelo ganador MLP-BP + PCA}
+  \begin{center}
+    \includegraphics[width=0.90\textwidth]{img/bolivia/mlp_bp_pca_timeseries.png}
+  \end{center}
+  \vspace{-0.4em}
+  \begin{tikzpicture}
+    \fill[elanPanel] (0,0) rectangle (\textwidth,0.75);
+    \node[anchor=west, xshift=0.3cm, yshift=0.37cm] at (0,0)
+      {{\color{elanGold}\small\bfseries Observación clave:}
+       {\color{elanGray}\small\ El modelo captura la tendencia pero sobreestima la ventaja de Quiroga · Error final: 9.5 pp}};
+  \end{tikzpicture}
+\end{frame}
+
+\begin{frame}{Comparación de los 6 modelos evaluados}
+  \begin{center}
+    \includegraphics[width=0.85\textwidth]{img/bolivia/Modelamiento_c021_10.png}
+  \end{center}
+  \vspace{-0.4em}
+  \begin{tikzpicture}
+    \fill[elanPanel] (0,0) rectangle (\textwidth,0.75);
+    \node[anchor=west, xshift=0.3cm, yshift=0.37cm] at (0,0)
+      {{\color{elanGold}\small\bfseries GRNN}
+       {\color{elanGray}\small\ como referencia: captura tendencia pero incapaz de converger al resultado real}};
+  \end{tikzpicture}
+\end{frame}
+
+\begin{frame}{Limitación estructural identificada}
+\vspace{0.5em}
+\begin{columns}[c]
+\column{0.52\textwidth}
+  \begin{tikzpicture}
+    \fill[elanRed!15!elanPanel] (0,0) rectangle (6.5,4.5);
+    \draw[elanRed, line width=1pt] (0,0) rectangle (6.5,4.5);
+    \node[anchor=north, yshift=-0.3cm, text=elanRed, font=\bfseries\small] at (3.25,4.5)
+      {Lo que SOMEN-DC NO puede hacer};
+    \node[anchor=north, yshift=-1.0cm, text width=6cm] at (3.25,4.5) {
+      \begin{itemize}\itemsep0.5em
+        \item[\color{elanRed}$\times$] \small Predecir elecciones \textbf{sin encuestas históricas} del mismo país
+        \item[\color{elanRed}$\times$] \small Transferirse a elecciones de \textbf{formato diferente} (local $\to$ presidencial)
+        \item[\color{elanRed}$\times$] \small Operar sobre datos digitales \textbf{reconstruidos históricamente}
+      \end{itemize}
+    };
+  \end{tikzpicture}
+
+\column{0.44\textwidth}
+  \begin{tikzpicture}
+    \fill[elanGreen!15!elanPanel] (0,0) rectangle (5.5,4.5);
+    \draw[elanGreen, line width=1pt] (0,0) rectangle (5.5,4.5);
+    \node[anchor=north, yshift=-0.3cm, text=elanGreen, font=\bfseries\small] at (2.75,4.5)
+      {Lo que ELA-NOM resuelve};
+    \node[anchor=north, yshift=-1.0cm, text width=5cm] at (2.75,4.5) {
+      \begin{itemize}\itemsep0.5em
+        \item[\color{elanGreen}$\checkmark$] \small Entrena exclusivamente en \textbf{datos digitales}
+        \item[\color{elanGreen}$\checkmark$] \small Usa \textbf{dominancia relativa} transferible entre elecciones
+        \item[\color{elanGreen}$\checkmark$] \small Reconstrucción temporal \textbf{Weibull}
+      \end{itemize}
+    };
+  \end{tikzpicture}
+\end{columns}
+\vspace{0.6em}
+{\color{elanGray}\small $\Rightarrow$ La Etapa 2 ataca directamente el problema de la reconstrucción temporal.}
+\end{frame}
+
+}% fin \etapabolivia

@@ -1,0 +1,71 @@
+﻿\documentclass[aspectratio=169,12pt,compress]{beamer}
+\usepackage{beamerthemeELANOM}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{colortbl}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage{multicol}
+\usepackage{array}
+\usepackage{adjustbox}
+\usepackage[absolute,overlay]{textpos}
+
+\title[ELA-NOM]{ELA-NOM: \textit{Election-Agnostic Nowcasting Model}}
+\subtitle{Un modelo de predicci\'on electoral sin encuestas para Am\'erica Latina}
+\author[Juan Soage]{Juan Soage}
+\institute{Universidad de La Sabana}
+\date{Junio 2026}
+
+\input{sections/00_portada}
+\input{sections/01_motivacion}
+\input{sections/02_pregunta}
+\input{sections/03_etapa1_bolivia}
+\input{sections/04_etapa2_costarica}
+\input{sections/05_etapa3_colombia}
+\input{sections/06_resultados}
+\input{sections/07_validacion2026}
+\input{sections/08_conclusiones}
+
+\begin{document}
+
+\portada
+
+\section{Motivaci\'on}
+\sectionslide{Motivaci\'on}
+\motivacion
+
+\section{Pregunta e Hip\'otesis}
+\sectionslide{Pregunta e Hip\'otesis}
+\pregunta
+
+\section{Etapa 1 --- Bolivia}
+\sectionslide{Etapa 1 --- Bolivia}
+\etapabolivia
+
+\section{Etapa 2 --- Costa Rica}
+\sectionslide{Etapa 2 --- Costa Rica}
+\etapacostarica
+
+\section{Etapa 3 --- Colombia}
+\sectionslide{Etapa 3 --- Colombia}
+\etapacolombia
+
+\section{Resultados}
+\sectionslide{Resultados Colombia 2023}
+\resultadoscolombia
+
+\section{Validaci\'on Prospectiva 2026}
+\sectionslide{Validaci\'on Prospectiva 2026}
+\validaciondos
+
+\section{Conclusiones}
+\sectionslide{Conclusiones}
+\conclusiones
+
+\end{document}

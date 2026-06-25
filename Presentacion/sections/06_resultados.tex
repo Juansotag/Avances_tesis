@@ -1,0 +1,93 @@
+﻿% sections/06_resultados.tex
+\newcommand{\resultadoscolombia}{%
+
+\begin{frame}{Escalera de MAE: progresión de modelos}
+  \begin{center}
+    \includegraphics[width=0.88\textwidth]{img/colombia/col_mae_escalera.png}
+  \end{center}
+  \vspace{-0.4em}
+  \begin{tikzpicture}
+    \fill[elanPanel] (0,0) rectangle (\textwidth,0.75);
+    \node[anchor=west, xshift=0.3cm, yshift=0.37cm] at (0,0)
+      {{\color{elanGold}\small\bfseries ELA-NOM supera en 3 pp al baseline de proporcionalidad}
+       {\color{elanGray}\small\ · baseline 12.61 · núcleo digital 11.52 · \textbf{ELA-NOM 9.43} · GBT 9.91}};
+  \end{tikzpicture}
+\end{frame}
+
+\begin{frame}{Resumen cuantitativo de resultados}
+\begin{columns}[c]
+\column{0.50\textwidth}
+  \begin{center}
+  \begin{tabular}{lcccc}
+    \toprule
+    \rowcolor{elanBGlight}
+    \color{elanWhite}Modelo & \color{elanGold}MAE & \color{elanBlue}$R^2_{\text{oos}}$ & \color{elanWhite}Top-1\\
+    \midrule
+    Baseline uniforme   & 12.49 & 0.306 & 39\%\\
+    Baseline proporcional & 12.61 & 0.185 & 71\%\\
+    Regresión fraccional  & 11.52 & 0.460 & 71\%\\
+    \rowcolor{elanPanel}
+    \color{elanGold}\bfseries ELA-NOM & \color{elanGold}\bfseries 9.43 & \color{elanGold}\bfseries 0.518 & \color{elanGold}\bfseries 71\%\\
+    Gradient Boosting   & 9.91  & 0.490 & 71\%\\
+    \bottomrule
+  \end{tabular}
+  \end{center}
+  \vspace{0.5em}
+  {\color{elanGray}\small ELA-NOM: ElasticNet con moderador de población. GBT como benchmark no-lineal.}
+
+\column{0.46\textwidth}
+  \textbf{\color{elanGold}Hallazgos clave}
+  \begin{itemize}\itemsep0.5em
+    \item[\color{elanGold}1] La \textbf{dominancia relativa} ($\rho = 0.70$) supera al volumen absoluto
+    \item[\color{elanGold}2] La \textbf{interacción} dominancia $\times$ población es el coeficiente más fuerte ($\hat{\beta} = 0.557$)
+    \item[\color{elanGold}3] ELA-NOM mejora \textbf{3.18 pp} sobre el baseline de proporcionalidad
+    \item[\color{elanGold}4] Top-1 accuracy = \textbf{71\%} (22/31 contiendas correctas)
+  \end{itemize}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Interpretación del moderador de población}
+\begin{columns}[c]
+\column{0.50\textwidth}
+  \textbf{\color{elanGold}¿Por qué interactúa la población?}\\[0.5em]
+  {\small En municipios grandes, dominar las redes se traduce con más fuerza en votos porque:}
+  \begin{itemize}\itemsep0.4em
+    \item La población actúa como \textbf{amplificador} de la señal digital
+    \item En ciudades pequeñas, la red personal y el cacicazgo local dominan sobre la señal digital
+    \item La dominancia digital captura la \textbf{movilización urbana} diferencial
+  \end{itemize}
+  \vspace{0.5em}
+  \textbf{\color{elanGold}Interpretación matemática:}
+  \[
+    \frac{\partial \mathbb{E}[v_c]}{\partial \delta_c} = (\hat{\beta}_1 + \hat{\beta}_{\text{mod}}\cdot \log N_d)\cdot v_c(1-v_c)
+  \]
+  El efecto marginal de la dominancia \textbf{crece} con el tamaño $N_d$ de la ciudad.
+
+\column{0.46\textwidth}
+  \begin{tikzpicture}
+    \fill[elanPanel] (0,0) rectangle (5.5,5.5);
+    \node[anchor=north, yshift=-0.2cm, text=elanGold, font=\bfseries\small] at (2.75,5.5)
+      {Efecto marginal por tamaño de ciudad};
+    \begin{scope}[yshift=0.3cm]
+    \begin{axis}[
+      width=5.0cm, height=4.5cm,
+      xlabel={\tiny Ranking de tamaño},
+      ylabel={\tiny Efecto marginal},
+      xtick={1,2,3,4,5},
+      xticklabels={\tiny Pequeño,,,\tiny Mediano,,\tiny Grande},
+      ytick={0.1,0.3,0.5,0.7},
+      yticklabels={\tiny 0.1,\tiny 0.3,\tiny 0.5,\tiny 0.7},
+      axis background/.style={fill=elanPanel},
+      tick style={color=elanGray},
+      label style={color=elanGray, font=\tiny},
+      tick label style={color=elanGray, font=\tiny},
+    ]
+      \addplot[color=elanGold, thick, smooth]
+        coordinates {(1,0.12)(2,0.22)(3,0.38)(4,0.55)(5,0.69)};
+    \end{axis}
+    \end{scope}
+  \end{tikzpicture}
+\end{columns}
+\end{frame}
+
+}% fin \resultadoscolombia

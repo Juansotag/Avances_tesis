@@ -1,0 +1,112 @@
+% sections/08_conclusiones.tex
+\newcommand{\conclusiones}{%
+
+\begin{frame}{Tres hallazgos fundamentales}
+\begin{columns}[c]
+\column{0.33\textwidth}
+  \begin{tikzpicture}
+    \fill[elanGold] (0,0.5) rectangle (3.8,1.0);
+    \node[text=elanBG, font=\bfseries\small] at (1.9,0.75) {Hallazgo 1};
+    \fill[elanPanel] (0,0) rectangle (3.8,0.5);
+    \fill[elanPanel] (0,-3.2) rectangle (3.8,0);
+    \node[text width=3.5cm, align=left, anchor=north, yshift=-0.15cm] at (1.9,0) {
+      \small\color{elanWhite}
+      La \textbf{señal predictiva} en redes sociales es \textbf{real} y cuantificable.\\[0.4em]
+      {\color{elanGold}$\rho = 0.70$, $p < 0.001$}\\[0.4em]
+      {\color{elanGray}\footnotesize Mann-Whitney confirma diferencias significativas entre ganadores y perdedores.}
+    };
+  \end{tikzpicture}
+
+\column{0.33\textwidth}
+  \begin{tikzpicture}
+    \fill[elanBlue] (0,0.5) rectangle (3.8,1.0);
+    \node[text=elanBG, font=\bfseries\small] at (1.9,0.75) {Hallazgo 2};
+    \fill[elanPanel] (0,0) rectangle (3.8,0.5);
+    \fill[elanPanel] (0,-3.2) rectangle (3.8,0);
+    \node[text width=3.5cm, align=left, anchor=north, yshift=-0.15cm] at (1.9,0) {
+      \small\color{elanWhite}
+      El \textbf{moderador de población} amplifica la señal.\\[0.4em]
+      {\color{elanBlue}$\hat{\beta}_{\text{mod}} = 0.557$}\\[0.4em]
+      {\color{elanGray}\footnotesize En ciudades grandes, dominar las redes pesa más en urnas.}
+    };
+  \end{tikzpicture}
+
+\column{0.33\textwidth}
+  \begin{tikzpicture}
+    \fill[elanGreen] (0,0.5) rectangle (3.8,1.0);
+    \node[text=elanBG, font=\bfseries\small] at (1.9,0.75) {Hallazgo 3};
+    \fill[elanPanel] (0,0) rectangle (3.8,0.5);
+    \fill[elanPanel] (0,-3.2) rectangle (3.8,0);
+    \node[text width=3.5cm, align=left, anchor=north, yshift=-0.15cm] at (1.9,0) {
+      \small\color{elanWhite}
+      ELA-NOM es \textbf{transferible} sin reentrenamiento.\\[0.4em]
+      {\color{elanGreen}Colombia $\to$ 2026 presidencial}\\[0.4em]
+      {\color{elanGray}\footnotesize Límite estructural documentado: empates de $< 1$ pp exceden la resolución del modelo.}
+    };
+  \end{tikzpicture}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Agenda de trabajo futuro}
+\begin{columns}[c]
+\column{0.50\textwidth}
+  \textbf{\color{elanGold}Corto plazo (2026--2027)}
+  \begin{itemize}\itemsep0.4em
+    \item Recalibrar Weibull inter-regionalmente (Colombia, México, Ecuador)
+    \item Reentrenar ELA-NOM con datos de la segunda vuelta 2026
+    \item Validar en \textbf{elecciones locales Colombia 2027} (juez definitivo ciego)
+  \end{itemize}
+  \vspace{0.6em}
+  \textbf{\color{elanGold}Largo plazo}
+  \begin{itemize}\itemsep0.4em
+    \item Integrar datasets de contiendas asimétricas de más países de AL
+    \item Explorar arquitecturas expresivas (GBT, XGBoost, SHAP interpretability)
+    \item Publicación en revista indexada
+  \end{itemize}
+
+\column{0.46\textwidth}
+  \begin{tikzpicture}
+    \fill[elanPanel] (0,0) rectangle (5.5,5.5);
+    \node[anchor=north, yshift=-0.3cm, text=elanGold, font=\bfseries\small] at (2.75,5.5)
+      {Comparativa ELA-NOM vs.\ estado del arte};
+    \node[anchor=north, yshift=-1.0cm, text width=5.0cm] at (2.75,5.5) {
+      \small\begin{tabular}{lcc}
+        \toprule
+        \color{elanWhite}Característica & \color{elanGray}SOMEN-DC & \color{elanGold}ELA-NOM\\
+        \midrule
+        Sin encuestas & \color{elanRed}$\times$ & \color{elanGreen}$\checkmark$\\
+        Agnóstico & \color{elanRed}$\times$ & \color{elanGreen}$\checkmark$\\
+        Reconstrucción temporal & \color{elanRed}$\times$ & \color{elanGreen}$\checkmark$\\
+        Validación prospectiva & \color{elanRed}$\times$ & \color{elanGreen}$\checkmark$\\
+        Costo herramientas & Alto & \color{elanGreen}Bajo\\
+        \bottomrule
+      \end{tabular}
+    };
+    \node[anchor=south, yshift=0.3cm, text=elanGold, font=\bfseries] at (2.75,0)
+      {MAE = 9.43 pp · $R^2 = 0.518$};
+  \end{tikzpicture}
+\end{columns}
+\end{frame}
+
+% ── SLIDE FINAL ────────────────────────────────────────────
+{
+\setbeamertemplate{footline}{}
+\begin{frame}[plain]
+\begin{center}
+  \vfill
+  {\color{elanGold}\fontsize{28}{33}\selectfont\bfseries Gracias}\\[1em]
+  {\color{elanWhite}\Large\itshape \textquestiondown Preguntas?}\\[2em]
+  {\color{elanGray}\normalsize Juan Soage $\cdot$ Universidad de La Sabana $\cdot$ 2026}\\[1.5em]
+  \begin{tabular}{ccccc}
+    {\color{elanGold}\bfseries 9.43~pp} & {\color{elanGold}\bfseries 0.518} &
+    {\color{elanGold}\bfseries 71\%} & {\color{elanGold}\bfseries 31} & {\color{elanGold}\bfseries 120}\\
+    {\color{elanGray}\small MAE} & {\color{elanGray}\small $R^2$} &
+    {\color{elanGray}\small Top-1} & {\color{elanGray}\small ciudades} & {\color{elanGray}\small candidatos}\\
+  \end{tabular}
+  \vfill
+\end{center}
+\end{frame}
+}
+
+}% fin \conclusiones
+
