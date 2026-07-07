@@ -13,7 +13,7 @@
       \small\color{elanWhite}
       La \textbf{señal predictiva} en redes sociales es \textbf{real} y cuantificable.\\[0.4em]
       {\color{elanGold}$\rho = 0.70$, $p < 0.001$}\\[0.4em]
-      {\color{elanGray}\footnotesize Mann-Whitney confirma diferencias significativas entre ganadores y perdedores.}
+      {\color{elanGray}\tiny Mann-Whitney confirma diferencias significativas entre ganadores y perdedores.}
     };
   \end{tikzpicture}
 
@@ -27,7 +27,7 @@
       \small\color{elanWhite}
       El \textbf{moderador de población} amplifica la señal.\\[0.4em]
       {\color{elanBlue}$\hat{\beta}_{\text{mod}} = 0.557$}\\[0.4em]
-      {\color{elanGray}\footnotesize En ciudades grandes, dominar las redes pesa más en urnas.}
+      {\color{elanGray}\tiny En ciudades grandes, dominar las redes pesa más en urnas.}
     };
   \end{tikzpicture}
 
@@ -41,7 +41,7 @@
       \small\color{elanWhite}
       ELA-NOM es \textbf{transferible} sin reentrenamiento.\\[0.4em]
       {\color{elanGreen}Colombia $\to$ 2026 presidencial}\\[0.4em]
-      {\color{elanGray}\footnotesize Límite estructural documentado: empates de $< 1$ pp exceden la resolución del modelo.}
+      {\color{elanGray}\tiny Límite estructural documentado: empates de $< 1$ pp exceden la resolución del modelo.}
     };
   \end{tikzpicture}
 \end{columns}
@@ -69,21 +69,21 @@
     \fill[elanPanel] (0,0) rectangle (5.5,5.5);
     \node[anchor=north, yshift=-0.3cm, text=elanGold, font=\bfseries\small] at (2.75,5.5)
       {Comparativa ELA-NOM vs.\ estado del arte};
-    \node[anchor=north, yshift=-1.0cm, text width=5.0cm] at (2.75,5.5) {
-      \small\begin{tabular}{lcc}
+    \node[anchor=north, yshift=-1.0cm, text width=5.3cm] at (2.75,5.5) {
+      \tiny\begin{tabular}{@{}lcc@{}}
         \toprule
-        \color{elanWhite}Característica & \color{elanGray}SOMEN-DC & \color{elanGold}ELA-NOM\\
+        \color{elanWhite} Caracter. & \color{elanGray} SOMEN-DC & \color{elanGold} ELA-NOM\\
         \midrule
         Sin encuestas & \color{elanRed}$\times$ & \color{elanGreen}$\checkmark$\\
-        Agnóstico & \color{elanRed}$\times$ & \color{elanGreen}$\checkmark$\\
-        Reconstrucción temporal & \color{elanRed}$\times$ & \color{elanGreen}$\checkmark$\\
-        Validación prospectiva & \color{elanRed}$\times$ & \color{elanGreen}$\checkmark$\\
-        Costo herramientas & Alto & \color{elanGreen}Bajo\\
+        Agn\'ostico & \color{elanRed}$\times$ & \color{elanGreen}$\checkmark$\\
+        Recon. temporal & \color{elanRed}$\times$ & \color{elanGreen}$\checkmark$\\
+        Val. prospectiva & \color{elanRed}$\times$ & \color{elanGreen}$\checkmark$\\
+        Costo herram. & Alto & \color{elanGreen}Bajo\\
         \bottomrule
       \end{tabular}
     };
-    \node[anchor=south, yshift=0.3cm, text=elanGold, font=\bfseries] at (2.75,0)
-      {MAE = 9.43 pp · $R^2 = 0.518$};
+    \node[anchor=south, yshift=0.3cm, text=elanGold, font=\bfseries\small] at (2.75,0)
+      {MAE = 9.43 pp $\cdot$ $R^2 = 0.518$};
   \end{tikzpicture}
 \end{columns}
 \end{frame}
@@ -96,10 +96,10 @@
   \vfill
   {\color{elanGold}\fontsize{28}{33}\selectfont\bfseries Gracias}\\[1em]
   {\color{elanWhite}\Large\itshape \textquestiondown Preguntas?}\\[2em]
-  {\color{elanGray}\normalsize Juan Soage $\cdot$ Universidad de La Sabana $\cdot$ 2026}\\[1.5em]
+  {\color{elanGray}\normalsize Juan Sotelo Aguilar $\cdot$ Universidad de La Sabana $\cdot$ 2026}\\[1.5em]
   \begin{tabular}{ccccc}
     {\color{elanGold}\bfseries 9.43~pp} & {\color{elanGold}\bfseries 0.518} &
-    {\color{elanGold}\bfseries 71\%} & {\color{elanGold}\bfseries 31} & {\color{elanGold}\bfseries 120}\\
+    {\color{elanGold}\bfseries 64.5\%} & {\color{elanGold}\bfseries 31} & {\color{elanGold}\bfseries 120}\\
     {\color{elanGray}\small MAE} & {\color{elanGray}\small $R^2$} &
     {\color{elanGray}\small Top-1} & {\color{elanGray}\small ciudades} & {\color{elanGray}\small candidatos}\\
   \end{tabular}

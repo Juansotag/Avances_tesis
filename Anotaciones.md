@@ -28,7 +28,9 @@ Lo más importante es "pintarlo como una historia", es un storytelling, hay que 
 
 - Adrian Santana/Juan Pablo Guanipa (Confirmado)
 - César Caballero (Confirmado)
-- William Oquendo
+- William Oquendo (Confirmado)
+
+- Miguel Uribe Laverde (Director, Confirmado)
 
 ## **18/06/2026**
 

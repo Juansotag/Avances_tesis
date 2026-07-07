@@ -1,4 +1,4 @@
-﻿% sections/04_etapa2_costarica.tex
+% sections/04_etapa2_costarica.tex
 \newcommand{\etapacostarica}{%
 
 \begin{frame}{El problema de la asimetría temporal}
@@ -13,11 +13,9 @@
   \[
     F(t;\,k,\alpha,t_0) = 1 - e^{-k\,(t+t_0)^{\alpha}}
   \]
-  donde $k$ = velocidad, $\alpha$ = forma, $t_0$ = offset inicial.\\[0.5em]
-  El total final estimado dado $n_t$ interacciones en el día $t$:
-  \[
-    \hat{N} = \frac{n_t}{F(t;\,k,\alpha,t_0)}
-  \]
+  donde $k$ = velocidad, $\alpha$ = forma, $t_0$ = offset inicial.\\[0.4em]
+  El total final estimado dado $n_t$ interacciones al d\'ia $t$:
+  $\hat{N} = n_t\,/\,F(t;k,\alpha,t_0)$
 
 \column{0.48\textwidth}
   \begin{center}
@@ -35,8 +33,9 @@
 \begin{tikzpicture}
   \fill[elanPanel] (0,0) rectangle (\textwidth,0.75);
   \node[anchor=west, xshift=0.3cm, yshift=0.37cm] at (0,0)
-    {{\color{elanGold}\small\bfseries Ajuste $R^2$:}
-     {\color{elanGray}\small\ Facebook 0.94 · TikTok 0.88 · Instagram 0.79 · Twitter/X 0.96}};
+    {{\color{elanGold}\small\bfseries MAPE mediano D\'{\i}a~0 (peor caso):}
+     {\color{elanGray}\small\ Facebook 11.3\% $\cdot$ Twitter/X 56.4\% $\cdot$ Instagram 64.8\% $\cdot$ TikTok 25.4\%
+     --- convergen r\'apido al D\'{\i}a~3}};
 \end{tikzpicture}
 \end{frame}
 
@@ -72,9 +71,9 @@
 \vspace{-0.4em}
 \begin{tikzpicture}
   \fill[elanPanel] (0,0) rectangle (\textwidth,0.9);
-  \node[anchor=west, xshift=0.3cm, yshift=0.45cm] at (0,0) {
-    {\color{elanWhite}\small \textbf{Izquierda}: Facebook · 50,000 interacciones totales · reconstrucción desde Día~5\quad}
-    {\color{elanWhite}\small \textbf{Derecha}: Instagram · 43,000 medidas el Día~10}
+  \node[anchor=west, xshift=0.3cm, yshift=0.45cm, text width={\dimexpr\textwidth-0.6cm}] at (0,0) {
+    {\color{elanWhite}\footnotesize \textbf{Izquierda}: Facebook $\cdot$ 50,000 interacciones totales $\cdot$ reconstrucción desde Día~5 \\
+    \textbf{Derecha}: Instagram $\cdot$ 43,000 medidas el Día~10}
   };
 \end{tikzpicture}
 \end{frame}

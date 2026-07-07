@@ -1,4 +1,4 @@
-﻿% sections/06_resultados.tex
+% sections/06_resultados.tex
 \newcommand{\resultadoscolombia}{%
 
 \begin{frame}{Escalera de MAE: progresión de modelos}
@@ -9,8 +9,8 @@
   \begin{tikzpicture}
     \fill[elanPanel] (0,0) rectangle (\textwidth,0.75);
     \node[anchor=west, xshift=0.3cm, yshift=0.37cm] at (0,0)
-      {{\color{elanGold}\small\bfseries ELA-NOM supera en 3 pp al baseline de proporcionalidad}
-       {\color{elanGray}\small\ · baseline 12.61 · núcleo digital 11.52 · \textbf{ELA-NOM 9.43} · GBT 9.91}};
+      {{\color{elanGold}\small\bfseries ELA-NOM: MAE~=~9.43~pp}
+       {\color{elanGray}\small\ $\cdot$ Base 12.61~pp $\cdot$ Núcleo digital 11.52~pp $\cdot$ \textbf{ELA-NOM 9.43~pp} $\cdot$ GBT 9.91~pp}};
   \end{tikzpicture}
 \end{frame}
 
@@ -21,14 +21,14 @@
   \begin{tabular}{lcccc}
     \toprule
     \rowcolor{elanBGlight}
-    \color{elanWhite}Modelo & \color{elanGold}MAE & \color{elanBlue}$R^2_{\text{oos}}$ & \color{elanWhite}Top-1\\
+    \color{elanWhite}\small Modelo & \color{elanGold}\small MAE & \color{elanBlue}\small $R^2_{\text{oos}}$ & \color{elanWhite}\small Top-1\\
     \midrule
     Baseline uniforme   & 12.49 & 0.306 & 39\%\\
     Baseline proporcional & 12.61 & 0.185 & 71\%\\
-    Regresión fraccional  & 11.52 & 0.460 & 71\%\\
+    Regresi\'on fraccional  & 11.52 & 0.460 & 71\%\\
     \rowcolor{elanPanel}
-    \color{elanGold}\bfseries ELA-NOM & \color{elanGold}\bfseries 9.43 & \color{elanGold}\bfseries 0.518 & \color{elanGold}\bfseries 71\%\\
-    Gradient Boosting   & 9.91  & 0.490 & 71\%\\
+    \color{elanGold}\bfseries ELA-NOM & \color{elanGold}\bfseries 9.43 & \color{elanGold}\bfseries 0.518 & \color{elanGold}\bfseries 64.5\%\\
+    Gradient Boosting   & 9.91  & 0.515 & 67.7\%\\
     \bottomrule
   \end{tabular}
   \end{center}
@@ -41,7 +41,7 @@
     \item[\color{elanGold}1] La \textbf{dominancia relativa} ($\rho = 0.70$) supera al volumen absoluto
     \item[\color{elanGold}2] La \textbf{interacción} dominancia $\times$ población es el coeficiente más fuerte ($\hat{\beta} = 0.557$)
     \item[\color{elanGold}3] ELA-NOM mejora \textbf{3.18 pp} sobre el baseline de proporcionalidad
-    \item[\color{elanGold}4] Top-1 accuracy = \textbf{71\%} (22/31 contiendas correctas)
+    \item[\color{elanGold}4] Top-1 accuracy = \textbf{64.5\%} (20/31 contiendas correctas)
   \end{itemize}
 \end{columns}
 \end{frame}

@@ -1,22 +1,22 @@
-﻿% sections/03_etapa1_bolivia.tex
+% sections/03_etapa1_bolivia.tex
 \newcommand{\etapabolivia}{%
 
 \begin{frame}{Contexto: Segunda vuelta presidencial Bolivia 2025}
 \begin{columns}[c]
 \column{0.48\textwidth}
   \textbf{\color{elanGold}Escenario}
-  \begin{itemize}\itemsep0.4em
+  \begin{itemize}\itemsep0.25em
     \item Contienda: \textbf{Rodrigo Paz} vs.\ \textbf{Jorge ``Tuto'' Quiroga}
     \item Fecha: 19 octubre 2025
-    \item Resultado real: Paz \textbf{54.53\%} · Quiroga 45.47\%
-    \item Ventana: 153 días (18 mayo -- 18 octubre 2025)
+    \item Resultado real: Paz \textbf{54.53\%} $\cdot$ Quiroga 45.47\%
+    \item Ventana: 153 d\'ias (18 mayo -- 18 octubre 2025)
     \item Plataformas: Facebook, Twitter/X, Instagram, TikTok
-    \item Dataset: \textbf{308 registros diarios}, 26 características
+    \item Dataset: \textbf{308 registros diarios}, 26 caracter\'isticas
   \end{itemize}
-  \vspace{0.5em}
-  \textbf{\color{elanGold}Metodología base: SOMEN-DC}\\
-  {\small Brito \& Andeato (2024): red neuronal entrenada con encuestas + señal digital.\\
-  \highlight{Limitación}: requiere encuestas históricas para el entrenamiento.}
+  \vspace{0.3em}
+  \textbf{\color{elanGold}Metodolog\'ia base: SOMEN-DC}\\
+  {\small Brito \& Andeato (2024): red neuronal entrenada con encuestas + se\~{n}al digital.\\
+  {\color{elanRed}\bfseries Limitaci\'on}: requiere encuestas hist\'oricas para el entrenamiento.}
 
 \column{0.48\textwidth}
   \begin{tikzpicture}
@@ -26,14 +26,14 @@
     \node[anchor=center, yshift=0.2cm] at (2.9,2.7)
       {\begin{tabular}{lcc}
         \toprule
-        \rowcolor{elanBGlight}\color{elanWhite}Modelo & \color{elanGold}MAE & \color{elanBlue}RMSE\\
+        \rowcolor{elanBGlight}\color{elanWhite}\small Modelo & \color{elanGold}\small MAE & \color{elanBlue}\small MAPE\\
         \midrule
-        Última encuesta (base) & 8.2 & 9.1\\
-        Regresión lineal       & 12.4 & 14.1\\
-        Random Forest          & 10.8 & 12.3\\
-        SVR                    & 11.2 & 13.0\\
-        GRNN                   & 9.7  & 11.2\\
-        \rowcolor{elanPanel}\color{elanGold}\bfseries MLP-BP+PCA & \color{elanGold}\bfseries 7.3 & \color{elanGold}\bfseries 8.6\\
+        {\small Baseline (\'{u}lt. encuesta)} & {\small 0.180} & {\small 33.1\%}\\
+        {\small Regresi\'on Lineal}    & {\small 0.297} & {\small 54.4\%}\\
+        {\small Regresi\'on Lin.+PCA}  & {\small 0.312} & {\small 57.1\%}\\
+        {\small GRNN}                  & {\small 0.199} & {\small 36.4\%}\\
+        {\small MLP-BP}                & {\small 0.076} & {\small 14.0\%}\\
+        \rowcolor{elanPanel}\color{elanGold}\bfseries\small MLP-BP+PCA & \color{elanGold}\bfseries\small 0.028 & \color{elanGold}\bfseries\small 5.1\%\\
         \bottomrule
       \end{tabular}};
   \end{tikzpicture}
@@ -49,7 +49,7 @@
     \fill[elanPanel] (0,0) rectangle (\textwidth,0.75);
     \node[anchor=west, xshift=0.3cm, yshift=0.37cm] at (0,0)
       {{\color{elanGold}\small\bfseries Observación clave:}
-       {\color{elanGray}\small\ El modelo captura la tendencia pero sobreestima la ventaja de Quiroga · Error final: 9.5 pp}};
+       {\color{elanGray}\small\ MLP-BP+PCA predice 51.74\% para Paz (real: 54.53\%) · Error final: \textbf{2.79 pp} · supera 6$\times$ al baseline}};
   \end{tikzpicture}
 \end{frame}
 
