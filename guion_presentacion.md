@@ -119,13 +119,13 @@ Conclusión: la señal digital existe, pero el paradigma *during-campaign* no es
 
 ## BLOQUE 6 — Etapa 2: Costa Rica (4,5 min)
 
-*[Diapositiva 11: el problema del histórico]*
+*[Diapositiva 11: el problema del histórico y panel Costa Rica]*
 
 Si queremos entrenar ELA-NOM con elecciones pasadas, necesitamos saber cuántas interacciones tenían las publicaciones el día anterior a cada elección. El problema: **las plataformas solo muestran el total acumulado hoy**. Una extracción estática de publicaciones de 2023 hecha en 2026 captura tres años de likes, incluyendo el tráfico póstumo generado tras conocerse los resultados.
 
 La solución: modelar la curva de crecimiento de interacciones de una publicación. Si conocemos esa forma, podemos estimar retroactivamente cuántas interacciones existían en cualquier momento pasado usando la fecha de publicación, las interacciones totales y la plataforma.
 
-*[Diapositiva 12: diseño Costa Rica y parámetros]*
+*[Diapositivas 12 y 12-B: comparación de funciones (R²) y parámetros calibrados por plataforma]*
 
 La primera vuelta presidencial de Costa Rica del **1 de febrero de 2026** fue el caso de estudio. Durante **30 días** — 15 antes y 15 después — extrajimos diariamente las interacciones de los cuatro candidatos. Resultado: **1.922 publicaciones únicas**, **19.439 pares (día, fracción)**.
 
@@ -157,7 +157,7 @@ Dentro de cada ciudad, solo candidatos con **más de 10.000 votos confirmados**.
 
 El resultado: **120 candidatos**, con el **92,6%** con publicaciones activas en al menos una plataforma.
 
-*[Diapositiva 16: infraestructura de extracción]*
+*[Diapositiva 15 (continuación): infraestructura de extracción, tres plataformas, cifras finales]*
 
 ### Qué se extrajo y cómo
 
@@ -181,7 +181,7 @@ Un clasificador que asigne la victoria al candidato con mayor volumen bruto acer
 
 La señal existe. Esto responde **P1**.
 
-*[Diapositiva 18: normalización y familias de variables]*
+*[Diapositiva 18: GLM fraccional y LOCO-CV (fondo) — se habla de normalización de camino a la siguiente diapositiva]*
 
 ### Construcción del dataset y normalización
 
@@ -229,7 +229,7 @@ El proceso opera en **dos fases**. En la **Fase 1** (evaluación honesta), se ha
 
 El resultado: **MAE = 9,56 pp** y **R²oos = 0,518**.
 
-*[Diapositiva 21: especificación ganadora e interpretación]*
+*[Diapositiva 19 (columna derecha): ecuación ganadora y coeficientes]*
 
 ### La especificación ganadora y la interpretación de los betas
 
@@ -263,7 +263,7 @@ $$\hat{p}_c^{(2)} = 0{,}50 + (\hat{\boldsymbol{\beta}} \cdot \mathbf{x}_c)$$
 
 La dominancia de likes en logit es el predictor más robusto y parsimonioso. Esto responde **P3**.
 
-*[Diapositiva 23: curva de aprendizaje — P4]*
+*[Diapositiva 22: curva de aprendizaje, P4]*
 
 ### ¿Cuántas contiendas se necesitan? — P4
 
@@ -275,7 +275,7 @@ Esto responde **P4**.
 
 ## BLOQUE 8 — Validación prospectiva: segunda vuelta 2026 (3 min)
 
-*[Diapositiva 24: validación prospectiva 2026]*
+*[Diapositiva 23: validación prospectiva 2026]*
 
 El **21 de junio de 2026**: Iván Cepeda Castro contra Abelardo De la Espriella.
 
@@ -283,7 +283,7 @@ El modelo entrenado en **31 elecciones de alcaldes** se aplicó **sin reentrenam
 
 Pronóstico: **Cepeda 60,5% — De la Espriella 39,5%**.
 
-*[Diapositiva 25: resultado real y contextualización]*
+*[Diapositiva 24: resultado real y contextualización]*
 
 Resultado real: De la Espriella ganó por **0,96 pp**: **50,48% vs. 49,52%**. MAE del modelo: **10,98 pp** — 1,42 pp por encima del MAE de referencia de 9,56 pp.
 

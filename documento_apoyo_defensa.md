@@ -91,6 +91,14 @@ El p-valor de 0,0481 corresponde a la comparacion de la mediana de engagement po
 
 **Interpretacion:** el valor observado de 112 es tan extremo que ninguna de las 10.000 configuraciones aleatorias lo alcanzo. Esto confirma que la senal no es un artefacto del anidamiento.
 
+**Que significa exactamente delta = 112 eng/pub:**
+- **delta:** diferencia entre los dos grupos (ganadores menos perdedores)
+- **tilde{x}:** se usa la mediana (no la media), que es mas robusta a outliers
+- **eng:** engagement = suma de likes + comentarios + compartidos
+- **pub:** por publicacion (por post)
+- **Traduccion:** la mediana de engagement por publicacion de los candidatos ganadores supera en 112 unidades la de los perdedores. Si el ganador tipico tiene 204 eng/pub y el perdedor tipico tiene 92, la diferencia es 112.
+- **Por que mediana y no media:** la media total (44.252 vs 28.011) viene del Mann-Whitney mancomunado y refleja diferencias de tamano de campana. Al dividir por publicaciones y usar la mediana se neutralizan los extremos (un post viral aislado no infla el estadistico). El test de permutacion usa la diferencia de medianas porque es la mas resistente a ese tipo de ruido.
+
 ### Correlaciones de Spearman
 
 | Variable X | rho | p-valor | Interpretacion |
@@ -443,3 +451,63 @@ No es una invencion. Es una adaptacion directa del metodo estandar de machine le
 La adaptacion terminologica de la tesis fue llamarla "Leave-One-Contest-Out" para hacer explicito que el "grupo" es una contienda electoral completa, no una observacion. El concepto subyacente es identico al estandar de scikit-learn.
 
 Por que es necesario en vez de K-Fold estandar: las cuotas de likes y de votos de todos los candidatos de una ciudad suman 1 por definicion (son composicionales). Si partes esos candidatos aleatoriamente entre entrenamiento y prueba, el modelo ve en entrenamiento que el candidato A de Medellin tiene 40% de likes, y cuando predice al candidato B de Medellin (en prueba) ya sabe implicitamente que B no puede tener mas del 60%. Eso es fuga de informacion y produce evaluaciones de desempeno artificialmente optimistas.
+
+---
+
+## Preguntas del guion (Prioridad 1 y 2)
+
+### PRIORIDAD 1 — Casi seguro van a aparecer
+
+**"Encontramos tres juegos de coeficientes distintos para el mismo modelo"**
+Los tres corresponden a tres especificaciones distintas:
+1. beta_1 = 0,111 y beta_2 = 0,026: modelo de 2 predictores, los definitivos, con LOCO-CV externo.
+2. beta_mod = 0,557: ElasticNet sobre el pool completo de 9 variables.
+3. beta aprox. 0,423: regresion fraccional simple de la Seccion 5.6.a, sin ElasticNet.
+La tesis tiene una tabla unificada de reconciliacion que los compara directamente.
+
+**"Cual modelo se aplico en 2026 y de que modelo es el MAE = 9,56?"**
+El modelo de 2 predictores, ElasticNetCV, StandardScaler, sobre las 31 contiendas colombianas. El MAE de 9,56 pp es de ese modelo bajo LOCO-CV. El 9,57 pp pertenece al pool completo de 9 variables. Son especificaciones distintas con resultados practicamente identicos.
+
+**"El +/- MAE no es un intervalo de prediccion formal"**
+Correcto. El MAE es exactitud promedio, no dispersion. Esa construccion fue corregida en la tesis. Lo que se dice ahora: el resultado real de 49,52% supera el limite de referencia heuristica en 1,42 pp. Un intervalo formal requeriria supuestos distribucionales adicionales.
+
+**"El filtro de 10.000 votos crea sesgo de seleccion sobre la variable dependiente"**
+Es una limitacion real, reconocida explicitamente. Las metricas reportadas reflejan el subconjunto mas predecible. Esta limitacion es inherente al diseno en ausencia de un criterio de exclusion que no dependa de los resultados.
+
+**"Que hicieron con los candidatos sin publicaciones donde el logit no esta definido?"**
+Se imputo dominancia minima epsilon = 10^-3 (0,1%), produciendo logit(0,001) aprox. -6,91. Analisis de sensibilidad: con epsilon = 1% el valor seria -4,60, una diferencia de 2,31 unidades-logit que multiplicada por beta = 0,111 desplazaria la prediccion aprox. 26 pp. Los candidatos afectados (aprox. 9 de 120) son los menos votados y ElasticNet los penaliza fuertemente.
+
+---
+
+### PRIORIDAD 2 — Pueden aparecer como seguimiento
+
+**"Los parametros Weibull estan mal interpretados"**
+En F(t) = 1 - e^(-k(t+t0)^alpha):
+- k es una tasa (no escala clasica).
+- alpha controla la geometria: alpha menor que 1 desacelera; alpha mayor que 1 la tasa crece. Twitter/X con alpha = 1,14 refleja acumulacion acelerada (mecanismo de retweet).
+- t0 es un adelanto de origen: hace que F(0) sea mayor que 0, modelando interacciones previas al primer dia de observacion.
+
+**"Mann-Whitney asume independencia; el Spearman de 0,70 es composicional"**
+p = 0,0481 es del engagement por publicacion. La estructura de anidamiento se valida con test de permutacion intra-contienda (p menor que 0,0001). El Spearman es evidencia exploratoria; la validez predictiva real se establece por LOCO-CV. El rho aprox. 0,45 del volumen absoluto confirma que la dominancia es mas informativa. La composicionalidad esta cuantificada: rho_mec = 0,261 (39%), senal real rho_real aprox. 0,41 (61%).
+
+**"Que mide realmente el modelo: intencion de voto o cuota electoral?"**
+ELA-NOM aproxima la cuota electoral observada, no la intencion de voto latente. El proxy digital puede capturar apoyo genuino, visibilidad, polarizacion y pauta paga simultaneamente. El unico claim predictivo: cuota de likes predice cuota de votos con MAE = 9,56 pp fuera de muestra.
+
+**"El OE4 anuncia clasificacion Y regresion, pero solo hay regresion"**
+El Top-1 del 64,5% es una metrica derivada de la regresion, no un clasificador entrenado independientemente. El OE4 fue reformulado en la tesis. Un logit condicional de McFadden queda como trabajo futuro.
+
+---
+
+### OTRAS PROBABLES
+
+**"Por que excluir Instagram de Colombia?"** Meta cerro su API para investigadores independientes en 2023. Restriccion externa del ecosistema, no una decision metodologica.
+
+**"El error en 2026 fue de 10,98 pp. No invalida el modelo?"** El MAE medio es 9,56 pp. El margen real fue de 0,96 pp, inferior al propio error del modelo. Ninguna herramienta basada en engagement puede resolver un empate tecnico. El uso correcto de ELA-NOM es detectar tendencias y ventajas claras superiores a 20 pp.
+
+**"El R2 del Weibull es muy bajo?"** El R2 promedio de 0,449 incluye el 66,8% de varianza que es ruido intra-publicacion irreducible. El modelo captura la forma global de la curva, que es lo que necesita para la reconstruccion historica.
+
+**"Por que no normalizar por seguidores?"** El numero de seguidores es inestable entre plataformas, altamente colineal con el volumen de publicaciones y no disponible historicamente en todas las plataformas. VIF elevado lo descarto automaticamente del pool.
+
+**"Por que la dominancia relativa y no el volumen absoluto?"** Clasificador naive: dominancia 71% vs volumen bruto 57,6%. Spearman: rho = 0,70 vs rho aprox. 0,45. La dominancia elimina el efecto del tamano de la contienda y mide la senal competitiva directamente.
+
+**"Cuanto cuesta replicar esto?"** Entre 20 y 30 dolares en creditos de Apify. Procesamiento corre en cualquier computador con Python.
