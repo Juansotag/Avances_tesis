@@ -1,9 +1,1 @@
 \babel@toc {spanish}{}\relax 
-\beamer@sectionintoc {1}{Motivaci\'on}{3}{0}{1}
-\beamer@sectionintoc {2}{Pregunta e Hip\'otesis}{6}{0}{2}
-\beamer@sectionintoc {3}{Etapa 1 --- Bolivia}{9}{0}{3}
-\beamer@sectionintoc {4}{Etapa 2 --- Costa Rica}{14}{0}{4}
-\beamer@sectionintoc {5}{Etapa 3 --- Colombia}{20}{0}{5}
-\beamer@sectionintoc {6}{Resultados}{26}{0}{6}
-\beamer@sectionintoc {7}{Validaci\'on Prospectiva 2026}{30}{0}{7}
-\beamer@sectionintoc {8}{Conclusiones}{34}{0}{8}

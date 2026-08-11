@@ -1,62 +1,82 @@
-﻿% sections/02_pregunta.tex
-\newcommand{\pregunta}{%
-
+% DIAPOSITIVA 5: Pregunta central
 \begin{frame}{Pregunta de investigación}
-\vspace{0.5em}
-\begin{center}
-\begin{tikzpicture}
-  \fill[elanPanel] (0,0) rectangle (13,1.8);
-  \draw[elanGold, line width=1.5pt] (0,0) rectangle (13,1.8);
-  \node[text width=12.5cm, align=center] at (6.5,0.9)
-    {{\color{elanWhite}\normalsize\itshape
-    ``¿Es metodológicamente posible diseñar un modelo de \textit{nowcasting} electoral\\
-    \textbf{election-agnóstico} y \textbf{emancipado de encuestas} para el entorno local colombiano?''}};
-\end{tikzpicture}
-\end{center}
-\vspace{0.8em}
-\begin{columns}[T]
-\column{0.48\textwidth}
-  \textbf{\color{elanGold}Hipótesis operacionales}
-  \begin{itemize}\itemsep0.4em
-    \item[\color{elanGold}H1] Las interacciones en redes contienen señal predictiva real ($\rho > 0$, $p < 0.05$)
-    \item[\color{elanGold}H2] La \textit{dominancia relativa} supera al volumen absoluto como predictor
-    \item[\color{elanGold}H3] Un modelo entrenado en Colombia puede transferirse a elecciones presidenciales sin reentrenamiento
-  \end{itemize}
-\column{0.48\textwidth}
-  \textbf{\color{elanGold}Diseño en 3 etapas}
-  \begin{itemize}\itemsep0.4em
-    \item[\color{elanBlue}E1] \textbf{Bolivia}: replicar SOMEN-DC y documentar sus límites
-    \item[\color{elanBlue}E2] \textbf{Costa Rica}: resolver el problema de la asimetría temporal
-    \item[\color{elanBlue}E3] \textbf{Colombia}: construir ELA-NOM y validarlo prospectivamente
-  \end{itemize}
-\end{columns}
+  \begin{block}{Pregunta central}
+    ¿Es posible diseñar un modelo de \textit{nowcasting} electoral \textbf{elección-agnóstico},
+    cuyos parámetros se entrenen con múltiples contiendas pasadas y sean
+    \textbf{transferibles} a elecciones nuevas, que opere \textbf{sin encuestas},
+    usando exclusivamente señales de redes sociales?
+  \end{block}
+
+  \vspace{0.25em}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      {\small\textbf{\color{barBlue}Preguntas derivadas (P)}}
+      \begin{itemize}\small
+        \item[\textbf{P1}] ¿Tienen las interacciones digitales poder predictivo real sobre el comportamiento electoral en Colombia?
+        \item[\textbf{P2}] ¿Es posible reconstruir matemáticamente el historial de interacciones sin haber recolectado datos en tiempo real?
+        \item[\textbf{P3}] ¿Qué métrica digital es el predictor más informativo y robusto?
+        \item[\textbf{P4}] ¿Cuántas contiendas de entrenamiento son necesarias para que el modelo alcance desempeño estable?
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      {\small\textbf{\color{barBlue}Preguntas metodológicas (PM)}}
+      \begin{itemize}\small
+        \item[\textbf{PM1}] ¿Es posible replicar el SOMEN-DC en una elección no tratada por sus autores?
+        \item[\textbf{PM2}] ¿Se confirman empíricamente las tres limitaciones estructurales del SOMEN-DC?
+        \item[\textbf{PM3}] ¿Es posible reconstruir el historial de interacciones con precisión suficiente para construir un dataset de entrenamiento retroactivo?
+        \item[\textbf{PM4}] ¿Es el modelo transferible a un formato electoral diferente al de entrenamiento?
+      \end{itemize}
+    \end{column}
+  \end{columns}
 \end{frame}
 
-\begin{frame}{Variable objetivo: dominancia digital}
-\begin{columns}[c]
-\column{0.5\textwidth}
-  \textbf{\color{elanGold}Definición formal}\\[0.6em]
-  Sea $\mathcal{C}_d$ el conjunto de candidatos en la contienda $d$.\\[0.4em]
-  La \textbf{dominancia digital} del candidato $c$ es:
-  \[
-    \delta_c^{(d)} = \frac{\sum_{p \in P_c} \text{likes}_p}
-                          {\displaystyle\sum_{c' \in \mathcal{C}_d}\sum_{p \in P_{c'}} \text{likes}_p}
-  \]
-  donde $P_c$ son las publicaciones del candidato $c$ en la ventana de 14 días previos.\\[0.6em]
-  \textbf{Propiedad clave}: $\displaystyle\sum_{c \in \mathcal{C}_d} \delta_c^{(d)} = 1$
-  \quad {\color{elanGray}\small(suma cero dentro de contienda)}
+% DIAPOSITIVA 6: Diseño general
+\begin{frame}{Diseño empírico: tres etapas}
+  \begin{columns}[T]
+    \begin{column}{0.42\textwidth}
+      \vspace{0.3em}
+      \begin{center}
+      \begin{tikzpicture}[node distance=0.5cm]
+        \tikzstyle{box}=[rectangle, rounded corners=3pt, draw=barBlue,
+                         fill=tableBand, minimum width=3.8cm, minimum height=0.7cm,
+                         text width=3.6cm, align=center, font=\small\bfseries]
+        \tikzstyle{lbl}=[font=\scriptsize, text=subtleGray, align=center,
+                         text width=3.6cm]
+        \tikzstyle{arr}=[->, thick, color=barBlue]
 
-\column{0.46\textwidth}
-  \begin{tikzpicture}
-    \fill[elanPanel] (0,0) rectangle (5.6,5.5);
-    \node[anchor=north, yshift=-0.2cm, text=elanGold, font=\small\bfseries] at (2.8,5.5)
-      {Cuota de likes vs.\ cuota de votos};
-    \node[anchor=south, yshift=0.2cm, text=elanGray, font=\footnotesize] at (2.8,0)
-      {$\rho = 0.70$ sobre 120 candidatos (31 contiendas)};
-    \node[anchor=center] at (2.8,2.8)
-      {\includegraphics[width=5.0cm]{img/colombia/col_scatter_dominancia_votos.png}};
-  \end{tikzpicture}
-\end{columns}
+        \node[box] (bol) {Etapa 1: Bolivia};
+        \node[lbl, below=0.15cm of bol] (lbol) {Replicación SOMEN-DC\\PM1, PM2};
+        \node[box, below=0.4cm of lbol] (cr) {Etapa 2: Costa Rica};
+        \node[lbl, below=0.15cm of cr] (lcr) {Restaurador Weibull\\P2, PM3};
+        \node[box, below=0.4cm of lcr] (col) {Etapa 3: Colombia};
+        \node[lbl, below=0.15cm of col] (lcol) {Modelo ELA-NOM\\P1, P3, P4};
+        \node[box, below=0.4cm of lcol] (val) {Validación 2026};
+        \node[lbl, below=0.15cm of val] (lval) {Transferibilidad\\PM4};
+
+        \draw[arr] (bol) -- (cr);
+        \draw[arr] (cr) -- (col);
+        \draw[arr] (col) -- (val);
+      \end{tikzpicture}
+      \end{center}
+    \end{column}
+    \begin{column}{0.54\textwidth}
+      \textbf{Variable objetivo:}
+      \[
+        \hat{y}_c = f\!\left(\mathbf{x}_c\right) \in (0,1)
+        \quad\text{con}\quad
+        \sum_{j \in \mathcal{C}_e} \hat{y}_{c_j} = 1
+      \]
+      \small
+      $f\!: \mathbb{R}^d \to (0,1)$, escalar por candidato.
+      La restricción de suma se aplica por normalización posterior.
+
+      \vspace{0.5em}
+      \textbf{Supuesto central:}
+      \begin{itemize}
+        \item Los parámetros de $f$ se aprenden con \textbf{múltiples} elecciones pasadas $\mathcal{E}$
+        \item Se aplican \textbf{sin reentrenamiento} a elecciones nuevas
+        \item Variable objetivo: \kw{cuota electoral observada} (no intención de voto latente)
+      \end{itemize}
+    \end{column}
+  \end{columns}
 \end{frame}
-
-}% fin \pregunta

@@ -11,17 +11,17 @@
 % ──────────────────────────────────────────────────────────────
 
 
-La industria global de investigación de mercados y opinión pública, que incluye el pronóstico electoral, alcanzó 153.000 millones de dólares en 2024, un crecimiento del 8\% frente al año anterior, según \textit{ESOMAR} (\citeyear{esomar2025}), la asociación mundial del sector. En Colombia, la misma industria facturó 743.058 millones de pesos en 2024 (equivalentes a aproximadamente 208 millones de dólares a la tasa de cambio de mayo de 2026), con un crecimiento del 1\,\% frente al año anterior, según la \textit{Asociación Colombiana de Empresas de Investigación de Mercados y Opinión Pública} (\cite{acei2024}). 
+La industria global de investigación de mercados y opinión pública, que incluye el pronóstico electoral, alcanzó 153.000 millones de dólares en 2024, un crecimiento del 8\% frente al año anterior, según \textit{ESOMAR} \parencite{esomar2025}, la asociación mundial del sector. En Colombia, la misma industria facturó 743.058 millones de pesos en 2024 (equivalentes a aproximadamente 208 millones de dólares a la tasa de cambio de mayo de 2026), con un crecimiento del 1\,\% frente al año anterior, según la \textit{Asociación Colombiana de Empresas de Investigación de Mercados y Opinión Pública} \parencite{acei2024}. 
 
-Este crecimiento contrasta con el de los mercados alternativos de pronóstico: plataformas como \textit{Polymarket} y \textit{Kalshi} registraron en conjunto cerca de 60.000 millones de dólares en volumen de operaciones en los primeros meses de 2026, superando ya el total de 2025, y se proyecta que alcancen un billón de dólares anuales para 2030, según estimaciones de Bernstein Research (\cite{bernstein2026}). Esta divergencia sugiere que la demanda por información predictiva sobre resultados futuros crece a un ritmo que las encuestas tradicionales no están capturando.
+En paralelo, el auge de los mercados de predicción financiera ilustra que existe un apetito de mercado creciente por pronósticos ágiles y verificables sobre eventos futuros. Plataformas como \textit{Polymarket} y \textit{Kalshi}, que no son competidoras directas de las encuestadoras sino mercados financieros de contratos sobre resultados, proyectan alcanzar un billón de dólares en volumen transado anual para 2030, según estimaciones de Bernstein Research \parencite{bernstein2026}. Aunque se trata de industrias de naturaleza distinta, este fenómeno revela una demanda no atendida por información predictiva en tiempo real que las encuestas tradicionales, por diseño, no están estructuradas para satisfacer.
 
 A pesar de su ubicuidad, las encuestas electorales en Colombia enfrentan profundos retos estructurales que se han agudizado recientemente. La dificultad logística de abarcar territorios extensos, la alta tasa de no respuesta y los elevados costos operativos limitan la frecuencia y el tamaño muestral de los estudios, especialmente en elecciones locales.
 
-A estos problemas estructurales se suma un nuevo marco regulatorio que ha tensionado aún más el sector: la \textbf{Ley 2494 de 2025}, que estableció requisitos metodológicos estrictos para la elaboración y publicación de encuestas electorales, incluyendo una veda de publicación que interrumpió el flujo de información entre julio y noviembre de 2025 (\cite{ley2494_2025}). 
+A estos problemas estructurales se suma un nuevo marco regulatorio que ha tensionado aún más el sector: la \textbf{Ley 2494 de 2025}, que estableció requisitos metodológicos estrictos para la elaboración y publicación de encuestas electorales, incluyendo una veda de publicación que interrumpió el flujo de información entre julio y noviembre de 2025 \parencite{ley2494_2025}. 
 
-La aplicación práctica de esta norma generó tal nivel de fricción entre el \textit{Consejo Nacional Electoral} (CNE) y las firmas encuestadoras, que la consultora española GAD3 suspendió definitivamente sus mediciones en el país en mayo de 2026, argumentando que la interpretación de la Comisión Técnica exige demostrar condiciones de muestreo que ``ninguna metodología demoscópica puede satisfacer en la práctica''(\cite{gad3_2026}). 
+La aplicación práctica de esta norma generó tal nivel de fricción entre el \textit{Consejo Nacional Electoral} (CNE) y las firmas encuestadoras, que la consultora española GAD3 suspendió definitivamente sus mediciones en el país en mayo de 2026, argumentando que la interpretación de la Comisión Técnica exige demostrar condiciones de muestreo que ``ninguna metodología demoscópica puede satisfacer en la práctica'' \parencite{gad3_2026}. 
 
-La norma, al invalidar encuestas telefónicas, paneles digitales y métodos mixtos en favor de encuestas presenciales domiciliarias, encareció operativamente el sector y concentró el mercado en pocas firmas con suficiente capacidad económica para operar en campo en todo el territorio nacional (\cite{occidente2026}). En este panorama, resulta cada vez más urgente desarrollar herramientas de pronóstico electoral que no dependan exclusivamente de encuestas y que aprovechen fuentes alternativas de datos masivos.
+La norma, al invalidar encuestas telefónicas, paneles digitales y métodos mixtos en favor de encuestas presenciales domiciliarias, encareció operativamente el sector y concentró el mercado en pocas firmas con suficiente capacidad económica para operar en campo en todo el territorio nacional \parencite{occidente2026}. En este panorama, resulta cada vez más urgente desarrollar herramientas de pronóstico electoral que no dependan exclusivamente de encuestas y que aprovechen fuentes alternativas de datos masivos.
 
 % ──────────────────────────────────────────────────────────────
 \section{Estado del arte: de los modelos paramétricos al SOMEN-DC}
@@ -47,7 +47,7 @@ y eventos políticos exógenos, anticipando el resultado de las elecciones
 generales con seis meses de antelación. Durante los años noventa y la primera
 década del siglo XXI, estos modelos alcanzaron su madurez técnica,
 apoyándose en herramientas de series de tiempo como VAR y ARMA. En el
-contexto del Reino Unido, (\textcite{lewisbeck2004}) formularon un modelo de
+contexto del Reino Unido, \textcite{lewisbeck2004} formularon un modelo de
 economía política que explicaba más del 80\,\% de la varianza en el apoyo
 gubernamental usando solo tres variables: aprobación del gobierno, inflación
 y el número de términos consecutivos en el poder. En paralelo,
@@ -61,8 +61,7 @@ Sin embargo, desde aproximadamente 2015, la capacidad predictiva de estos
 enfoques se deterioró de forma pronunciada. En el Reino Unido, ningún modelo
 establecido logró anticipar la mayoría conservadora de ese año
 \parencite{stegmaier2023}; un año después, los mismos enfoques fallaron en
-predecir la victoria de Donald Trump, el Brexit y la salida del Reino Unido
-de la Unión Europea \parencite{stegmaier2023, brito2024stop}. Esta crisis
+predecir la victoria de Donald Trump, el Brexit y los resultados de otras consultas populares de ese ciclo \parencite{stegmaier2023, brito2024stop}. Esta crisis
 generalizada no fue accidental: \textcite{kennedy2018} documentaron, en una
 evaluación exhaustiva encargada por la Asociación Americana de Investigación
 de Opinión Pública (AAPOR), que los sondeos de 2016 sobreestimaron
@@ -135,8 +134,7 @@ número absoluto de publicaciones presentaba correlación nula o negativa.
 El conjunto de estas contribuciones se formalizó en el marco
 \textbf{SOMEN-DC} (\textit{Social Media Electoral Nowcasting During Campaign}),
 desarrollado por \textcite{brito2023somen} en la Universidad Federal de
-Pernambuco. El modelo propone un proceso de cinco pasos, comprensión del
-evento, recolección de datos, preparación, modelado y evaluación, y una
+Pernambuco. El modelo propone un proceso de cinco pasos: comprensión del evento, recolección de datos, preparación, modelado y evaluación, y una
 estrategia de ejecución continua (DC) que permite emitir predicciones diarias
 durante la campaña. Usando datos de más de 65.000 publicaciones y 195
 encuestas de cuatro países latinoamericanos, los ensambles de redes neuronales
@@ -200,15 +198,16 @@ aproxima a la universalidad. Según \textcite{datareportal2026}, el
 2025, cifra que creció en 1{,}6 millones de personas solo en 2024,
 con Facebook, TikTok, YouTube, Instagram y LinkedIn alcanzando al
 89{,}3\,\%, 93{,}0\,\%, 74{,}4\,\%, 52{,}3\,\% y 44{,}4\,\% de los
-adultos colombianos, respectivamente. Significativamente, X/Twitter, la plataforma que concentra la mayor parte de la literatura de
+usuarios de redes sociales colombianos, respectivamente (porcentajes
+calculados sobre la base de quienes ya usan redes sociales, no sobre
+la población adulta total). Significativamente, X/Twitter, la plataforma que concentra la mayor parte de la literatura de
 predicción electoral con redes sociales, solo alcanza al 12{,}0\,\%
-de los adultos en Colombia, lo que compromete estructuralmente
+de los usuarios de redes sociales en Colombia, lo que compromete estructuralmente
 cualquier modelo que dependa exclusivamente de esa fuente.
 
 \subsection*{Formulación del problema}
 
-Considérese una elección de ganador único para un cargo ejecutivo
-; alcalde, gobernador o presidentea con un conjunto finito de
+Considérese una elección de ganador único para un cargo ejecutivo: alcalde, gobernador o presidente, con un conjunto finito de
 $C$ candidatos competitivos $\mathcal{C} = \{c_1, c_2, \ldots, c_C\}$.
 Para cada candidato $c_i$, se observa un vector de características
 digitales:
@@ -227,13 +226,15 @@ total de interacciones de la elección, entre otras métricas.
 La hipótesis central de este trabajo postula que existe una función:
 
 \begin{equation}
-    f: \mathbb{R}^d \rightarrow [0, 1]^C
+    f: \mathbb{R}^d \rightarrow [0, 1]
     \label{eq:funcion-modelo}
 \end{equation}
 
 \noindent tal que $f(\mathbf{x}_i)$ aproxima la cuota de voto esperada
-del candidato $c_i$, con la restricción natural de que las predicciones
-sumen a la unidad sobre todos los candidatos de la misma elección:
+del candidato $c_i$. La restricción de coherencia, que las predicciones
+sumen a la unidad sobre todos los candidatos de la misma elección, no
+es una propiedad de $f$ en sí misma, sino una normalización que se impone
+a posteriori sobre el conjunto de salidas escalares:
 
 \begin{equation}
     \sum_{i=1}^{C} f(\mathbf{x}_i) = 1
@@ -261,11 +262,11 @@ la propiedad de \textbf{elección-agnosticismo} que da nombre al modelo.
 Bajo este marco, el modelo opera recibiendo como \textit{input} el
 vector $\mathbf{x}_i$ de interacciones digitales de cada candidato,
 calculado sobre una ventana de $n$ días previos a la jornada electoral.
-El \textit{output} es un vector $\hat{\mathbf{y}} \in [0,1]^C$ donde
-cada componente $\hat{y}_i = f(\mathbf{x}_i)$ representa la cuota de
-voto estimada para el candidato $c_i$, respondiendo a la pregunta:
-\textit{si las elecciones ocurrieran hoy, ¿Qué porcentaje de los
-votantes apoyaría a cada candidato?}
+El \textit{output} se obtiene aplicando $f$ individualmente a cada candidato:
+$\hat{y}_i = f(\mathbf{x}_i) \in [0, 1]$, y ensamblando el vector resultante
+$\hat{\mathbf{y}} = (\hat{y}_1, \ldots, \hat{y}_C) \in [0,1]^C$, donde cada
+componente representa la cuota de voto estimada para el candidato $c_i$,
+respondiendo a la pregunta: \textit{si las elecciones ocurrieran hoy, \textquestiondown{}qué porcentaje de los votantes apoyaría a cada candidato?}
 
 % ──────────────────────────────────────────────────────────────
 \section{Estructura del documento}
@@ -275,9 +276,9 @@ Para abordar esta hipótesis, la investigación se estructuró a través de tres
 
 El \textbf{Capítulo 5} desarrolla la metodología, dividida en las tres fases del proyecto: 
 \begin{itemize}
-    \item \textbf{Bolivia (Prueba de concepto):} Donde se replica el modelo SOMEN-DC para demostrar que sea un modelo reproducible en limitaciones metodológicas.
-    \item \textbf{Costa Rica (Modelado de crecimiento):} Enfocada en resolver el problema del registro histórico mediante la calibración matemática de la curva de crecimiento de las interacciones.
-    \item \textbf{Colombia (Construcción y modelado final):} Donde se compila el \textit{dataset} elección-agnóstico de elecciones locales (2023) y se entrenan los algoritmos de clasificación y regresión.
+    \item \textbf{Bolivia (Prueba de concepto):} donde se replica el modelo SOMEN-DC con herramientas comerciales, documentando sus limitaciones metodológicas.
+    \item \textbf{Costa Rica (Modelado de crecimiento):} enfocada en resolver el problema del registro histórico mediante la calibración matemática de la curva de crecimiento de las interacciones.
+    \item \textbf{Colombia (Construcción y modelado final):} donde se compila el \textit{dataset} elección-agnóstico de elecciones locales (2023) y se entrenan los modelos de regresión fraccional (evaluando la precisión de clasificación del \textit{Top-1} derivado).
 \end{itemize}
 
 Finalmente, el \textbf{Capítulo 6} expone los resultados obtenidos en cada fase, mientras que los \textbf{Capítulos 7 y 8} discuten el impacto esperado de la herramienta, sus limitaciones inherentes y las conclusiones definitivas del estudio.

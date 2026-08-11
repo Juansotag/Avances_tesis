@@ -11,8 +11,11 @@ import matplotlib.patches as mpatches
 from scipy import stats, special
 from sklearn.model_selection import LeaveOneGroupOut
 from sklearn.linear_model import LogisticRegression
+from sklearn.preprocessing import StandardScaler
 import warnings
 warnings.filterwarnings("ignore")
+import statsmodels.api as sm
+
 
 # ── Colores corporativos ──────────────────────────────────────────────────────
 AZUL      = "#1A2F6F"
@@ -39,13 +42,13 @@ plt.rcParams.update({
     "legend.fontsize"   : 9,
 })
 
-BASE_PATH  = r"c:\Users\juansoag\Downloads\Avances_tesis (modificado)\Herramientas"
-EXCEL_PATH = r"c:\Users\juansoag\Downloads\Avances_tesis (modificado)\Colombia\Resultados electorales.xlsx"
-IMG_PATH   = r"c:\Users\juansoag\Downloads\Avances_tesis (modificado)\Manuscrito\tesis-sabana\img"
+BASE_PATH  = r"c:\Users\juans\Downloads\Avances_tesis\Herramientas"
+EXCEL_PATH = r"c:\Users\juans\Downloads\Avances_tesis\Colombia\Resultados electorales.xlsx"
+IMG_PATH   = r"c:\Users\juans\Downloads\Avances_tesis\Manuscrito\tesis-sabana\img"
 os.makedirs(IMG_PATH, exist_ok=True)
 
 # ── 0. Carga de datos ─────────────────────────────────────────────────────────
-df_redes      = pd.read_csv(os.path.join(BASE_PATH, "resultados", "redes_unificadas_descontadas.csv"), sep=";", encoding="utf-8-sig")
+df_redes      = pd.read_csv(os.path.join(BASE_PATH, "resultados", "redes_unificadas.csv"), sep=";", encoding="utf-8-sig")
 df_electoral  = pd.read_excel(EXCEL_PATH, sheet_name="Candidatos E-26 ALC").rename(columns={"ID Candidato": "id_candidato"})
 df_poblacion  = pd.read_excel(EXCEL_PATH, sheet_name="Población 2023 (DANE)")
 df_seguidores = pd.read_csv(os.path.join(BASE_PATH, "resultados", "seguidores.csv"), sep=";", encoding="utf-8-sig").fillna(0)
@@ -120,20 +123,9 @@ base2 = base.merge(
     b2[["id_candidato","pct_metric","vote_pct"]].rename(columns={"pct_metric":"dom_likes_pct","vote_pct":"vote_pct_raw"}),
     on="id_candidato", how="left")
 
-# ── LOCO-CV manual con logit fraccional (OLS en logit space, re-centrado) ────
-def frac_logit_predict(X_tr, y_tr, X_te):
-    """Approximation: OLS in logit(y) space then sigmoid."""
-    logit_y = np.log(np.clip(y_tr,1e-4,1-1e-4)/(1-np.clip(y_tr,1e-4,1-1e-4)))
-    X_tr_c = np.column_stack([np.ones(len(X_tr)), X_tr])
-    X_te_c = np.column_stack([np.ones(len(X_te)), X_te])
-    try:
-        coef, *_ = np.linalg.lstsq(X_tr_c, logit_y, rcond=None)
-        raw_logit = X_te_c @ coef
-        raw = special.expit(raw_logit)
-        return raw, coef
-    except Exception:
-        return np.full(len(X_te), 1.0/len(X_te)), np.zeros(X_tr_c.shape[1])
-
+# ── LOCO-CV con GLM binomial (logit fraccional) + normalización composicional ─
+# Modelo B del diagnóstico: GLM + StandardScaler + normalizar dentro de contienda.
+# MAE esperado: 9.56 pp | R²=0.563 | Top-1=71%
 logo   = LeaveOneGroupOut()
 groups = base["DIVIPOLA"].values
 y      = base["vote_frac"].values
@@ -142,27 +134,39 @@ FEATS  = ["f_likes_dom","mod_likes_pob"]
 preds_winner, actuals_winner, all_coefs = [], [], []
 
 for train_idx, test_idx in logo.split(base, groups=groups):
-    X_tr = base.iloc[train_idx][FEATS].values
-    X_te = base.iloc[test_idx][FEATS].values
+    X_tr = base.iloc[train_idx][FEATS].values.astype(float)
+    X_te = base.iloc[test_idx][FEATS].values.astype(float)
     y_tr = y[train_idx]
     y_te = y[test_idx]
 
-    raw, coef = frac_logit_predict(X_tr, y_tr, X_te)
+    sc = StandardScaler().fit(X_tr)
+    Xtr_s = sm.add_constant(sc.transform(X_tr))
+    Xte_s = sm.add_constant(sc.transform(X_te), has_constant="add")
+    try:
+        m = sm.GLM(y_tr, Xtr_s, family=sm.families.Binomial()).fit()
+        raw  = m.predict(Xte_s)
+        coef = m.params[1:]          # sin intercepto
+    except Exception:
+        raw  = np.full(len(X_te), 1.0 / len(X_te))
+        coef = np.zeros(len(FEATS))
+
+    # Normalización composicional: cuotas dentro de la contienda deben sumar 1
     s = raw.sum()
     if s > 0:
         raw = raw / s
+
     preds_winner.extend(raw)
     actuals_winner.extend(y_te)
-    all_coefs.append(coef[1:])  # skip intercept
+    all_coefs.append(coef)
 
 preds_winner   = np.array(preds_winner)
 actuals_winner = np.array(actuals_winner)
-residuals      = (preds_winner - actuals_winner)*100
+residuals      = (preds_winner - actuals_winner) * 100
 mae_winner     = np.mean(np.abs(residuals))
 
-all_coefs    = np.array(all_coefs)
-coefs_mean   = all_coefs.mean(axis=0)
-coefs_std    = all_coefs.std(axis=0)
+all_coefs  = np.array(all_coefs)
+coefs_mean = all_coefs.mean(axis=0)
+coefs_std  = all_coefs.std(axis=0)
 
 # Baseline
 preds_base = []
@@ -172,15 +176,21 @@ for div, grp in base.groupby("DIVIPOLA"):
 preds_base = np.array(preds_base)
 mae_base   = np.mean(np.abs((preds_base - actuals_winner)*100))
 
-# Nucleo digital
+# Nucleo digital (solo f_likes_dom, GLM + normalización)
 preds_digital, actuals_digital = [], []
 for train_idx, test_idx in logo.split(base, groups=groups):
-    X_tr = base.iloc[train_idx][["f_likes_dom"]].values
-    X_te = base.iloc[test_idx][["f_likes_dom"]].values
+    X_tr = base.iloc[train_idx][["f_likes_dom"]].values.astype(float)
+    X_te = base.iloc[test_idx][["f_likes_dom"]].values.astype(float)
     y_tr = y[train_idx]; y_te = y[test_idx]
-    raw, _ = frac_logit_predict(X_tr, y_tr, X_te)
+    sc = StandardScaler().fit(X_tr)
+    Xtr_s = sm.add_constant(sc.transform(X_tr))
+    Xte_s = sm.add_constant(sc.transform(X_te), has_constant="add")
+    try:
+        m = sm.GLM(y_tr, Xtr_s, family=sm.families.Binomial()).fit()
+        raw = m.predict(Xte_s)
+    except: raw = np.full(len(X_te), 1.0/len(X_te))
     s = raw.sum()
-    if s > 0: raw = raw/s
+    if s > 0: raw /= s
     preds_digital.extend(raw); actuals_digital.extend(y_te)
 preds_digital   = np.array(preds_digital)
 actuals_digital = np.array(actuals_digital)
@@ -192,9 +202,11 @@ print(f"MAE ganador: {mae_winner:.2f} pp | MAE base: {mae_base:.2f} pp | MAE dig
 # FIGURA 1: Scatter dominancia likes vs cuota de votos
 # ─────────────────────────────────────────────────────────────────────────────
 fig, ax = plt.subplots(figsize=(7, 5.5))
-colors_scatter = [ROJO if g==0 else AZUL for g in base2["Ganador"].values]
-ax.scatter(base2["dom_likes_pct"], base2["vote_pct_raw"],
-           c=colors_scatter, alpha=0.75, s=55, zorder=3, edgecolors="white", linewidths=0.5)
+is_winner = base2["Ganador"].astype(str).str.upper().str.startswith("S")
+ax.scatter(base2.loc[~is_winner, "dom_likes_pct"], base2.loc[~is_winner, "vote_pct_raw"],
+           c=ROJO, alpha=0.75, s=55, zorder=3, edgecolors="white", linewidths=0.5)
+ax.scatter(base2.loc[is_winner, "dom_likes_pct"], base2.loc[is_winner, "vote_pct_raw"],
+           c=AZUL, alpha=0.85, s=65, zorder=4, edgecolors="white", linewidths=0.7)
 
 x_fit = base2["dom_likes_pct"].dropna().values
 y_fit = base2["vote_pct_raw"].dropna().values
@@ -293,7 +305,7 @@ ax.errorbar(x_pos, means, yerr=ci95, fmt="none", ecolor="#333333", elinewidth=2,
 ax.axhline(0, color=GRIS, linewidth=1.2, linestyle="--")
 ax.set_xticks(x_pos); ax.set_xticklabels(feat_labels, fontsize=10)
 ax.set_ylabel("Coeficiente (media LOCO-CV)", fontsize=11)
-ax.set_title("Coeficientes del modelo ElasticNet final\n(Media ± IC 95% entre pliegues LOCO-CV)",
+ax.set_title("Estabilidad de coeficientes — modelo de 2 variables (GLM fraccional)\n(Media ± IC 95% entre pliegues LOCO-CV, escala logit)",
              fontsize=11, fontweight="bold", pad=10)
 for bar, m in zip(bars2, means):
     ax.text(bar.get_x()+bar.get_width()/2, m+(0.005 if m>=0 else -0.015),

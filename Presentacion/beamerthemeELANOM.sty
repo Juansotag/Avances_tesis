@@ -1,80 +1,81 @@
-% beamerthemeELANOM.sty - VERSION CORREGIDA
-\ProvidesPackage{beamerthemeELANOM}[2026/06/25 ELA-NOM Beamer Theme]
+% beamerthemeELANOM.sty — Tema limpio, blanco, barras azules
+\ProvidesPackage{beamerthemeELANOM}[2026/08/10 ELA-NOM Clean White Theme]
 \RequirePackage{tikz}
 \RequirePackage{xcolor}
 \RequirePackage{amsmath}
 
-\definecolor{elanBG}{HTML}{0D1B2A}
-\definecolor{elanBGlight}{HTML}{162535}
-\definecolor{elanGold}{HTML}{E8B86D}
-\definecolor{elanBlue}{HTML}{4A9ECC}
-\definecolor{elanRed}{HTML}{E05A5A}
-\definecolor{elanGreen}{HTML}{5ABF8A}
-\definecolor{elanWhite}{HTML}{F0F4F8}
-\definecolor{elanGray}{HTML}{8899AA}
-\definecolor{elanPanel}{HTML}{1C2E42}
+% ── Paleta de color ────────────────────────────────────────────────────────────
+\definecolor{barBlue}{HTML}{1B4D8E}       % barra superior/inferior
+\definecolor{keyBlue}{HTML}{2E6DB4}       % texto clave / tablas header
+\definecolor{accentBlue}{HTML}{5B9BD5}    % viñetas secundarias
+\definecolor{alertRed}{HTML}{C0392B}      % advertencia
+\definecolor{okGreen}{HTML}{1A7A4A}       % positivo
+\definecolor{goldNum}{HTML}{996600}       % cifras destacadas
+\definecolor{bgWhite}{HTML}{FFFFFF}
+\definecolor{darkText}{HTML}{1A1A2E}
+\definecolor{subtleGray}{HTML}{6B7280}
+\definecolor{tableBand}{HTML}{EBF2FB}     % filas alternas de tabla
 
-\setbeamercolor{background canvas}{bg=elanBG}
-\setbeamercolor{normal text}{fg=elanWhite}
-\setbeamercolor{structure}{fg=elanGold}
-\setbeamercolor{frametitle}{fg=elanGold,bg=elanBGlight}
-\setbeamercolor{title}{fg=elanGold}
-\setbeamercolor{subtitle}{fg=elanBlue}
-\setbeamercolor{author}{fg=elanGray}
-\setbeamercolor{institute}{fg=elanGray}
-\setbeamercolor{date}{fg=elanGray}
-\setbeamercolor{footline}{fg=elanGray,bg=elanBGlight}
-\setbeamercolor{block title}{fg=elanBG,bg=elanGold}
-\setbeamercolor{block body}{fg=elanWhite,bg=elanPanel}
-\setbeamercolor{block title alerted}{fg=elanBG,bg=elanRed}
-\setbeamercolor{block body alerted}{fg=elanWhite,bg=elanPanel}
-\setbeamercolor{block title example}{fg=elanBG,bg=elanGreen}
-\setbeamercolor{block body example}{fg=elanWhite,bg=elanPanel}
-\setbeamercolor{item}{fg=elanGold}
-\setbeamercolor{subitem}{fg=elanBlue}
-\setbeamercolor{alerted text}{fg=elanRed}
+% ── Colores de elementos Beamer ────────────────────────────────────────────────
+\setbeamercolor{background canvas}{bg=bgWhite}
+\setbeamercolor{normal text}{fg=darkText}
+\setbeamercolor{structure}{fg=barBlue}
+\setbeamercolor{frametitle}{fg=bgWhite, bg=barBlue}
+\setbeamercolor{title}{fg=barBlue}
+\setbeamercolor{subtitle}{fg=keyBlue}
+\setbeamercolor{author}{fg=subtleGray}
+\setbeamercolor{institute}{fg=subtleGray}
+\setbeamercolor{date}{fg=subtleGray}
+\setbeamercolor{footline}{fg=bgWhite, bg=barBlue}
+\setbeamercolor{item}{fg=barBlue}
+\setbeamercolor{subitem}{fg=accentBlue}
+\setbeamercolor{subsubitem}{fg=subtleGray}
+\setbeamercolor{alerted text}{fg=alertRed}
+\setbeamercolor{block title}{fg=bgWhite, bg=keyBlue}
+\setbeamercolor{block body}{fg=darkText, bg=tableBand}
+\setbeamercolor{block title alerted}{fg=bgWhite, bg=alertRed}
+\setbeamercolor{block body alerted}{fg=darkText, bg=bgWhite}
+\setbeamercolor{block title example}{fg=bgWhite, bg=okGreen}
+\setbeamercolor{block body example}{fg=darkText, bg=bgWhite}
 
-\setbeamerfont{title}{size=\Large,series=\bfseries}
-\setbeamerfont{subtitle}{size=\normalsize}
-\setbeamerfont{frametitle}{size=\large,series=\bfseries}
-\setbeamerfont{footline}{size=\tiny}
+% ── Fuentes ────────────────────────────────────────────────────────────────────
+\setbeamerfont{title}{size=\Large, series=\bfseries}
+\setbeamerfont{subtitle}{size=\normalsize, series=\normalfont}
+\setbeamerfont{frametitle}{size=\normalsize, series=\bfseries}
+\setbeamerfont{footline}{size=\scriptsize}
+\setbeamerfont{block title}{size=\small, series=\bfseries}
 
+% ── Barra superior (título de diapositiva) ─────────────────────────────────────
 \setbeamertemplate{frametitle}{%
   \nointerlineskip
-  \begin{beamercolorbox}[wd=\paperwidth,ht=2.4ex,dp=1ex,leftskip=0.6cm]{frametitle}
-    \usebeamerfont{frametitle}\insertframetitle
+  \begin{beamercolorbox}[wd=\paperwidth, ht=2.6ex, dp=1.2ex, leftskip=0.7cm]{frametitle}%
+    \usebeamerfont{frametitle}\insertframetitle%
     \ifx\insertframesubtitle\@empty\else
-      \hfill{\color{elanGray}\small\insertframesubtitle}
+      \hfill{\color{accentBlue}\small\textit{\insertframesubtitle}}%
     \fi
-  \end{beamercolorbox}
+  \end{beamercolorbox}%
   \nointerlineskip
-  \begin{tikzpicture}
-    \fill[elanGold] (0,0) rectangle (\paperwidth,0.04);
-  \end{tikzpicture}
 }
 
+% ── Barra inferior (nombre + número de diapositiva) ────────────────────────────
 \setbeamertemplate{footline}{%
-  \begin{beamercolorbox}[wd=\paperwidth,ht=2.25ex,dp=1ex,leftskip=0.4cm,rightskip=0.4cm]{footline}
-    {\color{elanGray}\insertshorttitle}\hfill
-    {\color{elanGray}\insertshortauthor}\hfill
-    {\color{elanGold}\insertframenumber~/~\inserttotalframenumber}
-  \end{beamercolorbox}
+  \begin{beamercolorbox}[wd=\paperwidth, ht=2.25ex, dp=1.2ex,
+                         leftskip=0.7cm, rightskip=0.7cm]{footline}%
+    Juan Sotelo Aguilar \hspace{0.4em}|\hspace{0.4em} Maestría en Analítica Aplicada%
+    \hfill%
+    \insertframenumber\,/\,\inserttotalframenumber%
+  \end{beamercolorbox}%
 }
 
+% ── Viñetas ────────────────────────────────────────────────────────────────────
 \setbeamertemplate{navigation symbols}{}
-\setbeamertemplate{itemize item}{\color{elanGold}$\blacktriangleright$}
-\setbeamertemplate{itemize subitem}{\color{elanBlue}$\triangleright$}
+\setbeamertemplate{itemize item}{\color{barBlue}\small$\blacktriangleright$}
+\setbeamertemplate{itemize subitem}{\color{accentBlue}\small$\triangleright$}
+\setbeamertemplate{itemize subsubitem}{\color{subtleGray}\tiny$\bullet$}
 
-\newcommand{\highlight}[1]{{\color{elanGold}\textbf{#1}}}
-
-% Slide separador de seccion - llamar manualmente con \sectionslide{Nombre}
-\newcommand{\sectionslide}[1]{%
-  \begin{frame}[plain]
-    \begin{tikzpicture}[remember picture,overlay]
-      \fill[elanBGlight] (current page.north west) rectangle (current page.south east);
-      \fill[elanGold] ([yshift=-2.9cm]current page.north west)
-                      rectangle ([yshift=-2.96cm]current page.north east);
-      \node[anchor=center,text=elanGold,font=\Huge\bfseries] at (current page.center) {#1};
-    \end{tikzpicture}
-  \end{frame}%
-}
+% ── Comandos de utilidad ───────────────────────────────────────────────────────
+\newcommand{\kw}[1]{{\color{barBlue}\textbf{#1}}}        % keyword azul
+\newcommand{\num}[1]{{\color{goldNum}\textbf{#1}}}        % cifra destacada
+\newcommand{\alrt}[1]{{\color{alertRed}\textbf{#1}}}      % alerta
+\newcommand{\ok}[1]{{\color{okGreen}\textbf{#1}}}         % positivo
+\newcommand{\corr}[1]{{\color{keyBlue}\textit{#1}}}       % corrección del jurado

@@ -973,6 +973,40 @@
       \verb 10.3390/info11040187
       \endverb
     \endentry
+    \entry{sotelo2026elanom}{software}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=de8a009ea4dff454b705e3afc9620e95}{%
+           family={Sotelo\bibnamedelima Aguilar},
+           familyi={S\bibinitperiod\bibinitdelim A\bibinitperiod},
+           given={Juan},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{de8a009ea4dff454b705e3afc9620e95}
+      \strng{fullhash}{de8a009ea4dff454b705e3afc9620e95}
+      \strng{fullhashraw}{de8a009ea4dff454b705e3afc9620e95}
+      \strng{bibnamehash}{de8a009ea4dff454b705e3afc9620e95}
+      \strng{authorbibnamehash}{de8a009ea4dff454b705e3afc9620e95}
+      \strng{authornamehash}{de8a009ea4dff454b705e3afc9620e95}
+      \strng{authorfullhash}{de8a009ea4dff454b705e3afc9620e95}
+      \strng{authorfullhashraw}{de8a009ea4dff454b705e3afc9620e95}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Repositorio público. Entorno Python reproducible}
+      \field{title}{{ELA-NOM}: Election-Agnostic Nowcasting Model Código fuente, datos y cuadernos de análisis}
+      \field{year}{2026}
+      \verb{urlraw}
+      \verb https://github.com/Juansotag/Avances_tesis
+      \endverb
+      \verb{url}
+      \verb https://github.com/Juansotag/Avances_tesis
+      \endverb
+    \endentry
     \entry{stegmaier2023}{article}{}{}
       \name{author}{3}{}{%
         {{un=0,uniquepart=base,hash=bc0306b02bf27ee067ff5a12ec8e831b}{%
@@ -2138,6 +2172,40 @@
       \range{pages}{1}
       \verb{doi}
       \verb 10.3390/info11040187
+      \endverb
+    \endentry
+    \entry{sotelo2026elanom}{software}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=de8a009ea4dff454b705e3afc9620e95}{%
+           family={Sotelo\bibnamedelima Aguilar},
+           familyi={S\bibinitperiod\bibinitdelim A\bibinitperiod},
+           given={Juan},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{de8a009ea4dff454b705e3afc9620e95}
+      \strng{fullhash}{de8a009ea4dff454b705e3afc9620e95}
+      \strng{fullhashraw}{de8a009ea4dff454b705e3afc9620e95}
+      \strng{bibnamehash}{de8a009ea4dff454b705e3afc9620e95}
+      \strng{authorbibnamehash}{de8a009ea4dff454b705e3afc9620e95}
+      \strng{authornamehash}{de8a009ea4dff454b705e3afc9620e95}
+      \strng{authorfullhash}{de8a009ea4dff454b705e3afc9620e95}
+      \strng{authorfullhashraw}{de8a009ea4dff454b705e3afc9620e95}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Repositorio público. Entorno Python reproducible}
+      \field{title}{{ELA-NOM}: Election-Agnostic Nowcasting Model Código fuente, datos y cuadernos de análisis}
+      \field{year}{2026}
+      \verb{urlraw}
+      \verb https://github.com/Juansotag/Avances_tesis
+      \endverb
+      \verb{url}
+      \verb https://github.com/Juansotag/Avances_tesis
       \endverb
     \endentry
     \entry{stegmaier2023}{article}{}{}

@@ -1,139 +1,152 @@
-% sections/05_etapa3_colombia.tex
-\newcommand{\etapacolombia}{%
-
-\begin{frame}{Dataset: elecciones locales Colombia 2023}
-\begin{columns}[c]
-\column{0.50\textwidth}
-  \textbf{\color{elanGold}Construcción del dataset}
-  \begin{itemize}\itemsep0.4em
-    \item Universo: 33 ciudades más pobladas
-    \item Excluidas: Bogotá (sesgo influencer) + Piedecuesta (sin datos digitales)
-    \item Universo final: \textbf{\color{elanGold}31 ciudades competitivas}
-    \item Candidatos con $>$10,000 votos: \textbf{\color{elanGold}120 candidatos}
-    \item Publicaciones \'unicas: \textbf{\color{elanGold}5,776}
-    \begin{itemize}
-      \item[\color{elanBlue}·] Facebook: 2,511
-      \item[\color{elanBlue}·] Twitter/X: 2,346
-      \item[\color{elanBlue}·] TikTok: 919
-    \end{itemize}
-    \item Ventana de captura: \textbf{14 días} previos a los comicios
-    \item Cobertura digital: \textbf{92.6\%} de candidatos con publicaciones activas
-  \end{itemize}
-\column{0.46\textwidth}
-  \begin{tikzpicture}
-    \fill[elanPanel] (0,0) rectangle (5.5,5.5);
-    \node[anchor=north, yshift=-0.2cm, text=elanGold, font=\bfseries\small] at (2.75,5.5)
-      {Pipeline de extracción};
-    \node[anchor=north, yshift=-0.9cm, text width=5.0cm] at (2.75,5.5) {
-      \small
-      \begin{tabular}{ll}
-        \color{elanBlue}\textbf{Facebook} & Apify scraper\\
-        \color{elanBlue}\textbf{Twitter/X} & Playwright headless\\
-        \color{elanBlue}\textbf{TikTok} & API privada (Apify)\\
-        \color{elanRed}\textbf{Instagram} & Excluido (API restrictions)\\
-      \end{tabular}
-    };
-    \node[anchor=south, yshift=1.0cm] at (2.75,0) {
-      \begin{tikzpicture}
-        \fill[elanGold!20!elanPanel] (0,0) rectangle (5.0,1.3);
-        \draw[elanGold, line width=0.8pt] (0,0) rectangle (5.0,1.3);
-        \node[anchor=center, text=elanGold, font=\bfseries\small] at (2.5,0.95)
-          {Reconstrucci\'on Weibull};
-        \node[anchor=center, text=elanGray, font=\footnotesize] at (2.5,0.40)
-          {aplicada a todas las publicaciones};
-      \end{tikzpicture}
-    };
-  \end{tikzpicture}
-\end{columns}
+% DIAPOSITIVA 15: Colombia -- universo geográfico y filtros
+\begin{frame}{Etapa 3: Colombia -- universo geográfico y filtros}
+  \begin{columns}[T]
+    \begin{column}{0.54\textwidth}
+      {\small\textbf{Universo:} alcaldes oct.\ 2023, 33 ciudades; 31 competitivas}
+      \begin{itemize}\scriptsize
+        \item \textbf{Bogotá} excluida: Gustavo Bolívar tiene audiencia supranacional
+              que viola el supuesto de localidad \corr{[1.12]}
+        \item \textbf{Piedecuesta}: ganador eliminó perfiles por procesos legales
+      \end{itemize}
+      \vspace{0.2em}
+      {\small\textbf{Filtro mayor de 10.000 votos}} \corr{[1.12]}
+      \begin{itemize}\scriptsize
+        \item Criterio sobre v.\ dependiente; sesgo de selección documentado
+        \item MAE y $R^2$ reflejan el subconjunto más predecible del panel
+        \item Inaplicable antes del escrutinio; inconsistencia con 2026
+      \end{itemize}
+      \vspace{0.2em}
+      {\small\textbf{Imputación $\varepsilon$}} \corr{[1.13]}
+      {\scriptsize Aprox.\ 9 candidatos sin publicaciones:
+      $\varepsilon{=}10^{-3}$, $\text{logit}(0{,}001){\approx}{-}6{,}91$.
+      Variar $\varepsilon$ de 0,1\% a 1\% implica $\Delta\hat{y}{\approx}26$ pp
+      sobre ese candidato.}
+    \end{column}
+    \begin{column}{0.42\textwidth}
+      \begin{exampleblock}{Resultado}
+        \small \textbf{31 ciudades competitivas}\\[0.4em]
+        \scriptsize Elecciones de alcaldías, octubre 2023.\\[0.2em]
+        Solo candidatos con $>10.000$ votos confirmados y presencia digital activa.
+      \end{exampleblock}
+    \end{column}
+  \end{columns}
 \end{frame}
 
-\begin{frame}{Evidencia descriptiva: dominancia digital y votos}
+% DIAPOSITIVA 16: Colombia -- extracción de datos
+\begin{frame}{Etapa 3: Colombia -- infraestructura de extracción}
+  \begin{columns}[T]
+    \begin{column}{0.52\textwidth}
+      \textbf{Tres plataformas monitoreadas}
+      \begin{itemize}
+        \item \textbf{Facebook} y \textbf{TikTok}: Apify (infraestructura comercial de scraping)
+        \item \textbf{Twitter/X}: scraper propio con Playwright (navegador \textit{headless})
+        \item \alrt{Instagram excluida}: Meta cerró su API pública para investigadores
+              independientes desde 2023
+      \end{itemize}
+      \vspace{0.3em}
+      \textbf{Ventana temporal:} 15 días anteriores al 29 oct.\ 2023
+      \vspace{0.3em}
+      {\small\textbf{Restauración Weibull:}\\
+      Las interacciones brutas se convierten en estimaciones al \textbf{día de la elección},
+      descontando el tráfico póstumo acumulado desde oct.\ 2023 hasta la extracción.}
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      \begin{block}{Dataset final}
+        \begin{itemize}\small
+          \item \textbf{5.776} publicaciones únicas
+          \item \hspace{1em} Facebook: \textbf{2.511}
+          \item \hspace{1em} Twitter/X: \textbf{2.346}
+          \item \hspace{1em} TikTok: \textbf{919}
+          \item[\phantom{x}]
+          \item 31 ciudades, \textbf{120 candidatos}\\
+                (más de 10k votos)
+          \item 92,6\% con publicaciones activas
+        \end{itemize}
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% DIAPOSITIVA 17: Validación de la señal digital (P1)
+\begin{frame}{Etapa 3: Validación de la señal digital (P1)}
+  \begin{columns}[T]
+    \begin{column}{0.54\textwidth}
+      \textbf{Mann-Whitney + permutación intra-contienda} \corr{[Corr.\ 1.16/2.2]}
+      \begin{itemize}\scriptsize
+        \item $p = 0{,}0481$ para \textbf{engagement por publicación}
+              (no para diferencia de medias 44.252 vs.\ 28.011)
+        \item Candidatos anidados en 31 contiendas; se barajaron etiquetas
+              ganador/perdedor \textbf{dentro} de cada ciudad (10.000 iter.)
+        \item $\Delta\tilde{x} = 112$ \textit{eng}/publicación observado;
+              ninguna permutación lo igualó: \kw{$p < 0{,}0001$ empírico}
+      \end{itemize}
+      \vspace{0.15em}
+      \textbf{Correlación de Spearman} \corr{[Corr.\ 2.2]}
+      \begin{itemize}\scriptsize
+        \item $\rho = 0{,}70$ dominancia relativa; $\rho \approx 0{,}45$ volumen absoluto
+        \item Composicionalidad cuantificada: $\rho_{\text{mec.}} = 0{,}261$ (39\%),
+              señal real $\rho_{\text{real}} \approx 0{,}41$ (61\%), $p < 0{,}0001$
+      \end{itemize}
+      \vspace{0.15em}
+      \textbf{Heurístico de dominancia:}
+      \[\textstyle
+        \Pr(\text{Top-1}) = \tfrac{22}{31} = 71{,}0\%
+        \;\;\text{IC}_{95\%}\text{Wilson:}\;[53{,}4\%,\;83{,}9\%]
+      \]
+    \end{column}
+    \begin{column}{0.42\textwidth}
+      \begin{exampleblock}{\textbf{P1}: Respondida}
+        \small La señal existe. El 61\% del $\rho$ es
+        señal real ($\rho_{\text{real}} \approx 0{,}41$);
+        el 39\% es inflación composicional. La validez
+        predictiva definitiva: LOCO-CV, MAE = 9{,}56 pp.
+      \end{exampleblock}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+
+
+% DIAPOSITIVA 17-B: Gráfica dispersión señal
+\begin{frame}{Etapa 3: Correlación dominancia digital vs. cuota de voto}
   \begin{center}
-    \includegraphics[width=0.78\textwidth]{img/colombia/col_scatter_dominancia_votos.png}
+    \includegraphics[height=0.82\textheight]{img/col_scatter_dominancia_votos.png}
   \end{center}
-  \vspace{-0.6em}
-  \begin{tikzpicture}
-    \fill[elanPanel] (0,0) rectangle (\textwidth,0.75);
-    \node[anchor=west, xshift=0.3cm, yshift=0.37cm] at (0,0)
-      {{\color{elanGold}\small\bfseries $\rho = 0.70$, $p < 0.001$} \quad
-       {\color{elanGray}\small $\cdot$ Ganadores (azul) vs.\ perdedores (rojo) $\cdot$ 120 candidatos, 31 contiendas}};
-  \end{tikzpicture}
+  {\footnotesize\color{subtleGray}\centering
+    $\rho = 0{,}70$, 120 candidatos, 31 ciudades \corr{[Corr.\ 2.2]}}
 \end{frame}
 
-\begin{frame}{Modelado predictivo: regresión logística fraccional}
-\begin{columns}[c]
-\column{0.50\textwidth}
-  \textbf{\color{elanGold}Especificaci\'on del modelo}\\[0.4em]
-  La variable objetivo es la \textbf{cuota de voto real} $v_c \in (0,1)$.\\[0.5em]
-  Dado que $v_c$ es una proporci\'on, usamos regresi\'on log\'{\i}stica fraccional (Papke \& Wooldridge, 1996):
-  \[
-    \mathbb{E}[v_c \mid X] = \frac{1}{1 + e^{-(\beta_0 + X^\top \beta)}}
-  \]
-  con predictor central:
-  \[
-    \text{logit}(\delta_c) = \log\!\left(\frac{\delta_c}{1-\delta_c}\right)
-  \]
+% DIAPOSITIVA 18: Colombia -- normalización y familias de variables
+\begin{frame}{Etapa 3: Normalización y construcción de variables}
+  \textbf{Pool inicial: más de 22 variables}
+  (interacciones reconstruidas con el restaurador Weibull)
   \vspace{0.3em}
-  \textbf{\color{elanGold}Selección de variables: ElasticNet anidado}\\
-  \[
-    \hat{\beta} = \arg\min_\beta \bigl\{L(\beta) + \lambda_1\|\beta\|_1 + \lambda_2\|\beta\|_2^2\bigr\}
-  \]
-
-\column{0.48\textwidth}
-  \textbf{\color{elanGold}Comparativa de modelos}\\[0.2em]
-  {\scriptsize M\'etricas LOCO-CV (31 contiendas)}\\[0.1em]
-  {\tiny
-  \begin{tabular}{@{}lrrr@{}}
-    \toprule
-    \color{elanWhite} Modelo & \color{elanGold} MAE & \color{elanGold} $R^2$ & \color{elanGold} T1\\
-    \midrule
-    Base uniforme  & 12.49 & 0.306 & 39\%\\
-    Base proporcional & 12.61 & 0.185 & 71\%\\
-    Reg. fraccional   & 11.52 & 0.460 & 71\%\\
-    \rowcolor{elanPanel}
-    \color{elanGold}\bfseries ELA-NOM & \color{elanGold}\bfseries 9.43 & \color{elanGold}\bfseries 0.518 & \color{elanGold}\bfseries 64.5\%\\
-    Grad. Boosting    & 9.91 & 0.515 & 67.7\%\\
-    \bottomrule
-  \end{tabular}}
-
+  \begin{columns}[T]
+    \begin{column}{0.30\textwidth}
+      \begin{block}{\small 1. Nominales absolutas}
+        \scriptsize Likes, comentarios, compartidos totales por plataforma.\\[0.3em]
+        \alrt{Problema:} quien más publica, más acumula.
+        Señal ruidosa.
+      \end{block}
+    \end{column}
+    \begin{column}{0.30\textwidth}
+      \begin{block}{\small 2. Por publicación}
+        \scriptsize Likes, comentarios y compartidos \textbf{promedio por post}.\\[0.3em]
+        Normalizan la actividad editorial.
+        Más estables, pero dependen del tamaño de la contienda.
+      \end{block}
+    \end{column}
+    \begin{column}{0.34\textwidth}
+      \begin{exampleblock}{\small 3. Dominancia relativa \checkmark}
+        \scriptsize \textbf{Cuota de likes} sobre el total de la contienda.\\[0.3em]
+        Elimina el efecto de tamaño absoluto.
+        Clasificador naive: \textbf{71\%}; $\rho = 0{,}70$.
+      \end{exampleblock}
+    \end{column}
+  \end{columns}
   \vspace{0.4em}
-  \begin{tikzpicture}
-    \fill[elanGold!20!elanPanel] (0,0) rectangle (5.5,1.5);
-    \draw[elanGold, line width=0.7pt] (0,0) rectangle (5.5,1.5);
-    \node[anchor=north, yshift=-0.1cm, text width=5.2cm] at (2.75,1.5) {
-      {\color{elanGold}\bfseries\small Validaci\'on: LOCO-CV}\\
-      {\color{elanGray}\footnotesize \textit{Leave-One-Contest-Out CV}: en cada pliegue
-      se excluye una contienda completa y el modelo predice \textbf{fuera de muestra}.
-      31~pliegues $\cdot$ unidad~=~contienda.}
-    };
-  \end{tikzpicture}
-\end{columns}
+  \begin{alertblock}{Intento descartado: normalizar por número de seguidores}
+    \small VIF elevado. El número de seguidores es inestable, colineal con el volumen
+    de publicaciones, y no disponible históricamente en todas las plataformas.
+  \end{alertblock}
 \end{frame}
-
-\begin{frame}{Coeficientes: estabilidad inter-pliegue (bootstrap)}
-  \begin{center}
-    \includegraphics[width=0.82\textwidth]{img/colombia/col_coef_bootstrap.png}
-  \end{center}
-  \vspace{-0.4em}
-  \begin{tikzpicture}
-    \fill[elanPanel] (0,0) rectangle (\textwidth,0.75);
-    \node[anchor=west, xshift=0.3cm, yshift=0.37cm] at (0,0)
-      {{\color{elanGold}\small\bfseries Estabilidad:}
-       {\color{elanGray}\small\ logit\_likes e interacción presentes en el 100\% de los pliegues de validación}};
-  \end{tikzpicture}
-\end{frame}
-
-\begin{frame}{Residuales LOCO-CV: distribución del error}
-  \begin{center}
-    \includegraphics[width=0.85\textwidth]{img/colombia/col_loco_residuals.png}
-  \end{center}
-  \vspace{-0.4em}
-  \begin{tikzpicture}
-    \fill[elanPanel] (0,0) rectangle (\textwidth,0.75);
-    \node[anchor=west, xshift=0.3cm, yshift=0.37cm] at (0,0)
-      {{\color{elanGold}\small\bfseries MAE~=~9.43~pp} \quad
-       {\color{elanGray}\small $\cdot$ $R^2_{\text{oos}} = 0.518$ $\cdot$ Top-1 = 64.5\% (20/31) $\cdot$ sin patrones sistem\'aticos de sesgo}};
-  \end{tikzpicture}
-\end{frame}
-
-}% fin \etapacolombia

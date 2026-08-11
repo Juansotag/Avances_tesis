@@ -53,12 +53,32 @@
 % ── BIBLIOGRAFÍA ─────────────────────────────────────────────
 \addbibresource{refs.bib}
 
+% ── GLOSARIO Y ACRÓNIMOS ──────────────────────────────
+\input{docs/glosario}
+
 
 % ============================================================
 \begin{document}
 
     % ── Portada, índice, resumen ─────────────────────────────
     \frontmatter
+
+    % ── Índice de figuras ──────────────────────────────
+    {\hypersetup{linkcolor=black}%
+    \listoffigures
+    \addcontentsline{toc}{chapter}{\listfigurename}}
+    \clearpage
+
+    % ── Índice de cuadros ─────────────────────────────
+    {\hypersetup{linkcolor=black}%
+    \listoftables
+    \addcontentsline{toc}{chapter}{\listtablename}}
+    \clearpage
+
+    % ── Listado de siglas y acrónimos ─────────────────────
+    {\hypersetup{linkcolor=black}%
+    \printglossary[type=\acronymtype, title={Listado de siglas y acrónimos}, toctitle={Listado de siglas}]}
+    \clearpage
 
     % ── Contenido principal ──────────────────────────────────
     \mainmatter

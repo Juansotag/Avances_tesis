@@ -1,0 +1,17 @@
+\babel@toc {spanish}{}\relax 
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {5.1}{\ignorespaces Comparativa de bondad de ajuste ($R^2$) entre familias de funciones de crecimiento acumulado.}}{18}{table.caption.9}%
+\contentsline {table}{\numberline {5.2}{\ignorespaces Parámetros Weibull calibrados por plataforma y bondad de ajuste ($R^2$) sobre el panel de fracciones.}}{19}{table.caption.10}%
+\contentsline {table}{\numberline {5.3}{\ignorespaces Métricas fuera de muestra del modelo de regresión fraccional (LOCO-CV sobre 31 contiendas, 120 candidatos).}}{23}{table.caption.15}%
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {6.1}{\ignorespaces Métricas de predicción en el día de elecciones: candidato Paz (real: 54{,}53\%)$^\dagger $}}{27}{table.caption.16}%
+\contentsline {table}{\numberline {6.2}{\ignorespaces MAPE mediano (\%) en la estimación del total final de interacciones, por plataforma y día de observación (panel longitudinal Costa Rica 2026).}}{29}{table.caption.18}%
+\contentsline {table}{\numberline {6.3}{\ignorespaces Escalera de resultados del proceso AutoML acotado: comparativa completa de especificaciones (LOCO-CV, 31 contiendas, 120 candidatos).}}{31}{table.caption.20}%
+\contentsline {table}{\numberline {6.4}{\ignorespaces Pronóstico ELA-NOM vs.~resultado real de la segunda vuelta presidencial colombiana (21 jun.~2026). Fuente del resultado: Registraduría Nacional del Estado Civil.}}{33}{table.caption.24}%
+\contentsline {table}{\numberline {6.5}{\ignorespaces Curva de aprendizaje: MAE fuera de muestra según el número de contiendas de entrenamiento (50 repeticiones con muestreo aleatorio, semilla 42). Modelo base: regresión lineal sobre dominancia en logit de \textit {likes}.}}{34}{table.caption.26}%
+\addvspace {10\p@ }
+\addvspace {10\p@ }

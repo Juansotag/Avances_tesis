@@ -1,66 +1,70 @@
-% sections/00_portada.tex
-\newcommand{\portada}{%
-
-% ── PORTADA ─────────────────────────────────────────────────
+% DIAPOSITIVA 1: Portada
+{
+\setbeamertemplate{footline}{}
 \begin{frame}[plain]
-\begin{tikzpicture}[remember picture, overlay]
-  % Fondo
-  \fill[elanBG] (current page.north west) rectangle (current page.south east);
-  % Banda dorada superior
-  \fill[elanGold] ([yshift=-0.5cm]current page.north west)
-                  rectangle ([yshift=-0.56cm]current page.north east);
-  % Logo Sabana arriba a la derecha
-  \node[anchor=north east, xshift=-0.5cm, yshift=-0.6cm] at (current page.north east)
-    {\includegraphics[height=1cm]{img/logos/unisabana-logo.png}};
-  % Título
-  \node[anchor=center, yshift=1.4cm, text width=14cm, align=center] at (current page.center)
-    {{\color{elanGold}\fontsize{22}{26}\selectfont\bfseries ELA-NOM}\\[0.3em]
-     {\color{elanWhite}\fontsize{14}{18}\selectfont\itshape Election-Agnostic Nowcasting Model}};
-  % Subtítulo
-  \node[anchor=center, yshift=0.1cm, text width=14cm, align=center] at (current page.center)
-    {{\color{elanGray}\normalsize Un modelo de predicción electoral sin encuestas\\para el entorno local latinoamericano}};
-  % Separador
-  \fill[elanPanel] ([yshift=-1.5cm]current page.center)
-                   rectangle +(\paperwidth, 0.04);
-  % Autor e institución
-  \node[anchor=center, yshift=-2.1cm, text width=14cm, align=center] at (current page.center)
-    {{\color{elanWhite}\small\textbf{Juan Sotelo Aguilar}}\\[0.15em]
-     {\color{elanGray}\footnotesize Universidad de La Sabana · Maestría en Analítica e Inteligencia de Negocios}\\[0.15em]
-     {\color{elanGray}\footnotesize Junio 2026}};
-  % Banda dorada inferior
-  \fill[elanGold] ([yshift=0.5cm]current page.south west)
-                  rectangle ([yshift=0.56cm]current page.south east);
-\end{tikzpicture}
-\end{frame}
+  \vspace{1.2cm}
+  \begin{center}
+    {\color{barBlue}\rule{0.85\textwidth}{1.5pt}}\\[0.5em]
+    {\color{barBlue}\Large\bfseries ELA-NOM}\\[0.3em]
+    {\color{keyBlue}\normalsize
+      Diseño e implementación del modelo ELA-NOM:\\
+      un \textit{nowcasting} elección-agnóstico para la intención de voto\\
+      \textbf{aplicado a elecciones locales en Colombia 2023}}\\[0.4em]
+    {\color{barBlue}\rule{0.85\textwidth}{1.5pt}}\\[1.0em]
 
-% ── AGENDA ──────────────────────────────────────────────────
+    {\color{darkText}\normalsize Juan Sotelo Aguilar}\\[0.15em]
+    {\color{subtleGray}\small
+      Maestría en Analítica Aplicada, Universidad de La Sabana}\\[0.15em]
+    {\color{subtleGray}\small Agosto 2026}\\[1.0em]
+
+    {\color{subtleGray}\footnotesize
+      Jurado: César Caballero, Andrés Cruz, Adrián Santana\\
+      Director de tesis: Miguel Uribe Laverde}
+  \end{center}
+\end{frame}
+}
+
+% DIAPOSITIVA 2: Agenda
 \begin{frame}{Agenda}
-\begin{columns}[T]
-\column{0.5\textwidth}
-  \begin{enumerate}\itemsep0.5em
-    \item \highlight{Motivación} y gap empírico
-    \item \highlight{Pregunta} e hipótesis
-    \item \highlight{Etapa 1 — Bolivia}\\
-          {\small SOMEN-DC: límites del estado del arte}
-    \item \highlight{Etapa 2 — Costa Rica}\\
-          {\small Reconstrucción temporal Weibull}
-  \end{enumerate}
-\column{0.5\textwidth}
-  \begin{enumerate}\setcounter{enumi}{4}\itemsep0.5em
-    \item \highlight{Etapa 3 — Colombia}\\
-          {\small Dataset, modelado, ElasticNet}
-    \item \highlight{Resultados} Colombia 2023
-    \item \highlight{Validación prospectiva} 2026
-    \item \highlight{Conclusiones} y trabajo futuro
-  \end{enumerate}
-\end{columns}
-\vspace{0.8em}
-\begin{tikzpicture}
-  \fill[elanPanel] (0,0) rectangle (\textwidth, 0.7);
-  \node[anchor=west, xshift=0.3cm, yshift=0.35cm] at (0,0)
-    {{\color{elanGold}\small\bfseries Duración:}
-     {\color{elanGray}\small\ 30 min presentación + preguntas del jurado}};
-\end{tikzpicture}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \textbf{\color{barBlue}Contexto y motivación}
+      \begin{itemize}
+        \item El problema: mercado y regulación
+        \item Literatura: de VAR/GARCH a redes sociales
+        \item SOMEN-DC y sus limitaciones
+      \end{itemize}
+      \vspace{0.4em}
+      \textbf{\color{barBlue}Pregunta e hipótesis}
+      \begin{itemize}
+        \item Pregunta central y preguntas derivadas P1-P4
+        \item Diseño de tres etapas
+      \end{itemize}
+      \vspace{0.4em}
+      \textbf{\color{barBlue}Etapa 1: Bolivia}
+      \begin{itemize}
+        \item Replicación SOMEN-DC, PM1, PM2
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \textbf{\color{barBlue}Etapa 2: Costa Rica}
+      \begin{itemize}
+        \item Restaurador temporal Weibull, P2
+      \end{itemize}
+      \vspace{0.4em}
+      \textbf{\color{barBlue}Etapa 3: Colombia}
+      \begin{itemize}
+        \item Dataset, señal, modelado: P1, P3, P4
+        \item Especificación ElasticNet (2 variables)
+        \item Escalera de modelos y curva de aprendizaje
+      \end{itemize}
+      \vspace{0.4em}
+      \textbf{\color{barBlue}Validación 2026}
+      \begin{itemize}
+        \item Segunda vuelta presidencial, PM4
+      \end{itemize}
+      \vspace{0.4em}
+      \textbf{\color{barBlue}Conclusiones e impacto}
+    \end{column}
+  \end{columns}
 \end{frame}
-
-}% fin \portada

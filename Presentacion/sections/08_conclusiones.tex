@@ -1,112 +1,144 @@
-% sections/08_conclusiones.tex
-\newcommand{\conclusiones}{%
+% DIAPOSITIVA 26 (renumerada): Conclusiones -- respuesta
+\begin{frame}{Conclusiones: respuesta a la pregunta de investigación}
+  \begin{block}{\textbf{Sí, es posible. Con matices estructurales bien documentados.}}
+    \small MAE$_{\text{oos}}$ = \num{9,56} pp \quad $R^2_{\text{oos}}$ = 0,518 \quad Top-1 = 64,5\% \quad Mejora de \num{3,05} pp sobre baseline \quad Costo: 20--30 USD/ejercicio
+  \end{block}
 
-\begin{frame}{Tres hallazgos fundamentales}
-\begin{columns}[c]
-\column{0.33\textwidth}
-  \begin{tikzpicture}
-    \fill[elanGold] (0,0.5) rectangle (3.8,1.0);
-    \node[text=elanBG, font=\bfseries\small] at (1.9,0.75) {Hallazgo 1};
-    \fill[elanPanel] (0,0) rectangle (3.8,0.5);
-    \fill[elanPanel] (0,-3.2) rectangle (3.8,0);
-    \node[text width=3.5cm, align=left, anchor=north, yshift=-0.15cm] at (1.9,0) {
-      \small\color{elanWhite}
-      La \textbf{señal predictiva} en redes sociales es \textbf{real} y cuantificable.\\[0.4em]
-      {\color{elanGold}$\rho = 0.70$, $p < 0.001$}\\[0.4em]
-      {\color{elanGray}\tiny Mann-Whitney confirma diferencias significativas entre ganadores y perdedores.}
-    };
-  \end{tikzpicture}
-
-\column{0.33\textwidth}
-  \begin{tikzpicture}
-    \fill[elanBlue] (0,0.5) rectangle (3.8,1.0);
-    \node[text=elanBG, font=\bfseries\small] at (1.9,0.75) {Hallazgo 2};
-    \fill[elanPanel] (0,0) rectangle (3.8,0.5);
-    \fill[elanPanel] (0,-3.2) rectangle (3.8,0);
-    \node[text width=3.5cm, align=left, anchor=north, yshift=-0.15cm] at (1.9,0) {
-      \small\color{elanWhite}
-      El \textbf{moderador de población} amplifica la señal.\\[0.4em]
-      {\color{elanBlue}$\hat{\beta}_{\text{mod}} = 0.557$}\\[0.4em]
-      {\color{elanGray}\tiny En ciudades grandes, dominar las redes pesa más en urnas.}
-    };
-  \end{tikzpicture}
-
-\column{0.33\textwidth}
-  \begin{tikzpicture}
-    \fill[elanGreen] (0,0.5) rectangle (3.8,1.0);
-    \node[text=elanBG, font=\bfseries\small] at (1.9,0.75) {Hallazgo 3};
-    \fill[elanPanel] (0,0) rectangle (3.8,0.5);
-    \fill[elanPanel] (0,-3.2) rectangle (3.8,0);
-    \node[text width=3.5cm, align=left, anchor=north, yshift=-0.15cm] at (1.9,0) {
-      \small\color{elanWhite}
-      ELA-NOM es \textbf{transferible} sin reentrenamiento.\\[0.4em]
-      {\color{elanGreen}Colombia $\to$ 2026 presidencial}\\[0.4em]
-      {\color{elanGray}\tiny Límite estructural documentado: empates de $< 1$ pp exceden la resolución del modelo.}
-    };
-  \end{tikzpicture}
-\end{columns}
+  \vspace{0.2em}
+  \begin{columns}[T]
+    \begin{column}{0.50\textwidth}
+      {\small\textbf{Preguntas respondidas:}}
+      \begin{itemize}\scriptsize
+        \item \textbf{PM1:} Replicación SOMEN-DC posible. MLP-BP+PCA supera 6$\times$ al baseline
+        \item \textbf{PM2:} Las tres limitaciones estructurales confirmadas empíricamente
+        \item \textbf{PM3:} Restaurador Weibull -- MAPE Día 3 menor al 13\% en las 4 plataformas
+        \item \textbf{P1:} $\rho = 0{,}70$, $p = 0{,}0481$ -- señal predictiva validada
+        \item \textbf{P2:} Reconstrucción histórica precisa con parámetros por plataforma
+        \item \textbf{P3:} Logit(dominancia \textit{likes}), predictor más robusto y parsimonioso
+        \item \textbf{P4:} Con 10 ciudades se alcanza el 95\% del rendimiento final
+        \item \textbf{PM4:} Transferible a elección presidencial bipolar sin reentrenamiento
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.46\textwidth}
+      {\small\textbf{Limitaciones estructurales:}}
+      \begin{itemize}\scriptsize
+        \item MAE 9,56 pp: adecuado para tendencias y ventajas mayores a 20 pp; no para empates técnicos
+        \item Weibull calibrado en una sola elección (Costa Rica 2026)
+        \item Filtro de 10k votos: sesgo de selección sobre v.\ dependiente
+        \item Instagram excluida por restricción de API desde 2023
+        \item Proxy digital mezcla apoyo, visibilidad, polarización y pauta paga \corr{[2.1]}
+      \end{itemize}
+    \end{column}
+  \end{columns}
 \end{frame}
 
-\begin{frame}{Agenda de trabajo futuro}
-\begin{columns}[c]
-\column{0.50\textwidth}
-  \textbf{\color{elanGold}Corto plazo (2026--2027)}
-  \begin{itemize}\itemsep0.4em
-    \item Recalibrar Weibull inter-regionalmente (Colombia, México, Ecuador)
-    \item Reentrenar ELA-NOM con datos de la segunda vuelta 2026
-    \item Validar en \textbf{elecciones locales Colombia 2027} (juez definitivo ciego)
-  \end{itemize}
-  \vspace{0.6em}
-  \textbf{\color{elanGold}Largo plazo}
-  \begin{itemize}\itemsep0.4em
-    \item Integrar datasets de contiendas asimétricas de más países de AL
-    \item Explorar arquitecturas expresivas (GBT, XGBoost, SHAP interpretability)
-    \item Publicación en revista indexada
-  \end{itemize}
+% DIAPOSITIVA 27 (renumerada): Cuatro contribuciones
+\begin{frame}{Cuatro contribuciones al estado del arte}
+  \begin{enumerate}
+    \item \textbf{Elección-agnosticismo empírico}\\
+          Primera ruta metodológica demostrada para superar la no-transferibilidad
+          del SOMEN-DC: entrenamiento multi-contienda y exportación del núcleo
+          a formatos electorales distintos.
 
-\column{0.46\textwidth}
-  \begin{tikzpicture}
-    \fill[elanPanel] (0,0) rectangle (5.5,5.5);
-    \node[anchor=north, yshift=-0.3cm, text=elanGold, font=\bfseries\small] at (2.75,5.5)
-      {Comparativa ELA-NOM vs.\ estado del arte};
-    \node[anchor=north, yshift=-1.0cm, text width=5.3cm] at (2.75,5.5) {
-      \tiny\begin{tabular}{@{}lcc@{}}
-        \toprule
-        \color{elanWhite} Caracter. & \color{elanGray} SOMEN-DC & \color{elanGold} ELA-NOM\\
-        \midrule
-        Sin encuestas & \color{elanRed}$\times$ & \color{elanGreen}$\checkmark$\\
-        Agn\'ostico & \color{elanRed}$\times$ & \color{elanGreen}$\checkmark$\\
-        Recon. temporal & \color{elanRed}$\times$ & \color{elanGreen}$\checkmark$\\
-        Val. prospectiva & \color{elanRed}$\times$ & \color{elanGreen}$\checkmark$\\
-        Costo herram. & Alto & \color{elanGreen}Bajo\\
-        \bottomrule
-      \end{tabular}
-    };
-    \node[anchor=south, yshift=0.3cm, text=elanGold, font=\bfseries\small] at (2.75,0)
-      {MAE = 9.43 pp $\cdot$ $R^2 = 0.518$};
-  \end{tikzpicture}
-\end{columns}
+    \vspace{0.4em}
+    \item \textbf{Independencia demoscópica total}\\
+          Único modelo de esta familia que ancla la optimización directamente
+          sobre el escrutinio final (el único \textit{ground truth} universal)
+          sin depender de encuestas como variable objetivo.
+
+    \vspace{0.4em}
+    \item \textbf{Restaurador temporal de series (Weibull)}\\
+          Arquitectura matemática para poblar datasets históricos desde una
+          extracción estática actual.
+          $F(t) = 1 - e^{-k(t+t_0)^{\alpha}}$, parámetros calibrados por plataforma.
+
+    \vspace{0.4em}
+    \item \textbf{Democratización del pipeline analítico}\\
+          Todo el ciclo (scraping, restauración, modelado con regularización)
+          es ejecutable por \textbf{20--30 USD}, varios órdenes de magnitud
+          por debajo de una encuesta tradicional.
+  \end{enumerate}
 \end{frame}
 
-% ── SLIDE FINAL ────────────────────────────────────────────
+% DIAPOSITIVA 28 (renumerada): Próximos pasos
+\begin{frame}{Próximos pasos y agenda futura}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \textbf{Validación definitiva, 2027}
+      \begin{itemize}
+        \item Elecciones territoriales de Colombia 2027
+        \item Mismo contexto multi-candidato subnacional
+        \item Modelo ya entrenado; evaluación \textbf{ex-ante} estricta
+        \item Permitirá aislar el desempeño sin sesgos del filtro retrospectivo
+      \end{itemize}
+      \vspace{0.4em}
+      \textbf{Extensión: nowcasting continuo}
+      \begin{itemize}
+        \item Ejecutar ELA-NOM cada 24 horas durante la campaña
+        \item Arquitectura técnica ya resuelta con el restaurador Weibull
+        \item Solo requiere datos de extracción diaria
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \textbf{Líneas de investigación futura}
+      \begin{itemize}
+        \item Validación del modelo Weibull en elecciones con distintos perfiles demográficos
+        \item Diseño de umbral de inclusión basado en información pre-elección
+        \item Inclusión de Instagram cuando Meta reabra el acceso para investigadores
+        \item Logit condicional de McFadden como clasificador complementario \corr{[Corr.\ 1.20]}
+        \item Análisis de sensibilidad completo sobre la imputación $\varepsilon$ \corr{[Corr.\ 1.13]}
+      \end{itemize}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% DIAPOSITIVA 29 (renumerada): Cumplimiento de objetivos
+\begin{frame}{Cumplimiento de objetivos}
+  \vspace{-0.1em}
+  \begin{block}{Objetivo general -- \ok{Cumplido}}
+    \small Diseñar, implementar y validar un modelo de \textit{nowcasting} electoral
+    elección-agnóstico e independiente de encuestas para el entorno colombiano.
+  \end{block}
+  \vspace{0.2em}
+  {\small\textbf{Objetivos específicos:}}
+  \vspace{0.1em}
+  \begin{center}
+  {\setlength{\tabcolsep}{4pt}
+  \scriptsize
+  \rowcolors{2}{tableBand}{white}
+  \begin{tabular}{L{6.2cm} C{1.6cm} L{4.0cm}}
+    \toprule
+    \rowcolor{barBlue}
+    {\color{white}\textbf{Objetivo específico}} &
+    {\color{white}\textbf{Estado}} &
+    {\color{white}\textbf{Evidencia}} \\
+    \midrule
+    OE1. Replicar SOMEN-DC y documentar sus limitaciones &
+      \ok{Cumplido} & Bolivia 2025 -- PM1, PM2 \\
+    OE2. Diseñar restaurador temporal para datos históricos &
+      \ok{Cumplido} & Weibull por plataforma -- PM3, P2 \\
+    OE3. Construir dataset y validar señal digital en Colombia &
+      \ok{Cumplido} & 31 ciudades, $\rho=0{,}70$, $p=0{,}048$ -- P1 \\
+    OE4. Seleccionar el modelo de mejor desempeño predictivo &
+      \ok{Cumplido} & ElasticNet 2v., MAE=9,56 pp, $R^2=0{,}518$ -- P3 \\
+    OE5. Validar transferibilidad a elección no vista &
+      \ok{Cumplido} & 2.ª vuelta 2026, MAE=10,98 pp -- PM4 \\
+    \bottomrule
+  \end{tabular}}
+  \end{center}
+\end{frame}
+
+% DIAPOSITIVA 30 (renumerada): Cierre
 {
 \setbeamertemplate{footline}{}
 \begin{frame}[plain]
-\begin{center}
-  \vfill
-  {\color{elanGold}\fontsize{28}{33}\selectfont\bfseries Gracias}\\[1em]
-  {\color{elanWhite}\Large\itshape \textquestiondown Preguntas?}\\[2em]
-  {\color{elanGray}\normalsize Juan Sotelo Aguilar $\cdot$ Universidad de La Sabana $\cdot$ 2026}\\[1.5em]
-  \begin{tabular}{ccccc}
-    {\color{elanGold}\bfseries 9.43~pp} & {\color{elanGold}\bfseries 0.518} &
-    {\color{elanGold}\bfseries 64.5\%} & {\color{elanGold}\bfseries 31} & {\color{elanGold}\bfseries 120}\\
-    {\color{elanGray}\small MAE} & {\color{elanGray}\small $R^2$} &
-    {\color{elanGray}\small Top-1} & {\color{elanGray}\small ciudades} & {\color{elanGray}\small candidatos}\\
-  \end{tabular}
-  \vfill
-\end{center}
+  \vspace{2.0cm}
+  \begin{center}
+    {\color{barBlue}\Large\bfseries Gracias}\\[0.5em]
+    {\color{barBlue}\rule{0.6\textwidth}{1pt}}\\[0.7em]
+    {\color{darkText}\normalsize Juan Sotelo Aguilar}\\[0.2em]
+    {\color{subtleGray}\small Maestría en Analítica Aplicada}\\[0.15em]
+    {\color{subtleGray}\small Universidad de La Sabana}
+  \end{center}
 \end{frame}
 }
-
-}% fin \conclusiones
-

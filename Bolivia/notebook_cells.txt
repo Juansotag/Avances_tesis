@@ -1,0 +1,55 @@
+﻿Total celdas de codigo: 14
+--- Celda 7 ---
+# === 1´©Å Cargar datos ===
+df = pd.read_excel("SocialMedia_FinalDataset.xlsx")
+
+# === 2´©Å Diccionario de columnas por red ===
+redes = {
+    'FB': ['FBPosts','FBLikes','FBShares','FBComments'],
+    'TT': ['TTPosts','TTLikes','TTRetweets'],
+    'IG': ['IGPosts','IGLikes','IGComments'],
+    'TTK': ['TTKPosts','TTKLikes','TTKComments','TTKShares']
+}
+
+# === 3´©Å Normalizaci├│n: promedio por publicaci├│n ===
+for prefix, cols in redes.items():
+    n_posts = cols[0]
+    for col in cols[1:]:
+        new_col = col + 'PPost'
+        df[new_col] = df.apply(lambda x: x[col] / x[n_posts] if x[n_posts] > 0 else 0,
+
+--- Celda 8 ---
+# ========= 1) Encapsular encuestas ÔåÆ intenci├│n diaria =========
+def daily_intent_from_polls(polls_df, election_date, election_result):
+    """
+    polls_df: DataFrame con columnas ['fecha','Quiroga','Paz'] en porcentajes (0-100 o 0-1)
+    election_date: Timestamp('YYYY-MM-DD')
+    election_result: dict {'Quiroga': 45.5, 'Paz': 54.5} en % o proporci├│n
+    """
+    dfp = polls_df.copy()
+    # Asegurar proporciones 0-1
+    for c in ['Quiroga', 'Paz']:
+        if dfp[c].max() > 1.0:
+            dfp[c] = dfp[c] / 100.0
+
+    # Normalizar cada medici├│n a suma=1 (por si no cierran exactamente)
+    s =
+
+--- Celda 13 ---
+# ==========================================================
+# 1´©ÅÔâú Generar LAG FEATURES (memoria de n d├¡as)
+# ==========================================================
+lags = [1, 2, 3]
+df_lag = df.copy().sort_values(['account', 'date'])
+cols_features = df.select_dtypes(include=[np.number]).columns.drop('IntencionVotoReal', errors='ignore')
+
+for lag in lags:
+    for col in cols_features:
+        df_lag[f"{col}_lag{lag}"] = df_lag.groupby('account')[col].shift(lag)
+
+df_lag = df_lag.fillna(0)
+
+# ==========================================================
+# 2´©ÅÔâú Separar entrenamiento y predicci├│n
+#
+

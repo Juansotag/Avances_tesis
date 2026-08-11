@@ -1,0 +1,49 @@
+﻿--- Celda 10 output ---
+=== M├®tricas del d├¡a de elecci├│n ===
+
+Modelo / Baseline: Baseline_Ultima_Encuesta
+  Predicci├│n Paz:     0.3650 (Real: 0.5453)
+  Predicci├│n Quiroga: 0.4490 (Real: 0.4547)
+  MAE Paz:            0.1803
+  MAE Quiroga:        0.0057
+  MAPE Paz:           0.3306
+  MAPE Quiroga:       0.0125
+  RMSE Paz:           0.1803
+  RMSE Quiroga:       0.0057
+
+Modelo / Baseline: LinearRegression
+  Predicci├│n Paz:     0.2485 (Real: 0.5453)
+  Predicci├│n Quiroga: 0.7515 (Real: 0.4547)
+  MAE Paz:            0.2968
+  MAE Quiroga:        0.2968
+  MAPE Paz:           0.5443
+  MAPE Quiroga:       0.6527
+  RMSE Paz:           0.2968
+  RMSE Quiroga:       0.2968
+
+Modelo / Baseline: LinearRegression PCA
+  Predicci├│n Paz:     0.2338 (Real: 0.5453)
+  Predicci├│n Quiroga: 0.7662 (Real: 0.4547)
+  MAE Paz:            0.3115
+  MAE Quiroga:        0.3115
+  MAPE Paz:           0.5713
+  MAPE Quiroga:       0.6851
+  RMSE Paz:           0.3115
+  RMSE Quiroga:       0.3115
+
+Modelo / Baseline: MLP-BP
+  Predicci├│n Paz:     0.4691 (Real: 0.5453)
+  Predicci├│n Quiroga: 0.5309 (Real: 0.4547)
+  MAE Paz:            0.0762
+  MAE Quiroga:        0.0762
+  MAPE Paz:           0.1398
+  MAPE Quiroga:       0.1676
+  RMSE Paz:           0
+
+--- Celda 12 output ---
+
+=== Mejores hiperpar├ímetros encontrados ===
+MLP: {'hidden_layer_sizes': (48, 24), 'learning_rate_init': 0.001, 'alpha': 0.01} | MAE=0.1818
+GRNN: {'sigma': 0.8, 'k': 0.5} | MAE=0.1285
+
+

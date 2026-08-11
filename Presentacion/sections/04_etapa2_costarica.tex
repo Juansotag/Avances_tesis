@@ -1,117 +1,213 @@
-% sections/04_etapa2_costarica.tex
-\newcommand{\etapacostarica}{%
+% DIAPOSITIVA 10: El problema del histórico
+\begin{frame}{Etapa 2: Costa Rica -- el problema del histórico}
+  \begin{columns}[T]
+    \begin{column}{0.54\textwidth}
+      \textbf{Obstáculo técnico central:}
+      \begin{itemize}
+        \item Las plataformas solo muestran el \textbf{total acumulado hoy}
+        \item Una publicación de oct.\ 2023 tiene hoy los likes de ago.\ 2026
+        \item El tráfico póstumo (post-elección) \textbf{contamina} cualquier
+              extracción retrospectiva estática
+      \end{itemize}
+      \vspace{0.3em}
+      \textbf{Solución propuesta:}\\
+      Modelar la función de crecimiento acumulado $F(t)$ de cada plataforma.
+      Si conocemos la forma de la curva, podemos estimar cuántas interacciones
+      tenía cualquier publicación en cualquier momento pasado.
 
-\begin{frame}{El problema de la asimetría temporal}
-\begin{columns}[c]
-\column{0.48\textwidth}
-  \textbf{\color{elanGold}¿Cuál es el problema?}\\[0.5em]
-  {\small Si extraemos datos el 18 de octubre, una publicación del 1 de septiembre ya acumuló 47 días de interacciones adicionales. Necesitamos saber \textbf{cuántas interacciones tenía el día de la elección}, no hoy.}
-  \vspace{0.8em}
-
-  \textbf{\color{elanGold}Solución: modelo de crecimiento Weibull}\\[0.4em]
-  La fracción acumulada de interacciones en el día $t$ sigue:
-  \[
-    F(t;\,k,\alpha,t_0) = 1 - e^{-k\,(t+t_0)^{\alpha}}
-  \]
-  donde $k$ = velocidad, $\alpha$ = forma, $t_0$ = offset inicial.\\[0.4em]
-  El total final estimado dado $n_t$ interacciones al d\'ia $t$:
-  $\hat{N} = n_t\,/\,F(t;k,\alpha,t_0)$
-
-\column{0.48\textwidth}
-  \begin{center}
-    \includegraphics[width=\columnwidth]{img/costa_rica/costa_rica_ganadora.png}
-  \end{center}
-  {\color{elanGray}\tiny Panel longitudinal: 1.922 publicaciones · 4 plataformas · elecciones Costa Rica 2026}
-\end{columns}
+      \vspace{0.3em}
+      \textbf{Panel de calibración:} 1.ª vuelta Costa Rica, 1 feb.\ 2026
+      \begin{itemize}
+        \item 30 días de observación (15 antes, 15 después)
+        \item 4 candidatos, 4 plataformas
+        \item \num{1.922} publicaciones, \num{19.439} pares $(t, F)$
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.42\textwidth}
+      \begin{block}{Intuición}
+        Las reacciones llegan masivamente en las primeras horas y luego decaen.
+        La curva es asimétrica: arranque explosivo, caída rápida, estabilización.
+      \end{block}
+      \vspace{0.5em}
+      \textbf{Tres familias comparadas:}
+      \begin{itemize}
+        \item Exponencial simple
+        \item Logística (inflexión simétrica)
+        \item \kw{Weibull con offset}, ganadora
+      \end{itemize}
+    \end{column}
+  \end{columns}
 \end{frame}
 
-\begin{frame}{Calibración Weibull por plataforma}
-\begin{center}
-  \includegraphics[width=0.88\textwidth]{img/costa_rica/costa_rica_r2_1.png}
-\end{center}
-\vspace{-0.4em}
-\begin{tikzpicture}
-  \fill[elanPanel] (0,0) rectangle (\textwidth,0.75);
-  \node[anchor=west, xshift=0.3cm, yshift=0.37cm] at (0,0)
-    {{\color{elanGold}\small\bfseries MAPE mediano D\'{\i}a~0 (peor caso):}
-     {\color{elanGray}\small\ Facebook 11.3\% $\cdot$ Twitter/X 56.4\% $\cdot$ Instagram 64.8\% $\cdot$ TikTok 25.4\%
-     --- convergen r\'apido al D\'{\i}a~3}};
-\end{tikzpicture}
-\end{frame}
-
-\begin{frame}{Precisión proyectiva: MAPE por plataforma y día}
-\begin{columns}[c]
-\column{0.55\textwidth}
+% DIAPOSITIVA 11: Familia Weibull -- comparación
+\begin{frame}{Etapa 2: Selección de la función de crecimiento}
   \begin{center}
-    \includegraphics[width=\columnwidth]{img/costa_rica/costa_rica_r2_2.png}
-  \end{center}
-\column{0.42\textwidth}
-  \textbf{\color{elanGold}MAPE mediano al Día~3}\\[0.6em]
-  \begin{tabular}{lc}
+  {\setlength{\tabcolsep}{3pt}
+  \scriptsize
+  \rowcolors{2}{tableBand}{white}
+  \begin{tabular}{L{2.6cm} L{3.8cm} C{1.3cm} L{4.6cm}}
     \toprule
-    \color{elanWhite}Plataforma & \color{elanGold}MAPE D3\\
+    \rowcolor{barBlue}
+    {\color{white}\textbf{Modelo}} &
+    {\color{white}\textbf{Ecuación}} &
+    {\color{white}\textbf{$\bar{R}^2$}} &
+    {\color{white}\textbf{Diagnóstico}} \\
     \midrule
-    Facebook   & \textbf{2.12\%}\\
-    Twitter/X  & \textbf{0.38\%}\\
-    TikTok     & \textbf{5.94\%}\\
-    Instagram  & 12.06\%\\
+    Exponencial simple &
+      $F(t) = 1 - e^{-kt}$ &
+      0,182 &
+      Rígido; $\alpha \equiv 1$; subestima acumulación inicial \\
+    Logístico &
+      $F(t) = \dfrac{1}{1+e^{-k(t-t_0)}}$ &
+      0,245 &
+      Inflexión simétrica forzada; inadecuado para asimetría real \\
+    \rowcolor{tableBand}
+    \textbf{Weibull con offset} &
+      $\bm{F(t) = 1 - e^{-k(t+t_0)^{\alpha}}}$ &
+      \textbf{0,449} &
+      Geometría flexible ($\alpha$); adelanto inicial ($t_0$); acotada en $[0,1]$ \\
     \bottomrule
-  \end{tabular}
-  \vspace{0.8em}
+  \end{tabular}}
+  \end{center}
 
-  {\color{elanGray}\small A partir del \textbf{Día 3}, Facebook, Twitter/X y TikTok tienen error $< 6\%$.
-  Instagram concentra sus interacciones en las primeras horas ($t_0 = 0.04$ días).}
-\end{columns}
+  \vspace{0.2em}
+  \begin{columns}[T]
+    \begin{column}{0.55\textwidth}
+      \small\textbf{Interpretación correcta de los parámetros} \corr{[Corr.\ 1.6]}
+      \begin{itemize}\small
+        \item $k$: \textbf{tasa} de acumulación (no parámetro de escala clásico)
+        \item $\alpha < 1$: acumulación desacelera (Facebook, Instagram, TikTok)
+        \item $\alpha > 1$: tasa de acumulación \textbf{crece} (Twitter/X: $\alpha = 1{,}14$)
+        \item $t_0 > 0$: \textbf{adelanto de origen}; $F(0) > 0$; modela interacciones
+              previas al primer día de observación completo
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.41\textwidth}
+      \begin{exampleblock}{Nota sobre $R^2$ moderado}
+        \small El \num{66,8\%} de la varianza total es intra-publicación (ruido irreducible).
+        El modelo captura la \textbf{forma global} de la curva, suficiente para la
+        reconstrucción histórica.
+      \end{exampleblock}
+    \end{column}
+  \end{columns}
 \end{frame}
 
-\begin{frame}{Ejemplos de reconstrucción histórica}
-\begin{center}
-  \includegraphics[width=0.85\textwidth]{img/costa_rica/costa_rica_r2_3.png}
-\end{center}
-\vspace{-0.4em}
-\begin{tikzpicture}
-  \fill[elanPanel] (0,0) rectangle (\textwidth,0.9);
-  \node[anchor=west, xshift=0.3cm, yshift=0.45cm, text width={\dimexpr\textwidth-0.6cm}] at (0,0) {
-    {\color{elanWhite}\footnotesize \textbf{Izquierda}: Facebook $\cdot$ 50,000 interacciones totales $\cdot$ reconstrucción desde Día~5 \\
-    \textbf{Derecha}: Instagram $\cdot$ 43,000 medidas el Día~10}
-  };
-\end{tikzpicture}
-\end{frame}
-
-\begin{frame}{Output: función de reconstrucción exportada}
-\begin{columns}[c]
-\column{0.50\textwidth}
-  \textbf{\color{elanGold}¿Qué se exporta a la Etapa 3?}\\[0.5em]
-  Un archivo de configuración con los parámetros $\{k, \alpha, t_0\}$ calibrados por plataforma, listo para ser consumido por el pipeline de Colombia:
-  \[
-    \hat{n}_{\text{hist}}(\tau) = \hat{N} \cdot \bigl[F(\tau) - F(\tau-1)\bigr]
-  \]
-  donde $\tau < t_{\text{scrape}}$ es el día histórico de interés.\\[0.7em]
-
-  \textbf{\color{elanGold}Impacto}\\[0.4em]
-  {\small El error mediano inyectado a la serie temporal en el Día~14 pre-elección es \textbf{matemáticamente cero} para Facebook y Twitter/X.}
-
-\column{0.46\textwidth}
-  \begin{tikzpicture}
-    \fill[elanPanel] (0,0) rectangle (5.5,5.0);
-    \node[anchor=north, yshift=-0.3cm, text=elanGold, font=\bfseries\small] at (2.75,5.0)
-      {Parámetros calibrados};
-    \node[anchor=north, yshift=-1.0cm, text width=5.0cm, font=\small] at (2.75,5.0) {
-      \begin{tabular}{lccc}
+% DIAPOSITIVA 12: Parámetros calibrados
+\begin{frame}{Etapa 2: Parámetros Weibull calibrados por plataforma}
+  \begin{columns}[T]
+    \begin{column}{0.46\textwidth}
+      \begin{center}
+      {\setlength{\tabcolsep}{3pt}
+      \small
+      \rowcolors{2}{tableBand}{white}
+      \begin{tabular}{L{2.0cm} C{1.0cm} C{1.0cm} C{1.3cm} C{0.9cm}}
         \toprule
-        \color{elanWhite}Red & \color{elanGold}$k$ & \color{elanGold}$\alpha$ & \color{elanGold}$t_0$\\
+        \rowcolor{barBlue}
+        {\color{white}\textbf{Plataforma}} &
+        {\color{white}$k$} &
+        {\color{white}$\alpha$} &
+        {\color{white}$t_0$ (h)} &
+        {\color{white}$R^2$} \\
         \midrule
-        FB  & 0.31 & 0.62 & 0.12\\
-        IG  & 0.89 & 0.44 & 0.04\\
-        TT  & 0.44 & 0.58 & 0.08\\
-        X   & 0.97 & 0.38 & 0.01\\
+        Facebook   & 0,948 & 0,823 & 46 & 0,351 \\
+        Instagram  & 1,137 & 0,521 &  1 & 0,403 \\
+        TikTok     & 1,327 & 0,512 & 19 & 0,351 \\
+        Twitter/X  & 1,445 & \alrt{1,142} & 6 & 0,691 \\
         \bottomrule
-      \end{tabular}
-    };
-    \node[anchor=south, yshift=0.3cm, text=elanGreen, font=\small\bfseries] at (2.75,0)
-      {$\Rightarrow$ Error de reconstrucción $\approx 0$ al Día 14};
-  \end{tikzpicture}
-\end{columns}
+      \end{tabular}}
+      \end{center}
+      \vspace{0.2em}
+      {\footnotesize\color{subtleGray}
+        Twitter/X: $\alpha > 1$, tasa creciente (retweet acumulativo)}
+    \end{column}
+    \begin{column}{0.50\textwidth}
+      \textbf{Hallazgo clave para la validez del diseño:}
+      \begin{itemize}
+        \item La curva de la candidata \textbf{ganadora} (Laura Fernández) es morfológicamente \textbf{idéntica} a la del resto
+        \item Sin diferencia estadísticamente significativa entre ganadores y perdedores en ningún día del panel
+        \item El patrón de crecimiento es propiedad de la \textbf{plataforma}, no del candidato ni del resultado
+      \end{itemize}
+      \vspace{0.3em}
+      \begin{exampleblock}{\textbf{P2}: Respondida}
+        Los parámetros calibrados en Costa Rica 2026 son transferibles
+        para reconstruir el histórico de interacciones de \textit{cualquier}
+        elección colombiana pasada.
+      \end{exampleblock}
+    \end{column}
+  \end{columns}
 \end{frame}
 
-}% fin \etapacostarica
+% DIAPOSITIVA nueva: Costa Rica -- ganadora vs. resto
+\begin{frame}{Etapa 2: La ganadora es indistinguible del resto}
+  \begin{center}
+    \includegraphics[width=0.80\textwidth]{img/costa_rica_ganadora.png}
+  \end{center}
+  {\footnotesize\color{subtleGray}\centering
+    Laura Fernández (ganadora) vs.\ resto de candidatos.
+    Sin diferencia estadísticamente significativa en ningún día del panel.
+    El patrón de crecimiento es una propiedad de la \textbf{plataforma}, no del candidato.}
+\end{frame}
+
+% DIAPOSITIVA: Precisión proyectiva -- tabla MAPE
+\begin{frame}{Etapa 2: Precisión del restaurador temporal}
+  \textbf{MAPE mediano por plataforma y día de observación}
+  \vspace{0.3em}
+  \begin{center}
+  {\setlength{\tabcolsep}{4pt}
+  \scriptsize
+  \rowcolors{2}{tableBand}{white}
+  \begin{tabular}{L{2.0cm} C{1.5cm} C{1.5cm} C{1.5cm} C{1.7cm} C{1.5cm}}
+    \toprule
+    \rowcolor{barBlue}
+    {\color{white}\textbf{Plataforma}} &
+    {\color{white}\textbf{Día 0}} &
+    {\color{white}\textbf{Día 1}} &
+    {\color{white}\textbf{Día 2}} &
+    {\color{white}\textbf{Día 3}} &
+    {\color{white}\textbf{Día 7}} \\
+    \midrule
+    Facebook   & 11,27\% & 6,92\% & 3,73\% & \ok{2,12\%}  & 0,32\% \\
+    Instagram  & 64,77\% & \num{20,72\%}$^*$ & 15,67\% & \ok{12,06\%} & 3,76\% \\
+    TikTok     & 25,36\% & 14,20\% & 8,35\% & \ok{5,94\%}  & 2,29\% \\
+    Twitter/X  & 56,37\% & 11,09\% & 2,55\% & \ok{0,38\%}  & 0,00\% \\
+    \bottomrule
+  \end{tabular}}
+  \end{center}
+
+  \vspace{0.2em}
+  {\footnotesize $^*$ Instagram Día 1 = 20,72\%: único que supera el 20\%.
+  A partir del \textbf{Día 3}, las cuatro plataformas están por debajo del 13\%. \corr{[Corr.\ 1.10]}}
+
+  \vspace{0.3em}
+  \begin{columns}[T]
+    \begin{column}{0.52\textwidth}
+      \textbf{Criterio adoptado:} día 3 de observación por publicación.\\[0.2em]
+      Instagram en Día 3: \ok{12,06\%}; la excepción fue Día 1, no Día 3.
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      \begin{exampleblock}{\textbf{PM3}: Respondida}
+        \small La reconstrucción es suficientemente precisa.
+        Los parámetros Weibull son transferibles para
+        construir datasets de entrenamiento retroactivos.
+      \end{exampleblock}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% DIAPOSITIVA nueva: MAPE convergencia + distribución de errores
+\begin{frame}{Etapa 2: Convergencia del error por día de observación}
+  \begin{center}
+    \includegraphics[width=0.88\textwidth]{img/costa_rica_r2_2.png}
+  \end{center}
+  {\footnotesize\color{subtleGray}\centering
+    Izquierda: MAPE mediano por plataforma y día de observación.
+    Derecha: distribución de errores individuales en Día 3.
+    El 85\% de las publicaciones tiene MAPE $<$ 20\% en Día 3.}
+\end{frame}
+
+% DIAPOSITIVA: Ajuste del restaurador por plataforma
+\begin{frame}{Etapa 2: Ajuste del restaurador por plataforma}
+  \begin{center}
+    \includegraphics[width=0.90\textwidth]{img/costa_rica_r2_1.png}
+  \end{center}
+\end{frame}

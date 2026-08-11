@@ -1,93 +1,182 @@
-% sections/06_resultados.tex
-\newcommand{\resultadoscolombia}{%
-
-\begin{frame}{Escalera de MAE: progresión de modelos}
-  \begin{center}
-    \includegraphics[width=0.88\textwidth]{img/colombia/col_mae_escalera.png}
-  \end{center}
-  \vspace{-0.4em}
-  \begin{tikzpicture}
-    \fill[elanPanel] (0,0) rectangle (\textwidth,0.75);
-    \node[anchor=west, xshift=0.3cm, yshift=0.37cm] at (0,0)
-      {{\color{elanGold}\small\bfseries ELA-NOM: MAE~=~9.43~pp}
-       {\color{elanGray}\small\ $\cdot$ Base 12.61~pp $\cdot$ Núcleo digital 11.52~pp $\cdot$ \textbf{ELA-NOM 9.43~pp} $\cdot$ GBT 9.91~pp}};
-  \end{tikzpicture}
+% DIAPOSITIVA 19: Pool de 9 variables y selección del modelo
+\begin{frame}{Modelado: feature engineering y selección del modelo}
+  \begin{columns}[T]
+    \begin{column}{0.50\textwidth}
+      \textbf{Pool de 9 variables} (tras filtro VIF sobre 22 candidatas)
+      \begin{enumerate}\small
+        \item Logit dominancia de \textit{likes}
+        \item Logit dominancia de comentarios
+        \item Logit dominancia de compartidos
+        \item Logit \textit{likes} por publicación
+        \item Logit comentarios por publicación
+        \item Logit compartidos por publicación
+        \item Log-población del municipio
+        \item Número de candidatos en la contienda
+        \item Moderador: (1) por (log-pob.\ centrada)
+      \end{enumerate}
+      \vspace{0.2em}
+      {\small\textbf{ElasticNet} ($L_1 + L_2$): selección automática.\\
+      $\hat\alpha=0{,}0475$, $\lambda=0{,}10$, StandardScaler.}
+    \end{column}
+    \begin{column}{0.46\textwidth}
+      \textbf{Selección del modelo (AutoML)}
+      \begin{itemize}\small
+        \item Familias evaluadas: GLM fraccional, gradient boosting, redes neuronales,
+              SVM, random forests
+        \item Criterio único: MAE fuera de muestra (LOCO-CV)
+        \item \kw{Ganador: GLM fraccional + ElasticNet}
+      \end{itemize}
+      \vspace{0.3em}
+      \begin{exampleblock}{¿Por qué GLM sobre gradient boosting?}
+        \scriptsize (1) Cuota $\in(0,1)$: GLM binomial+logit garantiza $\hat{y}\in(0,1)$
+        (Papke \& Wooldridge, 1996). (2) Interpretabilidad: coeficientes en log-odds.
+        MAE similar (9,56 vs.\  9,91 pp).
+      \end{exampleblock}
+    \end{column}
+  \end{columns}
 \end{frame}
 
-\begin{frame}{Resumen cuantitativo de resultados}
-\begin{columns}[c]
-\column{0.50\textwidth}
+% DIAPOSITIVA 20: LOCO-CV
+\begin{frame}{Modelado: validación LOCO-CV \corr{[Corr.\ 2.3]}}
+  \begin{columns}[T]
+    \begin{column}{0.52\textwidth}
+      \textbf{Dos fases del proceso:}
+      \begin{itemize}\small
+        \item \textbf{Fase 1 (evaluación):} ciclo de 31 pliegues. En cada uno se bloquea
+              una ciudad completa, se hace grid search interno (120 combinaciones de
+              $\hat\alpha$ y $\lambda$) sobre las 30 ciudades restantes, se elige la
+              mejor combinación, se entrena el ElasticNet y se predice la ciudad
+              bloqueada. Resultado: 31 errores cuyo promedio es el MAE.
+        \item \textbf{Fase 2 (modelo final):} con la combinación ganadora
+              ($\hat\alpha=0{,}0475$, $\lambda=0{,}10$) se entrena el ElasticNet sobre
+              las 31 ciudades completas. Los betas resultantes son los definitivos.
+      \end{itemize}
+      \vspace{0.2em}
+      \begin{alertblock}{\small Por qué no CV estándar}
+        \small Mezclar candidatos entre ciudades genera fuga de información:
+        las cuotas de una contienda suman 1, por lo que ver un candidato de
+        Medellín en entrenamiento adelanta información sobre los demás.
+      \end{alertblock}
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      \begin{exampleblock}{Resultado LOCO-CV}
+        \large
+        \[\text{MAE}_{\text{oos}} = \mathbf{9{,}56\text{ pp}}\]
+        \[R^2_{\text{oos}} = \mathbf{0{,}518}\]
+      \end{exampleblock}
+      \vspace{0.3em}
+      \begin{block}{Grid search anidado}
+        \small El CV interno elige $\hat\alpha$ y $\lambda$ \textbf{sin ver}
+        la ciudad de prueba. La Fase 1 mide el MAE; la Fase 2 entrega los
+        betas para aplicar en 2026.
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% DIAPOSITIVA 21: Especificación ganadora e interpretación de los betas
+\begin{frame}{Modelado: especificación ganadora e interpretación}
+  \textbf{ElasticNet retuvo \kw{2 variables} del pool de 9, las 7 restantes penalizadas a cero:}
+  \[
+    \hat{y}_c = \underbrace{0{,}258}_{\beta_0}
+    + \underbrace{0{,}111}_{\beta_1} \cdot f_{\ell}
+    + \underbrace{0{,}026}_{\beta_2} \cdot f_{\ell} \cdot (\ln\!P - \overline{\ln P})
+  \]
+  {\small $f_{\ell}$ = logit(dominancia de \textit{likes}); $P$ = población municipal}
+
+  \vspace{0.3em}
+  \begin{columns}[T]
+    \begin{column}{0.50\textwidth}
+      \textbf{Interpretación de los coeficientes:}
+      \begin{itemize}\small
+        \item $\beta_0 = 0{,}258$: cuota del candidato promedio en ciudad promedio
+              ($\approx 1/3{,}84$ candidatos)
+        \item $\beta_1 = 0{,}111$: por cada unidad adicional en logit(dominancia),
+              la cuota aumenta aprox.\ 10 pp
+        \item $\beta_2 = 0{,}026$: en ciudades grandes la señal digital
+              pesa más electoralmente
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.46\textwidth}
+      \begin{exampleblock}{\textbf{P3}: Respondida}
+        \small La dominancia relativa de \textit{likes} en logit es el predictor
+        más estable y robusto. Población modera el efecto (no predice directamente).
+      \end{exampleblock}
+      \vspace{0.3em}
+      {\small\textbf{Criterio único de selección:}
+      MAE fuera de muestra (LOCO-CV).\\
+      Ninguna decisión tomada por ajuste en entrenamiento.}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% DIAPOSITIVA 20 (renumerada): Los dos modelos
+\begin{frame}{Dos modelos: reconciliación de coeficientes \corr{[Corr.\ 1.14, 1.15]}}
+  \vspace{-0.2em}
   \begin{center}
-  \begin{tabular}{lcccc}
+  \scriptsize
+  \rowcolors{2}{tableBand}{white}
+  \begin{tabular}{L{4.0cm} C{1.6cm} C{1.4cm} C{1.4cm} C{1.8cm} C{2.2cm}}
     \toprule
-    \rowcolor{elanBGlight}
-    \color{elanWhite}\small Modelo & \color{elanGold}\small MAE & \color{elanBlue}\small $R^2_{\text{oos}}$ & \color{elanWhite}\small Top-1\\
+    \rowcolor{barBlue}
+    {\color{white}\textbf{Especificación}} &
+    {\color{white}$\beta_0$} &
+    {\color{white}$\beta_1$} &
+    {\color{white}$\beta_2$} &
+    {\color{white}\textbf{MAE LOCO}} &
+    {\color{white}\textbf{Transferible 2026}} \\
     \midrule
-    Baseline uniforme   & 12.49 & 0.306 & 39\%\\
-    Baseline proporcional & 12.61 & 0.185 & 71\%\\
-    Regresi\'on fraccional  & 11.52 & 0.460 & 71\%\\
-    \rowcolor{elanPanel}
-    \color{elanGold}\bfseries ELA-NOM & \color{elanGold}\bfseries 9.43 & \color{elanGold}\bfseries 0.518 & \color{elanGold}\bfseries 64.5\%\\
-    Gradient Boosting   & 9.91  & 0.515 & 67.7\%\\
+    Regresión fraccional simple (Fig.\ 6.4) &
+      {N/A} & 0,423 & {N/A} & 11,52 pp & Sí \\
+    \rowcolor{tableBand}
+    \textbf{ElasticNet 2 vars.\ (modelo final)} &
+      0,258 & \textbf{0,111} & \textbf{0,026} & \textbf{9,56 pp} & \textbf{Sí} \\
+    ElasticNet 9 vars.\ (pool completo) &
+      0,258 & 0,111 & 0,557$^*$ & 9,57 pp & \alrt{No} \\
     \bottomrule
   \end{tabular}
   \end{center}
-  \vspace{0.5em}
-  {\color{elanGray}\small ELA-NOM: ElasticNet con moderador de población. GBT como benchmark no-lineal.}
 
-\column{0.46\textwidth}
-  \textbf{\color{elanGold}Hallazgos clave}
-  \begin{itemize}\itemsep0.5em
-    \item[\color{elanGold}1] La \textbf{dominancia relativa} ($\rho = 0.70$) supera al volumen absoluto
-    \item[\color{elanGold}2] La \textbf{interacción} dominancia $\times$ población es el coeficiente más fuerte ($\hat{\beta} = 0.557$)
-    \item[\color{elanGold}3] ELA-NOM mejora \textbf{3.18 pp} sobre el baseline de proporcionalidad
-    \item[\color{elanGold}4] Top-1 accuracy = \textbf{64.5\%} (20/31 contiendas correctas)
-  \end{itemize}
-\end{columns}
+  {\footnotesize $^*$ $\beta_2 = 0{,}557$: coeficiente del moderador cuando ElasticNet opera
+  sobre el pool completo de 9 variables, con variables territoriales como efectos directos.}
+
+  \vspace{0.2em}
+  \begin{columns}[T]
+    \begin{column}{0.55\textwidth}
+      \textbf{¿Por qué el modelo de 9 vars.\ no es transferible a 2026?}
+      \begin{itemize}
+        \item Retiene «número de candidatos» como efecto directo
+        \item En una 2.ª vuelta: exactamente 2 candidatos; constante sin poder discriminador
+        \item El modelo de 2 vars.\ retiene solo señal digital pura más moderador de población
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.41\textwidth}
+      \begin{alertblock}{Aclaración proactiva}
+        Los tres juegos de coeficientes corresponden a \textbf{tres especificaciones distintas},
+        no a inconsistencias. La tesis incluye una tabla unificada de reconciliación.
+      \end{alertblock}
+    \end{column}
+  \end{columns}
 \end{frame}
 
-\begin{frame}{Interpretación del moderador de población}
-\begin{columns}[c]
-\column{0.50\textwidth}
-  \textbf{\color{elanGold}¿Por qué interactúa la población?}\\[0.5em]
-  {\small En municipios grandes, dominar las redes se traduce con más fuerza en votos porque:}
-  \begin{itemize}\itemsep0.4em
-    \item La población actúa como \textbf{amplificador} de la señal digital
-    \item En ciudades pequeñas, la red personal y el cacicazgo local dominan sobre la señal digital
-    \item La dominancia digital captura la \textbf{movilización urbana} diferencial
-  \end{itemize}
-  \vspace{0.5em}
-  \textbf{\color{elanGold}Interpretación matemática:}
-  \[
-    \frac{\partial \mathbb{E}[v_c]}{\partial \delta_c} = (\hat{\beta}_1 + \hat{\beta}_{\text{mod}}\cdot \log N_d)\cdot v_c(1-v_c)
-  \]
-  El efecto marginal de la dominancia \textbf{crece} con el tamaño $N_d$ de la ciudad.
-
-\column{0.46\textwidth}
-  \begin{tikzpicture}
-    \fill[elanPanel] (0,0) rectangle (5.5,5.5);
-    \node[anchor=north, yshift=-0.2cm, text=elanGold, font=\bfseries\small] at (2.75,5.5)
-      {Efecto marginal por tamaño de ciudad};
-    \begin{scope}[yshift=0.3cm]
-    \begin{axis}[
-      width=5.0cm, height=4.5cm,
-      xlabel={\tiny Ranking de tamaño},
-      ylabel={\tiny Efecto marginal},
-      xtick={1,2,3,4,5},
-      xticklabels={\tiny Pequeño,,,\tiny Mediano,,\tiny Grande},
-      ytick={0.1,0.3,0.5,0.7},
-      yticklabels={\tiny 0.1,\tiny 0.3,\tiny 0.5,\tiny 0.7},
-      axis background/.style={fill=elanPanel},
-      tick style={color=elanGray},
-      label style={color=elanGray, font=\tiny},
-      tick label style={color=elanGray, font=\tiny},
-    ]
-      \addplot[color=elanGold, thick, smooth]
-        coordinates {(1,0.12)(2,0.22)(3,0.38)(4,0.55)(5,0.69)};
-    \end{axis}
-    \end{scope}
-  \end{tikzpicture}
-\end{columns}
+% DIAPOSITIVA nueva: Estabilidad de coeficientes (bootstrap LOCO-CV)
+\begin{frame}{Modelado: estabilidad de los coeficientes entre pliegues LOCO-CV}
+  \begin{center}
+    \includegraphics[width=0.72\textwidth]{img/col_coef_bootstrap.png}
+  \end{center}
+  {\footnotesize\color{subtleGray}\centering
+    Media $\pm$ IC 95\% del coeficiente en escala logit a través de los 31 pliegues LOCO-CV.
+    La dominancia de \textit{likes} ($\beta_1 \approx 0{,}78$) y el moderador ($\beta_2 \approx 0{,}54$)
+    son estables. Ningún pliegue invierte el signo de ningún coeficiente.}
 \end{frame}
 
-}% fin \resultadoscolombia
+% DIAPOSITIVA nueva: Diagnóstico LOCO-CV (predicción vs. real + residuos)
+\begin{frame}{Modelado: diagnóstico del modelo ElasticNet -- LOCO-CV}
+  \begin{center}
+    \includegraphics[width=0.90\textwidth]{img/col_loco_residuals.png}
+  \end{center}
+  {\footnotesize\color{subtleGray}\centering
+    Izquierda: predicción vs.\ cuota real (MAE = 9,56 pp).
+    Derecha: distribución de residuos centrada en cero (sesgo medio = 0,00 pp).
+    El modelo no sobreestima ni subestima sistemáticamente.}
+\end{frame}

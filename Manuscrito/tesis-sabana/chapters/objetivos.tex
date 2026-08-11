@@ -10,11 +10,11 @@
 \section{Objetivo general}
 % ──────────────────────────────────────────────────────────────
 
-Diseñar e implementar un modelo de \textit{nowcasting} de la intención de
-voto en elecciones locales colombianas que sea elección-agnóstico, no dependa
-de encuestas, use únicamente interacciones en redes sociales de los perfiles
-oficiales de los candidatos, y pueda replicarse con herramientas comerciales
-accesibles.
+Diseñar e implementar un modelo de \textit{nowcasting} de la cuota electoral
+(\textit{proxy} de la intención de voto) en elecciones locales colombianas
+que sea elección-agnóstico, que no dependa de encuestas, que use únicamente
+interacciones en redes sociales de los perfiles oficiales de los candidatos,
+y que pueda replicarse con herramientas comerciales accesibles.
 
 % ──────────────────────────────────────────────────────────────
 \section{Objetivos específicos}
@@ -28,8 +28,7 @@ accesibles.
   \item \textbf{OE3.} Construir un \textit{dataset} de entrenamiento
         elección-agnóstico con datos de las elecciones locales colombianas
         de 2023.
-  \item \textbf{OE4.} Entrenar y evaluar modelos de clasificación y regresión
-        del resultado electoral.
-  \item \textbf{OE5.} Documentar las condiciones de viabilidad metodológica
+  \item \textbf{OE4.} Entrenar y evaluar modelos de regresión fraccional para predecir la cuota de voto, derivando de sus estimaciones continuas la precisión en clasificación del candidato ganador (\textit{Top-1}).
+  \item \textbf{OE5.} Identificar las condiciones de viabilidad metodológica
         del modelo propuesto y documentar sus limitaciones.
 \end{enumerate}

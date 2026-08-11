@@ -1,106 +1,110 @@
-% sections/03_etapa1_bolivia.tex
-\newcommand{\etapabolivia}{%
-
-\begin{frame}{Contexto: Segunda vuelta presidencial Bolivia 2025}
-\begin{columns}[c]
-\column{0.48\textwidth}
-  \textbf{\color{elanGold}Escenario}
-  \begin{itemize}\itemsep0.25em
-    \item Contienda: \textbf{Rodrigo Paz} vs.\ \textbf{Jorge ``Tuto'' Quiroga}
-    \item Fecha: 19 octubre 2025
-    \item Resultado real: Paz \textbf{54.53\%} $\cdot$ Quiroga 45.47\%
-    \item Ventana: 153 d\'ias (18 mayo -- 18 octubre 2025)
-    \item Plataformas: Facebook, Twitter/X, Instagram, TikTok
-    \item Dataset: \textbf{308 registros diarios}, 26 caracter\'isticas
+% DIAPOSITIVA 7: Bolivia -- diseño
+\begin{frame}{Etapa 1: Bolivia -- replicación del SOMEN-DC}
+  \textbf{Elección seleccionada}
+  \begin{itemize}
+    \item Bolivia, 2.ª vuelta presidencial, 19 oct.\ 2025
+    \item Rodrigo Paz Pereira vs.\ Jorge ``Tuto'' Quiroga
+    \item Elección bipolar, no tratada previamente por SOMEN-DC
   \end{itemize}
-  \vspace{0.3em}
-  \textbf{\color{elanGold}Metodolog\'ia base: SOMEN-DC}\\
-  {\small Brito \& Andeato (2024): red neuronal entrenada con encuestas + se\~{n}al digital.\\
-  {\color{elanRed}\bfseries Limitaci\'on}: requiere encuestas hist\'oricas para el entrenamiento.}
-
-\column{0.48\textwidth}
-  \begin{tikzpicture}
-    \fill[elanPanel] (0,0) rectangle (5.8,5.5);
-    \node[anchor=north, yshift=-0.2cm, text=elanGold, font=\small\bfseries] at (2.9,5.5)
-      {6 modelos evaluados};
-    \node[anchor=center, yshift=0.2cm] at (2.9,2.7)
-      {\begin{tabular}{lcc}
-        \toprule
-        \rowcolor{elanBGlight}\color{elanWhite}\small Modelo & \color{elanGold}\small MAE & \color{elanBlue}\small MAPE\\
-        \midrule
-        {\small Baseline (\'{u}lt. encuesta)} & {\small 0.180} & {\small 33.1\%}\\
-        {\small Regresi\'on Lineal}    & {\small 0.297} & {\small 54.4\%}\\
-        {\small Regresi\'on Lin.+PCA}  & {\small 0.312} & {\small 57.1\%}\\
-        {\small GRNN}                  & {\small 0.199} & {\small 36.4\%}\\
-        {\small MLP-BP}                & {\small 0.076} & {\small 14.0\%}\\
-        \rowcolor{elanPanel}\color{elanGold}\bfseries\small MLP-BP+PCA & \color{elanGold}\bfseries\small 0.028 & \color{elanGold}\bfseries\small 5.1\%\\
-        \bottomrule
-      \end{tabular}};
-  \end{tikzpicture}
-\end{columns}
+  \vspace{0.4em}
+  \textbf{Dataset}
+  \begin{itemize}
+    \item \num{153} días de campaña (18 may.\ al 18 oct.\ 2025)
+    \item Plataformas: Facebook, Instagram, TikTok, Twitter/X
+    \item \num{308} observaciones, \num{26} características
+    \item Variable objetivo: interpolación de \num{14} encuestas
+          anclada al resultado real: Paz \num{54,53\%}, Quiroga \num{45,47\%}
+  \end{itemize}
+  \vspace{0.4em}
+  \textbf{Modelos entrenados:} 6 especificaciones
+  (lineal, lineal más PCA, MLP-BP, MLP-BP más PCA, GRNN)
 \end{frame}
 
-\begin{frame}{SOMEN-DC: modelo ganador MLP-BP + PCA}
+% DIAPOSITIVA 8: Bolivia -- gráfica serie de tiempo
+\begin{frame}{Etapa 1: Bolivia -- evolución de la predicción}
   \begin{center}
-    \includegraphics[width=0.90\textwidth]{img/bolivia/mlp_bp_pca_timeseries.png}
+    \includegraphics[width=0.88\textwidth]{img/mlp_bp_pca_timeseries.png}
   \end{center}
-  \vspace{-0.4em}
-  \begin{tikzpicture}
-    \fill[elanPanel] (0,0) rectangle (\textwidth,0.75);
-    \node[anchor=west, xshift=0.3cm, yshift=0.37cm] at (0,0)
-      {{\color{elanGold}\small\bfseries Observación clave:}
-       {\color{elanGray}\small\ MLP-BP+PCA predice 51.74\% para Paz (real: 54.53\%) · Error final: \textbf{2.79 pp} · supera 6$\times$ al baseline}};
-  \end{tikzpicture}
+  {\footnotesize\color{subtleGray}\centering
+    Evolución predicha vs.\ encuestas -- MLP-BP+PCA (modelo ganador)}
 \end{frame}
 
-\begin{frame}{Comparación de los 6 modelos evaluados}
+% DIAPOSITIVA 9: Bolivia -- resultados
+\begin{frame}{Etapa 1: Bolivia -- resultados (día de la elección)}
+  \vspace{-0.1em}
   \begin{center}
-    \includegraphics[width=0.85\textwidth]{img/bolivia/Modelamiento_c021_10.png}
+  \small
+  \rowcolors{2}{tableBand}{white}
+  \begin{tabular}{L{4.2cm} C{2.0cm} C{1.6cm} C{1.6cm}}
+    \toprule
+    \rowcolor{barBlue}
+    {\color{white}\textbf{Modelo}} &
+    {\color{white}\textbf{Pred.\ Paz}} &
+    {\color{white}\textbf{MAE}} &
+    {\color{white}\textbf{MAPE}} \\
+    \midrule
+    Baseline (última encuesta) & 36,50\% & 0,1803 & 33,1\% \\
+    Regresión lineal           & 24,85\% & 0,2968 & 54,4\% \\
+    Regresión lineal + PCA     & 23,38\% & 0,3115 & 57,1\% \\
+    MLP-BP                     & 46,91\% & 0,0762 & 14,0\% \\
+    \rowcolor{tableBand}
+    \textbf{MLP-BP + PCA}      & \textbf{51,74\%} & \textbf{0,0279} & \textbf{5,1\%} \\
+    GRNN                       & 34,67\% & 0,1986 & 36,4\% \\
+    \midrule
+    Resultado real             & \num{54,53\%} & {-} & {-} \\
+    \bottomrule
+  \end{tabular}
   \end{center}
-  \vspace{-0.4em}
-  \begin{tikzpicture}
-    \fill[elanPanel] (0,0) rectangle (\textwidth,0.75);
-    \node[anchor=west, xshift=0.3cm, yshift=0.37cm] at (0,0)
-      {{\color{elanGold}\small\bfseries GRNN}
-       {\color{elanGray}\small\ como referencia: captura tendencia pero incapaz de converger al resultado real}};
-  \end{tikzpicture}
+
+  \vspace{0.2em}
+  \begin{columns}[T]
+    \begin{column}{0.55\textwidth}
+      \small
+      \textbf{Observación metodológica:} MAE y RMSE son idénticos porque $n=1$
+      (un solo punto de evaluación). Se reporta MAE y MAPE; la tabla eliminó
+      la columna RMSE redundante. [\corr{Corrección 1.9}]
+    \end{column}
+    \begin{column}{0.41\textwidth}
+      \begin{block}{\textbf{PM1}: Respondida}
+        \small La replicación es posible.\\
+        MLP-BP+PCA supera 6 veces al baseline.
+      \end{block}
+    \end{column}
+  \end{columns}
 \end{frame}
 
-\begin{frame}{Limitación estructural identificada}
-\vspace{0.5em}
-\begin{columns}[c]
-\column{0.52\textwidth}
-  \begin{tikzpicture}
-    \fill[elanRed!15!elanPanel] (0,0) rectangle (6.5,4.5);
-    \draw[elanRed, line width=1pt] (0,0) rectangle (6.5,4.5);
-    \node[anchor=north, yshift=-0.3cm, text=elanRed, font=\bfseries\small] at (3.25,4.5)
-      {Lo que SOMEN-DC NO puede hacer};
-    \node[anchor=north, yshift=-1.0cm, text width=6cm] at (3.25,4.5) {
-      \begin{itemize}\itemsep0.5em
-        \item[\color{elanRed}$\times$] \small Predecir elecciones \textbf{sin encuestas históricas} del mismo país
-        \item[\color{elanRed}$\times$] \small Transferirse a elecciones de \textbf{formato diferente} (local $\to$ presidencial)
-        \item[\color{elanRed}$\times$] \small Operar sobre datos digitales \textbf{reconstruidos históricamente}
+% DIAPOSITIVA 10: Bolivia -- limitaciones, PM2
+\begin{frame}{Etapa 1: Bolivia -- confirmación de las tres limitaciones}
+  \begin{columns}[T]
+    \begin{column}{0.52\textwidth}
+      \textbf{Las tres limitaciones se verificaron empíricamente:}
+      \begin{itemize}
+        \item \alrt{No transferibilidad confirmada:}\\
+              Los pesos del MLP-BP son específicos de Bolivia.\\
+              No existe mecanismo para exportarlos a Colombia.
+        \vspace{0.3em}
+        \item \alrt{Rezago estructural:}\\
+              En la última semana Paz remontó en encuestas.\\
+              El modelo, con interacciones acumuladas, no lo capturó.
+        \vspace{0.3em}
+        \item \alrt{Disociación TikTok:}\\
+              Picos de TikTok inyectaban varianza espuria\\
+              cuando la intención de voto estaba estacionaria.
       \end{itemize}
-    };
-  \end{tikzpicture}
-
-\column{0.44\textwidth}
-  \begin{tikzpicture}
-    \fill[elanGreen!15!elanPanel] (0,0) rectangle (5.5,4.5);
-    \draw[elanGreen, line width=1pt] (0,0) rectangle (5.5,4.5);
-    \node[anchor=north, yshift=-0.3cm, text=elanGreen, font=\bfseries\small] at (2.75,4.5)
-      {Lo que ELA-NOM resuelve};
-    \node[anchor=north, yshift=-1.0cm, text width=5cm] at (2.75,4.5) {
-      \begin{itemize}\itemsep0.5em
-        \item[\color{elanGreen}$\checkmark$] \small Entrena exclusivamente en \textbf{datos digitales}
-        \item[\color{elanGreen}$\checkmark$] \small Usa \textbf{dominancia relativa} transferible entre elecciones
-        \item[\color{elanGreen}$\checkmark$] \small Reconstrucción temporal \textbf{Weibull}
-      \end{itemize}
-    };
-  \end{tikzpicture}
-\end{columns}
-\vspace{0.6em}
-{\color{elanGray}\small $\Rightarrow$ La Etapa 2 ataca directamente el problema de la reconstrucción temporal.}
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      \begin{alertblock}{\textbf{PM2}: Respondida}
+        El paradigma \textit{During-Campaign} no escala:\\
+        requiere infraestructura desde el día 1 y\\
+        produce pesos no exportables.\\[0.4em]
+        \textbf{Conclusión:} necesitamos un enfoque\\
+        \textit{fuera de campaña} y agnóstico a la elección.
+      \end{alertblock}
+      \vspace{0.4em}
+      \small
+      \textbf{Siguiente paso:} resolver el problema del histórico.
+      ¿Cómo conocer el estado de las interacciones en el pasado sin
+      haber recolectado datos en tiempo real?
+    \end{column}
+  \end{columns}
 \end{frame}
-
-}% fin \etapabolivia

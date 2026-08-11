@@ -1,121 +1,165 @@
-% sections/07_validacion2026.tex
-\newcommand{\validaciondos}{%
-
-\begin{frame}{Segunda vuelta presidencial: 21 junio 2026}
-\begin{columns}[c]
-\column{0.48\textwidth}
-  \textbf{\color{elanGold}Contexto de la validación}
-  \begin{itemize}\itemsep0.45em
-    \item Candidatos: \textbf{Iván Cepeda Castro} vs.\ \textbf{Abelardo De la Espriella}
-    \item Modelo: ELA-NOM \textit{sin ningún reentrenamiento}
-    \item Señal digital: Cepeda acumuló \textbf{3.5$\times$ más \textit{likes}} que De la Espriella
-    \item Resultado de la Registraduría Nacional:
-    \begin{itemize}
-      \item De la Espriella: \highlight{50.48\%}
-      \item Cepeda Castro: 49.52\%
-      \item Margen: \textbf{0.96 pp} — empate técnico
-    \end{itemize}
-  \end{itemize}
-
-\column{0.48\textwidth}
+% DIAPOSITIVA 21 (renumerada): Escalera de modelos
+\begin{frame}{Escalera de modelos (P3)}
+  {\small\textbf{Desempeño fuera de muestra (LOCO-CV, 31 contiendas)}}
+  \vspace{0.15em}
   \begin{center}
-    \includegraphics[width=\columnwidth]{img/colombia/col_dominancia_2026.png}
+  {\setlength{\tabcolsep}{4pt}
+  \small
+  \rowcolors{2}{tableBand}{white}
+  \begin{tabular}{L{4.5cm} C{2.0cm} C{1.8cm} C{1.8cm}}
+    \toprule
+    \rowcolor{barBlue}
+    {\color{white}\textbf{Modelo}} &
+    {\color{white}\textbf{MAE}} &
+    {\color{white}$R^2_{\text{oos}}$} &
+    {\color{white}\textbf{Top-1}} \\
+    \midrule
+    Baseline proporcionalidad & 12,61 pp & 0,185 & 71,0\% \\
+    Núcleo digital ($f_\ell$ solo) & 11,52 pp & 0,460 & 71,0\% \\
+    \textbf{ElasticNet 2 variables} & \textbf{9,56 pp} & \textbf{0,518} & \textbf{64,5\%} \\
+    Gradient boosting (ctrl) & 9,91 pp & 0,515 & 67,7\% \\
+    \bottomrule
+  \end{tabular}}
   \end{center}
-  {\color{elanGray}\tiny Dominancia de likes: Cepeda 77.8\% vs. De la Espriella 22.2\%}
-\end{columns}
+  \vspace{0.2em}
+  {\footnotesize Top-1 al 64,5\%: cuota de magnitud y acierto de orden son objetivos distintos.
+  Top-1 es métrica derivada de la regresión, no un clasificador entrenado \corr{[1.20]}.}
+
+  \vspace{0.3em}
+  \begin{center}
+    \includegraphics[width=0.52\textwidth]{img/col_mae_escalera.png}
+  \end{center}
 \end{frame}
 
-\begin{frame}{Pronóstico ELA-NOM vs. resultado real}
-\begin{columns}[c]
-\column{0.50\textwidth}
-  \begin{tikzpicture}
-    \fill[elanPanel] (0,0) rectangle (6.2,5.5);
-    \node[anchor=north, yshift=-0.3cm, text=elanGold, font=\bfseries\normalsize] at (3.1,5.5)
-      {Pronóstico ELA-NOM};
-    % Pronóstico
-    \node[anchor=center, yshift=0.8cm] at (3.1,3.5) {
-      \begin{tabular}{lcc}
+% DIAPOSITIVA 22 (renumerada): Curva de aprendizaje
+\begin{frame}{Curva de aprendizaje (P4)}
+  \begin{columns}[T]
+    \begin{column}{0.40\textwidth}
+      \begin{center}
+      \small
+      \rowcolors{2}{tableBand}{white}
+      \begin{tabular}{C{2.2cm} C{1.8cm} C{1.4cm}}
         \toprule
-        \color{elanWhite}Candidato & \color{elanGold}Pronóstico & \color{elanWhite}Real\\
+        \rowcolor{barBlue}
+        {\color{white}\textbf{Ciudades}} &
+        {\color{white}\textbf{MAE medio}} &
+        {\color{white}\textbf{DE}} \\
         \midrule
-        Cepeda Castro    & \color{elanBlue}60.5\% & 49.52\%\\
-        De la Espriella  & \color{elanBlue}39.5\% & \color{elanGold}\bfseries 50.48\%\\
+        5  & 12,82 pp & 1,37 \\
+        10 & 12,53 pp & 1,07 \\
+        15 & 12,45 pp & 0,94 \\
+        20 & 12,22 pp & 0,84 \\
+        30 & 12,05 pp & 0,00 \\
         \bottomrule
       \end{tabular}
-    };
-    % Error
-    \node[anchor=center, yshift=-1.2cm] at (3.1,2.5) {
-      {\color{elanRed}\bfseries\large Error absoluto: 10.98 pp}
-    };
-    \node[anchor=center, yshift=-2.0cm] at (3.1,2.5) {
-      {\color{elanGray}\small (para el candidato digitalmente dominante)}
-    };
-    % Ganador correcto?
-    \node[anchor=center, yshift=-3.0cm] at (3.1,2.5) {
-      {\color{elanRed}\bfseries Ganador predicho: incorrecto}
-    };
-    \node[anchor=center, yshift=-3.6cm] at (3.1,2.5) {
-      {\color{elanGray}\footnotesize Margen real: 0.96 pp — dentro del ruido del modelo}
-    };
-  \end{tikzpicture}
-
-\column{0.46\textwidth}
-  \textbf{\color{elanGold}Análisis del intervalo de incertidumbre}\\[0.5em]
-  Con MAE $\approx$ 9.4 pp, el rango plausible para Cepeda es:
-  \[
-    [60.5 - 9.43,\ 60.5 + 9.43] = [51.07\%,\ 69.93\%]
-  \]
-  El resultado real (49.52\%) queda:
-  \[
-    51.07 - 49.52 = \highlight{1.55\,\text{pp}}
-  \]
-  por debajo del límite inferior.\\[0.5em]
-  {\color{elanGray}\small El resultado real cae a $\approx$1.5 pp del rango plausible del modelo.\\
-  En un empate de 0.96 pp, \textbf{ninguna} metodología basada en engagement agregado tiene resolución suficiente.}
-\end{columns}
+      \end{center}
+      \vspace{0.4em}
+      \begin{exampleblock}{\textbf{P4}: Respondida}
+        Con 10 ciudades se alcanza el 95\% del rendimiento final.
+        El piso de error es \textbf{estructural} (ruido de señal),
+        no insuficiencia de datos.
+      \end{exampleblock}
+    \end{column}
+    \begin{column}{0.56\textwidth}
+      \includegraphics[width=\textwidth]{img/col_learning_curve.png}
+    \end{column}
+  \end{columns}
 \end{frame}
 
-\begin{frame}{¿Qué capturó y qué no capturó el modelo?}
-\begin{columns}[T]
-\column{0.48\textwidth}
-  \begin{tikzpicture}
-    \fill[elanGreen!15!elanPanel] (0,0) rectangle (6.2,4.8);
-    \draw[elanGreen, line width=1pt] (0,0) rectangle (6.2,4.8);
-    \node[anchor=north, yshift=-0.3cm, text=elanGreen, font=\bfseries\small] at (3.1,4.8)
-      {Lo que ELA-NOM capturó correctamente};
-    \node[anchor=north, yshift=-1.0cm, text width=5.8cm] at (3.1,4.8) {
-      \begin{itemize}\itemsep0.4em
-        \item[\color{elanGreen}$\checkmark$] La contienda era \textbf{extremadamente competitiva}
-        \item[\color{elanGreen}$\checkmark$] Cepeda tenía \textbf{ventaja digital neta} (3.5$\times$ likes)
-        \item[\color{elanGreen}$\checkmark$] El rango plausible (51\%--70\%) era informativo
-      \end{itemize}
-    };
-  \end{tikzpicture}
+% DIAPOSITIVA 23 (renumerada): Validación 2026 -- datos
+\begin{frame}{Validación prospectiva: 2.ª vuelta presidencial 2026}
+  \begin{columns}[T]
+    \begin{column}{0.52\textwidth}
+      \textbf{Cepeda Castro vs.\ De la Espriella}, 21 jun.\ 2026
 
-\column{0.48\textwidth}
-  \begin{tikzpicture}
-    \fill[elanRed!15!elanPanel] (0,0) rectangle (6.2,4.8);
-    \draw[elanRed, line width=1pt] (0,0) rectangle (6.2,4.8);
-    \node[anchor=north, yshift=-0.3cm, text=elanRed, font=\bfseries\small] at (3.1,4.8)
-      {Fuera del alcance del modelo};
-    \node[anchor=north, yshift=-1.0cm, text width=5.8cm] at (3.1,4.8) {
-      \begin{itemize}\itemsep0.4em
-        \item[\color{elanRed}$\times$] Giros de \textbf{última semana} (movilización diferencial)
-        \item[\color{elanRed}$\times$] Estructura organizativa \textbf{territorial} de campaña
-        \item[\color{elanRed}$\times$] Eventos exógenos de impacto electoral
-      \end{itemize}
-    };
-  \end{tikzpicture}
-\end{columns}
-\vspace{0.6em}
-\begin{tikzpicture}
-  \fill[elanGold!20!elanPanel] (0,0) rectangle (\textwidth,0.9);
-  \draw[elanGold, line width=0.8pt] (0,0) rectangle (\textwidth,0.9);
-  \node[anchor=west, xshift=0.3cm, yshift=0.45cm, text width={\dimexpr\textwidth-0.7cm}] at (0,0)
-    {{\color{elanGold}\bfseries\small L\'imite estructural documentado:}
-     {\color{elanWhite}\small\ ELA-NOM es informativo en contiendas con ventajas digitales $>$20~pp.
-     En empates $<$1~pp, ning\'un modelo de engagement tiene resoluci\'on suficiente.}};
-\end{tikzpicture}
+      \vspace{0.2em}
+      \begin{center}\small
+      \rowcolors{2}{tableBand}{white}
+      \begin{tabular}{L{2.6cm} R{2.2cm} C{1.6cm}}
+        \toprule
+        \rowcolor{barBlue}
+        {\color{white}\textbf{Candidato}} &
+        {\color{white}\textbf{Total \textit{likes}}} &
+        {\color{white}\textbf{Dom.}} \\
+        \midrule
+        Cepeda Castro   & 17.087.679 & \num{77,6\%} \\
+        De la Espriella &  4.926.361 & \num{22,4\%} \\
+        \bottomrule
+      \end{tabular}
+      \end{center}
+      \vspace{0.2em}
+      \textbf{Corrección metodológica:}\\
+      {\small Modelo entrenado: base aprox.\ 26\% (3,84 candidatos prom.)\\
+      2.ª vuelta: base = 50\%; se elimina intercepto:}
+      \[
+        \hat{p}_c^{(2)} = 0{,}50 + \hat\beta_1 \cdot f_\ell(c)
+      \]
+      \textbf{Pronósticos:}
+      $\hat{p}_{\text{Cepeda}} = \num{60{,}5\%}$,
+      $\hat{p}_{\text{Espriella}} = \num{39{,}5\%}$
+
+      \vspace{0.2em}
+      {\small \textbf{Trazabilidad} \corr{[Corr.\ 1.15]}: 14 días previos, FB+TW+TikTok,
+      444 publicaciones, ElasticNet 2v.\ (random\_state=42)}
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      \includegraphics[width=\textwidth]{img/col_dominancia_2026.png}
+      {\footnotesize\color{subtleGray} Dominancia de \textit{likes}, 444 publicaciones}
+
+      \vspace{0.4em}
+      \begin{exampleblock}{\textbf{PM4}: Respondida}
+        \small El modelo es \textbf{transferible} a un formato electoral diferente:
+        elección presidencial bipolar vs.\ alcaldías multicandidate.
+      \end{exampleblock}
+    \end{column}
+  \end{columns}
 \end{frame}
 
-}% fin \validaciondos
+% DIAPOSITIVA 24 (renumerada): Resultado 2026 + corrección MAE
+\begin{frame}{Resultado real: contextualización del error \corr{[Corr.\ 1.17/2.4]}}
+  \begin{columns}[T]
+    \begin{column}{0.52\textwidth}
+      \textbf{Resultado real (21 jun.\ 2026):}
+      \[
+        \text{De la Espriella: } 50{,}48\%
+        \quad
+        \text{Cepeda: } 49{,}52\%
+      \]
+      Margen real: \alrt{\textbf{0,96 pp}}, empate técnico.
+
+      \vspace{0.2em}
+      \[
+        \text{MAE}_{2026} = |60{,}5\% - 49{,}52\%| = \num{10{,}98\,\text{pp}}
+      \]
+      Supera el MAE medio de entrenamiento en $+1{,}42$ pp.
+
+      \vspace{0.2em}
+      \begin{alertblock}{Corrección conceptual: $\pm$MAE no es intervalo}
+        \small El MAE mide exactitud promedio, no dispersión.
+        ``$\hat{p} \pm \text{MAE}$'' \textbf{no tiene cobertura estadística declarada}.
+        Un intervalo formal requiere percentiles de los residuos de LOCO-CV
+        o supuestos distribucionales explícitos.
+      \end{alertblock}
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      \textbf{Límite estructural:}
+      \begin{itemize}\small
+        \item Cepeda acumuló 3,5 veces más \textit{likes}; señal real y robusta
+        \item Ningún modelo de engagement resuelve contiendas menores a 1 pp
+        \item Las encuestadoras colombianas tampoco lo lograron
+        \item Factores no capturados: movilización territorial, giros de última semana
+      \end{itemize}
+      \vspace{0.3em}
+      \begin{block}{Uso práctico adecuado del modelo}
+        \small ELA-NOM es informativo para ordenar tendencias y detectar
+        ventajas mayores a 20 pp. \textbf{No} está diseñado para predecir
+        empates técnicos.
+      \end{block}
+      \vspace{0.2em}
+      \begin{exampleblock}{\textbf{PM4}: Delimitado}
+        \small El fallo es una condición de borde (margen menor a 1 pp),
+        no una falsación del modelo.
+      \end{exampleblock}
+    \end{column}
+  \end{columns}
+\end{frame}

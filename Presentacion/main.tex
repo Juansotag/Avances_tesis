@@ -1,26 +1,47 @@
-\documentclass[aspectratio=169,10pt,compress]{beamer}
-\usepackage{beamerthemeELANOM}
-\usepackage[spanish]{babel}
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage{amsmath,amssymb,amsfonts}
-\usepackage{graphicx}
-\usepackage{booktabs}
-\usepackage{colortbl}
-\usepackage{xcolor}
-\usepackage{tikz}
-\usepackage{pgfplots}
-\pgfplotsset{compat=1.18}
-\usepackage{multicol}
-\usepackage{array}
-\usepackage{adjustbox}
-\usepackage[absolute,overlay]{textpos}
+%!TEX program = pdflatex
+% ============================================================
+%  Presentación ELA-NOM — Sustentación de Maestría
+%  Juan Sotelo Aguilar · Universidad de La Sabana · 2026
+% ============================================================
+\documentclass[aspectratio=169, 9pt]{beamer}
 
-\title[ELA-NOM]{ELA-NOM: \textit{Election-Agnostic Nowcasting Model}}
-\subtitle{Un modelo de predicci\'on electoral sin encuestas para Am\'erica Latina}
-\author[J. Sotelo Aguilar]{Juan Sotelo Aguilar}
-\institute{Universidad de La Sabana}
-\date{Junio 2026}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath, amssymb, bm}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{colortbl}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\usepackage{xcolor}
+\usepackage{hyperref}
+
+% Ayuda a LaTeX a romper líneas largas en columnas estrechas de Beamer
+\setlength{\emergencystretch}{2.5em}
+\tolerance=9999
+
+\usetheme{ELANOM}
+
+% ── Metadatos ──────────────────────────────────────────────────────────────────
+\title{ELA-NOM}
+\subtitle{Diseño e implementación del modelo ELA-NOM:\\
+          un \textit{nowcasting} elección-agnóstico para la intención de voto\\
+          aplicado a elecciones locales en Colombia 2023}
+\author{Juan Sotelo Aguilar}
+\institute{Maestría en Analítica Aplicada · Universidad de La Sabana}
+\date{Agosto 2026}
+
+% ── Columnas de tabla con ancho fijo ──────────────────────────────────────────
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}}
+
+\begin{document}
 
 \input{sections/00_portada}
 \input{sections/01_motivacion}
@@ -31,41 +52,5 @@
 \input{sections/06_resultados}
 \input{sections/07_validacion2026}
 \input{sections/08_conclusiones}
-
-\begin{document}
-
-\portada
-
-\section{Motivaci\'on}
-\sectionslide{Motivaci\'on}
-\motivacion
-
-\section{Pregunta e Hip\'otesis}
-\sectionslide{Pregunta e Hip\'otesis}
-\pregunta
-
-\section{Etapa 1 --- Bolivia}
-\sectionslide{Etapa 1 --- Bolivia}
-\etapabolivia
-
-\section{Etapa 2 --- Costa Rica}
-\sectionslide{Etapa 2 --- Costa Rica}
-\etapacostarica
-
-\section{Etapa 3 --- Colombia}
-\sectionslide{Etapa 3 --- Colombia}
-\etapacolombia
-
-\section{Resultados}
-\sectionslide{Resultados Colombia 2023}
-\resultadoscolombia
-
-\section{Validaci\'on Prospectiva 2026}
-\sectionslide{Validaci\'on Prospectiva 2026}
-\validaciondos
-
-\section{Conclusiones}
-\sectionslide{Conclusiones}
-\conclusiones
 
 \end{document}

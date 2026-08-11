@@ -1,78 +1,60 @@
-% sections/01_motivacion.tex
-\newcommand{\motivacion}{%
+% DIAPOSITIVA 3: El problema
+\begin{frame}{El problema: saber quién va a ganar es costoso}
+  \begin{columns}[T]
+    \begin{column}{0.52\textwidth}
+      \textbf{La industria de pronósticos electorales}
+      \begin{itemize}
+        \item Industria global de opinión pública:\\
+              \num{\$153 mil millones} facturados en 2024
+        \item Colombia: más de \num{\$700 mil millones COP} (2024)
+        \item Plataformas predictivas alternativas:\\
+              Polymarket mueve más de \num{1 billón USD} en contratos de predicción
+      \end{itemize}
+      \vspace{0.5em}
+      \textbf{Tres retos del sector en Colombia}
+      \begin{itemize}
+        \item \alrt{Regulatorio:} Ley 2494/2025 endureció divulgación.
+              \textbf{GAD3} se retiró del país en 2026
+        \item \alrt{Cobertura:} más de \num{1.100 municipios}; encuestadoras
+              cubren solo 10-12 ciudades
+        \item \alrt{Costo:} una encuesta multimuestra es inviable
+              para elecciones subnacionales
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      \vspace{0.3em}
+      \begin{block}{La pregunta natural}
+        ¿La actividad ciudadana en redes sociales dice algo sobre cómo va a votar el colombiano?
+      \end{block}
+      \vspace{0.5em}
+      \begin{block}{Definición: \textit{Nowcasting}}
+        Estimación del valor \textbf{actual} de una variable subyacente difícil de observar directamente, a partir de señales disponibles en tiempo real.
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
 
-\begin{frame}{El problema: dependencia estructural de las encuestas}
-\begin{columns}[c]
-\column{0.55\textwidth}
-  \begin{itemize}\itemsep0.6em
-    \item En América Latina, las encuestas son \highlight{virtualmente el único} instrumento de seguimiento de intención de voto
-    \item \textbf{Tres fallas estructurales} documentadas en la literatura:
-    \begin{itemize}\itemsep0.3em
-      \item {\color{elanRed}Sesgo de respuesta}: tasas de participación en declive estructural
-      \item {\color{elanRed}Dependencia de entrenamiento}: modelos no generalizables entre elecciones
-      \item {\color{elanRed}Costo}: una encuesta de calidad puede superar los COP 300 millones
-    \end{itemize}
-    \item Las \textbf{redes sociales} ofrecen señal digital continua, gratuita y pública
+% DIAPOSITIVA 4: Literatura
+\begin{frame}{De los modelos econométricos a las redes sociales}
+  \begin{itemize}
+    \item \textbf{1970s-2000s:} primeros modelos de nowcasting electoral con variables
+          económicas y de aprobación (VAR, ARCH/GARCH): alta precisión histórica
+    \item \textbf{2016:} golpe de gracia. Ningún modelo predijo \textbf{Trump} ni el \textbf{Brexit}
+    \item \textbf{2009:} Tumasjan \textit{et al.}: menciones en Twitter como estimador insesgado
+          de participación electoral; MAE inferior al 2\% con millones de tweets
+    \item \textbf{2010s-2020s:} modelos híbridos (redes más variables económicas) mejoran resultados
+          pero requieren infraestructura de extracción masiva, inviable fuera de academia
+    \item \textbf{Brito \& Andeato (2020s):} \kw{SOMEN-DC}: \textit{Social Media Electoral Nowcasting
+          During Campaign}. Promete superar encuestadoras con interacciones de candidatos
   \end{itemize}
-\column{0.42\textwidth}
-  \begin{tikzpicture}
-    \fill[elanPanel] (0,0) rectangle (5.5,5.5);
-    \node[anchor=north, yshift=-0.3cm] at (2.75,5.5)
-      {{\color{elanGold}\bfseries\small América Latina: cobertura de encuestas}};
-    % Mini tabla de cobertura
-    \node[text=elanGray, font=\tiny, anchor=north] at (2.75,4.8) {
-      \begin{tabular}{lr}
-      \toprule
-      \color{elanWhite}País & \color{elanWhite}Casas encuestadoras\\
-      \midrule
-      Brasil & 12\\
-      México & 8\\
-      Colombia & 4\\
-      Ecuador & 2\\
-      Bolivia & 1\\
-      Costa Rica & 3\\
-      \bottomrule
-      \end{tabular}
-    };
-    \node[text=elanRed, font=\footnotesize\bfseries, anchor=south] at (2.75,0.3)
-      {Mercados pequeños: sin encuestas};
-  \end{tikzpicture}
-\end{columns}
+
+  \vspace{0.4em}
+  \begin{alertblock}{Problema identificado en SOMEN-DC}
+    Tres limitaciones estructurales que los autores no resuelven:
+    \begin{itemize}
+      \item \alrt{Techo encuestocéntrico:} la variable objetivo \textbf{son las encuestas}, no los resultados
+      \item \alrt{During-Campaign:} requiere scraping diario desde el primer día de campaña
+      \item \alrt{No transferibilidad:} pesos específicos a cada elección; imposible generalizar
+    \end{itemize}
+  \end{alertblock}
 \end{frame}
-
-\begin{frame}{¿Por qué es difícil usar redes sociales para predicción?}
-\begin{columns}[c]
-\column{0.48\textwidth}
-  \textbf{\color{elanGold}Problema 1: Asimetría temporal}\\[0.4em]
-  {\small Las plataformas solo exponen el conteo \textit{actual} de interacciones.\\
-  Si scrapeas hoy una publicación de hace 30 días, ves el total acumulado,\\
-  no el estado que tenía el día que importaba.}
-  \vspace{0.8em}
-
-  \textbf{\color{elanGold}Problema 2: Escala y agregación}\\[0.4em]
-  {\small Un candidato nacional con 2M de seguidores tiene más \textit{likes} absolutos\\
-  que cualquier candidato local, aunque pierda en su ciudad.}
-  \vspace{0.8em}
-
-  \textbf{\color{elanGold}Problema 3: Generalización}\\[0.4em]
-  {\small Modelos entrenados en elecciones presidenciales no\\
-  predicen elecciones locales y viceversa.}
-
-\column{0.48\textwidth}
-  \begin{tikzpicture}
-    \fill[elanPanel] (0,0) rectangle (5.8,5.8);
-    \node[anchor=north, text=elanGold, font=\bfseries\small, yshift=-0.2cm]
-      at (2.9,5.8) {Soluciones propuestas en ELA-NOM};
-    \node[anchor=center, text width=5.2cm, yshift=-1.8cm] at (2.9,4.8) {
-      \textcolor{elanGreen}{$\checkmark$} \small\textcolor{elanWhite}{Modelo de crecimiento Weibull}\\
-      {\color{elanGray}\footnotesize reconstruye el historial de interacciones}\\[0.5em]
-      \textcolor{elanGreen}{$\checkmark$} \small\textcolor{elanWhite}{Dominancia relativa (share of voice)}\\
-      {\color{elanGray}\footnotesize normaliza dentro de cada contienda}\\[0.5em]
-      \textcolor{elanGreen}{$\checkmark$} \small\textcolor{elanWhite}{Diseño election-agnóstico}\\
-      {\color{elanGray}\footnotesize un núcleo transferible entre elecciones}
-    };
-  \end{tikzpicture}
-\end{columns}
-\end{frame}
-
-}% fin \motivacion
