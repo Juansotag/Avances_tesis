@@ -79,3 +79,13 @@
 \newcommand{\alrt}[1]{{\color{alertRed}\textbf{#1}}}      % alerta
 \newcommand{\ok}[1]{{\color{okGreen}\textbf{#1}}}         % positivo
 \newcommand{\corr}[1]{{\color{keyBlue}\textit{#1}}}       % corrección del jurado
+% ── Color de respaldo (diapositivas rojas) ────────────────────────────────────
+\definecolor{barRed}{HTML}{C0392B}       % barra roja para diapositivas de respaldo
+\newcommand{\makered}{%
+  \setbeamercolor{frametitle}{fg=bgWhite,bg=barRed}%
+  \setbeamercolor{footline}{fg=bgWhite,bg=barRed}%
+}
+\newcommand{\makeblue}{%
+  \setbeamercolor{frametitle}{fg=bgWhite,bg=barBlue}%
+  \setbeamercolor{footline}{fg=bgWhite,bg=barBlue}%
+}

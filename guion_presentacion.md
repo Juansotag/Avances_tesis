@@ -9,7 +9,7 @@
 
 ## SALUDO FORMAL
 
-*[De pie, antes de avanzar la primera diapositiva]*
+*[Diapositiva 1 — portada, de pie antes de avanzar]*
 
 Buenas tardes a todos los presentes. A los jurados, el doctor Andrés Cruz, el doctor César Caballero y el profesor Adrián Santana. También a mi director de trabajo de grado, el doctor Miguel Uribe Laverde, y a todos los asistentes.
 
@@ -17,11 +17,15 @@ Me llamo **Juan Sotelo Aguilar** y hoy busco presentar mi trabajo de grado para 
 
 **"Diseño e implementación del modelo ELA-NOM: un nowcasting elección-agnóstico para la intención de voto aplicado a elecciones locales en Colombia 2023."**
 
+*[Avanzar a Diapositiva 2: Agenda]*
+
+Pueden ver en pantalla la agenda de los próximos 30 minutos. Empezamos con el problema y la literatura, luego la pregunta de investigación y el diseño; revisamos los tres casos de estudio — Bolivia, Costa Rica y Colombia — y cerramos con la validación prospectiva de 2026 y las conclusiones.
+
 ---
 
 ## BLOQUE 1 — El problema: ¿por qué necesitamos alternativas al pronóstico electoral? (2 min)
 
-*[Diapositiva 1: cifras globales / industria]*
+*[Diapositiva 3: El problema — cifras globales / industria]*
 
 La industria global de investigación de mercados y opinión pública facturó **153 mil millones de dólares en 2024**. Es una industria enorme, pero que enfrenta tres presiones simultáneas.
 
@@ -37,17 +41,17 @@ Estos tres factores crean una necesidad clara: **metodologías de pronóstico el
 
 ## BLOQUE 2 — La ruta que siguió la literatura (2 min)
 
-*[Diapositiva 2: línea de tiempo de la literatura]*
+*[Diapositiva 4: De los modelos econométricos a las redes sociales]*
 
-Los modelos de pronóstico electoral están dominados por los modelos de **nowcasting**: en lugar de proyectar una variable al futuro, buscan estimar el valor actual de una variable subyacente difícil de medir — en nuestro caso, la **cuota de voto** de un candidato.
+Los modelos de pronóstico electoral están dominados por los modelos de **nowcasting**: en lugar de proyectar una variable al futuro, buscan estimar el valor actual de una variable subyacente difícil de medir directamente. En nuestro caso esa variable latente es la **intención de voto** — que para medirla con rigor requeriría encuestar a los ciudadanos todos los días durante la campaña. Como no podemos hacer eso, usamos la **cuota de voto** del día de la elección como su manifestación observable: el proxy que el modelo aprende a aproximar a partir de las señales digitales.
 
 Desde los años 70 en el mundo anglosajón se desarrollaron estos modelos: primero con variables de popularidad, luego añadiendo indicadores macroeconómicos. En 2016 llegó el quiebre: prácticamente ninguno anticipó la victoria de Trump ni el Brexit.
 
-La alternativa llegó desde el machine learning. El trabajo seminal de **Tumasjan** en 2009 para las elecciones del Parlamento Alemán mostró que con **100.000 tweets** era posible pronosticar el porcentaje de voto de cada partido con un error promedio inferior al **2%**. Era la primera demostración seria de que las publicaciones en redes sociales eran un estimador razonablemente insesgado de la cuota electoral.
+La alternativa llegó desde el machine learning. El trabajo seminal de **Tumasjan** en **2010** — con datos de las elecciones del Parlamento Alemán de 2009 — mostró que con **100.000 tweets** era posible pronosticar el porcentaje de voto de cada partido con un error promedio inferior al **2%**. Era la primera demostración seria de que las publicaciones en redes sociales eran un estimador razonablemente insesgado de la cuota electoral.
 
 Los trabajos que siguieron escalaron masivamente — Tsakalidis en 2018 usó más de **catorce millones de tweets** — pero toda la evidencia seguía concentrada en Europa y Norteamérica.
 
-*[Diapositiva 3: los tres problemas del SOMEN-DC]*
+*[Diapositiva 4 — continúa: los tres problemas del SOMEN-DC]*
 
 El primer trabajo en abordar ambas brechas en América Latina es el de **Kellyton Brito y Paulo Andeoato**, de la Universidad Federal de Pernambuco. Su metodología **SOMEN-DC** propone usar las **interacciones de las publicaciones de los candidatos**, no de los votantes. Con eso logró errores de entre 2 y 7% en elecciones presidenciales de cuatro países latinoamericanos.
 
@@ -59,7 +63,7 @@ La tercera limitación es la más grave: un modelo que no puede aprender de elec
 
 ## BLOQUE 3 — La pregunta de investigación (1,5 min)
 
-*[Diapositiva 4 y 5: preguntas P y PM]*
+*[Diapositiva 5: Pregunta de investigación — P1 a P4 y PM1 a PM4]*
 
 Esas limitaciones llevaron a la pregunta central:
 
@@ -83,7 +87,7 @@ Y cuatro preguntas metodológicas:
 
 ## BLOQUE 4 — Diseño de tres etapas (0,5 min)
 
-*[Diapositiva 6: diagrama de tres etapas]*
+*[Diapositiva 6: Diseño empírico — tres etapas]*
 
 El objetivo general fue diseñar, implementar y validar ese modelo. Lo llamamos **ELA-NOM**: Election-Agnostic Nowcasting Model.
 
@@ -101,7 +105,7 @@ Seleccionamos la **segunda vuelta presidencial de Bolivia del 19 de octubre de 2
 
 El dataset: **153 días de campaña**, extracción diaria en cuatro plataformas durante la última semana de campaña, **308 observaciones, 26 características**. La variable objetivo se construyó interpolando linealmente **14 encuestas**, anclada al resultado real: Paz **54,53%**, Quiroga **45,47%**.
 
-*[Diapositiva 8: serie de tiempo Bolivia]*
+*[Diapositiva 8 — ROJA: Bolivia — evolución de la predicción (barra roja — saltarla, mostrar solo si preguntan)]*
 
 *[Diapositiva 9: tabla de resultados]*
 
@@ -125,7 +129,8 @@ Si queremos entrenar ELA-NOM con elecciones pasadas, necesitamos saber cuántas 
 
 La solución: modelar la curva de crecimiento de interacciones de una publicación. Si conocemos esa forma, podemos estimar retroactivamente cuántas interacciones existían en cualquier momento pasado usando la fecha de publicación, las interacciones totales y la plataforma.
 
-*[Diapositivas 12 y 12-B: comparación de funciones (R²) y parámetros calibrados por plataforma]*
+*[Diapositiva 12: Etapa 2 — selección de la función de crecimiento (R²)]*
+*[Diapositiva 13 — ROJA: Etapa 2 — parámetros Weibull calibrados por plataforma (barra roja — saltarla)]*
 
 La primera vuelta presidencial de Costa Rica del **1 de febrero de 2026** fue el caso de estudio. Durante **30 días** — 15 antes y 15 después — extrajimos diariamente las interacciones de los cuatro candidatos. Resultado: **1.922 publicaciones únicas**, **19.439 pares (día, fracción)**.
 
@@ -133,21 +138,29 @@ La función **Weibull con offset** $F(t) = 1 - e^{-k(t+t_0)^\alpha}$ superó a l
 
 Los parámetros calibrados por plataforma revelan un gradiente coherente: t₀ va de **1 hora para Instagram** hasta **46 horas para Facebook**. Facebook distribuye contenido gradualmente durante casi dos días; Twitter/X y Instagram son plataformas de consumo inmediato. Twitter/X muestra además α > 1, coherente con el mecanismo de retweet acumulativo.
 
-*[Diapositiva 13: la ganadora es indistinguible del resto]*
+*[Diapositiva 14: Etapa 2 — la ganadora es indistinguible del resto]*
 
 El hallazgo más importante: la **curva de la candidata ganadora es morfológicamente idéntica a la del resto**. No existe diferencia estadísticamente significativa en el crecimiento entre ganadores y perdedores en ningún día del panel. El patrón es una propiedad de la plataforma, no del candidato. Esto valida la transferibilidad del restaurador.
 
 Esto responde **P2** y **PM3**.
 
-*[Diapositiva 14: MAPE y convergencia]*
+*[Diapositiva 15 — ROJA: Etapa 2 — precisión del restaurador temporal — tabla MAPE (saltarla, mostrar si preguntan por PM3)]*
 
-A partir del **Día 3**, el peor caso es **Instagram con 12,06%** de error mediano — las otras tres plataformas están muy por debajo: Facebook 2,12%, TikTok 5,94%, Twitter/X 0,38%. Suficientemente preciso para construir el dataset de entrenamiento.
+Esta tabla resume el error mediano del restaurador por plataforma y día de observación. A partir del **Día 3**, el peor caso es **Instagram con 12,06%** — las otras tres plataformas están muy por debajo: Facebook 2,12%, TikTok 5,94%, Twitter/X 0,38%. La única excepción al umbral del 20% es Instagram en el Día 1 con 20,72%, no en el Día 3. Suficientemente preciso para construir el dataset de entrenamiento.
+
+*[Diapositiva 16 — ROJA: Etapa 2 — convergencia del error por día de observación (saltarla)]*
+
+El panel izquierdo muestra cómo decae el error con cada día adicional de observación. El panel derecho muestra la distribución de errores individuales en el Día 3: el **85% de las publicaciones tiene MAPE menor al 20%** en ese punto. Por eso fijamos el Día 3 como criterio de corte para la reconstrucción.
+
+*[Diapositiva 17 — ROJA: Etapa 2 — ajuste del restaurador por plataforma (saltarla)]*
+
+Esta figura muestra el ajuste visual de la curva Weibull a los datos reales por plataforma. La línea modelada sigue muy de cerca los puntos observados en todos los casos, confirmando que la función captura correctamente la forma de crecimiento de las interacciones.
 
 ---
 
 ## BLOQUE 7 — Etapa 3: Colombia, ELA-NOM paso a paso (10 min)
 
-*[Diapositiva 15: universo y filtros]*
+*[Diapositiva 18: Colombia — universo geográfico y filtros]*
 
 ### Universo y filtros
 
@@ -157,7 +170,7 @@ Dentro de cada ciudad, solo candidatos con **más de 10.000 votos confirmados**.
 
 El resultado: **120 candidatos**, con el **92,6%** con publicaciones activas en al menos una plataforma.
 
-*[Diapositiva 15 (continuación): infraestructura de extracción, tres plataformas, cifras finales]*
+*[Diapositiva 19 — ROJA: Colombia — infraestructura de extracción (saltarla, mostrar si preguntan por el pipeline)]*
 
 ### Qué se extrajo y cómo
 
@@ -167,7 +180,7 @@ Para Twitter/X: scraper propio con **Playwright** (navegador headless). Para Fac
 
 En total: **5.776 publicaciones únicas** — 2.511 de Facebook, 2.346 de Twitter/X, 919 de TikTok.
 
-*[Diapositiva 17: señal Colombia — P1]*
+*[Diapositiva 20: Colombia — validación de la señal digital (P1)]*
 
 ### Verificación de la señal — P1
 
@@ -181,7 +194,11 @@ Un clasificador que asigne la victoria al candidato con mayor volumen bruto acer
 
 La señal existe. Esto responde **P1**.
 
-*[Diapositiva 18: GLM fraccional y LOCO-CV (fondo) — se habla de normalización de camino a la siguiente diapositiva]*
+*[Diapositiva 21 — ROJA: Etapa 3 — scatter plot correlación dominancia vs. cuota (saltarla, mostrar si preguntan por rho=0,70)]*
+
+Este gráfico muestra visualmente esa correlación: cada punto es un candidato, el eje horizontal es la dominancia de likes y el eje vertical la cuota de voto. La tendencia positiva es clara incluso antes de cualquier modelado formal. Como decíamos, el 61% de esa correlación es señal genuina, y el 39% es artefacto composicional.
+
+*[Diapositiva 22: Etapa 3 — normalización y construcción de variables]*
 
 ### Construcción del dataset y normalización
 
@@ -197,7 +214,7 @@ A partir de esas interacciones reconstruidas se generó un pool inicial de **má
 
 Se intentó también normalizar por número de seguidores, con la intuición de que candidatos con más seguidores naturalmente acumulan más interacciones. Sin embargo, el número de seguidores resultó ser inestable, altamente colineal con el volumen de publicaciones y no disponible históricamente en todas las plataformas. VIF elevado lo descartó del pool.
 
-*[Diapositiva 19: feature engineering y selección del modelo]*
+*[Diapositiva 23: Modelado — feature engineering y selección del modelo]*
 
 ### Feature engineering: de 22 a 9, de 9 a 2
 
@@ -219,7 +236,7 @@ Se evaluaron sistemáticamente múltiples familias de modelos — GLM fraccional
 
 El **ElasticNet** combina Lasso (L₁) y Ridge (L₂). Lasso ajusta algunos coeficientes a exactamente cero — selección automática de variables. Ridge contrae suavemente los restantes ante multicolinealidad. La calibración fue **anidada**: un CV interno eligió alpha=0,0475 y L1-ratio=0,10 *antes* de ver el pliegue de evaluación. Un CV externo LOCO midió el desempeño real.
 
-*[Diapositiva 20: LOCO-CV — la validación honesta]*
+*[Diapositiva 24: Modelado — LOCO-CV, la validación honesta]*
 
 ### LOCO-CV: la validación honesta
 
@@ -229,7 +246,7 @@ El proceso opera en **dos fases**. En la **Fase 1** (evaluación honesta), se ha
 
 El resultado: **MAE = 9,56 pp** y **R²oos = 0,518**.
 
-*[Diapositiva 19 (columna derecha): ecuación ganadora y coeficientes]*
+*[Diapositiva 25: Modelado — especificación ganadora e interpretación de los betas]*
 
 ### La especificación ganadora y la interpretación de los betas
 
@@ -249,7 +266,7 @@ Las siete variables restantes fueron contraídas a cero: su contribución margin
 
 - **β₂ = 0,026**: el moderador. En ciudades grandes (log-pob por encima de la media), el efecto total de la señal es β₁ + β₂ × desviación. Dominar las redes sociales pesa más electoralmente en ciudades grandes.
 
-*[Diapositiva 22: dos modelos — reconciliación de coeficientes]*
+*[Diapositiva 26 — ROJA: Modelado — dos modelos, reconciliación de coeficientes (saltarla, mostrar si preguntan por los tres juegos de coeficientes)]*
 
 ### Por qué hay dos modelos y cuál se usa en 2026
 
@@ -261,9 +278,21 @@ Para la segunda vuelta de 2026 se usó la especificación de 2 predictores, re-c
 
 $$\hat{p}_c^{(2)} = 0{,}50 + (\hat{\boldsymbol{\beta}} \cdot \mathbf{x}_c)$$
 
-La dominancia de likes en logit es el predictor más robusto y parsimonioso. Esto responde **P3**.
+La dominancia de likes en logit es el predictor más robusto y parsimonioso.
 
-*[Diapositiva 22: curva de aprendizaje, P4]*
+*[Diapositiva 27 — ROJA: Modelado — estabilidad de los coeficientes entre pliegues LOCO-CV (saltarla, mostrar si preguntan por robustez)]*
+
+Esta figura muestra la distribución de los coeficientes estimados en cada uno de los 31 pliegues LOCO-CV, con su intervalo de confianza del 95%. La dominancia de likes y el moderador de población son robustos: ningún pliegue invierte el signo de ningún coeficiente. El modelo es consistente a través de todas las ciudades.
+
+*[Diapositiva 28 — ROJA: Modelado — diagnóstico del modelo ElasticNet, LOCO-CV (saltarla, mostrar si preguntan por residuos o sobreajuste)]*
+
+El diagnóstico confirma la calidad del ajuste: a la izquierda, predicción versus cuota real con MAE = 9,56 pp — los puntos se distribuyen simétricamente alrededor de la diagonal. A la derecha, los residuos centrados en cero con sesgo medio nulo: el modelo no sobreestima ni subestima sistemáticamente a ningún tipo de candidato.
+
+*[Diapositiva 29: Escalera de modelos (P3)]*
+
+Esta tabla resume el desempeño fuera de muestra de los cuatro modelos evaluados. El baseline de proporcionalidad da 12,61 pp. El núcleo digital puro — solo dominancia de likes — baja a 11,52 pp. El ElasticNet de 2 variables logra el mejor MAE: **9,56 pp** con R²oos de 0,518. El gradient boosting queda segundo con 9,91 pp, sin interpretabilidad de coeficientes. La señal más informativa y robusta es la dominancia relativa de likes combinada con el moderador de población. Esto responde **P3**.
+
+*[Diapositiva 30: Curva de aprendizaje (P4)]*
 
 ### ¿Cuántas contiendas se necesitan? — P4
 
@@ -275,7 +304,7 @@ Esto responde **P4**.
 
 ## BLOQUE 8 — Validación prospectiva: segunda vuelta 2026 (3 min)
 
-*[Diapositiva 23: validación prospectiva 2026]*
+*[Diapositiva 31: Validación prospectiva — segunda vuelta presidencial 2026]*
 
 El **21 de junio de 2026**: Iván Cepeda Castro contra Abelardo De la Espriella.
 
@@ -283,7 +312,7 @@ El modelo entrenado en **31 elecciones de alcaldes** se aplicó **sin reentrenam
 
 Pronóstico: **Cepeda 60,5% — De la Espriella 39,5%**.
 
-*[Diapositiva 24: resultado real y contextualización]*
+*[Diapositiva 32: Resultado real — contextualización del error]*
 
 Resultado real: De la Espriella ganó por **0,96 pp**: **50,48% vs. 49,52%**. MAE del modelo: **10,98 pp** — 1,42 pp por encima del MAE de referencia de 9,56 pp.
 
@@ -295,7 +324,7 @@ Esto responde **PM4**: el modelo es transferible a un formato electoral diferent
 
 ## BLOQUE 9 — Conclusiones (2 min)
 
-*[Diapositiva 26: conclusiones — respuesta a la pregunta central]*
+*[Diapositiva 33: Conclusiones — respuesta a la pregunta de investigación]*
 
 ¿Es posible?
 
@@ -305,7 +334,7 @@ Las ocho preguntas respondidas: PM1 y PM2 en Bolivia; P2 y PM3 en Costa Rica; P1
 
 **MAE = 9,56 pp fuera de muestra** en 31 contiendas. R²oos = 0,518. El modelo se transfiere a un formato electoral diferente. El restaurador Weibull resuelve el problema del histórico. Todo esto con una inversión de entre **20 y 30 dólares**.
 
-*[Diapositiva 27: cuatro contribuciones al estado del arte]*
+*[Diapositiva 34: Cuatro contribuciones al estado del arte]*
 
 Las cuatro contribuciones al estado del arte:
 
@@ -314,13 +343,15 @@ Las cuatro contribuciones al estado del arte:
 3. **Restaurador temporal Weibull**: arquitectura matemática para construir datasets históricos desde una extracción estática.
 4. **Democratización del pipeline**: todo el ciclo por 20–30 USD.
 
-*[Diapositiva 28: próximos pasos y agenda futura]*
+*[Diapositiva 35 — ROJA: Próximos pasos y agenda futura (saltarla, mostrar si preguntan por trabajo futuro)]*
 
 El juicio definitivo llega con las **elecciones territoriales de Colombia en 2027**: modelo ya entrenado, evaluación ex-ante estricta. La extensión más valiosa: **nowcasting continuo diario** durante la campaña — la arquitectura técnica ya está resuelta.
 
-*[Diapositiva 29: cumplimiento de objetivos específicos]*
+*[Diapositiva 36 — ROJA: Cumplimiento de objetivos específicos (saltarla, mostrar si preguntan por OE)]*
 
-*[Diapositiva 30: cierre]*
+En esta diapositiva pueden ver el cumplimiento de cada uno de los cuatro objetivos específicos de la tesis, con el resultado concreto que lo responde. Los cuatro están cumplidos.
+
+*[Diapositiva 37: cierre]*
 
 **Muchas gracias.**
 

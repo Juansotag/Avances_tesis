@@ -1,0 +1,959 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage[top=2.5cm,bottom=2.5cm,left=2.5cm,right=2.5cm]{geometry}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{listings}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{hyperref}
+
+\definecolor{barBlue}{HTML}{1a4e8a}
+\definecolor{subtleGray}{HTML}{555555}
+
+\titleformat{\section}{\large\bfseries\color{barBlue}}{}{0em}{}[\vspace{-4pt}\rule{\linewidth}{0.5pt}]
+\titleformat{\subsection}{\normalsize\bfseries\color{barBlue}}{}{0em}{}
+\titleformat{\subsubsection}{\normalsize\bfseries\color{subtleGray}}{}{0em}{}
+\titleformat{\paragraph}[runin]{\normalsize\bfseries}{}{0em}{}[. ]
+
+\lstset{basicstyle=\small\ttfamily, breaklines=true, frame=single,
+        backgroundcolor=\color{gray!10}, xleftmargin=8pt, xrightmargin=8pt}
+
+\hypersetup{colorlinks=true, linkcolor=barBlue, urlcolor=barBlue}
+
+\title{\textbf{Documento de Apoyo para la Defensa: ELA-NOM}}
+\date{}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+\section{Pipeline Colombia 2023: Explicación paso a paso}
+\subsection{Documento de apoyo para la defensa: ELA-NOM}
+
+\vspace{4pt}\noindent\rule{\linewidth}{0.4pt}\vspace{4pt}
+
+\subsection{PASO 1: Definición del universo}
+
+\textbf{Universo inicial:} 33 ciudades más pobladas de Colombia.\\[2pt]
+
+\textbf{Exclusiones con criterio explícito (2 ciudades):}\\[2pt]
+
+\begin{itemize}[noitemsep,topsep=2pt]
+\item \textbf{Bogotá:} Gustavo Bolívar, escritor con audiencia latinoamericana, acumuló millones de interacciones siendo tercer lugar. Viola el supuesto de localidad geográfica: la mayoría de sus likes no provienen de electores bogotanos. Su inclusión habría roto la función de mapeo del modelo.
+\item \textbf{Piedecuesta:} el candidato ganador eliminó voluntariamente sus perfiles durante la campaña por procesos legales. Imposible reconstruir su señal digital.
+\end{itemize}
+
+\textbf{Resultado: 31 ciudades competitivas.}\\[2pt]
+
+\textbf{Filtro de candidatos: más de 10.000 votos confirmados en escrutinios.}\\[2pt]
+
+Objetivo: eliminar candidaturas testimoniales sin campaña digital activa. De los 328 candidatos totales, 120 superaron el umbral.\\[2pt]
+
+\begin{quote}\itshape \textbf{Advertencia metodológica documentada en la tesis:} este filtro introduce un sesgo de selección sobre la variable dependiente. Se excluye exactamente a los peor votados, haciendo el dataset más predecible de lo que sería en la práctica real. Las métricas reportadas (MAE = 9,56 pp, R2oos = 0,518) reflejan ese subconjunto, no el universo completo.\end{quote}
+
+\textbf{Imputación epsilon:} aproximadamente 9 candidatos no tenían ninguna publicación. Para evitar logit(0) = -infinito, se imputó dominancia = 0,001 (epsilon = 10^-3), lo que da logit(0,001) = -6,91. Con epsilon = 0,01 el logit sería -4,60, una diferencia de 2,31 unidades que multiplicada por beta_1 = 0,111 desplazaría la predicción 26 pp. Por eso declarar el valor de epsilon es esencial para la replicabilidad.\\[2pt]
+
+\vspace{4pt}\noindent\rule{\linewidth}{0.4pt}\vspace{4pt}
+
+\subsection{PASO 2: Scraping}
+
+\textbf{Ventana:} 14 dias previos al 29 de octubre de 2023.\\[2pt]
+
+\textbf{Tres infraestructuras paralelas:}\\[2pt]
+
+\begin{center}
+\begin{tabular}{lll}
+\hline
+Plataforma & Herramienta & Razon \\
+\hline
+\end{tabular}
+\end{center}
+\begin{center}
+\begin{tabular}{lll}
+\hline
+Twitter/X & Playwright (navegador headless automatizado) & API de pago desde 2023 \\
+\hline
+\end{tabular}
+\end{center}
+\begin{center}
+\begin{tabular}{lll}
+\hline
+Facebook & Apify (API privada no documentada de Meta) & API Graph cerrada \\
+\hline
+\end{tabular}
+\end{center}
+\begin{center}
+\begin{tabular}{lll}
+\hline
+TikTok & Apify & Sin API publica disponible \\
+\hline
+\end{tabular}
+\end{center}
+\begin{center}
+\begin{tabular}{lll}
+\hline
+Instagram & EXCLUIDA & Meta bloqueo acceso investigadores en 2023 \\
+\hline
+\end{tabular}
+\end{center}
+
+\textbf{Resultado bruto: 5.776 publicaciones unicas} (FB: 2.511, TW: 2.346, TikTok: 919).\\[2pt]
+
+\vspace{4pt}\noindent\rule{\linewidth}{0.4pt}\vspace{4pt}
+
+\subsection{PASO 3: Restauracion Weibull}
+
+Las interacciones extraidas en 2026 reflejan 3 anos de trafico acumulado, no el estado del dia de la eleccion. Se aplico la funcion calibrada en Costa Rica:\\[2pt]
+
+\begin{lstlisting}
+N_estimado = n_hoy / F(t; k, alpha, t0)
+\end{lstlisting}
+
+donde \texttt{t} es el numero de dias entre la publicacion y la extraccion, y \texttt{F} es la Weibull calibrada por plataforma. Esto convirtio cada publicacion en una estimacion de cuantas interacciones tenia el 29 de octubre de 2023.\\[2pt]
+
+Los parametros exportados desde Costa Rica se aplicaron directamente, sin recalibrar, validando la transferibilidad del restaurador.\\[2pt]
+
+\vspace{4pt}\noindent\rule{\linewidth}{0.4pt}\vspace{4pt}
+
+\subsection{PASO 4: Validacion de la senal (ANTES del modelado)}
+
+\subsubsection{Mann-Whitney mancomunado}
+
+Se comparo el engagement por publicacion de ganadores vs. perdedores:\\[2pt]
+
+\begin{itemize}[noitemsep,topsep=2pt]
+\item \textbf{Mediana ganadores:} 204 eng/publicacion
+\item \textbf{Mediana perdedores:} 92 eng/publicacion
+\item \textbf{Estadistico U:} 2.293,5
+\item \textbf{p-valor (unilateral):} 0,0481
+\end{itemize}
+
+El p-valor de 0,0481 corresponde a la comparacion de la mediana de engagement por publicacion (no del total bruto). El total bruto (44.252 vs. 28.011) no es la estadistica reportada.\\[2pt]
+
+\subsubsection{Test de permutacion intra-contienda}
+
+\textbf{Por que es necesario:} Mann-Whitney asume que los 120 candidatos son observaciones independientes. Pero estan anidados en 31 contiendas: los 4 candidatos de Medellin compiten entre si y sus datos estan correlacionados. Mann-Whitney podria ver un efecto que en realidad es un artefacto del anidamiento.\\[2pt]
+
+\textbf{Como funciona (10.000 iteraciones, semilla = 42):}\\[2pt]
+
+\begin{enumerate}[noitemsep,topsep=2pt]
+\item Se calcula el estadistico observado: diferencia de medianas de engagement entre ganadores y perdedores = \textbf{112 puntos de engagement}.
+\item En cada iteracion: se barajan aleatoriamente las etiquetas "ganador"/"perdedor" DENTRO de cada municipio por separado. Los candidatos de Medellin solo se intercambian entre si; los de Cali, entre si; etc.
+\item Se recalcula la diferencia de medianas en cada permutacion.
+\item p-valor empirico = fraccion de iteraciones que igualaron o superaron el estadistico observado.
+\end{enumerate}
+
+\textbf{Resultados:}\\[2pt]
+
+\begin{center}
+\begin{tabular}{ll}
+\hline
+Dato & Valor \\
+\hline
+\end{tabular}
+\end{center}
+\begin{center}
+\begin{tabular}{ll}
+\hline
+Estadistico observado (delta mediana) & 112,0 \\
+\hline
+\end{tabular}
+\end{center}
+\begin{center}
+\begin{tabular}{ll}
+\hline
+Media de delta mediana bajo H0 & -0,52 \\
+\hline
+\end{tabular}
+\end{center}
+\begin{center}
+\begin{tabular}{ll}
+\hline
+Percentil 95 bajo H0 & 39,0 \\
+\hline
+\end{tabular}
+\end{center}
+\begin{center}
+\begin{tabular}{ll}
+\hline
+Percentil 99 bajo H0 & 76,0 \\
+\hline
+\end{tabular}
+\end{center}
+\begin{center}
+\begin{tabular}{ll}
+\hline
+\textbf{p-valor empirico} & \textbf{menor que 0,0001} (0 de 10.000 permutaciones igualaron o superaron 112) \\
+\hline
+\end{tabular}
+\end{center}
+
+\textbf{Interpretacion:} el valor observado de 112 es tan extremo que ninguna de las 10.000 configuraciones aleatorias lo alcanzo. Esto confirma que la senal no es un artefacto del anidamiento.\\[2pt]
+
+\textbf{Que significa exactamente delta = 112 eng/pub:}\\[2pt]
+\begin{itemize}[noitemsep,topsep=2pt]
+\item \textbf{delta:} diferencia entre los dos grupos (ganadores menos perdedores)
+\item \textbf{tilde{x}:} se usa la mediana (no la media), que es mas robusta a outliers
+\item \textbf{eng:} engagement = suma de likes + comentarios + compartidos
+\item \textbf{pub:} por publicacion (por post)
+\item \textbf{Traduccion:} la mediana de engagement por publicacion de los candidatos ganadores supera en 112 unidades la de los perdedores. Si el ganador tipico tiene 204 eng/pub y el perdedor tipico tiene 92, la diferencia es 112.
+\item \textbf{Por que mediana y no media:} la media total (44.252 vs 28.011) viene del Mann-Whitney mancomunado y refleja diferencias de tamano de campana. Al dividir por publicaciones y usar la mediana se neutralizan los extremos (un post viral aislado no infla el estadistico). El test de permutacion usa la diferencia de medianas porque es la mas resistente a ese tipo de ruido.
+\end{itemize}
+
+\subsubsection{Correlaciones de Spearman}
+
+\begin{center}
+\begin{tabular}{llll}
+\hline
+Variable X & rho & p-valor & Interpretacion \\
+\hline
+\end{tabular}
+\end{center}
+\begin{center}
+\begin{tabular}{llll}
+\hline
+Dominancia relativa de likes & 0,70 & menor que 0,001 & Cuota digital predice cuota electoral \\
+\hline
+\end{tabular}
+\end{center}
+\begin{center}
+\begin{tabular}{llll}
+\hline
+Volumen absoluto de likes & aprox. 0,45 & menor que 0,001 & Menos informativo (sin normalizar) \\
+\hline
+\end{tabular}
+\end{center}
+
+La diferencia entre 0,70 y 0,45 es el argumento empirico central de por que el modelo usa dominancia relativa y no volumen bruto.\\[2pt]
+
+\begin{quote}\itshape \textbf{Advertencia composicional:} dominancia y cuota de votos son variables composicionales (ambas suman 1 por contienda). Eso infla mecanicamente la correlacion. El rho de 0,70 es evidencia exploratoria/descriptiva; la validez predictiva real se establece por LOCO-CV.\end{quote}
+
+\subsubsection{Heuristico de dominancia}
+
+Asignar la victoria al candidato con mayor dominancia de likes acierta en \textbf{22 de 31 contiendas = 71,0%} (IC 95% Wilson: 53,4% a 83,9%).\\[2pt]
+
+Progresion que justifica usar dominancia relativa:\\[2pt]
+\begin{itemize}[noitemsep,topsep=2pt]
+\item Azar puro (1/3,84 candidatos): 26,0%
+\item Volumen absoluto (mas likes brutos = ganador): 57,6%
+\item Dominancia relativa (mayor cuota digital = ganador): \textbf{71,0%}
+\end{itemize}
+
+\vspace{4pt}\noindent\rule{\linewidth}{0.4pt}\vspace{4pt}
+
+\subsection{PASO 5: Normalizacion y construccion de variables}
+
+Con las interacciones restauradas se construyo un pool de mas de 22 variables en tres familias:\\[2pt]
+
+\textbf{Familia 1: Nominales absolutas}\\[2pt]
+Likes, comentarios y compartidos totales por plataforma. Capturan volumen bruto. Problema: quien mas publica naturalmente acumula mas. Senal ruidosa y dependiente de la frecuencia editorial.\\[2pt]
+
+\textbf{Familia 2: Por publicacion}\\[2pt]
+Likes, comentarios y compartidos promedio por post. Normalizan la actividad editorial. Mas estables, pero siguen dependiendo del tamano absoluto de la contienda.\\[2pt]
+
+\textbf{Familia 3: Dominancia relativa} (la elegida)\\[2pt]
+Cuota de likes de un candidato sobre el total de su contienda. Elimina el efecto del tamano absoluto y mide la senal competitiva directamente.\\[2pt]
+
+\textbf{Transformacion logit:} todas las dominancias se transforman al logit porque la variable dependiente (cuota de voto) esta acotada en (0,1) y la relacion logit-logit tiende a ser mas lineal.\\[2pt]
+
+\textbf{Intento descartado: normalizar por seguidores}\\[2pt]
+VIF elevado. El numero de seguidores es inestable entre plataformas, colineal con el volumen de publicaciones, y no estaba disponible historicamente en todas las plataformas. Se descarto del pool.\\[2pt]
+
+\vspace{4pt}\noindent\rule{\linewidth}{0.4pt}\vspace{4pt}
+
+\subsection{PASO 6: Reduccion VIF (22+ variables a 9)}
+
+El VIF (Factor de Inflacion de la Varianza) de una variable X_j se calcula:\\[2pt]
+
+\begin{enumerate}[noitemsep,topsep=2pt]
+\item Regresar X_j contra todas las demas variables del pool
+\item Obtener el R2 de esa regresion
+\item VIF_j = 1 / (1 - R2_j)
+\end{enumerate}
+
+Un VIF alto significa que esa variable es casi redundante: ya esta contenida en las demas. Con VIF alto, los coeficientes de una regresion OLS se vuelven inestables (pequenos cambios en datos producen cambios enormes en coeficientes).\\[2pt]
+
+\textbf{Umbral convencional:} VIF mayor que 5 es preocupante; mayor que 10 es severo.\\[2pt]
+
+\textbf{Los VIFs reales de las 6 variables digitales (datos del notebook 04_automl_seleccion.ipynb):}\\[2pt]
+
+\begin{center}
+\begin{tabular}{lll}
+\hline
+Variable & VIF & Nivel \\
+\hline
+\end{tabular}
+\end{center}
+\begin{center}
+\begin{tabular}{lll}
+\hline
+f_coment_dom (dominancia comentarios) & 351,6 & Extremo \\
+\hline
+\end{tabular}
+\end{center}
+\begin{center}
+\begin{tabular}{lll}
+\hline
+f_coment_pp (comentarios por publicacion) & 265,2 & Extremo \\
+\hline
+\end{tabular}
+\end{center}
+\begin{center}
+\begin{tabular}{lll}
+\hline
+f_likes_dom (dominancia likes) & 225,4 & Extremo \\
+\hline
+\end{tabular}
+\end{center}
+\begin{center}
+\begin{tabular}{lll}
+\hline
+f_likes_pp (likes por publicacion) & 158,9 & Extremo \\
+\hline
+\end{tabular}
+\end{center}
+\begin{center}
+\begin{tabular}{lll}
+\hline
+f_compart_dom (dominancia compartidos) & 126,5 & Extremo \\
+\hline
+\end{tabular}
+\end{center}
+\begin{center}
+\begin{tabular}{lll}
+\hline
+f_compart_pp (compartidos por publicacion) & 92,4 & Extremo \\
+\hline
+\end{tabular}
+\end{center}
+
+\textbf{Por que son tan altos:} si un candidato tiene muchos likes, tiende a tener muchos comentarios y muchos compartidos. Las 6 variables se mueven casi en bloque.\\[2pt]
+
+\textbf{Consecuencia:} una regresion OLS con estas 6 variables daria coeficientes completamente inestables. La solucion correcta no es podar variables manualmente sino usar regularizacion que tolere la colinealidad: \textbf{ElasticNet}.\\[2pt]
+
+\textbf{Las 9 variables del pool se definieron por criterio conceptual,} no por un umbral VIF automatico:\\[2pt]
+
+\begin{center}
+\begin{tabular}{lll}
+\hline
+# & Variable & Familia \\
+\hline
+\end{tabular}
+\end{center}
+\begin{center}
+\begin{tabular}{lll}
+\hline
+1 & logit(dominancia likes) & Digital \\
+\hline
+\end{tabular}
+\end{center}
+\begin{center}
+\begin{tabular}{lll}
+\hline
+2 & logit(dominancia comentarios) & Digital \\
+\hline
+\end{tabular}
+\end{center}
+\begin{center}
+\begin{tabular}{lll}
+\hline
+3 & logit(dominancia compartidos) & Digital \\
+\hline
+\end{tabular}
+\end{center}
+\begin{center}
+\begin{tabular}{lll}
+\hline
+4 & logit(likes por publicacion) & Digital \\
+\hline
+\end{tabular}
+\end{center}
+\begin{center}
+\begin{tabular}{lll}
+\hline
+5 & logit(comentarios por publicacion) & Digital \\
+\hline
+\end{tabular}
+\end{center}
+\begin{center}
+\begin{tabular}{lll}
+\hline
+6 & logit(compartidos por publicacion) & Digital \\
+\hline
+\end{tabular}
+\end{center}
+\begin{center}
+\begin{tabular}{lll}
+\hline
+7 & log(poblacion del municipio) & Territorial \\
+\hline
+\end{tabular}
+\end{center}
+\begin{center}
+\begin{tabular}{lll}
+\hline
+8 & numero de candidatos en la contienda & Territorial \\
+\hline
+\end{tabular}
+\end{center}
+\begin{center}
+\begin{tabular}{lll}
+\hline
+9 & logit(dom. likes) x (log-pob centrada en su media) & Moderador \\
+\hline
+\end{tabular}
+\end{center}
+
+El moderador (variable 9) captura si el efecto de la dominancia digital varia segun el tamano de la ciudad. La centracion en la media hace que beta_0 sea interpretable: la cuota predicha para el candidato promedio en la ciudad promedio.\\[2pt]
+
+\vspace{4pt}\noindent\rule{\linewidth}{0.4pt}\vspace{4pt}
+
+\subsection{PASO 7: AutoML acotado - comparacion de modelos}
+
+Se probaron multiples especificaciones de variables y multiples familias de modelos. Todo bajo la misma metrica (MAE fuera de muestra) y el mismo protocolo de validacion (LOCO-CV).\\[2pt]
+
+\textbf{Reglas del proceso (extraidas del notebook, celda 0):}\\[2pt]
+\begin{enumerate}[noitemsep,topsep=2pt]
+\item Todo se mide fuera de muestra con LOCO-CV. Nada se decide por ajuste en entrenamiento.
+\item Metrica unica: MAE de la cuota de voto en puntos porcentuales.
+\item La regularizacion hace la poda, no el investigador.
+\item La seleccion es anidada: CV interno elige hiperparametros, CV externo mide el desempeno real.
+\end{enumerate}
+
+\textbf{Especificaciones de variables evaluadas (datos reales del notebook):}\\[2pt]
+
+\begin{center}
+\begin{tabular}{lllll}
+\hline
+Especificacion & Variables & MAE (pp) & R2oos & Top-1 \\
+\hline
+\end{tabular}
+\end{center}
+\begin{center}
+\begin{tabular}{lllll}
+\hline
+likes + territorio & 3 & 10,37 & 0,507 & 71,0% \\
+\hline
+\end{tabular}
+\end{center}
+\begin{center}
+\begin{tabular}{lllll}
+\hline
+likes + moderador(pob) & 2 & 10,37 & 0,506 & 71,0% \\
+\hline
+\end{tabular}
+\end{center}
+\begin{center}
+\begin{tabular}{lllll}
+\hline
+Dominancia + territorio & 5 & 10,69 & 0,472 & 64,5% \\
+\hline
+\end{tabular}
+\end{center}
+\begin{center}
+\begin{tabular}{lllll}
+\hline
+Todo digital + territorio & 8 & 10,73 & 0,455 & 54,8% \\
+\hline
+\end{tabular}
+\end{center}
+\begin{center}
+\begin{tabular}{lllll}
+\hline
+Solo likes_dom & 1 & 11,54 & 0,457 & 71,0% \\
+\hline
+\end{tabular}
+\end{center}
+\begin{center}
+\begin{tabular}{lllll}
+\hline
+Dominancia + por_post & 6 & 11,66 & 0,424 & 61,3% \\
+\hline
+\end{tabular}
+\end{center}
+\begin{center}
+\begin{tabular}{lllll}
+\hline
+Dominancia (3 variables) & 3 & 11,81 & 0,422 & 67,7% \\
+\hline
+\end{tabular}
+\end{center}
+\begin{center}
+\begin{tabular}{lllll}
+\hline
+Por_post (3 variables) & 3 & 11,97 & 0,409 & 58,1% \\
+\hline
+\end{tabular}
+\end{center}
+\begin{center}
+\begin{tabular}{lllll}
+\hline
+Baseline proporcionalidad & 0 & 12,64 & 0,180 & 71,0% \\
+\hline
+\end{tabular}
+\end{center}
+
+\textbf{Observacion clave:} usar 8 variables da peor MAE (10,73) que usar 3 (10,37). Mas variables sobreajustan. El modelo necesita parsimonia.\\[2pt]
+
+\textbf{Familias de modelos evaluadas:}\\[2pt]
+\begin{itemize}[noitemsep,topsep=2pt]
+\item GLM fraccional (Papke y Wooldridge, 1996)
+\item Gradient boosting (HistGradientBoosting)
+\item Redes neuronales
+\item Random forests
+\item SVM
+\end{itemize}
+
+\textbf{Ganador: GLM fraccional con ElasticNet.}\\[2pt]
+
+\textbf{Por que GLM sobre gradient boosting (MAE similar: 9,91 pp)?}\\[2pt]
+\begin{enumerate}[noitemsep,topsep=2pt]
+\item \textit{Teorica:} la cuota de voto esta en (0,1). El GLM fraccional con familia binomial y link logit garantiza que todas las predicciones caen en (0,1). OLS puede predecir valores negativos o mayores que 1. Gradient boosting tampoco garantiza ese rango sin ajustes adicionales.
+\item \textit{Practica:} una tesis academica requiere interpretabilidad. Los coeficientes del GLM tienen lectura directa en log-odds. Gradient boosting es una caja negra.
+\end{enumerate}
+
+\vspace{4pt}\noindent\rule{\linewidth}{0.4pt}\vspace{4pt}
+
+\subsection{PASO 8: ElasticNet anidado - seleccion de variables}
+
+\textbf{Que hace ElasticNet:} combina Lasso (L1) y Ridge (L2).\\[2pt]
+\begin{itemize}[noitemsep,topsep=2pt]
+\item \textbf{Lasso (L1):} ajusta algunos coeficientes a exactamente cero. Seleccion automatica de variables.
+\item \textbf{Ridge (L2):} contrae suavemente los restantes ante multicolinealidad.
+\end{itemize}
+
+La funcion de perdida minimizada:\\[2pt]
+\begin{lstlisting}
+min_beta { L_fraccional(beta) + alpha * [gamma * ||beta||_1 + (1-gamma)/2 * ||beta||_2^2] }
+\end{lstlisting}
+
+Hiperparametros optimos calibrados: alpha = 0,0475, gamma (l1_ratio) = 0,10.\\[2pt]
+
+\textbf{La calibracion fue anidada (dos niveles):}\\[2pt]
+
+\begin{itemize}[noitemsep,topsep=2pt]
+\item \textbf{CV interno:} en cada pliegue LOCO, se corre un CV adicional sobre las 30 ciudades de entrenamiento para elegir alpha y gamma. Este CV interno nunca ve la ciudad excluida.
+\item \textbf{CV externo (LOCO):} mide el MAE real sobre la ciudad excluida, que el modelo nunca vio.
+\end{itemize}
+
+\textbf{Por que importa el anidamiento:} si eligieras los hiperparametros mirando el MAE fuera de muestra directamente, estarias usando informacion del test para tomar decisiones de entrenamiento. Eso infla artificialmente el desempeno reportado.\\[2pt]
+
+\textbf{Estabilidad de seleccion por variable (datos reales del notebook):}\\[2pt]
+
+\begin{center}
+\begin{tabular}{lll}
+\hline
+Variable & % de pliegues donde sobrevivio & Coeficiente medio \\
+\hline
+\end{tabular}
+\end{center}
+\begin{center}
+\begin{tabular}{lll}
+\hline
+logit(dom. likes) & 100% & 0,375 \\
+\hline
+\end{tabular}
+\end{center}
+\begin{center}
+\begin{tabular}{lll}
+\hline
+log(poblacion) & 100% & 0,201 \\
+\hline
+\end{tabular}
+\end{center}
+\begin{center}
+\begin{tabular}{lll}
+\hline
+moderador likes x pob & 100% & 0,557 \\
+\hline
+\end{tabular}
+\end{center}
+\begin{center}
+\begin{tabular}{lll}
+\hline
+n_candidatos & 100% & -0,396 \\
+\hline
+\end{tabular}
+\end{center}
+\begin{center}
+\begin{tabular}{lll}
+\hline
+logit(likes por pub) & 97% & 0,137 \\
+\hline
+\end{tabular}
+\end{center}
+\begin{center}
+\begin{tabular}{lll}
+\hline
+logit(dom. comentarios) & 94% & 0,095 \\
+\hline
+\end{tabular}
+\end{center}
+\begin{center}
+\begin{tabular}{lll}
+\hline
+logit(compart. por pub) & 87% & 0,039 \\
+\hline
+\end{tabular}
+\end{center}
+\begin{center}
+\begin{tabular}{lll}
+\hline
+logit(dom. compartidos) & 77% & 0,081 \\
+\hline
+\end{tabular}
+\end{center}
+\begin{center}
+\begin{tabular}{lll}
+\hline
+logit(coment. por pub) & 10% & 0,004 \\
+\hline
+\end{tabular}
+\end{center}
+
+\textbf{MAE con el pool completo de 9 (ElasticNet anidado): 9,61 pp} (casi identico al MAE de la especificacion final de 2 variables).\\[2pt]
+
+La especificacion final reportada uso 2 predictores (MAE = 9,56 pp) vs. la de 9 (MAE = 9,57 pp): diferencia de 0,01 pp, indistinguible empiricamente. Se eligio la de 2 por mayor parsimonia e interpretabilidad.\\[2pt]
+
+\vspace{4pt}\noindent\rule{\linewidth}{0.4pt}\vspace{4pt}
+
+\subsection{PASO 9: LOCO-CV - validacion honesta}
+
+\textbf{Leave-One-Contest-Out Cross-Validation: 31 pliegues.}\\[2pt]
+
+\textbf{Por que no K-Fold estandar:} K-Fold mezcla candidatos aleatoriamente. Podria poner candidatos de Medellin en entrenamiento y en prueba simultaneamente. El modelo aprenderia patrones especificos de esa ciudad y los "reutilizaria" en la evaluacion, produciendo estimaciones artificialmente optimistas. Con variables composicionales (cuotas que suman 1 dentro de cada contienda), esto genera fuga de informacion directa.\\[2pt]
+
+\vspace{4pt}\noindent\rule{\linewidth}{0.4pt}\vspace{4pt}
+
+\subsubsection{Explicacion paso a paso del proceso completo}
+
+\textbf{Datos de entrada:} 9 variables (con logit aplicado) para 120 candidatos de 31 ciudades.\\[2pt]
+
+\textbf{FASE 1 — Evaluacion honesta:}\\[2pt]
+
+Realizo un ciclo for de 31 folds. En el fold 1, escojo 30 ciudades de entrenamiento y bloqueo la ciudad 31 completamente: no la toco para nada hasta el final del fold.\\[2pt]
+
+Dentro de ese fold, hago un grid search: selecciono la primera de las 120 combinaciones de alpha y l1_ratio y entreno el ElasticNet con esas 30 ciudades. Para medir si esa combinacion es buena, no uso la ciudad 31 (esta bloqueada). Hago un mini-ciclo interno de 30 folds sobre esas mismas 30 ciudades: entreno con 29, predigo la que sobro, repito para cada ciudad. El promedio de esos 30 errores es el MAE interno de esa combinacion. Repito esto para las 119 combinaciones restantes. Me quedo con la combinacion que tuvo el menor MAE interno.\\[2pt]
+
+Con esa combinacion ganadora, entreno el ElasticNet sobre las 30 ciudades completas. El proceso puede dejar las 9 variables, puede bajarlas a 2 o a cualquier numero: depende de la penalizacion. En la practica, en la mayoria de los folds quedaron 2.\\[2pt]
+
+Ahora desbloqueo la ciudad 31 y predigo su cuota electoral. Calculo el error para ese fold y lo guardo.\\[2pt]
+
+Paso al fold 2, hago exactamente lo mismo: grid search interno completo, nuevo modelo, predigo la ciudad 2. Y asi hasta el fold 31.\\[2pt]
+
+Al final tengo 31 errores. Los promedio: \textbf{MAE = 9,56 pp}. Tambien se cual combinacion de hiperparametros gano mas veces: alpha = 0,0475 y l1_ratio = 0,10. Termina la Fase 1.\\[2pt]
+
+\textbf{FASE 2 — Modelo final:}\\[2pt]
+
+Tomo la combinacion ganadora y entreno el ElasticNet una ultima vez sobre las 31 ciudades completas, sin dejar ninguna afuera, porque ya no necesito medir error (ya lo medi en la Fase 1). Los betas que salen de ese entrenamiento final, promediados y estandarizados a traves de los 31 folds, son \textbf{beta_0 = 0,258, beta_1 = 0,111 y beta_2 = 0,026}. Ese es el modelo que se aplica en 2026.\\[2pt]
+
+\vspace{4pt}\noindent\rule{\linewidth}{0.4pt}\vspace{4pt}
+
+\textbf{Resultados LOCO-CV:}\\[2pt]
+
+\begin{center}
+\begin{tabular}{ll}
+\hline
+Metrica & Valor \\
+\hline
+\end{tabular}
+\end{center}
+\begin{center}
+\begin{tabular}{ll}
+\hline
+MAE fuera de muestra & \textbf{9,56 pp} \\
+\hline
+\end{tabular}
+\end{center}
+\begin{center}
+\begin{tabular}{ll}
+\hline
+R2 fuera de muestra & \textbf{0,518} \\
+\hline
+\end{tabular}
+\end{center}
+\begin{center}
+\begin{tabular}{ll}
+\hline
+Top-1 (clasificacion derivada) & \textbf{64,5%} \\
+\hline
+\end{tabular}
+\end{center}
+\begin{center}
+\begin{tabular}{ll}
+\hline
+MAE baseline proporcionalidad & 12,61 pp \\
+\hline
+\end{tabular}
+\end{center}
+\begin{center}
+\begin{tabular}{ll}
+\hline
+Mejora sobre baseline & 3,05 pp \\
+\hline
+\end{tabular}
+\end{center}
+
+\textbf{Por que el Top-1 baja de 71% a 64,5%:} minimizar MAE de magnitud y maximizar exactitud de clasificacion ordinal son objetivos distintos. El modelo sacrifica precision de ranking a cambio de estimaciones de magnitud mas calibradas. El Top-1 del 64,5% es una metrica derivada de la regresion, no un clasificador entrenado independientemente.\\[2pt]
+
+\vspace{4pt}\noindent\rule{\linewidth}{0.4pt}\vspace{4pt}
+
+\subsection{PASO 10: Ecuacion final e interpretacion de coeficientes}
+
+La especificacion ganadora:\\[2pt]
+
+\begin{lstlisting}
+y_hat_c = 0,258 + 0,111 * f_likes + 0,026 * f_likes * (log_pob - media_log_pob)
+\end{lstlisting}
+
+donde \texttt{f_likes} = logit(dominancia de likes) y \texttt{log_pob} = logaritmo de la poblacion municipal.\\[2pt]
+
+\textbf{Interpretacion de cada coeficiente:}\\[2pt]
+
+\begin{itemize}[noitemsep,topsep=2pt]
+\item \textbf{beta_0 = 0,258:} cuota predicha para el candidato promedio en la ciudad promedio. Consistente con 3,84 candidatos por contienda: 1/3,84 aprox. 26%.
+\item \textbf{beta_1 = 0,111:} por cada unidad adicional en el logit de dominancia, la cuota en log-odds sube 0,111. En terminos practicos: pasar del 25% al 50% de dominancia digital corresponde a un incremento en logit de aprox. 1,1 unidades, lo que se traduce en aprox. 10 pp adicionales de cuota predicha.
+\item \textbf{beta_2 = 0,026:} el moderador. En ciudades grandes (log-pob por encima de la media), el efecto total de la senal es beta_1 + beta_2 x desviacion. Dominar las redes sociales pesa mas electoralmente en ciudades grandes.
+\end{itemize}
+
+\textbf{Las 7 variables restantes penalizadas a cero:} su contribucion marginal al MAE fuera de muestra era negativa. ElasticNet las descarto automaticamente.\\[2pt]
+
+\vspace{4pt}\noindent\rule{\linewidth}{0.4pt}\vspace{4pt}
+
+\subsection{PASO 11: Aplicacion prospectiva 2026}
+
+El modelo entrenado en 31 elecciones de alcaldes se aplico SIN reentrenamiento a la segunda vuelta presidencial del 21 de junio de 2026.\\[2pt]
+
+\textbf{Correccion metodologica necesaria:} el modelo fue entrenado con intercepto aprox. 0,258 (base de 26%, coherente con 3,84 candidatos). Una segunda vuelta tiene exactamente 2 candidatos y base del 50%. Se elimino el intercepto y se re-centro sobre el 50%:\\[2pt]
+
+\begin{lstlisting}
+p_hat_c_segunda_vuelta = 0,50 + (beta_1 * f_likes + beta_2 * f_likes * (log_pob - media))
+\end{lstlisting}
+
+\textbf{Datos 2026:} 444 publicaciones totales, FB + TW + TikTok, ventana de 14 dias.\\[2pt]
+
+\begin{center}
+\begin{tabular}{lll}
+\hline
+Candidato & Likes & Dominancia \\
+\hline
+\end{tabular}
+\end{center}
+\begin{center}
+\begin{tabular}{lll}
+\hline
+Cepeda Castro & 17.087.679 & 77,6% \\
+\hline
+\end{tabular}
+\end{center}
+\begin{center}
+\begin{tabular}{lll}
+\hline
+De la Espriella & 4.926.361 & 22,4% \\
+\hline
+\end{tabular}
+\end{center}
+
+\textbf{Pronostico:} Cepeda 60,5%, De la Espriella 39,5%.\\[2pt]
+
+\textbf{Resultado real:} De la Espriella 50,48%, Cepeda 49,52%. Margen: 0,96 pp.\\[2pt]
+
+\textbf{MAE 2026:} |60,5% - 49,52%| = \textbf{10,98 pp}, que supera el MAE historico en 1,42 pp.\\[2pt]
+
+La senal de Cepeda era real (3,5 veces mas likes). Pero el margen fue menor al propio error del modelo. Ninguna herramienta basada en engagement puede resolver contiendas de empate tecnico.\\[2pt]
+
+\vspace{4pt}\noindent\rule{\linewidth}{0.4pt}\vspace{4pt}
+
+\subsection{Cronologia resumida}
+
+\begin{lstlisting}
+EXTRACCION oct. 2023 (Playwright + Apify)
+         |
+RESTAURACION WEIBULL (aplicar parametros Costa Rica)
+         |
+VALIDACION DE SENAL (Mann-Whitney p=0,0481 + permutacion p<0,0001 + Spearman)
+         |
+NORMALIZACION (3 familias de variables, transformacion logit)
+         |
+REDUCCION VIF (22+ variables, VIFs hasta 351 -> 9 variables conceptualmente distintas)
+         |
+AUTOML (9 especificaciones x 5 familias de modelos, GLM fraccional gana)
+         |
+ELASTICNET ANIDADO (CV interno elige alpha=0,0475 y l1=0,10, CV externo mide MAE)
+         |
+LOCO-CV (31 pliegues, MAE = 9,56 pp, R2oos = 0,518)
+         |
+APLICACION 2026 (sin reentrenamiento, MAE = 10,98 pp)
+\end{lstlisting}
+
+\vspace{4pt}\noindent\rule{\linewidth}{0.4pt}\vspace{4pt}
+
+\subsection{Preguntas frecuentes de jurado y respuestas}
+
+\textbf{"Las correlaciones Spearman son composicionales, por que las reporta?"}\\[2pt]
+Hay que distinguir dos preguntas y se tiene la respuesta numerica exacta para ambas:\\[2pt]
+
+(1) La senal digital, existe o es artefacto? El test de permutacion intra-contienda (barajando etiquetas ganador/perdedor dentro de cada ciudad) da p menor que 0,0001. La senal existe.\\[2pt]
+
+(2) Cuanto del rho = 0,70 es composicional y cuanto es senal real? Se cuantifica con una segunda permutacion: reasignar los likes aleatoriamente entre candidatos DENTRO de cada ciudad (preservando el total de likes por ciudad, pero eliminando la relacion likes-votos). El rho promedio bajo esa hipotesis nula composicional es 0,261 (rango de las 10.000 iteraciones: -0,020 a 0,567).\\[2pt]
+
+Descomposicion exacta (datos reales, 10.000 iteraciones, semilla = 42):\\[2pt]
+
+\begin{center}
+\begin{tabular}{lll}
+\hline
+Componente & rho & Porcentaje \\
+\hline
+\end{tabular}
+\end{center}
+\begin{center}
+\begin{tabular}{lll}
+\hline
+Composicional (inflacion mecanica) & 0,261 & 39% \\
+\hline
+\end{tabular}
+\end{center}
+\begin{center}
+\begin{tabular}{lll}
+\hline
+Senal predictiva real & 0,409 & 61% \\
+\hline
+\end{tabular}
+\end{center}
+\begin{center}
+\begin{tabular}{lll}
+\hline
+rho observado total & 0,670 & 100% \\
+\hline
+\end{tabular}
+\end{center}
+
+El rho observado (0,670) supera el percentil 95 de la distribucion nula (0,397) y el p-valor empirico es menor que 0,0001: ninguna de las 10.000 permutaciones alcanzo el rho real.\\[2pt]
+
+Conclusion para la defensa: el 39% del rho se debe a composicionalidad mecanica (el hecho de que ambas variables comparten denominador). El 61% restante (rho aprox. 0,41) es senal predictiva genuina entre likes y votos. La advertencia composicional reduce el rho efectivo de 0,70 a 0,41, que sigue siendo altamente significativo. La funcion de esa correlacion en la tesis es exclusivamente ilustrativa (dominancia es mas informativa que volumen bruto); la validez predictiva real la da el LOCO-CV con MAE = 9,56 pp.\\[2pt]
+
+\textbf{"Por que el Top-1 baja de 71% a 64,5% en el modelo?"}\\[2pt]
+Minimizar MAE de magnitud y maximizar exactitud de clasificacion ordinal son objetivos distintos. El modelo sacrifica algo de exactitud de ranking a cambio de estimaciones de magnitud mas calibradas. El Top-1 es metrica derivada de la regresion; no hay un clasificador entrenado.\\[2pt]
+
+\textbf{"Como controlo el sobreajuste?"}\\[2pt]
+Dos niveles: (1) CV interno elige hiperparametros antes de ver el pliegue externo. (2) LOCO-CV externo mide MAE sobre la ciudad excluida completa. La aplicacion a 2026 es un tercer nivel: fuera de muestra en formato de eleccion distinto.\\[2pt]
+
+\textbf{"El test de permutacion da p<0,0001 pero Mann-Whitney da p=0,0481 - son inconsistentes?"}\\[2pt]
+No. Son pruebas de hipotesis distintas. Mann-Whitney compara distribuciones mancomunadas asumiendo independencia. El test de permutacion controla la estructura de anidamiento. Que el test de permutacion sea mas significativo indica que el resultado es robusto incluso al controlar el agrupamiento. Ambos apuntan en la misma direccion: la senal es real.\\[2pt]
+
+\textbf{"Los VIFs son enormes - por que no elimino variables antes de modelar?"}\\[2pt]
+Eliminar variables manualmente por VIF es una forma de seleccion por conveniencia, no por desempeno predictivo. En cambio, ElasticNet tolera la colinealidad y hace la poda automaticamente por MAE fuera de muestra. Las variables que "sobran" (por colinealidad) son penalizadas a cero sin necesidad de decision manual.\\[2pt]
+
+\textbf{"Por que solo el MAE como criterio de seleccion en el AutoML? No considera R2, RMSE, AIC?"}\\[2pt]
+Porque es el unico criterio que mide directamente lo que el modelo tiene que hacer: cuantos puntos porcentuales te equivocas al estimar la cuota de voto. Es directamente interpretable por cualquier audiencia sin saber estadistica. Los demas indicadores se reportan como diagnostico complementario pero no se usan para seleccionar:\\[2pt]
+
+\begin{itemize}[noitemsep,topsep=2pt]
+\item RMSE penaliza errores grandes al cuadrado, sensible a outliers. Con n=120, un candidato muy mal predicho dominaria el indicador.
+\item R2oos depende de la varianza de la muestra, no solo del error. Dos modelos con el mismo MAE pueden tener R2 distintos segun la varianza del subconjunto.
+\item Top-1 (clasificacion) fue explicitamente descartado porque minimizar MAE de magnitud y maximizar exactitud ordinal son objetivos distintos. La tabla de especificaciones lo demostro: el modelo final (64,5% Top-1) es peor clasificador que el baseline (71%) pero mucho mejor estimador de magnitud.
+\item AIC y BIC miden la bondad de ajuste en entrenamiento penalizada por complejidad, no el error fuera de muestra real.
+\end{itemize}
+
+El notebook lo enuncia explicitamente en la celda 0 del proceso AutoML: "Metrica unica: MAE de la cuota de voto (puntos porcentuales), siempre al lado del baseline de proporcionalidad."\\[2pt]
+
+\textbf{"Por que esos modelos especificos en el AutoML y no otros?"}\\[2pt]
+No fue un AutoML de libreria que prueba 200 modelos automaticamente. Fue un proceso acotado con las familias mas plausibles para el problema:\\[2pt]
+
+\begin{itemize}[noitemsep,topsep=2pt]
+\item GLM fraccional: unico modelo teoricamente correcto para variable dependiente en (0,1); garantiza predicciones en ese rango por construccion (Papke y Wooldridge, 1996).
+\item Gradient boosting: mejor modelo de arboles para datos tabulares segun literatura reciente; captura no-linealidades sin supuestos distribucionales.
+\item Redes neuronales: aproximador universal; se incluyo para descartar formalmente.
+\item Random forests: ensemble clasico con buena resistencia a sobreajuste.
+\item SVM: kernel trick; captura relaciones no lineales en espacios de alta dimension.
+\end{itemize}
+
+Se excluyeron deliberadamente metodos bayesianos (requieren prior sobre la distribucion del voto, no disponible), modelos de series de tiempo (el problema es transversal, no longitudinal) y deep learning (no justificado con n=120).\\[2pt]
+
+\textbf{"El MAE de 9,56 pp salio de la ciudad excluida en cada pliegue del LOCO-CV?"}\\[2pt]
+Si, completamente. En cada uno de los 31 pliegues, el modelo predice candidatos de una ciudad que nunca vio durante el entrenamiento. El MAE final es el promedio de esos 31 errores individuales sobre ciudades nunca vistas. No hay ningun candidato que haya sido predicho por un modelo que lo conocia de antemano. Por eso se llama estimacion "honesta" fuera de muestra.\\[2pt]
+
+\textbf{"LOCO-CV es una metodologia inventada para esta tesis o existe en la literatura?"}\\[2pt]
+No es una invencion. Es una adaptacion directa del metodo estandar de machine learning "Leave-One-Group-Out Cross-Validation (LOGO-CV)", que aparece en scikit-learn como LeaveOneGroupOut (exactamente la clase que usa el codigo del notebook). El metodo tiene aplicaciones establecidas en:\\[2pt]
+
+\begin{itemize}[noitemsep,topsep=2pt]
+\item Medicina y epidemiologia: se llama "Leave-One-Site-Out" cuando los datos vienen de multiples hospitales. Es el estandar de oro para estimar transferibilidad a nuevos centros.
+\item Econometria espacial: datos agrupados por cluster (candidatos dentro de ciudades son exactamente un caso de cluster).
+\item Pronostico de series de tiempo multi-mercado: se excluye un mercado completo en cada pliegue para estimar transferibilidad a mercados nuevos.
+\end{itemize}
+
+La adaptacion terminologica de la tesis fue llamarla "Leave-One-Contest-Out" para hacer explicito que el "grupo" es una contienda electoral completa, no una observacion. El concepto subyacente es identico al estandar de scikit-learn.\\[2pt]
+
+Por que es necesario en vez de K-Fold estandar: las cuotas de likes y de votos de todos los candidatos de una ciudad suman 1 por definicion (son composicionales). Si partes esos candidatos aleatoriamente entre entrenamiento y prueba, el modelo ve en entrenamiento que el candidato A de Medellin tiene 40% de likes, y cuando predice al candidato B de Medellin (en prueba) ya sabe implicitamente que B no puede tener mas del 60%. Eso es fuga de informacion y produce evaluaciones de desempeno artificialmente optimistas.\\[2pt]
+
+\vspace{4pt}\noindent\rule{\linewidth}{0.4pt}\vspace{4pt}
+
+\subsection{Preguntas del guion (Prioridad 1 y 2)}
+
+\subsubsection{PRIORIDAD 1 — Casi seguro van a aparecer}
+
+\textbf{"Encontramos tres juegos de coeficientes distintos para el mismo modelo"}\\[2pt]
+Los tres corresponden a tres especificaciones distintas:\\[2pt]
+\begin{enumerate}[noitemsep,topsep=2pt]
+\item beta_1 = 0,111 y beta_2 = 0,026: modelo de 2 predictores, los definitivos, con LOCO-CV externo.
+\item beta_mod = 0,557: ElasticNet sobre el pool completo de 9 variables.
+\item beta aprox. 0,423: regresion fraccional simple de la Seccion 5.6.a, sin ElasticNet.
+\end{enumerate}
+La tesis tiene una tabla unificada de reconciliacion que los compara directamente.\\[2pt]
+
+\textbf{"Cual modelo se aplico en 2026 y de que modelo es el MAE = 9,56?"}\\[2pt]
+El modelo de 2 predictores, ElasticNetCV, StandardScaler, sobre las 31 contiendas colombianas. El MAE de 9,56 pp es de ese modelo bajo LOCO-CV. El 9,57 pp pertenece al pool completo de 9 variables. Son especificaciones distintas con resultados practicamente identicos.\\[2pt]
+
+\textbf{"El +/- MAE no es un intervalo de prediccion formal"}\\[2pt]
+Correcto. El MAE es exactitud promedio, no dispersion. Esa construccion fue corregida en la tesis. Lo que se dice ahora: el resultado real de 49,52% supera el limite de referencia heuristica en 1,42 pp. Un intervalo formal requeriria supuestos distribucionales adicionales.\\[2pt]
+
+\textbf{"El filtro de 10.000 votos crea sesgo de seleccion sobre la variable dependiente"}\\[2pt]
+Es una limitacion real, reconocida explicitamente. Las metricas reportadas reflejan el subconjunto mas predecible. Esta limitacion es inherente al diseno en ausencia de un criterio de exclusion que no dependa de los resultados.\\[2pt]
+
+\textbf{"Que hicieron con los candidatos sin publicaciones donde el logit no esta definido?"}\\[2pt]
+Se imputo dominancia minima epsilon = 10^-3 (0,1%), produciendo logit(0,001) aprox. -6,91. Analisis de sensibilidad: con epsilon = 1% el valor seria -4,60, una diferencia de 2,31 unidades-logit que multiplicada por beta = 0,111 desplazaria la prediccion aprox. 26 pp. Los candidatos afectados (aprox. 9 de 120) son los menos votados y ElasticNet los penaliza fuertemente.\\[2pt]
+
+\vspace{4pt}\noindent\rule{\linewidth}{0.4pt}\vspace{4pt}
+
+\subsubsection{PRIORIDAD 2 — Pueden aparecer como seguimiento}
+
+\textbf{"Los parametros Weibull estan mal interpretados"}\\[2pt]
+En F(t) = 1 - e^(-k(t+t0)^alpha):\\[2pt]
+\begin{itemize}[noitemsep,topsep=2pt]
+\item k es una tasa (no escala clasica).
+\item alpha controla la geometria: alpha menor que 1 desacelera; alpha mayor que 1 la tasa crece. Twitter/X con alpha = 1,14 refleja acumulacion acelerada (mecanismo de retweet).
+\item t0 es un adelanto de origen: hace que F(0) sea mayor que 0, modelando interacciones previas al primer dia de observacion.
+\end{itemize}
+
+\textbf{"Mann-Whitney asume independencia; el Spearman de 0,70 es composicional"}\\[2pt]
+p = 0,0481 es del engagement por publicacion. La estructura de anidamiento se valida con test de permutacion intra-contienda (p menor que 0,0001). El Spearman es evidencia exploratoria; la validez predictiva real se establece por LOCO-CV. El rho aprox. 0,45 del volumen absoluto confirma que la dominancia es mas informativa. La composicionalidad esta cuantificada: rho_mec = 0,261 (39%), senal real rho_real aprox. 0,41 (61%).\\[2pt]
+
+\textbf{"Que mide realmente el modelo: intencion de voto o cuota electoral?"}\\[2pt]
+ELA-NOM aproxima la cuota electoral observada, no la intencion de voto latente. El proxy digital puede capturar apoyo genuino, visibilidad, polarizacion y pauta paga simultaneamente. El unico claim predictivo: cuota de likes predice cuota de votos con MAE = 9,56 pp fuera de muestra.\\[2pt]
+
+\textbf{"El OE4 anuncia clasificacion Y regresion, pero solo hay regresion"}\\[2pt]
+El Top-1 del 64,5% es una metrica derivada de la regresion, no un clasificador entrenado independientemente. El OE4 fue reformulado en la tesis. Un logit condicional de McFadden queda como trabajo futuro.\\[2pt]
+
+\vspace{4pt}\noindent\rule{\linewidth}{0.4pt}\vspace{4pt}
+
+\subsubsection{OTRAS PROBABLES}
+
+\textbf{"Por que excluir Instagram de Colombia?"} Meta cerro su API para investigadores independientes en 2023. Restriccion externa del ecosistema, no una decision metodologica.\\[2pt]
+
+\textbf{"El error en 2026 fue de 10,98 pp. No invalida el modelo?"} El MAE medio es 9,56 pp. El margen real fue de 0,96 pp, inferior al propio error del modelo. Ninguna herramienta basada en engagement puede resolver un empate tecnico. El uso correcto de ELA-NOM es detectar tendencias y ventajas claras superiores a 20 pp.\\[2pt]
+
+\textbf{"El R2 del Weibull es muy bajo?"} El R2 promedio de 0,449 incluye el 66,8% de varianza que es ruido intra-publicacion irreducible. El modelo captura la forma global de la curva, que es lo que necesita para la reconstruccion historica.\\[2pt]
+
+\textbf{"Por que no normalizar por seguidores?"} El numero de seguidores es inestable entre plataformas, altamente colineal con el volumen de publicaciones y no disponible historicamente en todas las plataformas. VIF elevado lo descarto automaticamente del pool.\\[2pt]
+
+\textbf{"Por que la dominancia relativa y no el volumen absoluto?"} Clasificador naive: dominancia 71% vs volumen bruto 57,6%. Spearman: rho = 0,70 vs rho aprox. 0,45. La dominancia elimina el efecto del tamano de la contienda y mide la senal competitiva directamente.\\[2pt]
+
+\textbf{"Cuanto cuesta replicar esto?"} Entre 20 y 30 dolares en creditos de Apify. Procesamiento corre en cualquier computador con Python.\\[2pt]
+
+\end{document}
