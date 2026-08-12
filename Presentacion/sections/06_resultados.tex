@@ -111,78 +111,10 @@
 \end{frame}
 
 % DIAPOSITIVA 20 (renumerada): Los dos modelos
-\makered
-\begin{frame}{Dos modelos: reconciliación de coeficientes \corr{[Corr.\ 1.14, 1.15]}}
-  \vspace{-0.2em}
-  \begin{center}
-  \scriptsize
-  \rowcolors{2}{tableBand}{white}
-  \begin{tabular}{L{4.0cm} C{1.6cm} C{1.4cm} C{1.4cm} C{1.8cm} C{2.2cm}}
-    \toprule
-    \rowcolor{barBlue}
-    {\color{white}\textbf{Especificación}} &
-    {\color{white}$\beta_0$} &
-    {\color{white}$\beta_1$} &
-    {\color{white}$\beta_2$} &
-    {\color{white}\textbf{MAE LOCO}} &
-    {\color{white}\textbf{Transferible 2026}} \\
-    \midrule
-    Regresión fraccional simple (Fig.\ 6.4) &
-      {N/A} & 0,423 & {N/A} & 11,52 pp & Sí \\
-    \rowcolor{tableBand}
-    \textbf{ElasticNet 2 vars.\ (modelo final)} &
-      0,258 & \textbf{0,111} & \textbf{0,026} & \textbf{9,56 pp} & \textbf{Sí} \\
-    ElasticNet 9 vars.\ (pool completo) &
-      0,258 & 0,111 & 0,557$^*$ & 9,57 pp & \alrt{No} \\
-    \bottomrule
-  \end{tabular}
-  \end{center}
-
-  {\footnotesize $^*$ $\beta_2 = 0{,}557$: coeficiente del moderador cuando ElasticNet opera
-  sobre el pool completo de 9 variables, con variables territoriales como efectos directos.}
-
-  \vspace{0.2em}
-  \begin{columns}[T]
-    \begin{column}{0.55\textwidth}
-      \textbf{¿Por qué el modelo de 9 vars.\ no es transferible a 2026?}
-      \begin{itemize}
-        \item Retiene «número de candidatos» como efecto directo
-        \item En una 2.ª vuelta: exactamente 2 candidatos; constante sin poder discriminador
-        \item El modelo de 2 vars.\ retiene solo señal digital pura más moderador de población
-      \end{itemize}
-    \end{column}
-    \begin{column}{0.41\textwidth}
-      \begin{alertblock}{Aclaración proactiva}
-        Los tres juegos de coeficientes corresponden a \textbf{tres especificaciones distintas},
-        no a inconsistencias. La tesis incluye una tabla unificada de reconciliación.
-      \end{alertblock}
-    \end{column}
-  \end{columns}
-\end{frame}
-\makeblue
+\addtocounter{framenumber}{1}
 
 % DIAPOSITIVA nueva: Estabilidad de coeficientes (bootstrap LOCO-CV)
-\makered
-\begin{frame}{Modelado: estabilidad de los coeficientes entre pliegues LOCO-CV}
-  \begin{center}
-    \includegraphics[width=0.72\textwidth]{img/col_coef_bootstrap.png}
-  \end{center}
-  {\footnotesize\color{subtleGray}\centering
-    Media $\pm$ IC 95\% del coeficiente en escala logit a través de los 31 pliegues LOCO-CV.
-    La dominancia de \textit{likes} ($\beta_1 \approx 0{,}78$) y el moderador ($\beta_2 \approx 0{,}54$)
-    son estables. Ningún pliegue invierte el signo de ningún coeficiente.}
-\end{frame}
-\makeblue
+\addtocounter{framenumber}{1}
 
 % DIAPOSITIVA nueva: Diagnóstico LOCO-CV (predicción vs. real + residuos)
-\makered
-\begin{frame}{Modelado: diagnóstico del modelo ElasticNet -- LOCO-CV}
-  \begin{center}
-    \includegraphics[width=0.90\textwidth]{img/col_loco_residuals.png}
-  \end{center}
-  {\footnotesize\color{subtleGray}\centering
-    Izquierda: predicción vs.\ cuota real (MAE = 9,56 pp).
-    Derecha: distribución de residuos centrada en cero (sesgo medio = 0,00 pp).
-    El modelo no sobreestima ni subestima sistemáticamente.}
-\end{frame}
-\makeblue
+\addtocounter{framenumber}{1}

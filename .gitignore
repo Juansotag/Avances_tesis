@@ -12,3 +12,17 @@ Herramientas/descargas_tiktok/
 # Archivos de sistema
 .DS_Store
 Thumbs.db
+
+# Archivos auxiliares de LaTeX y temporales
+*.aux
+*.log
+*.nav
+*.out
+*.snm
+*.toc
+*.bbl
+*.blg
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+temp_output.*

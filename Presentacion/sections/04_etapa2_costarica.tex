@@ -93,51 +93,7 @@
 \end{frame}
 
 % DIAPOSITIVA 12: Parámetros calibrados
-\makered
-\begin{frame}{Etapa 2: Parámetros Weibull calibrados por plataforma}
-  \begin{columns}[T]
-    \begin{column}{0.46\textwidth}
-      \begin{center}
-      {\setlength{\tabcolsep}{3pt}
-      \small
-      \rowcolors{2}{tableBand}{white}
-      \begin{tabular}{L{2.0cm} C{1.0cm} C{1.0cm} C{1.3cm} C{0.9cm}}
-        \toprule
-        \rowcolor{barBlue}
-        {\color{white}\textbf{Plataforma}} &
-        {\color{white}$k$} &
-        {\color{white}$\alpha$} &
-        {\color{white}$t_0$ (h)} &
-        {\color{white}$R^2$} \\
-        \midrule
-        Facebook   & 0,948 & 0,823 & 46 & 0,351 \\
-        Instagram  & 1,137 & 0,521 &  1 & 0,403 \\
-        TikTok     & 1,327 & 0,512 & 19 & 0,351 \\
-        Twitter/X  & 1,445 & \alrt{1,142} & 6 & 0,691 \\
-        \bottomrule
-      \end{tabular}}
-      \end{center}
-      \vspace{0.2em}
-      {\footnotesize\color{subtleGray}
-        Twitter/X: $\alpha > 1$, tasa creciente (retweet acumulativo)}
-    \end{column}
-    \begin{column}{0.50\textwidth}
-      \textbf{Hallazgo clave para la validez del diseño:}
-      \begin{itemize}
-        \item La curva de la candidata \textbf{ganadora} (Laura Fernández) es morfológicamente \textbf{idéntica} a la del resto
-        \item Sin diferencia estadísticamente significativa entre ganadores y perdedores en ningún día del panel
-        \item El patrón de crecimiento es propiedad de la \textbf{plataforma}, no del candidato ni del resultado
-      \end{itemize}
-      \vspace{0.3em}
-      \begin{exampleblock}{\textbf{P2}: Respondida}
-        Los parámetros calibrados en Costa Rica 2026 son transferibles
-        para reconstruir el histórico de interacciones de \textit{cualquier}
-        elección colombiana pasada.
-      \end{exampleblock}
-    \end{column}
-  \end{columns}
-\end{frame}
-\makeblue
+\addtocounter{framenumber}{1}
 
 % DIAPOSITIVA nueva: Costa Rica -- ganadora vs. resto
 \begin{frame}{Etapa 2: La ganadora es indistinguible del resto}
@@ -151,71 +107,10 @@
 \end{frame}
 
 % DIAPOSITIVA: Precisión proyectiva -- tabla MAPE
-\makered
-\begin{frame}{Etapa 2: Precisión del restaurador temporal}
-  \textbf{MAPE mediano por plataforma y día de observación}
-  \vspace{0.3em}
-  \begin{center}
-  {\setlength{\tabcolsep}{4pt}
-  \scriptsize
-  \rowcolors{2}{tableBand}{white}
-  \begin{tabular}{L{2.0cm} C{1.5cm} C{1.5cm} C{1.5cm} C{1.7cm} C{1.5cm}}
-    \toprule
-    \rowcolor{barBlue}
-    {\color{white}\textbf{Plataforma}} &
-    {\color{white}\textbf{Día 0}} &
-    {\color{white}\textbf{Día 1}} &
-    {\color{white}\textbf{Día 2}} &
-    {\color{white}\textbf{Día 3}} &
-    {\color{white}\textbf{Día 7}} \\
-    \midrule
-    Facebook   & 11,27\% & 6,92\% & 3,73\% & \ok{2,12\%}  & 0,32\% \\
-    Instagram  & 64,77\% & \num{20,72\%}$^*$ & 15,67\% & \ok{12,06\%} & 3,76\% \\
-    TikTok     & 25,36\% & 14,20\% & 8,35\% & \ok{5,94\%}  & 2,29\% \\
-    Twitter/X  & 56,37\% & 11,09\% & 2,55\% & \ok{0,38\%}  & 0,00\% \\
-    \bottomrule
-  \end{tabular}}
-  \end{center}
-
-  \vspace{0.2em}
-  {\footnotesize $^*$ Instagram Día 1 = 20,72\%: único que supera el 20\%.
-  A partir del \textbf{Día 3}, las cuatro plataformas están por debajo del 13\%. \corr{[Corr.\ 1.10]}}
-
-  \vspace{0.3em}
-  \begin{columns}[T]
-    \begin{column}{0.52\textwidth}
-      \textbf{Criterio adoptado:} día 3 de observación por publicación.\\[0.2em]
-      Instagram en Día 3: \ok{12,06\%}; la excepción fue Día 1, no Día 3.
-    \end{column}
-    \begin{column}{0.44\textwidth}
-      \begin{exampleblock}{\textbf{PM3}: Respondida}
-        \small La reconstrucción es suficientemente precisa.
-        Los parámetros Weibull son transferibles para
-        construir datasets de entrenamiento retroactivos.
-      \end{exampleblock}
-    \end{column}
-  \end{columns}
-\end{frame}
-\makeblue
+\addtocounter{framenumber}{1}
 
 % DIAPOSITIVA nueva: MAPE convergencia + distribución de errores
-\makered
-\begin{frame}{Etapa 2: Convergencia del error por día de observación}
-  \begin{center}
-    \includegraphics[width=0.88\textwidth]{img/costa_rica_r2_2.png}
-  \end{center}
-  {\footnotesize\color{subtleGray}\centering
-    Izquierda: MAPE mediano por plataforma y día de observación.
-    Derecha: distribución de errores individuales en Día 3.
-    El 85\% de las publicaciones tiene MAPE $<$ 20\% en Día 3.}
-\end{frame}
-\makeblue
+\addtocounter{framenumber}{1}
 
 % DIAPOSITIVA: Ajuste del restaurador por plataforma
-\makered
-\begin{frame}{Etapa 2: Ajuste del restaurador por plataforma}
-  \begin{center}
-    \includegraphics[width=0.90\textwidth]{img/costa_rica_r2_1.png}
-  \end{center}
-\end{frame}
-\makeblue
+\addtocounter{framenumber}{1}

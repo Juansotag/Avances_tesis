@@ -33,41 +33,7 @@
 \end{frame}
 
 % DIAPOSITIVA 16: Colombia -- extracción de datos
-\makered
-\begin{frame}{Etapa 3: Colombia -- infraestructura de extracción}
-  \begin{columns}[T]
-    \begin{column}{0.52\textwidth}
-      \textbf{Tres plataformas monitoreadas}
-      \begin{itemize}
-        \item \textbf{Facebook} y \textbf{TikTok}: Apify (infraestructura comercial de scraping)
-        \item \textbf{Twitter/X}: scraper propio con Playwright (navegador \textit{headless})
-        \item \alrt{Instagram excluida}: Meta cerró su API pública para investigadores
-              independientes desde 2023
-      \end{itemize}
-      \vspace{0.3em}
-      \textbf{Ventana temporal:} 15 días anteriores al 29 oct.\ 2023
-      \vspace{0.3em}
-      {\small\textbf{Restauración Weibull:}\\
-      Las interacciones brutas se convierten en estimaciones al \textbf{día de la elección},
-      descontando el tráfico póstumo acumulado desde oct.\ 2023 hasta la extracción.}
-    \end{column}
-    \begin{column}{0.44\textwidth}
-      \begin{block}{Dataset final}
-        \begin{itemize}\small
-          \item \textbf{5.776} publicaciones únicas
-          \item \hspace{1em} Facebook: \textbf{2.511}
-          \item \hspace{1em} Twitter/X: \textbf{2.346}
-          \item \hspace{1em} TikTok: \textbf{919}
-          \item[\phantom{x}]
-          \item 31 ciudades, \textbf{120 candidatos}\\
-                (más de 10k votos)
-          \item 92,6\% con publicaciones activas
-        \end{itemize}
-      \end{block}
-    \end{column}
-  \end{columns}
-\end{frame}
-\makeblue
+\addtocounter{framenumber}{1}
 
 % DIAPOSITIVA 17: Validación de la señal digital (P1)
 \begin{frame}{Etapa 3: Validación de la señal digital (P1)}
@@ -110,15 +76,7 @@
 
 
 % DIAPOSITIVA 17-B: Gráfica dispersión señal
-\makered
-\begin{frame}{Etapa 3: Correlación dominancia digital vs. cuota de voto}
-  \begin{center}
-    \includegraphics[height=0.82\textheight]{img/col_scatter_dominancia_votos.png}
-  \end{center}
-  {\footnotesize\color{subtleGray}\centering
-    $\rho = 0{,}70$, 120 candidatos, 31 ciudades \corr{[Corr.\ 2.2]}}
-\end{frame}
-\makeblue
+\addtocounter{framenumber}{1}
 
 % DIAPOSITIVA 18: Colombia -- normalización y familias de variables
 \begin{frame}{Etapa 3: Normalización y construcción de variables}

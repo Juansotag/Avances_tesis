@@ -61,76 +61,10 @@
 \end{frame}
 
 % DIAPOSITIVA 28 (renumerada): Próximos pasos
-\makered
-\begin{frame}{Próximos pasos y agenda futura}
-  \begin{columns}[T]
-    \begin{column}{0.48\textwidth}
-      \textbf{Validación definitiva, 2027}
-      \begin{itemize}
-        \item Elecciones territoriales de Colombia 2027
-        \item Mismo contexto multi-candidato subnacional
-        \item Modelo ya entrenado; evaluación \textbf{ex-ante} estricta
-        \item Permitirá aislar el desempeño sin sesgos del filtro retrospectivo
-      \end{itemize}
-      \vspace{0.4em}
-      \textbf{Extensión: nowcasting continuo}
-      \begin{itemize}
-        \item Ejecutar ELA-NOM cada 24 horas durante la campaña
-        \item Arquitectura técnica ya resuelta con el restaurador Weibull
-        \item Solo requiere datos de extracción diaria
-      \end{itemize}
-    \end{column}
-    \begin{column}{0.48\textwidth}
-      \textbf{Líneas de investigación futura}
-      \begin{itemize}
-        \item Validación del modelo Weibull en elecciones con distintos perfiles demográficos
-        \item Diseño de umbral de inclusión basado en información pre-elección
-        \item Inclusión de Instagram cuando Meta reabra el acceso para investigadores
-        \item Logit condicional de McFadden como clasificador complementario \corr{[Corr.\ 1.20]}
-        \item Análisis de sensibilidad completo sobre la imputación $\varepsilon$ \corr{[Corr.\ 1.13]}
-      \end{itemize}
-    \end{column}
-  \end{columns}
-\end{frame}
-\makeblue
+\addtocounter{framenumber}{1}
 
 % DIAPOSITIVA 29 (renumerada): Cumplimiento de objetivos
-\makered
-\begin{frame}{Cumplimiento de objetivos}
-  \vspace{-0.1em}
-  \begin{block}{Objetivo general -- \ok{Cumplido}}
-    \small Diseñar, implementar y validar un modelo de \textit{nowcasting} electoral
-    elección-agnóstico e independiente de encuestas para el entorno colombiano.
-  \end{block}
-  \vspace{0.2em}
-  {\small\textbf{Objetivos específicos:}}
-  \vspace{0.1em}
-  \begin{center}
-  {\setlength{\tabcolsep}{4pt}
-  \scriptsize
-  \rowcolors{2}{tableBand}{white}
-  \begin{tabular}{L{6.2cm} C{1.6cm} L{4.0cm}}
-    \toprule
-    \rowcolor{barBlue}
-    {\color{white}\textbf{Objetivo específico}} &
-    {\color{white}\textbf{Estado}} &
-    {\color{white}\textbf{Evidencia}} \\
-    \midrule
-    OE1. Replicar SOMEN-DC y documentar sus limitaciones &
-      \ok{Cumplido} & Bolivia 2025 -- PM1, PM2 \\
-    OE2. Diseñar restaurador temporal para datos históricos &
-      \ok{Cumplido} & Weibull por plataforma -- PM3, P2 \\
-    OE3. Construir dataset y validar señal digital en Colombia &
-      \ok{Cumplido} & 31 ciudades, $\rho=0{,}70$, $p=0{,}048$ -- P1 \\
-    OE4. Seleccionar el modelo de mejor desempeño predictivo &
-      \ok{Cumplido} & ElasticNet 2v., MAE=9,56 pp, $R^2=0{,}518$ -- P3 \\
-    OE5. Validar transferibilidad a elección no vista &
-      \ok{Cumplido} & 2.ª vuelta 2026, MAE=10,98 pp -- PM4 \\
-    \bottomrule
-  \end{tabular}}
-  \end{center}
-\end{frame}
-\makeblue
+\addtocounter{framenumber}{1}
 
 % DIAPOSITIVA 30 (renumerada): Cierre
 {
